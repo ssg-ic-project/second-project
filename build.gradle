@@ -54,11 +54,11 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind'
 
 
-    //spring security 적용
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-    testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    //spring security 적용
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+//    testImplementation 'org.springframework.security:spring-security-test'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // 메일 적용
     implementation 'org.springframework.boot:spring-boot-starter-mail'
