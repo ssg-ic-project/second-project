@@ -1,0 +1,36 @@
+.navbar {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 65px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.align-logo-left {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  gap: 25px;
+}
+
+.nav-logout {
+  vertical-align: middle;
+  font-family: 'BMHANNAAir', sans-serif;
+  font-weight: normal;
+  font-size: 30px;
+  color: #50565C;
+  text-decoration: none;
+}
+
+.nav-mypage {
+  color: #50565C;
+}
