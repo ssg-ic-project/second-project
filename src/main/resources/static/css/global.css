@@ -1,0 +1,41 @@
+body {
+  background-color: #F8F8F8;
+  margin: auto;
+}
+
+h1 {
+  font-family: 'BMHANNAPro', sans-serif;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'BMDOHYEON';
+  src: url('/fonts/BMDOHYEON.otf') format('opentype'),
+  url('/fonts/BMDOHYEON.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMHANNAAir';
+  src: url('/fonts/BMHANNAAir.otf') format('opentype'),
+  url('/fonts/BMHANNAAir.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMHANNAPro';
+  src: url('/fonts/BMHANNAPro.otf') format('opentype'),
+  url('/fonts/BMHANNAPro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMJUA';
+  src: url('/fonts/BMJUA.otf') format('opentype'),
+  url('/fonts/BMJUA.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
