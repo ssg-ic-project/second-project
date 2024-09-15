@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/global.css}">
+  <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+  <title>Sidebar</title>
+</head>
+<body>
+<div th:fragment="sidebar">
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/media/logo/black-logo-header.png" alt="" class="logo">
+    </div>
+    <ul class="nav-links">
+      <li tabindex="0" class="nav-dashboard">
+        <a href="#">
+          <i class="nav-link-icon">
+            <img src="/media/icons/dashboard.svg" alt="Dashboard Icon" width="24" height="24">
+          </i>
+          <span class="link_name">대시보드</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li class="link_name">
+            대시보드
+          </li>
+        </ul>
+      </li>
+      <li tabindex="0" class="nav-menu">
+        <div class="icon-link">
+          <a href="#">
+            <i class="nav-link-icon">
+              <img src="/media/icons/member.svg" alt="Member Icon" width="24" height="24">
+            </i>
+            <span class="link_name">회원 관리</span>
+          </a>
+          <i class="nav-arrow">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <ul class="sub-menu">
+          <li class="link_name">회원 관리</li>
+          <li>
+            <a href="#">직원 조회</a>
+          </li>
+          <li>
+            <a href="#">회원 조회</a>
+          </li>
+        </ul>
+      </li>
+      <li tabindex="0" class="nav-menu">
+        <div class="icon-link">
+          <a href="#">
+            <i class="nav-link-icon">
+              <img src="/media/icons/warehouse.svg" alt="Warehouse Icon" width="24" height="24">
+            </i>
+            <span class="link_name">창고 관리</span>
+          </a>
+          <i class="nav-arrow">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <ul class="sub-menu">
+          <li class="link_name">창고 관리</li>
+          <li>
+            <a href="#">창고 조회</a>
+          </li>
+        </ul>
+      </li>
+      <li tabindex="0" class="nav-menu">
+        <div class="icon-link">
+          <a href="#">
+            <i class="nav-link-icon">
+              <img src="/media/icons/inbound.svg" alt="Warehouse Icon" width="24" height="24">
+            </i>
+            <span class="link_name">입고 관리</span>
+          </a>
+          <i class="nav-arrow">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <ul class="sub-menu">
+          <li class="link_name">입고 관리</li>
+          <li>
+            <a href="#">입고 조회</a>
+          </li>
+        </ul>
+      </li>
+      <li tabindex="0" class="nav-menu">
+        <div class="icon-link">
+          <a href="#">
+            <i class="nav-link-icon">
+              <img src="/media/icons/outbound.svg" alt="Warehouse Icon" width="24" height="24">
+            </i>
+            <span class="link_name">출고 관리</span>
+          </a>
+          <i class="nav-arrow">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <ul class="sub-menu">
+          <li class="link_name">출고 관리</li>
+          <li>
+            <a href="#">출고 조회</a>
+          </li>
+          <li>
+            <a href="#">배차 조회</a>
+          </li>
+        </ul>
+      </li>
+      <li tabindex="0" class="nav-menu">
+        <div class="icon-link">
+          <a href="#">
+            <i class="nav-link-icon">
+              <img src="/media/icons/stock.svg" alt="Warehouse Icon" width="24" height="24">
+            </i>
+            <span class="link_name">재고 관리</span>
+          </a>
+          <i class="nav-arrow">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <ul class="sub-menu">
+          <li class="link_name">재고 관리</li>
+          <li>
+            <a href="#">재고 조회</a>
+          </li>
+        </ul>
+      </li>
+      <li tabindex="0" class="nav-menu">
+        <div class="icon-link">
+          <a href="#">
+            <i class="nav-link-icon">
+              <img src="/media/icons/vehicle.svg" alt="Warehouse Icon" width="24" height="24">
+            </i>
+            <span class="link_name">차량 관리</span>
+          </a>
+          <i class="nav-arrow">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <ul class="sub-menu">
+          <li class="link_name">차량 관리</li>
+          <li>
+            <a href="#">차량 조회</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+
+<script>
+  document.querySelectorAll('.nav-dashboard').forEach(menu => {
+    menu.addEventListener('focusin', () => {
+      let icon = menu.querySelector('.nav-link-icon img');
+      let currentSrc = icon.src;
+      icon.dataset.originalSrc = currentSrc;
+      icon.src = currentSrc.replace('.svg', '_white.svg');
+    });
+
+    menu.addEventListener('focusout', () => {
+      let icon = menu.querySelector('.nav-link-icon img');
+      icon.src = icon.dataset.originalSrc;
+    });
+  });
+
+  let arrow = document.querySelectorAll(".nav-arrow");
+  for (let i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e) => {
+      let arrowParent = e.target.closest(".nav-menu");
+      console.log(i + ": " + arrowParent);
+      arrowParent.classList.toggle("showMenu");
+
+    })
+  }
+
+
+</script>
+</html>
