@@ -5,6 +5,11 @@
   height: 100%;
   width: 220px;
   background-color: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar.close {
+  width: 54px;
 }
 
 .sidebar .logo-details {
@@ -13,6 +18,14 @@
   display: flex;
   align-items: center;
   padding: 0 40px;
+  transition: 0.3s ease;
+  transition-delay: 0.1s;
+}
+
+.sidebar.close .logo-details {
+  transition-delay: 0s;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sidebar .logo-details .logo {
@@ -22,9 +35,10 @@
 
 .sidebar .nav-links {
   height: 100%;
-  padding: 20px 0px 0px;
+  padding: 0px;
   overflow: visible;
   overflow-y: auto;
+  overflow: hidden;
 }
 
 .sidebar .nav-links::-webkit-scrollbar {
@@ -35,6 +49,7 @@
   position: relative;
   list-style: none;
   transition: all 0.3s ease-in-out;
+  white-space: nowrap;
 }
 
 .sidebar .nav-links .nav-menu:hover,
@@ -61,15 +76,17 @@
 .sidebar .nav-links li i {
   display: flex;
   height: 50px;
-  min-width: 54px;
+  min-width: 55px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .sidebar .nav-links .showMenu .nav-arrow {
   transform: rotate(-180deg);
 }
+
 .sidebar .nav-links li a {
   font-family: 'BMHANNAAir', sans-serif;
   color: #5F6368;
@@ -106,7 +123,8 @@
   padding: 10px 20px;
   border-radius: 0 5px 5px 0;
   opacity: 0;
-  pointer-events:none;
+  display: block;
+  pointer-events: none;
   transition: all 0.3s ease-in-out;
 }
 
@@ -114,10 +132,10 @@
   top: 0;
   opacity: 1;
   pointer-events: auto;
+  transition: all 0.3s ease-in-out;
 }
 
 .sidebar.close .nav-links li .sub-menus .link_name {
-  display: block;
   font-family: 'BMHANNAAir', sans-serif;
   color: #5F6368;
   font-size: 18px;
@@ -132,5 +150,46 @@
   margin: 0 10px;
   white-space: nowrap;
   opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.show-section {
+  background-color: #F8F8F8;
+  position: fixed;
+  left: 220px;
+  bottom: 0;
+  height: 100vh;
+  width: calc(100% - 220px);
+  display: flex;
+  align-items: flex-end;
+  transition: all 0.3s ease;
+}
+
+.sidebar.close ~ .show-section {
+  left: 55px;
+  width: calc(100% - 55px);
+}
+
+.sidebar.close ~ .show-section .show {
+  left: -50px;
+  transform: rotate(-180deg);
+}
+
+.show-section .show-content {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.show-section .show-content .show {
+  background-color: #BEC9FF;
+  border-radius: 50%;
+  padding: 10px;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  bottom: 20px;
+  left: -22px;
   transition: all 0.3s ease;
 }
