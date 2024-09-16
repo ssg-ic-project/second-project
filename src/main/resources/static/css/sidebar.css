@@ -36,9 +36,13 @@
 .sidebar .nav-links {
   height: 100%;
   padding: 0px;
-  overflow: visible;
-  overflow-y: auto;
   overflow: hidden;
+}
+
+.sidebar.close .nav-links {
+  height: 100%;
+  padding: 0px;
+  overflow: visible;
 }
 
 .sidebar .nav-links::-webkit-scrollbar {
@@ -50,6 +54,17 @@
   list-style: none;
   transition: all 0.3s ease-in-out;
   white-space: nowrap;
+}
+
+.sidebar .nav-links .nav-menu span,
+.sidebar .nav-links .nav-menu .nav-arrow {
+  transition: all 0.3s ease;
+}
+
+.sidebar.close .nav-links .nav-menu span,
+.sidebar.close .nav-links .nav-menu .nav-arrow {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sidebar .nav-links .nav-menu:hover,
@@ -125,7 +140,7 @@
   opacity: 0;
   display: block;
   pointer-events: none;
-  transition: all 0.3s ease-in-out;
+  transition: none;
 }
 
 .sidebar.close .nav-links li:hover .sub-menus {
@@ -136,6 +151,7 @@
 }
 
 .sidebar.close .nav-links li .sub-menus .link_name {
+  display: block;
   font-family: 'BMHANNAAir', sans-serif;
   color: #5F6368;
   font-size: 18px;
@@ -154,12 +170,9 @@
 }
 
 .show-section {
-  background-color: #F8F8F8;
   position: fixed;
   left: 220px;
   bottom: 0;
-  height: 100vh;
-  width: calc(100% - 220px);
   display: flex;
   align-items: flex-end;
   transition: all 0.3s ease;
