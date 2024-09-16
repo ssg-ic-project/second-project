@@ -39,3 +39,11 @@ h1 {
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('/fonts/Montserrat-Bold.otf') format('opentype'),
+  url('/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
