@@ -22,122 +22,115 @@
 
 .sidebar .nav-links {
   height: 100%;
-  padding: 20px 0px;
-  overflow: auto;
+  padding: 20px 0px 0px;
+  overflow: visible;
+  overflow-y: auto;
+}
+
+.sidebar .nav-links::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar .nav-links li {
   position: relative;
   list-style: none;
-  transition: all 0.1s ease-in;
+  transition: all 0.3s ease-in-out;
 }
 
 .sidebar .nav-links .nav-menu:hover,
-.sidebar .nav-links .nav-dashboard:hover {
+.sidebar .nav-links .nav-menu .sub-menu:hover {
   background-color: #BEC9FF;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
-.sidebar .nav-links .nav-dashboard:focus-within {
+.sidebar .nav-links .nav-menu .sub-menus .sub-menu:focus-within {
   background-color: #8D9DEF;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
-.sidebar .nav-links .nav-dashboard:focus-within a span {
+.sidebar .nav-links .nav-menu .sub-menus .sub-menu:focus-within a {
   color: #FFFFFF;
 }
 
-.sidebar .nav-links li .showMenu .sub-menu {
-  display: block;
-}
-
-.sidebar .nav-links li a {
+.sidebar .nav-links li .icon-link {
   display: flex;
   align-items: center;
-  min-width: 70px;
-  text-decoration: none;
-  color: #5F6368;
-  padding: 0px 20px;
+  justify-content: space-between;
 }
 
 .sidebar .nav-links li i {
-  height: 45px;
   display: flex;
+  height: 50px;
+  min-width: 54px;
   align-items: center;
   justify-content: center;
-  margin: 10px 0;
-  transition: all 0.1s ease;
+  transition: all 0.3s ease;
 }
 
 .sidebar .nav-links .showMenu .nav-arrow {
   transform: rotate(-180deg);
 }
+.sidebar .nav-links li a {
+  font-family: 'BMHANNAAir', sans-serif;
+  color: #5F6368;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
 .sidebar .nav-links li a .link_name {
-  font-family: 'BMHANNAAir', sans-serif;
   font-size: 20px;
 }
 
-
-.sidebar .nav-links .icon-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 20px;
+.sidebar .nav-links li .sub-menus {
+  background-color: #FCFCFC;
+  padding: 10px 17px 10px 44px;
+  margin-top: -5px;
+  display: none;
 }
 
-.sidebar .nav-links li .sub-menu {
+.sidebar .nav-links li.showMenu .sub-menus {
+  display: block;
+}
+
+.sidebar .nav-links li .sub-menus .link_name {
+  display: none;
+}
+
+.sidebar.close .nav-links li .sub-menus {
   background-color: #EBEDEF;
-  padding: 5px 20px 5px 44px;
-  /* display: none; */
-}
-
-.sidebar.close .nav-links li .sub-menu {
   position: absolute;
   left: 100%;
-  top: 0;
+  top: -5px;
   margin-top: 0;
   padding: 10px 20px;
   border-radius: 0 5px 5px 0;
-  transition: all 0.3s ease;
   opacity: 0;
-  pointer-events: none;
+  pointer-events:none;
+  transition: all 0.3s ease-in-out;
 }
 
-.sidebar.close .nav-links li:hover .sub-menu {
+.sidebar.close .nav-links li:hover .sub-menus {
+  top: 0;
   opacity: 1;
   pointer-events: auto;
 }
 
-.sidebar.close .nav-links li .sub-menu .link_name {
-  font-family: 'BMHANNAAir', sans-serif;
-  font-size: 20px;
-  opacity: 1;
+.sidebar.close .nav-links li .sub-menus .link_name {
   display: block;
-  text-align: center;
-  margin: 5px
-}
-
-.sidebar .nav-links li .sub-menu .blank {
-  opacity: 1;
-  pointer-events: auto;
-  padding: 3px 20px 6px 16px;
-}
-
-.sidebar .nav-links li .sub-menu a {
   font-family: 'BMHANNAAir', sans-serif;
-  font-size: 15px;
-  padding: 10px 10px;
+  color: #5F6368;
+  font-size: 18px;
+  padding: 5px 0px;
+  margin-left: 5px;
   white-space: nowrap;
 }
 
-.sidebar .nav-links li .sub-menu a:hover {
-  background-color: #BEC9FF;
-  border-radius: 5px;
-}
-
-.sidebar .nav-links li .sub-menu a:focus {
-  background-color: #8D9DEF;
-  color: #FFFFFF;
-  border-radius: 5px;
+.sidebar .nav-links li .sub-menus a {
+  font-size: 16px;
+  padding: 5px 0px;
+  margin: 0 10px;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: all 0.3s ease;
 }

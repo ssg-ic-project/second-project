@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" th:href="@{/css/global.css}">
   <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+  <link rel="shortcut icon" href="#">
   <title>Sidebar</title>
 </head>
 <body>
@@ -14,20 +15,22 @@
       <img src="/media/logo/black-logo-header.png" alt="" class="logo">
     </div>
     <ul class="nav-links">
-      <li tabindex="0" class="nav-dashboard">
+      <li tabindex="0" class="nav-menu">
         <a href="#">
           <i class="nav-link-icon">
             <img src="/media/icons/dashboard.svg" alt="Dashboard Icon" width="24" height="24">
           </i>
           <span class="link_name">대시보드</span>
         </a>
-        <ul class="sub-menu blank">
-          <li class="link_name">
-            대시보드
+        <ul class="sub-menus">
+          <li class="link_name">대시보드</li>
+          <li tabindex="0" class="sub-menu">
+            <a href="#">대시보드</a>
           </li>
         </ul>
       </li>
-      <li tabindex="0" class="nav-menu">
+      </li>
+      <li class="nav-menu">
         <div class="icon-link">
           <a href="#">
             <i class="nav-link-icon">
@@ -39,17 +42,17 @@
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
-        <ul class="sub-menu">
+        <ul class="sub-menus">
           <li class="link_name">회원 관리</li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">직원 조회</a>
           </li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">회원 조회</a>
           </li>
         </ul>
       </li>
-      <li tabindex="0" class="nav-menu">
+      <li class="nav-menu">
         <div class="icon-link">
           <a href="#">
             <i class="nav-link-icon">
@@ -61,18 +64,18 @@
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
-        <ul class="sub-menu">
+        <ul class="sub-menus">
           <li class="link_name">창고 관리</li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">창고 조회</a>
           </li>
         </ul>
       </li>
-      <li tabindex="0" class="nav-menu">
+      <li class="nav-menu">
         <div class="icon-link">
           <a href="#">
             <i class="nav-link-icon">
-              <img src="/media/icons/inbound.svg" alt="Warehouse Icon" width="24" height="24">
+              <img src="/media/icons/inbound.svg" alt="Inbound Icon" width="24" height="24">
             </i>
             <span class="link_name">입고 관리</span>
           </a>
@@ -80,18 +83,18 @@
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
-        <ul class="sub-menu">
+        <ul class="sub-menus">
           <li class="link_name">입고 관리</li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">입고 조회</a>
           </li>
         </ul>
       </li>
-      <li tabindex="0" class="nav-menu">
+      <li class="nav-menu">
         <div class="icon-link">
           <a href="#">
             <i class="nav-link-icon">
-              <img src="/media/icons/outbound.svg" alt="Warehouse Icon" width="24" height="24">
+              <img src="/media/icons/outbound.svg" alt="Outbound Icon" width="24" height="24">
             </i>
             <span class="link_name">출고 관리</span>
           </a>
@@ -99,21 +102,21 @@
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
-        <ul class="sub-menu">
+        <ul class="sub-menus">
           <li class="link_name">출고 관리</li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">출고 조회</a>
           </li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">배차 조회</a>
           </li>
         </ul>
       </li>
-      <li tabindex="0" class="nav-menu">
+      <li class="nav-menu">
         <div class="icon-link">
           <a href="#">
             <i class="nav-link-icon">
-              <img src="/media/icons/stock.svg" alt="Warehouse Icon" width="24" height="24">
+              <img src="/media/icons/stock.svg" alt="Stock Icon" width="24" height="24">
             </i>
             <span class="link_name">재고 관리</span>
           </a>
@@ -121,18 +124,18 @@
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
-        <ul class="sub-menu">
+        <ul class="sub-menus">
           <li class="link_name">재고 관리</li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">재고 조회</a>
           </li>
         </ul>
       </li>
-      <li tabindex="0" class="nav-menu">
+      <li class="nav-menu">
         <div class="icon-link">
           <a href="#">
             <i class="nav-link-icon">
-              <img src="/media/icons/vehicle.svg" alt="Warehouse Icon" width="24" height="24">
+              <img src="/media/icons/vehicle.svg" alt="Stock Icon" width="24" height="24">
             </i>
             <span class="link_name">차량 관리</span>
           </a>
@@ -140,9 +143,9 @@
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
-        <ul class="sub-menu">
+        <ul class="sub-menus">
           <li class="link_name">차량 관리</li>
-          <li>
+          <li tabindex="0" class="sub-menu">
             <a href="#">차량 조회</a>
           </li>
         </ul>
@@ -153,30 +156,17 @@
 </body>
 
 <script>
-  document.querySelectorAll('.nav-dashboard').forEach(menu => {
-    menu.addEventListener('focusin', () => {
-      let icon = menu.querySelector('.nav-link-icon img');
-      let currentSrc = icon.src;
-      icon.dataset.originalSrc = currentSrc;
-      icon.src = currentSrc.replace('.svg', '_white.svg');
-    });
-
-    menu.addEventListener('focusout', () => {
-      let icon = menu.querySelector('.nav-link-icon img');
-      icon.src = icon.dataset.originalSrc;
-    });
-  });
-
   let arrow = document.querySelectorAll(".nav-arrow");
   for (let i = 0; i < arrow.length; i++) {
     arrow[i].addEventListener("click", (e) => {
       let arrowParent = e.target.closest(".nav-menu");
-      console.log(i + ": " + arrowParent);
       arrowParent.classList.toggle("showMenu");
 
     })
   }
 
+  let sidebar = document.querySelector(".sidebar");
+  console.log(sidebar)
 
 </script>
 </html>
