@@ -1,23 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   let select = document.querySelector(".select");
-//   let optionList = document.querySelector(".option-list");
-//   let options = document.querySelectorAll(".option");
-//
-//   select.addEventListener("click", () => {
-//     optionList.classList.toggle("active");
-//   });
-//
-//   options.forEach((option) => {
-//     option.addEventListener("click", () => {
-//       options.forEach((option) => {
-//         option.classList.remove('selected');
-//       });
-//       select.querySelector("span").innerText = option.innerHTML;
-//       option.classList.add("selected");
-//     });
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   let selects = document.querySelectorAll(".select");
   let optionLists = document.querySelectorAll(".option-list");
