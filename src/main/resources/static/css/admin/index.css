@@ -46,7 +46,7 @@
 .select-menu {
   font-family: 'BMHANNAAir', sans-serif;
   color: #50565C;
-  font-size:15px;
+  font-size: 15px;
   min-width: calc(100% / 3);
   cursor: pointer;
   position: relative;
@@ -56,7 +56,7 @@
   background-color: #FFFFFF;
   border: 1px solid #8D9DEF;
   border-radius: 10px;
-  padding:5px 15px;
+  padding: 5px 15px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
   border-radius: 10px;
   margin-top: 10px;
   padding: 5px;
-  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   transition: all 0.3s ease;
 }
@@ -133,8 +133,7 @@
   min-width: calc(100% / 3);
 }
 
-.search-box .search-filters .filter-item .filter-input
-{
+.search-box .search-filters .filter-item .filter-input {
   font-family: 'BMHANNAAir', sans-serif;
   color: #50565C;
   width: 100%;
@@ -143,7 +142,7 @@
   border-radius: 10px;
   padding: 0 15px;
   box-sizing: border-box;
-  background-color:#FFFFFF;
+  background-color: #FFFFFF;
 }
 
 .search-box .search-filters .filter-item .filter-input:focus {
@@ -163,8 +162,64 @@
 }
 
 .select-menu {
-
-  font-size:15px;
+  font-size: 15px;
   cursor: pointer;
   position: relative;
+}
+
+.admin-list {
+  width: 100%;
+  min-height: 250px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table thead {
+  font-size: 16px;
+  color: #50565C;
+  background-color: #EBEDEF;
+  height: 35px;
+}
+
+table td {
+  font-size: 14px;
+  height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th, table td {
+  border-right: 1px solid #ADB5BD;
+}
+
+table th {
+  border-bottom: 2px solid #ADB5BD;
+}
+
+table tr {
+  border-bottom: 1px solid #ADB5BD;
+}
+
+table th:first-child,
+table td:first-child {
+  border-left: 0;
+}
+
+table th:last-child,
+table td:last-child {
+  border-right: 0;
+}
+
+table tr:last-child {
+  border-bottom: 0;
 }
