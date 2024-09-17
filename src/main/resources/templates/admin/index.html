@@ -80,7 +80,7 @@
       <thead>
       <tr>
         <th>
-          <input class="form-check-input all" type="checkbox" value="">
+          <input class="check-box-all" type="checkbox" value="" onclick="checkAll(this)">
         </th>
         <th>사번</th>
         <th>이름</th>
@@ -95,7 +95,7 @@
       <!-- 삭제 예정 -->
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'1' ?: '-'}"></td>
         <td th:text="${'신짱구' ?: '-'}"></td>
@@ -106,7 +106,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'2' ?: '-'}"></td>
         <td th:text="${'한유리' ?: '-'}"></td>
@@ -117,7 +117,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'3' ?: '-'}"></td>
         <td th:text="${'이훈이' ?: '-'}"></td>
@@ -128,7 +128,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'4' ?: '-'}"></td>
         <td th:text="${'이맹구' ?: '-'}"></td>
@@ -138,7 +138,7 @@
         <td th:text="${'maenggu@3pl.co.kr' ?: '-'}"></td>
       </tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'5' ?: '-'}"></td>
         <td th:text="${'김철수' ?: '-'}"></td>
@@ -149,7 +149,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'6' ?: '-'}"></td>
         <td th:text="${'신짱구' ?: '-'}"></td>
@@ -160,7 +160,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'7' ?: '-'}"></td>
         <td th:text="${'한유리' ?: '-'}"></td>
@@ -171,7 +171,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'8' ?: '-'}"></td>
         <td th:text="${'이훈이' ?: '-'}"></td>
@@ -182,7 +182,7 @@
       </tr>
       <tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'9' ?: '-'}"></td>
         <td th:text="${'이맹구' ?: '-'}"></td>
@@ -192,7 +192,7 @@
         <td th:text="${'maenggu@3pl.co.kr' ?: '-'}"></td>
       </tr>
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'10' ?: '-'}"></td>
         <td th:text="${'김철수' ?: '-'}"></td>
@@ -204,7 +204,7 @@
       <!-- Example data end -->
       <tr th:each="admin : ${adminList}">
         <td>
-          <input class="form-check-input" type="checkbox" value="">
+          <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${admin.id ?: '-'}"></td>
         <td th:text="${admin.name}"></td>

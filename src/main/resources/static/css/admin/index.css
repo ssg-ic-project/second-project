@@ -181,7 +181,7 @@
   background-color: #FFFFFF;
   border-radius: 10px;
   margin-top: 30px;
-  padding: 15px;
+  padding: 25px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -192,15 +192,15 @@ table {
 }
 
 table thead {
-  font-size: 16px;
+  font-size: 18px;
   color: #50565C;
   background-color: #EBEDEF;
-  height: 35px;
+  height: 40px;
 }
 
 table td {
-  font-size: 14px;
-  height: 30px;
+  font-size: 15px;
+  height: 35px;
   box-sizing: border-box;
   text-align: center;
   vertical-align: middle;
@@ -230,4 +230,40 @@ table td:last-child {
 
 table tr:last-child {
   border-bottom: 0;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #FFFFFF;
+  border: 1px solid #ADB5BD;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 20px;
+  outline: 0;
+  width: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+input[type="checkbox"]::after {
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  content: '';
+  display: none;
+  height: 40%;
+  left: 40%;
+  position: relative;
+  top: 20%;
+  transform: rotate(45deg);
+  width: 15%;
+}
+
+input[type="checkbox"]:checked {
+  background: #4F64C9;
+}
+
+input[type="checkbox"]:checked::after {
+  display: block;
 }
