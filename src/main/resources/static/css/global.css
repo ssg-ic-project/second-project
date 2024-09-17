@@ -3,10 +3,22 @@ body {
   margin: auto;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: 'BMHANNAPro', sans-serif;
   font-weight: normal;
 }
+
+span {
+  font-family: 'BMHANNAAir', sans-serif;
+  font-weight: normal;
+}
+
+.main-content {
+  padding: 30px;
+  margin-left: 220px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
 
 @font-face {
   font-family: 'BMDOHYEON';

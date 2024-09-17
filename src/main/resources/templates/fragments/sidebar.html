@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/css/global.css}">
-  <link rel="stylesheet" th:href="@{/css/sidebar.css}">
-  <link rel="shortcut icon" href="#">
-  <title>Sidebar</title>
-</head>
-<body>
 <div th:fragment="sidebar">
   <div class="sidebar">
-    <div class="logo-details">
-      <img src="/media/logo/black-logo-header.png" alt="" class="logo">
-    </div>
     <ul class="nav-links">
       <li class="nav-menu">
         <a href="#">
@@ -160,23 +148,4 @@
     </div>
   </section>
 </div>
-</body>
-
-<script>
-  let arrow = document.querySelectorAll(".nav-arrow");
-  for (let i = 0; i < arrow.length; i++) {
-    arrow[i].addEventListener("click", (e) => {
-      let arrowParent = e.target.closest(".nav-menu");
-      arrowParent.classList.toggle("showMenu");
-    });
-  }
-
-  let sidebar = document.querySelector(".sidebar");
-  let sidebarBtn = document.querySelector(".show");
-  sidebarBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-  });
-  console.log(sidebarBtn)
-
-</script>
 </html>

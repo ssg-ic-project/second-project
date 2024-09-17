@@ -4,33 +4,14 @@
   left: 0;
   height: 100%;
   width: 220px;
+  padding-top: 65px;
   background-color: #FFFFFF;
-  transition: all 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  z-index: 100;
 }
 
 .sidebar.close {
   width: 54px;
-}
-
-.sidebar .logo-details {
-  height: 65px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 40px;
-  transition: 0.3s ease;
-  transition-delay: 0.1s;
-}
-
-.sidebar.close .logo-details {
-  transition-delay: 0s;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.sidebar .logo-details .logo {
-  width: 110px;
-  height: 45px;
 }
 
 .sidebar .nav-links {
@@ -135,7 +116,7 @@
   left: 100%;
   top: -5px;
   margin-top: 0;
-  padding: 10px 20px;
+  padding: 20px 20px;
   border-radius: 0 5px 5px 0;
   opacity: 0;
   display: block;
@@ -162,7 +143,7 @@
 
 .sidebar .nav-links li .sub-menus a {
   font-size: 16px;
-  padding: 5px 0px;
+  padding: 10px 0px;
   margin: 0 10px;
   white-space: nowrap;
   opacity: 0.6;
@@ -176,6 +157,7 @@
   display: flex;
   align-items: flex-end;
   transition: all 0.3s ease;
+  z-index: 200;
 }
 
 .sidebar.close ~ .show-section {
