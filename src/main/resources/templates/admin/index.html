@@ -8,15 +8,17 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/admin/index.css">
   <title>Admin Index</title>
 </head>
 <body>
   <div layout:fragment="content" class="container">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-      <h1 style="display: inline; margin: 0;">직원 조회</h1>
-      <span style="display: inline; font-size: 15px;">회원 관리 > 직원 조회</span>
+    <div class="page-info">
+      <h1 class="page-title">직원 조회</h1>
+      <span class="page-subtitle">회원 관리 > 직원 조회</span>
     </div>
-
+    <div class="search-box">
+    </div>
   </div>
 </div>
 </body>
