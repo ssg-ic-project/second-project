@@ -1,0 +1,23 @@
+.page-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.page-title {
+  display: inline;
+  margin: 0;
+}
+
+.page-subtitle {
+  display: inline;
+  font-size: 15px;
+}
+
+.search-box {
+  width: 100%;
+  height: 150px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-top: 30px;
+}
