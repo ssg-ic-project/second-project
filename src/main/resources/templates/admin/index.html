@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}"
 >
 <head>
@@ -9,16 +9,212 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/admin/index.css">
+  <script defer src="/js/admin/index.js"></script>
   <title>Admin Index</title>
 </head>
 <body>
-  <div layout:fragment="content" class="container">
-    <div class="page-info">
-      <h1 class="page-title">직원 조회</h1>
-      <span class="page-subtitle">회원 관리 > 직원 조회</span>
+<div layout:fragment="content" class="container">
+  <div class="page-info">
+    <h1 class="page-title">직원 조회</h1>
+    <span class="page-subtitle">직원 관리 > 직원 조회</span>
+  </div>
+  <div class="search-box">
+    <h2 class="title">검색 조건</h2>
+    <div class="select-box">
+      <div class="select-menu">
+        <div class="select">
+          <span>권한</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="EMPLOYEE">직원</div>
+          <div class="option" data-value="ADMIN">관리자</div>
+          <div class="option" data-value="SUPER_ADMIN">총관리자</div>
+        </div>
+      </div>
+      <div class="select-menu">
+        <div class="select">
+          <span>부서</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="HR">인사팀</div>
+          <div class="option" data-value="WAREHOUSE">창고팀</div>
+          <div class="option" data-value="DELIVERY">배송팀</div>
+          <div class="option" data-value="DEVELOPMENT">개발팀</div>
+          <div class="option" data-value="ACCOUNTING">회계팀</div>
+        </div>
+      </div>
+      <div class="select-menu">
+        <div class="select">
+          <span>직급</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="TEAM_MEMBER">팀원</div>
+          <div class="option" data-value="TEAM_LEADER">팀장</div>
+          <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+        </div>
+      </div>
     </div>
-    <div class="search-box">
-    </div>
+    <ul class="search-filters">
+      <li class="filter-item">
+        <input type="text" class="filter-input" placeholder="이름">
+      </li>
+      <li class="filter-item">
+        <input type="text" class="filter-input" placeholder="이메일">
+      </li>
+      <li class="filter-item">
+        <button type="button" class="filter-button">검색</button>
+      </li>
+    </ul>
+  </div>
+  <div class="admin-list">
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <input class="check-box-all" type="checkbox" value="" onclick="checkAll(this)">
+        </th>
+        <th>사번</th>
+        <th>이름</th>
+        <th>권한</th>
+        <th>부서</th>
+        <th>직급</th>
+        <th>이메일</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Example data start -->
+      <!-- 삭제 예정 -->
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'1'}"></td>
+        <td th:text="${'신짱구'}"></td>
+        <td th:text="${'총관리자'}"></td>
+        <td th:text="${'개발팀'}"></td>
+        <td th:text="${'총괄팀장'}"></td>
+        <td th:text="${'jjanggu@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'2'}"></td>
+        <td th:text="${'한유리'}"></td>
+        <td th:text="${'직원'}"></td>
+        <td th:text="${'회계팀'}"></td>
+        <td th:text="${'팀원'}"></td>
+        <td th:text="${'yuri@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'3'}"></td>
+        <td th:text="${'이훈이'}"></td>
+        <td th:text="${'관리자'}"></td>
+        <td th:text="${'창고팀'}"></td>
+        <td th:text="${'팀장'}"></td>
+        <td th:text="${'hooni@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'4'}"></td>
+        <td th:text="${'이맹구'}"></td>
+        <td th:text="${'직원'}"></td>
+        <td th:text="${'인사팀'}"></td>
+        <td th:text="${'팀원'}"></td>
+        <td th:text="${'maenggu@3pl.co.kr'}"></td>
+      </tr>
+      <td>
+        <input class="check-box" type="checkbox" value="">
+      </td>
+      <td th:text="${'5'}"></td>
+      <td th:text="${'김철수'}"></td>
+      <td th:text="${'관리자'}"></td>
+      <td th:text="${'배송팀'}"></td>
+      <td th:text="${'팀장'}"></td>
+      <td th:text="${'cheolsoo@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'6'}"></td>
+        <td th:text="${'신짱구'}"></td>
+        <td th:text="${'총관리자'}"></td>
+        <td th:text="${'개발팀'}"></td>
+        <td th:text="${'총괄팀장'}"></td>
+        <td th:text="${'jjanggu@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'7'}"></td>
+        <td th:text="${'한유리'}"></td>
+        <td th:text="${'직원'}"></td>
+        <td th:text="${'회계팀'}"></td>
+        <td th:text="${'팀원'}"></td>
+        <td th:text="${'yuri@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'8'}"></td>
+        <td th:text="${'이훈이'}"></td>
+        <td th:text="${'관리자'}"></td>
+        <td th:text="${'창고팀'}"></td>
+        <td th:text="${'팀장'}"></td>
+        <td th:text="${'hooni@3pl.co.kr'}"></td>
+      </tr>
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'9'}"></td>
+        <td th:text="${'이맹구'}"></td>
+        <td th:text="${'직원'}"></td>
+        <td th:text="${'인사팀'}"></td>
+        <td th:text="${'팀원'}"></td>
+        <td th:text="${'maenggu@3pl.co.kr'}"></td>
+      </tr>
+      <td>
+        <input class="check-box" type="checkbox" value="">
+      </td>
+      <td th:text="${'10'}"></td>
+      <td th:text="${'김철수'}"></td>
+      <td th:text="${'관리자'}"></td>
+      <td th:text="${'배송팀'}"></td>
+      <td th:text="${'팀장'}"></td>
+      <td th:text="${'cheolsoo@3pl.co.kr'}"></td>
+      </tr>
+      <!-- Example data end -->
+      <tr th:each="admin : ${adminList}">
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${admin.id ?: '-'}"></td>
+        <td th:text="${admin.name ?: '-'}"></td>
+        <td th:text="${admin.role ?: '-'}"></td>
+        <td th:text="${admin.department ?: '-'}"></td>
+        <td th:text="${admin.position ?: '-'}"></td>
+        <td th:text="${admin.email ?: '-'}"></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </body>
