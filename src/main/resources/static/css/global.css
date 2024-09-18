@@ -3,12 +3,12 @@ body {
   margin: auto;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'BMHANNAPro', sans-serif;
   font-weight: normal;
 }
 
-span {
+p, span, select, option, label {
   font-family: 'BMHANNAAir', sans-serif;
   font-weight: normal;
 }
@@ -17,6 +17,26 @@ span {
   padding: 30px;
   margin-left: 220px;
   transition: margin-left 0.3s ease-in-out;
+}
+
+.container {
+  padding: 0;
+}
+
+.page-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.page-title {
+  display: inline;
+  margin: 0;
+}
+
+.page-subtitle {
+  display: inline;
+  font-size: 15px;
 }
 
 

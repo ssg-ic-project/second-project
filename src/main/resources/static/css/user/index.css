@@ -1,6 +1,6 @@
 .search-box {
   width: 100%;
-  height: 180px;
+  height: 150px;
   background-color: #FFFFFF;
   border-radius: 10px;
   margin-top: 20px;
@@ -17,22 +17,20 @@
   align-self: flex-start
 }
 
-.select-box {
+.search-box .search-filters {
   display: flex;
   width: calc(100% - 40px);
   list-style: none;
   justify-content: center;
   align-self: flex-start;
   gap: 15px;
-  margin: 10px;
+  margin: 20px 20px 0px 20px;
 }
 
-.select-menu {
+.search-box .search-filters .filter-item {
   font-family: 'BMHANNAAir', sans-serif;
-  color: #50565C;
-  font-size: 18px;
   width: 250px;
-  max-width: calc(100% / 3);
+  max-width: calc(100% / 4);
   cursor: pointer;
   position: relative;
 }
@@ -109,21 +107,6 @@
   border-radius: 10px;
 }
 
-.search-box .search-filters {
-  display: flex;
-  width: calc(100% - 40px);
-  list-style: none;
-  justify-content: center;
-  gap: 15px;
-  margin: 10px;
-  padding: 0;
-  align-self: flex-start;
-}
-
-.search-box .search-filters .filter-item {
-  width: 250px;
-  max-width: calc(100% / 3);
-}
 
 .search-box .search-filters .filter-item .filter-input {
   font-family: 'BMHANNAAir', sans-serif;
@@ -141,7 +124,7 @@
   border: 1px solid #4F64C9;
 }
 
-.search-box .search-filters .filter-item .filter-button {
+.search-box .search-filters .filter-item .filter-button{
   font-family: 'BMHANNAAir', sans-serif;
   width: 100%;
   height: 35px;
@@ -154,4 +137,41 @@
 
 .search-box .search-filters .filter-item .filter-button:focus {
   background-color: #3D4FA7;
+}
+
+.status-btn {
+  float: right;
+}
+
+.status-btn .approve-btn,
+.status-btn .reject-btn {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 150px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4F64C9;
+  color: #FFFFFF;
+  font-size: 18px;
+  margin: 20px 0 10px 10px;
+}
+
+.modal-footer .btn-cancel {
+  background-color: #868E96;
+}
+
+.modal-footer .btn-approve,
+.modal-footer .btn-reject {
+  background-color: #4F64C9;
+}
+
+.modal-footer .btn {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  margin: 5px;
+  padding: 6px;
 }
