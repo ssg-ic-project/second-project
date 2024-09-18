@@ -7,7 +7,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/user/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
   <script defer src="/js/common/checkbox.js"></script>
@@ -20,7 +19,7 @@
     <span class="page-subtitle">회원 관리 > 회원 조회</span>
   </div>
   <div class="search-box">
-    <h2 class="title">검색 조건</h2>
+    <h3 class="title">검색 조건</h3>
     <div class="search-filters">
       <div class="select-menu filter-item">
         <div class="select">
@@ -47,8 +46,8 @@
     </div>
   </div>
   <div class="status-btn">
-    <button class="approve-btn">승인</button>
-    <button class="reject-btn">반려</button>
+    <button class="approve-btn" data-bs-toggle="modal" data-bs-target="#approveModal">승인</button>
+    <button class="reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
   </div>
   <div class="table-list">
     <table>
@@ -204,6 +203,41 @@
       </tr>
       </tbody>
     </table>
+  </div>
+  <div id="approveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 가입 승인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>해당 회원의 가입을 승인하시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-approve">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rejectModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 가입 반려</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="rejection-reason" class="col-form-label">반려 사유:</label>
+          <textarea class="form-control" id="rejection-reason" rows="3" required ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-reject">반려</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </body>

@@ -25,12 +25,12 @@ table td {
   font-size: 15px;
   height: 35px;
   box-sizing: border-box;
-  text-align: center;
-  vertical-align: middle;
 }
 
 table th, table td {
   border-right: 1px solid #ADB5BD;
+  text-align: center;
+  vertical-align: middle;
 }
 
 table th {
