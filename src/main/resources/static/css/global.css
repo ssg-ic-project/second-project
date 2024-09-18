@@ -19,6 +19,22 @@ span, select, option {
   transition: margin-left 0.3s ease-in-out;
 }
 
+.page-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.page-title {
+  display: inline;
+  margin: 0;
+}
+
+.page-subtitle {
+  display: inline;
+  font-size: 15px;
+}
+
 
 @font-face {
   font-family: 'BMDOHYEON';
