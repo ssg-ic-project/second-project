@@ -1,0 +1,160 @@
+.search-box {
+  width: 100%;
+  height: 150px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box .title {
+  margin: 0;
+  align-self: flex-start
+}
+
+.search-box .select-box {
+  display: flex;
+  width: calc(100% - 40px);
+  list-style: none;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 15px;
+  margin: 20px 20px 0px 20px;
+}
+
+.search-box .select-box .select-menu {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 250px;
+  max-width: calc(100% / 3);
+  cursor: pointer;
+  position: relative;
+}
+
+.select-menu span {
+  font-family: 'BMHANNAAir', sans-serif;
+  color: #50565C;
+  font-size: 18px;
+}
+
+.select {
+  background-color: #FFFFFF;
+  border: 1px solid #8D9DEF;
+  border-radius: 10px;
+  padding: 5px 15px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.option-list {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  display: none;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+.option-list.active {
+  display: block;
+  max-height: 120px;
+}
+
+.option-list .dropdown {
+  z-index: 200;
+  transition: transform 0.3s ease;
+}
+
+.active .dropdown {
+  transform: rotate(-180deg);
+}
+
+.option-list::-webkit-scrollbar {
+  width: 4px;
+  background-color: #FFFFFF;
+}
+
+.option-list::-webkit-scrollbar-thumb {
+  background-color: #4F64C9;
+}
+
+.option {
+  padding: 8px 10px;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.option:hover {
+  background-color: #BEC9FF;
+  border-radius: 10px;
+}
+
+.option.selected {
+  background-color: #8D9DEF;
+  color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.search-box .select-box .select-menu .filter-button {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4F64C9;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+
+.search-box .select-box .select-menu .filter-button:focus {
+  background-color: #3D4FA7;
+}
+
+.status-btn {
+  float: right;
+}
+
+.status-btn .approve-btn,
+.status-btn .reject-btn {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 150px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4F64C9;
+  color: #FFFFFF;
+  font-size: 18px;
+  margin: 20px 0 10px 10px;
+}
+
+.modal-footer .btn-cancel {
+  background-color: #868E96;
+}
+
+.modal-footer .btn-approve,
+.modal-footer .btn-reject {
+  background-color: #4F64C9;
+}
+
+.modal-footer .btn {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  margin: 5px;
+  padding: 6px;
+}
