@@ -124,7 +124,7 @@
   border: 1px solid #4F64C9;
 }
 
-.search-box .search-filters .filter-item .filter-button {
+.search-box .search-filters .filter-item .filter-button{
   font-family: 'BMHANNAAir', sans-serif;
   width: 100%;
   height: 35px;
@@ -137,4 +137,21 @@
 
 .search-box .search-filters .filter-item .filter-button:focus {
   background-color: #3D4FA7;
+}
+
+.status-btn {
+  float: right;
+}
+
+.status-btn .approve-btn,
+.status-btn .reject-btn {
+  font-family: 'BMHANNAAir', sans-serif;
+  width: 150px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4F64C9;
+  color: #FFFFFF;
+  font-size: 18px;
+  margin: 20px 0 10px 10px;
 }
