@@ -21,19 +21,30 @@
   </div>
   <div class="search-box">
     <h2 class="title">검색 조건</h2>
-    <div class="select-box">
-    </div>
-    <ul class="search-filters">
-      <li class="filter-item">
+    <div class="search-filters">
+      <div class="select-menu filter-item">
+        <div class="select">
+          <span>승인 상태</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="PENDING">승인 대기</div>
+          <div class="option" data-value="APPROVED">승인 완료</div>
+          <div class="option" data-value="REJECTED">승인 거절</div>
+        </div>
+      </div>
+      <div class="filter-item">
         <input type="text" class="filter-input" placeholder="이름">
-      </li>
-      <li class="filter-item">
+      </div>
+      <div class="filter-item">
         <input type="text" class="filter-input" placeholder="이메일">
-      </li>
-      <li class="filter-item">
+      </div>
+      <div class="filter-item">
         <button type="button" class="filter-button">검색</button>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
   <div class="table-list">
     <table>
