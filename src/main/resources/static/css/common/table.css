@@ -1,0 +1,92 @@
+.table-list {
+  width: 100%;
+  min-height: 250px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table thead {
+  font-size: 18px;
+  color: #50565C;
+  background-color: #EBEDEF;
+  height: 40px;
+}
+
+table td {
+  font-size: 15px;
+  height: 35px;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th, table td {
+  border-right: 1px solid #ADB5BD;
+}
+
+table th {
+  border-bottom: 2px solid #ADB5BD;
+}
+
+table tr {
+  border-bottom: 1px solid #ADB5BD;
+}
+
+table th:first-child,
+table td:first-child {
+  border-left: 0;
+}
+
+table th:last-child,
+table td:last-child {
+  border-right: 0;
+}
+
+table tr:last-child {
+  border-bottom: 0;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #FFFFFF;
+  border: 1px solid #ADB5BD;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 20px;
+  outline: 0;
+  width: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+input[type="checkbox"]::after {
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  content: '';
+  display: none;
+  height: 40%;
+  left: 40%;
+  position: relative;
+  top: 20%;
+  transform: rotate(45deg);
+  width: 15%;
+}
+
+input[type="checkbox"]:checked {
+  background: #4F64C9;
+}
+
+input[type="checkbox"]:checked::after {
+  display: block;
+}
