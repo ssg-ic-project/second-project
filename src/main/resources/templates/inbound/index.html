@@ -1,10 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/inbound/index.css">
+  <link rel="stylesheet" href="/css/common/table.css">
+  <script defer src="/js/common/checkbox.js"></script>
+  <title>Inbound Index</title>
 </head>
 <body>
-
+<div layout:fragment="content" class="container">
+  <div class="page-info">
+    <h1 class="page-title">입고 조회</h1>
+    <span class="page-subtitle">입고 관리 > 입고 조회</span>
+  </div>
+  <div class="search-box">
+    <h3 class="title">검색 조건</h3>
+    <div class="select-box">
+      <div class="select-menu">
+        <div class="select">
+          <span>승인 상태</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="PENDING">승인 대기</div>
+          <div class="option" data-value="APPROVED">승인 완료</div>
+          <div class="option" data-value="REJECTED">승인 거절</div>
+        </div>
+      </div>
+      <div class="select-menu">
+        <div class="select">
+          <span>창고</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+<!--          <div class="option" th:each="warehouse : ${warehouseList}" th:data-value="${warehouse.id}" th:text="${warehouse.name}"></div>-->
+          <!-- Example warehouse data start -->
+          <div class="option" data-value="1">서울 창고</div>
+          <div class="option" data-value="2">시흥 창고</div>
+          <div class="option" data-value="3">의정부 창고</div>
+          <div class="option" data-value="4">남양주 창고</div>
+          <div class="option" data-value="5">천안 창고</div>
+          <div class="option" data-value="6">이천 창고</div>
+          <!-- Example warehouse data end -->
+        </div>
+      </div>
+      <div class="select-menu">
+        <button type="button" class="filter-button">검색</button>
+      </div>
+    </div>
+  </div>
+  <div class="status-btn">
+    <button class="approve-btn" data-bs-toggle="modal" data-bs-target="#approveModal">승인</button>
+    <button class="reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
+  </div>
+  <div class="table-list">
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <input class="check-box-all" type="checkbox" value="" onclick="checkAll(this)">
+        </th>
+        <th>ID</th>
+        <th>회원 ID</th>
+        <th>상품 ID</th>
+        <th>셀 ID</th>
+        <th>입고 예정 날짜</th>
+        <th>입고 수량</th>
+        <th>승인 상태</th>
+        <th>입고 요청 시각</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Example data start -->
+      <!-- 삭제 예정 -->
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'10'}"></td>
+        <td th:text="${'23'}"></td>
+        <td th:text="${'52'}"></td>
+        <td th:text="${'3'}"></td>
+        <td th:text="${'2024-09-20'}"></td>
+        <td th:text="${'50'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'2024-09-15 12:30:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'9'}"></td>
+        <td th:text="${'44'}"></td>
+        <td th:text="${'31'}"></td>
+        <td th:text="${'5'}"></td>
+        <td th:text="${'2024-09-21'}"></td>
+        <td th:text="${'30'}"></td>
+        <td th:text="${'APPROVED'}"></td>
+        <td th:text="${'2024-09-14 09:45:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'8'}"></td>
+        <td th:text="${'13'}"></td>
+        <td th:text="${'25'}"></td>
+        <td th:text="${'8'}"></td>
+        <td th:text="${'2024-09-22'}"></td>
+        <td th:text="${'70'}"></td>
+        <td th:text="${'REJECTED'}"></td>
+        <td th:text="${'2024-09-13 10:15:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'7'}"></td>
+        <td th:text="${'56'}"></td>
+        <td th:text="${'14'}"></td>
+        <td th:text="${'6'}"></td>
+        <td th:text="${'2024-09-23'}"></td>
+        <td th:text="${'40'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'2024-09-12 14:20:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'6'}"></td>
+        <td th:text="${'15'}"></td>
+        <td th:text="${'61'}"></td>
+        <td th:text="${'2'}"></td>
+        <td th:text="${'2024-09-24'}"></td>
+        <td th:text="${'25'}"></td>
+        <td th:text="${'APPROVED'}"></td>
+        <td th:text="${'2024-09-11 16:35:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'5'}"></td>
+        <td th:text="${'37'}"></td>
+        <td th:text="${'17'}"></td>
+        <td th:text="${'9'}"></td>
+        <td th:text="${'2024-09-25'}"></td>
+        <td th:text="${'55'}"></td>
+        <td th:text="${'REJECTED'}"></td>
+        <td th:text="${'2024-09-10 18:50:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'4'}"></td>
+        <td th:text="${'46'}"></td>
+        <td th:text="${'28'}"></td>
+        <td th:text="${'4'}"></td>
+        <td th:text="${'2024-09-26'}"></td>
+        <td th:text="${'35'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'2024-09-09 08:20:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'3'}"></td>
+        <td th:text="${'19'}"></td>
+        <td th:text="${'72'}"></td>
+        <td th:text="${'10'}"></td>
+        <td th:text="${'2024-09-27'}"></td>
+        <td th:text="${'85'}"></td>
+        <td th:text="${'APPROVED'}"></td>
+        <td th:text="${'2024-09-08 12:45:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'2'}"></td>
+        <td th:text="${'29'}"></td>
+        <td th:text="${'39'}"></td>
+        <td th:text="${'7'}"></td>
+        <td th:text="${'2024-09-28'}"></td>
+        <td th:text="${'95'}"></td>
+        <td th:text="${'REJECTED'}"></td>
+        <td th:text="${'2024-09-07 10:10:00'}"></td>
+      </tr>
+      <tr>
+        <td><input class="check-box" type="checkbox" value=""></td>
+        <td th:text="${'1'}"></td>
+        <td th:text="${'52'}"></td>
+        <td th:text="${'11'}"></td>
+        <td th:text="${'12'}"></td>
+        <td th:text="${'2024-09-29'}"></td>
+        <td th:text="${'120'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'2024-09-06 11:05:00'}"></td>
+      </tr>
+      <!-- Example data end -->
+      <tr th:each="inbound : ${inboundList}">
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td>
+          <a th:href="@{'/inbound?id=' + ${inbound.id}}" th:text="${inbound.id ?: '-'}"></a>
+        </td>
+        <td>
+          <a th:href="@{'/user?id=' + ${inbound.userId}}" th:text="${inbound.userId ?: '-'}"></a>
+        </td>
+        <td>
+          <a th:href="@{'/product?id=' + ${inbound.productId}}" th:text="${inbound.productId ?: '-'}"></a>
+        </td>
+        <td>
+          <a th:href="@{'/cell?id=' + ${inbound.cellId}}" th:text="${inbound.cellId ?: '-'}"></a>
+        </td>
+        <td th:text="${inbound.expectedDate ?: '-'}"></td>
+        <td th:text="${inbound.quantity ?: '-'}"></td>
+        <td th:text="${inbound.approvalStauts ?: '-'}"></td>
+        <td th:text="${inbound.createdAt ?: '-'}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="approveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 승인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>입고 요청을 승인하시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-approve">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rejectModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 반려</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="rejection-reason" class="col-form-label">반려 사유를 입력해 주세요.</label>
+          <textarea class="form-control" id="rejection-reason" rows="3" required ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-reject">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
