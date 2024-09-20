@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/inbound/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
   <script defer src="/js/common/checkbox.js"></script>
+  <script defer src="/js/inbound/index.js"></script>
   <title>Inbound Index</title>
 </head>
 <body>
@@ -42,15 +43,12 @@
           </i>
         </div>
         <div class="option-list">
-<!--          <div class="option" th:each="warehouse : ${warehouseList}" th:data-value="${warehouse.id}" th:text="${warehouse.name}"></div>-->
-          <!-- Example warehouse data start -->
-          <div class="option" data-value="1">서울 창고</div>
-          <div class="option" data-value="2">시흥 창고</div>
-          <div class="option" data-value="3">의정부 창고</div>
-          <div class="option" data-value="4">남양주 창고</div>
-          <div class="option" data-value="5">천안 창고</div>
-          <div class="option" data-value="6">이천 창고</div>
-          <!-- Example warehouse data end -->
+          <div class="option"
+               th:each="warehouse : ${warehouseList}"
+               th:data-value="${warehouse.id}"
+               th:text="${warehouse.name}">
+          </div>
+          <div id="warehouse-select"></div>
         </div>
       </div>
       <div class="select-menu">

@@ -76,11 +76,11 @@ input[type="checkbox"]::after {
   content: '';
   display: none;
   height: 40%;
-  left: 40%;
+  left: 38%;
   position: relative;
   top: 20%;
   transform: rotate(45deg);
-  width: 15%;
+  width: 30%;
 }
 
 input[type="checkbox"]:checked {

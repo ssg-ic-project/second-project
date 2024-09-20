@@ -98,7 +98,9 @@
         <td>
           <input class="check-box" type="checkbox" value="">
         </td>
-        <td th:text="${'1'}"></td>
+        <td>
+          <a th:href="@{'/admin?id=' + ${1}}" th:text="${1}"></a>
+        </td>
         <td th:text="${'신짱구'}"></td>
         <td th:text="${'총관리자'}"></td>
         <td th:text="${'개발팀'}"></td>
@@ -206,6 +208,9 @@
       <tr th:each="admin : ${adminList}">
         <td>
           <input class="check-box" type="checkbox" value="">
+        </td>
+        <td>
+          <a th:href="@{'/admin?id=' + ${inbound.id}}" th:text="${inbound.id ?: '-'}"></a>
         </td>
         <td th:text="${admin.id ?: '-'}"></td>
         <td th:text="${admin.name ?: '-'}"></td>
