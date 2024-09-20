@@ -108,6 +108,13 @@
   border: 1px solid #4F64C9;
 }
 
+.option-list #dropdown-list p {
+  font-family: 'NanumSquare', sans-serif;
+  font-size: 14px;
+  color: #50565C;
+  padding: 8px 0px 0px 10px;
+}
+
 .option-list .option {
   font-family: 'NanumSquare', sans-serif;
   font-size: 14px;
