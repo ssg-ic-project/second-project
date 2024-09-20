@@ -11,88 +11,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   <link rel="stylesheet" href="/css/admin/index.css">
   <link rel="stylesheet" href="/css/warehouse/index.css">
   <title>Warehouse Main</title>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style>
-    .background-container {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      /*.search-span {*/
-      /*  display: none;*/
-      /*}*/
-
-      .page-info {
-        display: none;
-      }
-
-      .front-container-list {
-        display: none;
-      }
-
-      .background-container {
-        display: flex;
-        flex-direction: column; /* 세로 정렬 */
-        align-items: center; /* 수평 중앙 정렬 */
-        justify-content: center; /* 수직 중앙 정렬 */
-        height: 80vh; /* 화면 높이를 100%로 설정 */
-        position: relative; /* 자식 요소의 위치 설정을 위한 상대 위치 */
-        background-color: #f8f9fa; /* 배경색 */
-      }
-
-      .parrot {
-        width: 200px;
-        height: 200px;
-        background-image: url('/parrot.jpg'); /* 앵무새 이미지 경로 */
-        background-size: cover;
-        animation: fly 8s infinite alternate;
-      }
-      @keyframes fly {
-        0% { transform: translateX(-50%); }
-        25% { transform: translateY(-50%); }
-        50% { transform: translateX(50%); }
-        75% { transform: translateY(50%); }
-        100% { transform: translateX(-50%); }
-      }
-
-      .message {
-        display: block;
-        background-color: #b76e79;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 5%;
-      }
-
-    }
-    
-    .form-control {
-      flex-grow: 1; /* 입력 필드가 가능한 공간을 모두 차지하도록 설정 */
-      min-width: 0; /* 최소 너비를 0으로 설정하여 공간을 최대한 활용 */
-    }
-
-    .btn {
-      min-width: 100px; /* 버튼의 최소 너비 설정 */
-      white-space: nowrap; /* 텍스트가 줄 바꿈 되지 않도록 설정 */
-      height: 38px; /* 버튼 높이 고정 */
-    }
-
-    .navbar {
-      transition: height 0.3s; /* 부드러운 높이 전환 효과 */
-    }
-
-    .collapse.show {
-      display: block; /* 토글된 상태에서 display:block으로 설정 */
-    }
-
-    .navbar-collapse {
-      height: auto; /* 자동으로 높이를 조정하도록 설정 */
-    }
-  </style>
 </head>
 <body>
   <div layout:fragment="content" class="container">
@@ -119,14 +38,49 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 <!--          </div>-->
 <!--        </nav>-->
     <div class="front-container-list">
-      <nav class="navbar navbar-expand-lg bg-light bg-body-light">
-        <div class="d-flex container">
-          <span class="search-span navbar-brand mb-0 h1">창고조회</span>
-          <div class="nav-item flex-grow-1 align-items-center">
-            <form class="d-flex w-100" role="search">
-              <input class="form-control mx-2 flex-grow-1" style="height: 38px;" type="search" placeholder="검색어를 입력해 주세요." aria-label="Search">
-              <button class="btn btn-outline-success" style="height: 38px;" type="submit">창고검색</button>
-            </form>
+      <nav class="navbar navbar-header navbar-expand-lg bg-light bg-body-light">
+        <div class="d-flex flex-column container">
+          <div>
+            <span class="search-span navbar-brand mb-0 h1">창고조회</span>
+            <div class="nav-item flex-grow-1 align-items-center">
+              <form class="d-flex w-100" role="search">
+                <input class="form-control mx-2 flex-grow-1" style="height: 38px;" type="search" placeholder="검색어를 입력해 주세요." aria-label="Search">
+                <button class="btn btn-outline-success" style="height: 38px;" type="submit">창고검색</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <div class="d-flex flex-row">
+              <div class="select-menu">
+                <div class="select">
+                  <span>직급</span>
+                  <i class="dropdown">
+                    <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                  </i>
+                </div>
+                <div class="option-list">
+                  <div class="option" data-value="TEAM_MEMBER">팀원</div>
+                  <div class="option" data-value="TEAM_LEADER">팀장</div>
+                  <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+                </div>
+              </div>
+
+              <div class="select-menu">
+                <div class="select">
+                  <span>직급</span>
+                  <i class="dropdown">
+                    <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                  </i>
+                </div>
+
+                <div class="option-list">
+                  <div class="option" data-value="TEAM_MEMBER">팀원</div>
+                  <div class="option" data-value="TEAM_LEADER">팀장</div>
+                  <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -135,30 +89,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         <nav class="mb-2 navbar navbar-expand-lg">
           <div class="d-flex flex-row container">
             <span class="search-span navbar-brand mb-0 h1">창고목록</span>
-            <ul class="d-flex flex-row navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown mx-3">
-                <a class="nav-link link-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  지역
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">서울</a></li>
-                  <li><a class="dropdown-item" href="#">경기도</a></li>
-                  <li><a class="dropdown-item" href="#">충청도</a></li>
-                </ul>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a class="nav-link link-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  카테고리
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">의자</a></li>
-                  <li><a class="dropdown-item" href="#">책상</a></li>
-                  <li><a class="dropdown-item" href="#">옷장</a></li>
-                </ul>
-              </li>
-
-            </ul>
 
             <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
               창고등록
@@ -219,19 +149,63 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                 </div>
               </div>
             </div>
-          </div>
+            </div>
         </nav>
 
-        <div class="list-group">
-          <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-            The current button
-          </button>
-          <button type="button" class="list-group-item list-group-item-action">A second button item</button>
-          <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-          <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-          <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
-        </div>
-      </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">no</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          </tbody>
+        </table>
 
       <nav class="mt-4 d-flex justify-content-center">
         <ul class="pagination">
@@ -259,29 +233,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       </nav>
     </div>
   </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const navDiv = document.querySelector(".navbar-brand");
-    const minWidth = 768; // 최소 너비 설정
-
-    function checkWidth() {
-      if (window.innerWidth < minWidth) {
-        navDiv.classList.add('collapse'); // 클래스 추가
-        navDiv.style.display = 'none'; // 요소 숨김
-      } else {
-        navDiv.classList.remove('collapse'); // 클래스 제거
-        navDiv.style.display = 'block'; // 요소 표시
-      }
-    }
-
-    // 초기 체크
-    checkWidth();
-
-    // 리사이즈 이벤트 리스너 추가
-    window.addEventListener('resize', checkWidth);
-  });
-</script>
+  <script defer src="/js/common/checkbox.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
