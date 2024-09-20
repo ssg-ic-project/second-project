@@ -92,7 +92,7 @@
 
 .option-list .option-search {
   position: relative;
-  margin-bottom:10px;
+  margin-bottom: 50px;
 }
 
 .option-list .option-search input {
@@ -109,7 +109,7 @@
   border: 1px solid #4F64C9;
 }
 
-.option {
+.option-list .option {
   padding: 8px 10px;
   font-size: 18px;
   transition: all 0.3s ease-in-out;
