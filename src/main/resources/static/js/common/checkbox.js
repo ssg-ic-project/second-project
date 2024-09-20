@@ -33,11 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
-
-  let optionSearch = document.querySelector(".option-search input");
-  optionSearch.addEventListener("keyup", () => {
-    console.log("검색: " + optionSearch.value);
-  })
 });
 
 function checkAll(el){
