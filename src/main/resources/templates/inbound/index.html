@@ -43,6 +43,9 @@
           </i>
         </div>
         <div class="option-list">
+          <div class="option-search">
+            <input th:type="text" th:placeholder="Search">
+          </div>
           <div class="option"
                th:each="warehouse : ${warehouseList}"
                th:data-value="${warehouse.id}"

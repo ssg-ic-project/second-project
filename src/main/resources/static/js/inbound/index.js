@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * 서버에 요청하는 내장 함수 open()
    * open(HTTP Method, URL, 비동기 여부(default: true))
    */
-  xhr.open('Get', 'api/warehouses');
+  xhr.open('Get', '/api/warehouse/names');
 
   /**
    * setRequestHeader() 함수를 통해서 헤더값 설정
