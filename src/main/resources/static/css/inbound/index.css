@@ -61,23 +61,23 @@
   background-color: #FFFFFF;
   border-radius: 10px;
   margin-top: 10px;
-  padding: 5px;
+  padding: 10px;
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   transition: all 0.3s ease;
 }
 
-.option-list.active {
+.select-menu.active .option-list {
   display: block;
-  max-height: 120px;
+  max-height: 180px;
 }
 
-.option-list .dropdown {
+.select-menu .dropdown {
   z-index: 200;
   transition: transform 0.3s ease;
 }
 
-.active .dropdown {
+.select-menu.active .dropdown {
   transform: rotate(-180deg);
 }
 
