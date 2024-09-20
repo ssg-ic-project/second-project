@@ -1,10 +1,318 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/outbound/index.css">
+  <link rel="stylesheet" href="/css/common/table.css">
+  <script defer src="/js/common/checkbox.js"></script>
+  <title>Dispatch Index</title>
 </head>
 <body>
+<div layout:fragment="content" class="container">
+  <div class="page-info">
+    <h1 class="page-title">출고 조회</h1>
+    <span class="page-subtitle">출고 관리 > 출고 조회</span>
 
+  </div>
+  <div class="search-box">
+    <!--      form 추가-->
+    <h3 class="title">검색 조건</h3>
+    <div class="select-box">
+      <div class="select-menu">
+        <div class="select">
+          <span>승인 상태</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="EMPLOYEE">승인</div>
+          <div class="option" data-value="ADMIN">미승인</div>
+          <div class="option" data-value="SUPER_ADMIN">반려</div>
+        </div>
+      </div>
+      <div class="select-menu">
+        <div class="select">
+          <span>창고</span>
+          <i class="dropdown">
+            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+          </i>
+        </div>
+        <div class="option-list">
+          <div class="option" data-value="HR">창고1</div>
+          <div class="option" data-value="WAREHOUSE">창고2</div>
+          <div class="option" data-value="DELIVERY">창고3</div>
+          <div class="option" data-value="DEVELOPMENT">창고4</div>
+          <div class="option" data-value="ACCOUNTING">창고5</div>
+        </div>
+      </div>
+      <!--      <div class="search-filters">-->
+      <div class="filter-item">
+        <button type="button" class="filter-button">검색</button>
+      </div>
+    </div>
+    </div>
+    <div class="status-btn">
+    <button class="approve-btn" data-bs-toggle="modal" data-bs-target="#approveModal">승인</button>
+    <button class="reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
+      <button class="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal">운송장 등록</button>
+      <button class="modify-btn" data-bs-toggle="modal" data-bs-target="#modifyModal">운송장 수정</button>
+    </div>
+  
+  <div class="table-list">
+    <table>
+      <thead>
+      <tr>
+      <th>
+        <input class="check-box-all" type="checkbox" value="" onclick="checkAll(this)">
+      </th>
+      <th>출고번호</th>
+      <th>상품이름</th>
+      <th>제품번호</th>
+      <th>제품수량</th>
+      <th>고객</th>
+      <th>배차등록여부</th>
+      <th>운송장등록여부</th>
+      <th>상태</th>
+      <th>상세보기</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <!-- 삭제 예정 -->
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'1'}"></td>
+        <td th:text="${'책상'}"></td>
+        <td th:text="${'PI12'}"></td>
+        <td th:text="${'70'}"></td>
+        <td th:text="${'ikea'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'APPROVED'}"></td>
+        <td th:text="${'O'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'2'}"></td>
+        <td th:text="${'옷장'}"></td>
+        <td th:text="${'SK32'}"></td>
+        <td th:text="${'10'}"></td>
+        <td th:text="${'한샘'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'3'}"></td>
+        <td th:text="${'의자'}"></td>
+        <td th:text="${'TO98'}"></td>
+        <td th:text="${'50'}"></td>
+        <td th:text="${'ikea'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'4'}"></td>
+        <td th:text="${'소파'}"></td>
+        <td th:text="${'SO66'}"></td>
+        <td th:text="${'30'}"></td>
+        <td th:text="${'jiko'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'5'}"></td>
+        <td th:text="${'화장대'}"></td>
+        <td th:text="${'FI34'}"></td>
+        <td th:text="${'34'}"></td>
+        <td th:text="${'kio'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'REJECTED'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'6'}"></td>
+        <td th:text="${'서랍장'}"></td>
+        <td th:text="${'OJ12'}"></td>
+        <td th:text="${'100'}"></td>
+        <td th:text="${'MIT'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'7'}"></td>
+        <td th:text="${'파티션'}"></td>
+        <td th:text="${'KI44'}"></td>
+        <td th:text="${'40'}"></td>
+        <td th:text="${'HOP'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'APPROVED'}"></td>
+        <td th:text="${'O'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'8'}"></td>
+        <td th:text="${'식탁'}"></td>
+        <td th:text="${'UJ13'}"></td>
+        <td th:text="${'58'}"></td>
+        <td th:text="${'ULKIN'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'APPROVED'}"></td>
+        <td th:text="${'O'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'9'}"></td>
+        <td th:text="${'침대'}"></td>
+        <td th:text="${'BJ56'}"></td>
+        <td th:text="${'70'}"></td>
+        <td th:text="${'ikea'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'REJECTED'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <input class="check-box" type="checkbox" value="">
+        </td>
+        <td th:text="${'10'}"></td>
+        <td th:text="${'스탠드'}"></td>
+        <td th:text="${'ST52'}"></td>
+        <td th:text="${'10'}"></td>
+        <td th:text="${'한샘'}"></td>
+        <td th:text="${'O'}"></td>
+        <td th:text="${'X'}"></td>
+        <td th:text="${'PENDING'}"></td>
+        <td th:text="${'X'}"></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 모달 HTML 추가 -->
+  <div class="modal fade" id="approveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="approve">승인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          해당 출고요청을 승인하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reject">반려</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="rejection-reason" class="col-form-label">반려 이유</label>
+          <textarea class="form-control" id="rejection-reason" rows="3" required ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="register">운송장 등록</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modify">운송장 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+<!--</div>-->
 </body>
 </html>
