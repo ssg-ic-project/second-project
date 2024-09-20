@@ -67,17 +67,17 @@
   transition: all 0.3s ease;
 }
 
-.option-list.active {
+.select-menu.active .option-list {
   display: block;
-  max-height: 120px;
+  max-height: 180px;
 }
 
-.option-list .dropdown {
+.select-menu .dropdown {
   z-index: 200;
   transition: transform 0.3s ease;
 }
 
-.active .dropdown {
+.select-menu.active .dropdown {
   transform: rotate(-180deg);
 }
 

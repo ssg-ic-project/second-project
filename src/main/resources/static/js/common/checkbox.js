@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let selectMenus = document.querySelectorAll(".select-menu");
   let selects = document.querySelectorAll(".select");
   let optionLists = document.querySelectorAll(".option-list");
 
   selects.forEach((select, index) => {
     let optionList = optionLists[index];
+    let selectMenu = selectMenus[index];
     let options = optionList.querySelectorAll(".option");
 
     select.addEventListener("click", () => {
-      optionList.classList.toggle("active");
+      selectMenu.classList.toggle("active");
     });
 
     options.forEach((option) => {
@@ -19,18 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
         select.querySelector("span").innerText = option.innerHTML;
         option.classList.add("selected");
 
-        optionList.classList.remove("active");
+        selectMenu.classList.remove("active");
       });
     });
   });
 
   document.addEventListener("click", (event) => {
     if (!event.target.closest(".select-menu")) {
-      optionLists.forEach(optionList => {
-        optionList.classList.remove("active");
+      selectMenus.forEach(selectMenu => {
+        selectMenu.classList.remove("active");
       });
     }
   });
+
+  let optionSearch = document.querySelector(".option-search input");
+  optionSearch.addEventListener("keyup", () => {
+    console.log("검색: " + optionSearch.value);
+  })
 });
 
 function checkAll(el){
