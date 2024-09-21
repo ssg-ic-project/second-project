@@ -12,86 +12,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   <link rel="stylesheet" href="/css/warehouse/index.css">
   <title>Warehouse Main</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style>
-    .background-container {
-      display: none;
-    }
-
-    @media (max-width: 900px) {
-      /*.search-span {*/
-      /*  display: none;*/
-      /*}*/
-
-      .page-info {
-        display: none;
-      }
-
-      .front-container-list {
-        display: none;
-      }
-
-      .background-container {
-        display: flex;
-        flex-direction: column; /* 세로 정렬 */
-        align-items: center; /* 수평 중앙 정렬 */
-        justify-content: center; /* 수직 중앙 정렬 */
-        height: 80vh; /* 화면 높이를 100%로 설정 */
-        position: relative; /* 자식 요소의 위치 설정을 위한 상대 위치 */
-        background-color: #f8f9fa; /* 배경색 */
-      }
-
-      .parrot {
-        width: 200px;
-        height: 200px;
-        background-image: url('/parrot.jpg'); /* 앵무새 이미지 경로 */
-        background-size: cover;
-        animation: fly 8s infinite alternate;
-      }
-      @keyframes fly {
-        0% { transform: translateX(-50%); }
-        25% { transform: translateY(-50%); }
-        50% { transform: translateX(50%); }
-        75% { transform: translateY(50%); }
-        100% { transform: translateX(-50%); }
-      }
-
-      .message {
-        display: block;
-        background-color: #b76e79;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 5%;
-      }
-
-    }
-    
-    .form-control {
-      flex-grow: 1; /* 입력 필드가 가능한 공간을 모두 차지하도록 설정 */
-      min-width: 0; /* 최소 너비를 0으로 설정하여 공간을 최대한 활용 */
-    }
-
-    .btn {
-      min-width: 100px; /* 버튼의 최소 너비 설정 */
-      white-space: nowrap; /* 텍스트가 줄 바꿈 되지 않도록 설정 */
-      height: 38px; /* 버튼 높이 고정 */
-    }
-
-    .navbar {
-      transition: height 0.3s; /* 부드러운 높이 전환 효과 */
-    }
-
-    .collapse.show {
-      display: block; /* 토글된 상태에서 display:block으로 설정 */
-    }
-
-    .navbar-collapse {
-      height: auto; /* 자동으로 높이를 조정하도록 설정 */
-    }
-  </style>
+  <script th:src="@{'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'}" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7e1a1e3ea1021ea492e25afd4b3247b1"></script>
+  <script type="text/javascript" th:src="@{/js/warehouse/index.js}"></script>
 </head>
 <body>
   <div layout:fragment="content" class="container">
@@ -100,39 +23,23 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       <div class="message">더 이상 줄일 수 없습니다.</div>
     </div>
 
-
     <div class="page-info">
       <h1 class="page-title">창고 현황</h1>
       <span class="page-subtitle">회원 관리 > 창고 현황</span>
     </div>
-<!--      <div class="search-box">-->
-<!--        <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--          <div class="d-flex justify-content-center container-fluid">-->
-<!--            <a class="navbar-brand" href="#">창고조회</a>-->
-<!--            <div class="d-flex align-items-center navbar-collapse position-relative" id="navbarSupportedContent">-->
-<!--              <form class="d-flex">-->
-<!--                <input class="form-control mx-2" style="min-width: 500px;" type="search" placeholder="검색어를 입력해 주세요." aria-label="Search">-->
-<!--                <button class="btn btn-outline-success" style="width: 100%" type="submit">창고검색</button>-->
-<!--              </form>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </nav>-->
+
     <div class="front-container-list">
-      <nav class="navbar navbar-header navbar-expand-lg bg-light bg-body-light">
-        <div class="d-flex flex-column container">
-          <div>
-            <span class="search-span navbar-brand mb-0 h1">창고조회</span>
-            <div class="nav-item flex-grow-1 align-items-center">
-              <form class="d-flex w-100" role="search">
-                <input class="form-control mx-2 flex-grow-1" style="height: 38px;" type="search" placeholder="검색어를 입력해 주세요." aria-label="Search">
-                <button class="btn btn-outline-success" style="height: 38px;" type="submit">창고검색</button>
-              </form>
-            </div>
-          </div>
+      <div>
+        <nav class="navbar navbar-header navbar-expand-lg d-flex flex-column align-items-start w-100 bg-light bg-body-light">
+          <div class="search-span navbar-brand mb-0 p-2 h1">창고조회</div>
+          <div class="form-item nav-item align-self-end pe-3">
+            <form class="d-flex align-items-center w-100" role="search">
+              <input class="form-control mx-2" style="height: 38px;" type="search" placeholder="검색어를 입력해 주세요." aria-label="Search">
+              <button class="btn btn-outline-success" style="height: 38px;" type="submit">창고검색</button>
+            </form>
 
-          <div class="nav-item">
-            <div class="d-flex flex-row">
-              <div class="select-menu">
+            <div class="d-flex flex-row p-2">
+              <div class="select-menu pe-2">
                 <div class="select">
                   <span>직급</span>
                   <i class="dropdown">
@@ -162,8 +69,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       <div class="my-2 p-2 bg-light">
         <nav class="mb-2 navbar navbar-expand-lg">
@@ -231,6 +138,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
             </div>
             </div>
         </nav>
+
+        <div id="map" class="w-100" style="height:400px;"></div>
 
         <table class="table">
           <thead>
@@ -311,9 +220,27 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         </ul>
       </nav>
     </div>
+    </div>
   </div>
-  <script defer src="/js/common/checkbox.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!--  <script>-->
+<!--      var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스-->
+
+<!--      console.log(-->
+<!--          kakao-->
+<!--      )-->
+<!--      console.log(container);-->
+<!--      var options = { //지도를 생성할 때 필요한 기본 옵션-->
+<!--          center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.-->
+<!--          level: 3 //지도의 레벨(확대, 축소 정도)-->
+<!--      };-->
+
+<!--      console.log(options);-->
+
+<!--      var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴-->
+<!--      console.log(map);-->
+<!--  </script>-->
+
+  <script defer th:src="@{/js/common/checkbox.js}"></script>
 
 </body>
 </html>

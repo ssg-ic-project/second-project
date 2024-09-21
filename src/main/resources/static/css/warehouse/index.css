@@ -128,13 +128,10 @@ input::placeholder{
 }
 
 .navbar {
-    transition: height 0.3s; /* 부드러운 높이 전환 효과 */
+    height: auto;
+    padding: 8px;
 }
 
-.collapse.show {
-    display: block; /* 토글된 상태에서 display:block으로 설정 */
-}
-
-.navbar-collapse {
-    height: auto; /* 자동으로 높이를 조정하도록 설정 */
+.form-item {
+    width: 85%;
 }
