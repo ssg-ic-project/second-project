@@ -16,7 +16,7 @@
 }
 
 .box-title {
-  margin: 0;
+  margin: 10px 0;
   align-self: flex-start;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .admin-info {
-  margin: 0;
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -46,18 +46,28 @@
   min-width: calc((100% / 2) - 50px);
 }
 
-.admin-info .admin-detail-group .admin-detail {
+.admin-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.admin-detail .detail-label {
   font-family: 'NanumSquare-Bold', sans-serif;
   font-size: 17px;
   color: #242323;
-  margin: 15px 0 5px 0;
+  width: 150px;
+  margin: 8px 0;
 }
 
-.admin-detail-group input {
+.admin-detail .info-value {
   font-family: 'NanumSquare', sans-serif;
   font-size: 15px;
   border: 1px solid #ADB5BD;
   border-radius: 5px;
   width: calc(100% - 20px);
-  padding: 5px 10px;
+  line-height: 1;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
 }

@@ -8,14 +8,14 @@ async function adminDetail(adminId) {
     nameElements[i].textContent = admin.name;
   }
   
-  document.getElementById("id").value = admin.id;
-  document.getElementById("name").value = admin.name;
-  document.getElementById("adminId").value = admin.adminId;
-  document.getElementById("email").value = admin.email;
-  document.getElementById("role").value = admin.role;
-  document.getElementById("department").value = admin.department;
-  document.getElementById("position").value = admin.position;
-  document.getElementById("phone").value = admin.phone;
-  document.getElementById("createdAt").value = admin.createdAt;
-  document.getElementById("updatedAt").value = admin.updatedAt;
+  document.getElementById("id").textContent = admin.id;
+  document.getElementById("name").textContent = admin.name;
+  document.getElementById("adminId").textContent = admin.adminId;
+  document.getElementById("email").textContent = admin.email;
+  document.getElementById("role").textContent = admin.role;
+  document.getElementById("department").textContent = admin.department;
+  document.getElementById("position").textContent = admin.position;
+  document.getElementById("phone").textContent = admin.phone;
+  document.getElementById("createdAt").textContent = admin.createdAt;
+  document.getElementById("updatedAt").textContent = admin.updatedAt;
 }

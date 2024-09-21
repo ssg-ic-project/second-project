@@ -27,32 +27,50 @@
     <div th:class="img"></div>
     <div th:class="admin-info">
       <div th:class="admin-detail-group">
-        <div th:class="admin-detail">ID</div>
-        <input type="text" th:id="id" th:value="${id}" readonly/>
-        <div th:class="admin-detail">이름</div>
-        <input type="text" th:id="name" th:value="${name}" readonly/>
-        <div th:class="admin-detail">아이디</div>
-        <input type="text" th:id="adminId" th:value="${adminId}" readonly/>
-        <div th:class="admin-detail">이메일</div>
-        <input type="text" th:id="email" th:value="${email}" readonly/>
-        <div th:class="admin-detail">최초 등록</div>
-        <input type="text" th:id="createdAt" th:value="${createdAt}" readonly/>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">ID</span>
+          <span th:id="id" th:text="${id}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">이름</span>
+          <span th:id="name" th:text="${name}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">아이디</span>
+          <span th:id="adminId" th:text="${adminId}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">이메일</span>
+          <span th:id="email" th:text="${email}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">최초 등록일</span>
+          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>
+        </div>
       </div>
       <div th:class="admin-detail-group">
-        <div th:class="admin-detail">권한</div>
-        <input type="text" th:id="role" th:value="${role}" readonly/>
-        <div th:class="admin-detail">부서</div>
-        <input type="text" th:id="department" th:value="${department}" readonly/>
-        <div th:class="admin-detail">직급</div>
-        <input type="text" th:id="position" th:value="${position}" readonly/>
-        <div th:class="admin-detail">전화번호</div>
-        <input type="text" th:id="phone" th:value="${phone}" readonly/>
-        <div th:class="admin-detail">최종수정일</div>
-        <input type="text" th:id="updatedAt" th:value="${updatedAt}" readonly/>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">권한</span>
+          <span th:id="role" th:text="${role}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">부서</span>
+          <span th:id="department" th:text="${department}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">직급</span>
+          <span th:id="position" th:text="${position}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">전화번호</span>
+          <span th:id="phone" th:text="${phone}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">최종 수정일</span>
+          <span th:id="updatedAt" th:text="${updatedAt}" th:class="info-value"></span>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
 </body>
 </html>
