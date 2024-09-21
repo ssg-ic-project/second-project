@@ -84,15 +84,18 @@
 }
 
 .sidebar .nav-links li a {
-  font-family: 'BMHANNAAir', sans-serif;
+  font-family: 'NanumSquare', sans-serif;
   color: #5F6368;
   display: flex;
+  /* background-color:#F00; */
   align-items: center;
   text-decoration: none;
 }
 
 .sidebar .nav-links li a .link_name {
-  font-size: 20px;
+  font-family: 'NanumSquare-Bold', sans-serif;
+  color: #5F6368;
+  font-size: 16px;
 }
 
 .sidebar .nav-links li .sub-menus {
@@ -134,17 +137,17 @@
 
 .sidebar.close .nav-links li .sub-menus .link_name {
   display: block;
-  font-family: 'BMHANNAAir', sans-serif;
+  font-family: 'NanumSquare-Bold', sans-serif;
   color: #5F6368;
-  font-size: 18px;
-  padding: 5px 0px;
-  margin-left: 5px;
+  font-size: 16px;
+  padding: 3px 0px;
+  margin-left: 6px;
   white-space: nowrap;
 }
 
 .sidebar .nav-links li .sub-menus a {
-  font-size: 16px;
-  padding: 10px 0px;
+  font-size: 14px;
+  padding: 5px 0px;
   margin: 0 10px;
   white-space: nowrap;
   opacity: 0.6;

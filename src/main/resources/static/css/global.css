@@ -4,12 +4,17 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'BMHANNAPro', sans-serif;
+  font-family: 'NanumSquare-ExtraBold', sans-serif;
+  font-weight: normal;
+}
+
+h4, h5, h6 {
+  font-family: 'NanumSquare-Bold', sans-serif;
   font-weight: normal;
 }
 
 p, span, select, option, label {
-  font-family: 'BMHANNAAir', sans-serif;
+  font-family: 'NanumSquare', sans-serif;
   font-weight: normal;
 }
 
@@ -36,46 +41,70 @@ p, span, select, option, label {
 
 .page-subtitle {
   display: inline;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 
 @font-face {
   font-family: 'BMDOHYEON';
-  src: url('/fonts/BMDOHYEON.otf') format('opentype'),
-  url('/fonts/BMDOHYEON.ttf') format('truetype');
+  src: url('/fonts/bm/BMDOHYEON.otf') format('opentype'),
+  url('/fonts/bm/BMDOHYEON.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'BMHANNAAir';
-  src: url('/fonts/BMHANNAAir.otf') format('opentype'),
-  url('/fonts/BMHANNAAir.ttf') format('truetype');
+  src: url('/fonts/bm/BMHANNAAir.otf') format('opentype'),
+  url('/fonts/bm/BMHANNAAir.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'BMHANNAPro';
-  src: url('/fonts/BMHANNAPro.otf') format('opentype'),
-  url('/fonts/BMHANNAPro.ttf') format('truetype');
+  src: url('/fonts/bm/BMHANNAPro.otf') format('opentype'),
+  url('/fonts/bm/BMHANNAPro.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'BMJUA';
-  src: url('/fonts/BMJUA.otf') format('opentype'),
-  url('/fonts/BMJUA.ttf') format('truetype');
+  src: url('/fonts/bm/BMJUA.otf') format('opentype'),
+  url('/fonts/bm/BMJUA.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat-Bold';
-  src: url('/fonts/Montserrat-Bold.otf') format('opentype'),
-  url('/fonts/Montserrat-Bold.ttf') format('truetype');
+  src: url('/fonts/montserrat/Montserrat-Bold.otf') format('opentype'),
+  url('/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NanumSquare';
+  src: url('/fonts/nanum/NanumSquare.otf') format('opentype'),
+  url('/fonts/nanum/NanumSquare.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NanumSquare-Bold';
+  src: url('/fonts/nanum/NanumSquare-Bold.otf') format('opentype'),
+  url('/fonts/nanum/NanumSquare-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NanumSquare-ExtraBold';
+  src: url('/fonts/nanum/NanumSquare-ExtraBold.otf') format('opentype'),
+  url('/fonts/nanum/NanumSquare-ExtraBold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

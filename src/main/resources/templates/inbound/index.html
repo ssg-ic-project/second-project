@@ -46,11 +46,6 @@
           <div class="option-search">
             <input th:type="text" th:placeholder="Search">
           </div>
-          <div class="option"
-               th:each="warehouse : ${warehouseList}"
-               th:data-value="${warehouse.id}"
-               th:text="${warehouse.name}">
-          </div>
           <div id="dropdown-list"></div>
         </div>
       </div>
