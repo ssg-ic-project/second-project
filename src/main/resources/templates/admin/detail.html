@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/admin/detail.css">
+  <title>Admin Detail</title>
+  <script src="/js/admin/detail.js"></script>
+  <script defer th:inline="javascript">
+    const adminId = [[${id}]];
+    adminDetail(adminId)
+  </script>
 </head>
 <body>
+<div layout:fragment="content" th:class="container">
+  <div th:class="page-info">
+    <h2 th:class="page-title"><span th:name="name">[Name]</span> 상세 조회</h2>
+    <span th:class="page-subtitle">직원 관리 > 직원 조회 > 상세 조회</span>
+  </div>
+  <div th:class="admin-info-box">
+    <h5 th:class="box-title">직원 정보</h5>
+    <div th:class="img"></div>
+    <div th:class="admin-info">
+      <div th:class="admin-detail-group">
+        <div th:class="admin-detail">ID</div>
+        <input type="text" th:id="id" th:value="${id}" readonly/>
+        <div th:class="admin-detail">이름</div>
+        <input type="text" th:id="name" th:value="${name}" readonly/>
+        <div th:class="admin-detail">아이디</div>
+        <input type="text" th:id="adminId" th:value="${adminId}" readonly/>
+        <div th:class="admin-detail">이메일</div>
+        <input type="text" th:id="email" th:value="${email}" readonly/>
+        <div th:class="admin-detail">최초 등록</div>
+        <input type="text" th:id="createdAt" th:value="${createdAt}" readonly/>
+      </div>
+      <div th:class="admin-detail-group">
+        <div th:class="admin-detail">권한</div>
+        <input type="text" th:id="role" th:value="${role}" readonly/>
+        <div th:class="admin-detail">부서</div>
+        <input type="text" th:id="department" th:value="${department}" readonly/>
+        <div th:class="admin-detail">직급</div>
+        <input type="text" th:id="position" th:value="${position}" readonly/>
+        <div th:class="admin-detail">전화번호</div>
+        <input type="text" th:id="phone" th:value="${phone}" readonly/>
+        <div th:class="admin-detail">최종수정일</div>
+        <input type="text" th:id="updatedAt" th:value="${updatedAt}" readonly/>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
