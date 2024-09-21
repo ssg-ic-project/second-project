@@ -8,6 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/admin/common.css">
   <link rel="stylesheet" href="/css/admin/detail.css">
   <title>Admin Detail</title>
   <script src="/js/admin/detail.js"></script>
@@ -85,6 +86,71 @@
             </div>
             <div class="modal-body">
               <p th:class="modal-warning">※ 직원의 권한, 부서, 직급만 수정할 수 있습니다.</p>
+              <div class="select-box">
+                <div class="select-menu">
+                  <div class="select">
+                    <span>권한</span>
+                    <i class="dropdown">
+                      <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                    </i>
+                  </div>
+                  <div class="option-list">
+                    <div class="option option-default" data-value="">-- 선택 --</div>
+                    <div class="option" data-value="EMPLOYEE">직원</div>
+                    <div class="option" data-value="ADMIN">관리자</div>
+                    <div class="option" data-value="SUPER_ADMIN">총관리자</div>
+                  </div>
+                </div>
+                <div class="select-menu">
+                  <div class="select">
+                    <span>부서</span>
+                    <i class="dropdown">
+                      <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                    </i>
+                  </div>
+                  <div class="option-list">
+                    <div class="option option-default" data-value="">-- 선택 --</div>
+                    <div class="option" data-value="HR">인사팀</div>
+                    <div class="option" data-value="WAREHOUSE">창고팀</div>
+                    <div class="option" data-value="DELIVERY">배송팀</div>
+                    <div class="option" data-value="DEVELOPMENT">개발팀</div>
+                    <div class="option" data-value="ACCOUNTING">회계팀</div>
+                  </div>
+                </div>
+                <div class="select-menu">
+                  <div class="select">
+                    <span>직급</span>
+                    <i class="dropdown">
+                      <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                    </i>
+                  </div>
+                  <div class="option-list">
+                    <div class="option option-default" data-value="">-- 선택 --</div>
+                    <div class="option" data-value="TEAM_MEMBER">팀원</div>
+                    <div class="option" data-value="TEAM_LEADER">팀장</div>
+                    <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#modifyModal">수정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modifyModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 정보 수정</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 직원의 정보를 정말로 수정하시겠습니까?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
