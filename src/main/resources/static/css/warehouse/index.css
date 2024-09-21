@@ -125,6 +125,13 @@ input::placeholder{
     min-width: 100px; /* 버튼의 최소 너비 설정 */
     white-space: nowrap; /* 텍스트가 줄 바꿈 되지 않도록 설정 */
     height: 38px; /* 버튼 높이 고정 */
+    font-family: 'NanumSquare-Bold', sans-serif;
+    font-size: 17px;
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 10px;
+    background-color: #4F64C9 !important;
+
 }
 
 .navbar {
@@ -133,5 +140,27 @@ input::placeholder{
 }
 
 .form-item {
-    width: 85%;
+    width: 90%;
+}
+
+.dropdown-span {
+    white-space: nowrap;
+}
+
+.option-list {
+    z-index: 1;
+}
+
+#map {
+    z-index: 0;
+}
+
+.w-select-menu {
+    font-family: 'BMHANNAAir', sans-serif;
+    color: #50565C;
+    font-size: 18px;
+    width: auto;
+    min-width: 150px;
+    cursor: pointer;
+    position: relative;
 }
