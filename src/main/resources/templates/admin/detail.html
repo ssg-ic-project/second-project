@@ -22,6 +22,10 @@
     <h2 th:class="page-title"><span th:name="name">[Name]</span> 상세 조회</h2>
     <span th:class="page-subtitle">직원 관리 > 직원 조회 > 상세 조회</span>
   </div>
+  <div class="action-btn">
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">수정</button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+  </div>
   <div th:class="admin-info-box">
     <h5 th:class="box-title">직원 정보</h5>
     <div th:class="img"></div>
@@ -70,7 +74,47 @@
           <span th:id="updatedAt" th:text="${updatedAt}" th:class="info-value"></span>
         </div>
       </div>
+      <div id="editEmployeeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 정보 수정</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p th:class="modal-warning">※ 직원의 권한, 부서, 직급만 수정할 수 있습니다.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-modify">수정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="removeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 삭제</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 직원을 정말로 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-remove">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
 </body>
 </html>
