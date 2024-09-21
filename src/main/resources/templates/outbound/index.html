@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="/css/outbound/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
   <script defer src="/js/common/checkbox.js"></script>
-  <title>Dispatch Index</title>
+  <script defer src="/js/outbound/index.js"></script>
+  <title>Outbound Index</title>
 </head>
 <body>
 <div layout:fragment="content" class="container">
@@ -26,32 +27,36 @@
     <div class="select-box">
       <div class="select-menu">
         <div class="select">
-          <span>승인 상태</span>
+          <span id="selected-option">승인 상태</span>
           <i class="dropdown">
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
         <div class="option-list">
-          <div class="option" data-value="EMPLOYEE">승인</div>
-          <div class="option" data-value="ADMIN">미승인</div>
-          <div class="option" data-value="SUPER_ADMIN">반려</div>
+          <div class="option" data-value="APPROVED">승인</div>
+          <div class="option" data-value="PENDING">미승인</div>
+          <div class="option" data-value="REJECTED">반려</div>
         </div>
       </div>
       <div class="select-menu">
         <div class="select">
-          <span>창고</span>
+          <span id="selected-option2">창고</span>
           <i class="dropdown">
             <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
           </i>
         </div>
         <div class="option-list">
-          <div class="option" data-value="HR">창고1</div>
-          <div class="option" data-value="WAREHOUSE">창고2</div>
-          <div class="option" data-value="DELIVERY">창고3</div>
-          <div class="option" data-value="DEVELOPMENT">창고4</div>
-          <div class="option" data-value="ACCOUNTING">창고5</div>
+          <div class="option" data-value="warehouse1">창고1</div>
+          <div class="option" data-value="warehouse2">창고2</div>
+          <div class="option" data-value="warehouse3">창고3</div>
+          <div class="option" data-value="warehouse4">창고4</div>
+          <div class="option" data-value="warehouse5">창고5</div>
         </div>
       </div>
+      <div class="filter-item">
+          <input type="text" class="filter-input" placeholder="상품 이름">
+    </div>
+
       <!--      <div class="search-filters">-->
       <div class="filter-item">
         <button type="button" class="filter-button">검색</button>
@@ -73,14 +78,12 @@
         <input class="check-box-all" type="checkbox" value="" onclick="checkAll(this)">
       </th>
       <th>출고번호</th>
-      <th>상품이름</th>
-      <th>제품번호</th>
+      <th>상품</th>
       <th>제품수량</th>
       <th>고객</th>
-      <th>배차등록여부</th>
-      <th>운송장등록여부</th>
+      <th>배차등록</th>
+      <th>운송장등록</th>
       <th>상태</th>
-      <th>상세보기</th>
 
       </tr>
       </thead>
@@ -91,14 +94,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'1'}"></td>
-        <td th:text="${'책상'}"></td>
-        <td th:text="${'PI12'}"></td>
+        <td th:text="${'높이조절책상'}"></td>
         <td th:text="${'70'}"></td>
         <td th:text="${'ikea'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'APPROVED'}"></td>
-        <td th:text="${'O'}"></td>
       </tr>
 
       <tr>
@@ -106,14 +107,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'2'}"></td>
-        <td th:text="${'옷장'}"></td>
-        <td th:text="${'SK32'}"></td>
+        <td th:text="${'키다리옷장'}"></td>
         <td th:text="${'10'}"></td>
         <td th:text="${'한샘'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'PENDING'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       <tr>
@@ -121,14 +120,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'3'}"></td>
-        <td th:text="${'의자'}"></td>
-        <td th:text="${'TO98'}"></td>
+        <td th:text="${'푹신의자'}"></td>
         <td th:text="${'50'}"></td>
         <td th:text="${'ikea'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'PENDING'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       <tr>
@@ -136,14 +133,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'4'}"></td>
-        <td th:text="${'소파'}"></td>
-        <td th:text="${'SO66'}"></td>
+        <td th:text="${'구름소파'}"></td>
         <td th:text="${'30'}"></td>
         <td th:text="${'jiko'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'PENDING'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       <tr>
@@ -151,14 +146,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'5'}"></td>
-        <td th:text="${'화장대'}"></td>
-        <td th:text="${'FI34'}"></td>
+        <td th:text="${'스마트화장대'}"></td>
         <td th:text="${'34'}"></td>
         <td th:text="${'kio'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'REJECTED'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       <tr>
@@ -166,14 +159,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'6'}"></td>
-        <td th:text="${'서랍장'}"></td>
-        <td th:text="${'OJ12'}"></td>
+        <td th:text="${'할머니서랍장'}"></td>
         <td th:text="${'100'}"></td>
         <td th:text="${'MIT'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'PENDING'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       <tr>
@@ -181,14 +172,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'7'}"></td>
-        <td th:text="${'파티션'}"></td>
-        <td th:text="${'KI44'}"></td>
+        <td th:text="${'블럭파티션'}"></td>
         <td th:text="${'40'}"></td>
         <td th:text="${'HOP'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'APPROVED'}"></td>
-        <td th:text="${'O'}"></td>
       </tr>
 
       <tr>
@@ -196,14 +185,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'8'}"></td>
-        <td th:text="${'식탁'}"></td>
-        <td th:text="${'UJ13'}"></td>
+        <td th:text="${'유리식탁'}"></td>
         <td th:text="${'58'}"></td>
         <td th:text="${'ULKIN'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'APPROVED'}"></td>
-        <td th:text="${'O'}"></td>
       </tr>
 
       <tr>
@@ -211,14 +198,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'9'}"></td>
-        <td th:text="${'침대'}"></td>
-        <td th:text="${'BJ56'}"></td>
+        <td th:text="${'더블침대'}"></td>
         <td th:text="${'70'}"></td>
-        <td th:text="${'ikea'}"></td>
+        <td th:text="${'에이스침대'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'REJECTED'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       <tr>
@@ -226,14 +211,12 @@
           <input class="check-box" type="checkbox" value="">
         </td>
         <td th:text="${'10'}"></td>
-        <td th:text="${'스탠드'}"></td>
-        <td th:text="${'ST52'}"></td>
+        <td th:text="${'올드스탠드'}"></td>
         <td th:text="${'10'}"></td>
         <td th:text="${'한샘'}"></td>
         <td th:text="${'O'}"></td>
         <td th:text="${'X'}"></td>
         <td th:text="${'PENDING'}"></td>
-        <td th:text="${'X'}"></td>
       </tr>
 
       </tbody>
@@ -245,7 +228,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="approve">승인</h5>
+          <h5 class="modal-title" id="approve">출고 승인</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -262,11 +245,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="reject">반려</h5>
+          <h5 class="modal-title" id="reject">출고 반려</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <label for="rejection-reason" class="col-form-label">반려 이유</label>
+          <label for="rejection-reason" class="col-form-label">반려 사유를 입력해주세요.</label>
           <textarea class="form-control" id="rejection-reason" rows="3" required ></textarea>
         </div>
         <div class="modal-footer">

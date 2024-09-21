@@ -1,36 +1,12 @@
-.page-info {
-    display: flex;
-    justify-content: space-between; /* Aligns items to the ends */
-    align-items: flex-start;        /* Aligns items to the top */
-    position: relative;             /* Allows absolute positioning inside */
-}
-
-.page-title {
-    margin: 0;                      /* Removes default margin from h1 */
-}
-
-.page-subtitle {
-    position: absolute;
-    top: 0;                        /* Aligns subtitle to the top */
-    right: 0;                      /* Aligns subtitle to the right */
-    font-size: 16px;               /* Adjust the font size if needed */
-    #color: #777;                   /* Optional: Subtitle color */
-}
 
 .options-button {
-    /*display: flex;*/
-    /*flex-wrap: wrap;          !* Allows buttons to wrap if there's not enough space *!*/
-    /*gap: 10px;                !* Adds space between buttons *!*/
-    /*margin-top: 10px;*/
     width: 125px;
     height: 35px;/* Adds space between subtitle and buttons */
     display: flex;
     gap: 10px;                     /* Adds space between buttons */
     margin-top: 40px;              /* Adds space between subtitle and buttons */
     position: absolute;
-    /*bottom: -35px;                 !* Moves buttons below the container *!*/
     right: 0;                       /* Aligns buttons to the left */
-    /*width: 100%;                   !* Ensures buttons stretch across the container *!*/
     box-sizing: border-box;
 }
 
@@ -54,8 +30,6 @@
 .filter-button:hover {
     background-color: #3D4FA7;     /* Changes background color on hover */
 }
-
-
 
 .search-box {
     width: 100%;
@@ -94,6 +68,8 @@
     max-width: calc(100% / 3);
     cursor: pointer;
     position: relative;
+    gap: 10px; /* 추가: 요소 간의 간격 */
+
 }
 
 .select-menu span {
@@ -128,17 +104,21 @@
     transition: all 0.3s ease;
 }
 
-.option-list.active {
+.select.active .dropdown img {
+    transform: rotate(180deg);
+}
+
+.select.active + .option-list {
     display: block;
     max-height: 120px;
 }
 
-.option-list .dropdown {
+.select .dropdown {
     z-index: 200;
     transition: transform 0.3s ease;
 }
 
-.active .dropdown {
+.select.active .dropdown {
     transform: rotate(-180deg);
 }
 
@@ -179,26 +159,19 @@
     align-self: flex-start;
 }
 
-.search-box .search-filters .filter-item {
-    width: 250px;
-    max-width: calc(100% / 3);
-}
-
-.search-box .search-filters .filter-item .filter-input {
+.search-box .filter-item .filter-input {
     font-family: 'BMHANNAAir', sans-serif;
     color: #50565C;
     width: 100%;
+    width: 250px;
     height: 35px;
     border: 1px solid #8D9DEF;
     border-radius: 10px;
     padding: 0 15px;
     box-sizing: border-box;
     background-color: #FFFFFF;
+    font-size: 18px;
 }
-
-/*.search-box .search-filters .filter-item .filter-input:focus {*/
-/*    border: 1px solid #4F64C9;*/
-/*!*}*!.search-filters*/
 
 .search-box .filter-item .filter-button {
     font-family: 'BMHANNAAir', sans-serif;
