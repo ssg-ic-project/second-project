@@ -28,6 +28,9 @@ async function userDetail(userId) {
   document.getElementById("isUnregister").textContent = user.isUnregister;
   document.getElementById("unregisterAt").textContent = user.unregisterAt;
 
+  document.getElementById("modifyCompanyName").value = user.companyName;
+  document.getElementById("modicyBusinessNumber").value = user.businessNumber;
+
   const tbody = document.querySelector("#approval-list tbody");
 
   approvalList.forEach(approval => {

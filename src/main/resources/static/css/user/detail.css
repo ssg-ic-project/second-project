@@ -15,6 +15,7 @@
   flex-direction: column;
   position: relative;
 }
+
 .user-approval-box {
   margin: 30px 0 80px 0;
 }
@@ -46,7 +47,7 @@
   margin-bottom: 20px;
 }
 
-.user-detail .detail-label {
+.detail-label {
   font-family: 'NanumSquare-Bold', sans-serif;
   font-size: 17px;
   color: #242323;
@@ -54,7 +55,7 @@
   margin: 8px 0;
 }
 
-.user-detail .info-value {
+.info-value {
   font-family: 'NanumSquare', sans-serif;
   font-size: 15px;
   border: 1px solid #ADB5BD;
@@ -91,6 +92,11 @@
   display: inline;
 }
 
+.modal-body .modal-warning {
+  color: #868E96;
+  font-size: 13px;
+}
+
 .modal-footer .btn-cancel {
   background-color: #868E96;
 }
@@ -109,4 +115,31 @@
   border: none;
   border-radius: 10px;
   padding: 6px;
+}
+
+#editUserModal .detail-label {
+  width: 150px;
+}
+
+#editUserModal .edit-field {
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  gap: 10px;
+}
+
+#editUserModal .info-value {
+  flex: 1;
+  border: 1px solid #8D9DEF;
+  border-radius: 5px;
+}
+
+#editUserModal .btn-confirm {
+  font-family: 'NanumSquare', sans-serif;
+  font-size: 17px;
+  background-color: #4F64C9;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
 }
