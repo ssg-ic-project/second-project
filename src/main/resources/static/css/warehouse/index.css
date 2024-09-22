@@ -1,12 +1,3 @@
-/*@font-face {*/
-/*    font-family: 'nanum';*/
-/*    src: url('../../fonts/nanum/NanumSquare.otf') format('opentype');*/
-/*}*/
-
-* {
-    font-family: 'BMHANNAAir', sans-serif !important;
-}
-
 body {
     background-color: #F8F8F8 !important;
 }
@@ -22,7 +13,7 @@ h1 {
 }
 
 input{
-    font-family: 'Noto Sans KR','Noto Sans Korean', "Nanum Gothic", sans-serif !important;
+    font-family: 'BMHANNAAir', sans-serif !important;
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     border: 0;
@@ -78,10 +69,10 @@ input::placeholder{
 
 .btn {
     border: none;
-    border-radius: 10px;
+    border-radius: 10px !important;
     background-color: #4F64C9;
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 18px !important;
     font-weight: bold !important;
     font-family: 'NanumSquare-Bold', sans-serif !important;
 }
