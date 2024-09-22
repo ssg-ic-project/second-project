@@ -50,7 +50,7 @@
   font-family: 'NanumSquare-Bold', sans-serif;
   font-size: 17px;
   color: #242323;
-  width: 150px;
+  width: 200px;
   margin: 8px 0;
 }
 
@@ -84,4 +84,29 @@
 
 #approval-list {
   margin-top: 20px;
+}
+
+.modal-body .modal-content {
+  border-style: none;
+  display: inline;
+}
+
+.modal-footer .btn-cancel {
+  background-color: #868E96;
+}
+
+.modal-footer .btn-action {
+  background-color: #4F64C9;
+}
+
+.modal-footer .btn {
+  font-family: 'NanumSquare-Bold', sans-serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  margin: 5px;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
 }

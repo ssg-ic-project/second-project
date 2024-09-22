@@ -116,11 +116,11 @@
                   aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 회원의 가입을 승인하시겠습니까?
+          [ <span th:name="companyName" th:class="modal-content">[companyName]]</span> ] 회원의 가입을 승인하시겠습니까?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-approve">승인</button>
+          <button type="button" class="btn btn-action">승인</button>
         </div>
       </div>
     </div>
@@ -140,7 +140,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-reject">반려</button>
+          <button type="button" class="btn btn-action">반려</button>
         </div>
       </div>
     </div>
@@ -208,7 +208,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#modifyModal">
+          <button class="btn btn-action" data-bs-toggle="modal" data-bs-target="#modifyModal">
             수정
           </button>
         </div>
@@ -225,11 +225,11 @@
                   aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 회원의 정보를 정말로 수정하시겠습니까?
+          [ <span th:name="companyName" th:class="modal-content">[companyName]]</span> ] 회원의 정보를 정말로 수정하시겠습니까?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-modify">수정</button>
+          <button type="button" class="btn btn-action">수정</button>
         </div>
       </div>
     </div>
@@ -244,11 +244,11 @@
                   aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 회원을 정말로 삭제하시겠습니까?
+          [ <span th:name="companyName" th:class="modal-content">[companyName]]</span> ] 회원을 정말로 삭제하시겠습니까?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-remove">삭제</button>
+          <button type="button" class="btn btn-action">삭제</button>
         </div>
       </div>
     </div>

@@ -4,8 +4,6 @@ async function userDetail(userId) {
   const user = jsonData.data.user;
   const approvalList = jsonData.data.approvalList;
 
-  console.log("user\n" + JSON.stringify(user, null, 2));
-
   const nameElements = document.getElementsByName("name");
   for (let i = 0; i < nameElements.length; i++) {
     nameElements[i].textContent = user.name;
@@ -31,7 +29,6 @@ async function userDetail(userId) {
   document.getElementById("unregisterAt").textContent = user.unregisterAt;
 
   const tbody = document.querySelector("#approval-list tbody");
-  // approvalContainer.innerHTML = "";
 
   approvalList.forEach(approval => {
     const row = document.createElement('tr');
