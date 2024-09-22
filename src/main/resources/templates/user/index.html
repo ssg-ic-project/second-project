@@ -71,7 +71,9 @@
         <td>
           <input class="check-box" type="checkbox" value="">
         </td>
-        <td th:text="${'1'}"></td>
+        <td>
+          <a th:href="@{'/user?id=' + ${1}}" th:text="${1}"></a>
+        </td>
         <td th:text="${'신짱구'}"></td>
         <td th:text="${'짱구상사'}"></td>
         <td th:text="${'jjanggu@company.co.kr'}"></td>
