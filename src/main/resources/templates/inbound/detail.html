@@ -216,11 +216,11 @@
           <p th:class="modal-warning">※ 입고 정보를 수정하기 전에 변경 사항을 확인하세요.</p>
           <div th:class="detail-item">
             <span th:class="detail-label">입고 예정일</span>
-              <input th:type="date" th:id="modifyExpectedDate" th:text="${expectedDate}" th:class="info-value" required/>
+              <input th:type="date" th:id="modifyExpectedDate" th:text="${expectedDate}" th:class="info-value" th:required/>
           </div>
           <div th:class="detail-item">
             <span th:class="detail-label">수량</span>
-              <input th:id="modifyQuantity" th:text="${quantity}" th:class="info-value" required/>
+              <input th:id="modifyQuantity" th:text="${quantity}" th:class="info-value" th:required/>
           </div>
         </div>
         <div class="modal-footer">
