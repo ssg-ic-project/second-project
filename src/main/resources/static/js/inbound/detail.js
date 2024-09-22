@@ -2,7 +2,7 @@ async function inboundDetail(inboundId) {
   const response = await fetch(`/api/inbound?id=${inboundId}`);
   const jsonData = await response.json();
   const inbound = jsonData.data.inbound;
-  // const approvalList = jsonData.data.approvalList;
+  const approvalList = jsonData.data.approvalList;
 
   console.log(JSON.stringify(inbound, null, 2));
   console.log("id: " + inbound.id);
@@ -28,17 +28,16 @@ async function inboundDetail(inboundId) {
   document.getElementById("productHeight").textContent = inbound.productHeight + ' (mm)';
   document.getElementById("productWidth").textContent = inbound.productWidth + ' (mm)';
   document.getElementById("productDepth").textContent = inbound.productDepth + ' (mm)';
-//
-//
-//   const tbody = document.querySelector("#approval-list tbody");
-//
-//   approvalList.forEach(approval => {
-//     const row = document.createElement('tr');
-//     row.innerHTML = `
-//       <td>${approval.status ? approval.status : '-'}</td>
-//       <td>${approval.rejectionReason ? approval.rejectionReason : '-'}</td>
-//       <td>${approval.createdAt ? approval.createdAt : '-'}</td>
-//     `;
-//     tbody.appendChild(row);
-//   });
+
+  const tbody = document.querySelector("#approval-list tbody");
+
+  approvalList.forEach(approval => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${approval.status ? approval.status : '-'}</td>
+      <td>${approval.rejectionReason ? approval.rejectionReason : '-'}</td>
+      <td>${approval.createdAt ? approval.createdAt : '-'}</td>
+    `;
+    tbody.appendChild(row);
+  });
 }
