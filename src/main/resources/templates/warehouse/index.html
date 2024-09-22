@@ -25,42 +25,44 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     </div>
 
     <div class="page-info">
-      <h1 class="page-title">창고 현황</h1>
+      <h1 class="page-title pb-3">창고 현황</h1>
       <span class="page-subtitle">회원 관리 > 창고 현황</span>
     </div>
 
     <div class="front-container-list">
       <div>
-        <nav class="navbar navbar-header navbar-expand-lg d-flex flex-column align-items-start w-100 bg-light bg-body-light">
-          <div class="search-span navbar-brand mb-0 p-2 h1">창고조회</div>
+        <nav class="navbar navbar-header navbar-expand-lg d-flex flex-column align-items-start w-100 bg-white">
+          <h3 class="navbar-brand mb-0 p-2">창고조회</h3>
           <div class="form-item d-flex flex-row nav-item align-self-start flex-wrap ms-5">
             <div class="d-flex flex-row p-2">
-                  <div class="w-select-menu d-inline-block pe-2">
+                  <div class="select-menu d-inline-block pe-2">
                       <div class="select">
-                          <span class="dropdown-span">직급</span>
+                          <span class="dropdown-span">지역</span>
                           <i class="dropdown">
                               <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
                           </i>
                       </div>
                       <div class="option-list">
-                          <div class="option" data-value="TEAM_MEMBER">팀원</div>
-                          <div class="option" data-value="TEAM_LEADER">팀장</div>
-                          <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+                          <div class="option" data-value="TEAM_MEMBER">서울시</div>
+                          <div class="option" data-value="TEAM_LEADER">경기도</div>
+                          <div class="option" data-value="TEAM_LEADER">충청도</div>
+                          <div class="option" data-value="TEAM_LEADER">경상도</div>
+                          <div class="option" data-value="DEPARTMENT_HEAD">전라도</div>
                       </div>
                   </div>
 
-                  <div class="w-select-menu d-inline-block">
+                  <div class="select-menu d-inline-block">
                       <div class="select">
-                          <span class="dropdown-span">직급</span>
+                          <span class="dropdown-span">물품 카테고리</span>
                           <i class="dropdown">
                               <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
                           </i>
                       </div>
 
                       <div class="option-list">
-                          <div class="option" data-value="TEAM_MEMBER">팀원</div>
-                          <div class="option" data-value="TEAM_LEADER">팀장</div>
-                          <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+                          <div class="option" data-value="TEAM_MEMBER">책상</div>
+                          <div class="option" data-value="TEAM_LEADER">의자</div>
+                          <div class="option" data-value="DEPARTMENT_HEAD">옷장</div>
                       </div>
                   </div>
               </div>
@@ -73,10 +75,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         </nav>
       </div>
 
-      <div class="my-2 p-2 bg-light">
+      <div class="mt-3 bg-white">
         <nav class="mb-2 navbar navbar-expand-lg">
           <div class="d-flex flex-row container">
-            <span class="search-span navbar-brand mb-0 h1">창고목록</span>
+            <span class="search-span navbar-brand mb-0 h3" style="font-family: 'NanumSquare-ExtraBold', sans-serif">창고목록</span>
 
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
               창고등록
@@ -140,7 +142,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
             </div>
         </nav>
 
-        <div id="map" class="w-100" style="height:400px;"></div>
+        <div id="map" class="w-100" style="height:300px;"></div>
 
         <table class="table">
           <thead>
@@ -223,22 +225,5 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     </div>
     </div>
   </div>
-<!--  <script>-->
-<!--      var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스-->
-
-<!--      console.log(-->
-<!--          kakao-->
-<!--      )-->
-<!--      console.log(container);-->
-<!--      var options = { //지도를 생성할 때 필요한 기본 옵션-->
-<!--          center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.-->
-<!--          level: 3 //지도의 레벨(확대, 축소 정도)-->
-<!--      };-->
-
-<!--      console.log(options);-->
-
-<!--      var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴-->
-<!--      console.log(map);-->
-<!--  </script>-->
 </body>
 </html>
