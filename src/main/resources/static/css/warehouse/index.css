@@ -13,7 +13,7 @@ h1 {
 }
 
 input{
-    font-family: 'BMHANNAAir', sans-serif !important;
+    font-family: 'NanumSquare', sans-serif !important;
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     border: 0;
@@ -40,10 +40,7 @@ input::placeholder{
     color: #888;
     font-weight: bold;
 }
-/*.warehouse.ver2 label{*/
-/*    top: initial;*/
-/*    bottom: -20px;*/
-/*}*/
+
 .warehouse label span{
     color: #da4841;
     vertical-align: -1px;
@@ -68,13 +65,19 @@ input::placeholder{
 }
 
 .btn {
+    min-width: 100px; /* 버튼의 최소 너비 설정 */
+    white-space: nowrap; /* 텍스트가 줄 바꿈 되지 않도록 설정 */
+    height: 38px; /* 버튼 높이 고정 */
+    font-family: 'NanumSquare-Bold', sans-serif;
+    font-size: 17px;
+    color: #FFFFFF !important;
     border: none;
+    border-radius: 10px;
+    background-color: #4F64C9 !important;
+}
+
+div>nav:nth-child(n) {
     border-radius: 10px !important;
-    background-color: #4F64C9;
-    color: #FFFFFF;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    font-family: 'NanumSquare-Bold', sans-serif !important;
 }
 
 @media (max-width: 768px) {
@@ -130,19 +133,6 @@ input::placeholder{
     min-width: 0; /* 최소 너비를 0으로 설정하여 공간을 최대한 활용 */
 }
 
-.btn {
-    min-width: 100px; /* 버튼의 최소 너비 설정 */
-    white-space: nowrap; /* 텍스트가 줄 바꿈 되지 않도록 설정 */
-    height: 38px; /* 버튼 높이 고정 */
-    font-family: 'NanumSquare-Bold', sans-serif;
-    font-size: 17px;
-    color: #FFFFFF !important;
-    border: none;
-    border-radius: 10px;
-    background-color: #4F64C9 !important;
-
-}
-
 .navbar {
     height: auto;
     padding: 8px;
@@ -170,7 +160,7 @@ input::placeholder{
 }
 
 .select-menu {
-    font-family: 'BMHANNAAir', sans-serif;
+    font-family: 'NanumSquare', sans-serif;
     color: #50565C;
     font-size: 18px;
     width: auto;
