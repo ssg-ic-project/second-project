@@ -78,3 +78,43 @@
 #approval-list {
   margin-top: 20px;
 }
+.modal-body .modal-content {
+  border-style: none;
+  display: inline;
+}
+
+.modal-body .modal-warning {
+  color: #868E96;
+  font-size: 13px;
+}
+
+.modal-footer .btn-cancel {
+  background-color: #868E96;
+}
+
+.modal-footer .btn-action {
+  background-color: #4F64C9;
+}
+
+.modal-footer .btn {
+  font-family: 'NanumSquare-Bold', sans-serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  margin: 5px;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+#editInfoModal .detail-label {
+  width: 100px;
+}
+
+#editInfoModal .info-value {
+  flex: 1;
+  border: 1px solid #8D9DEF;
+  border-radius: 5px;
+  padding: 0 10px;
+}

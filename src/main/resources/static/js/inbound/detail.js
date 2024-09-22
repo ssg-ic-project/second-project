@@ -29,6 +29,9 @@ async function inboundDetail(inboundId) {
   document.getElementById("productWidth").textContent = inbound.productWidth + ' (mm)';
   document.getElementById("productDepth").textContent = inbound.productDepth + ' (mm)';
 
+  document.getElementById("modifyExpectedDate").value = inbound.expectedDate;
+  document.getElementById("modifyQuantity").value = inbound.quantity;
+
   const tbody = document.querySelector("#approval-list tbody");
 
   approvalList.forEach(approval => {

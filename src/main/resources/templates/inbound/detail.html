@@ -27,7 +27,7 @@
     <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#approveModal">승인
     </button>
     <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
-    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editUserModal">수정
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editInfoModal">수정
     </button>
     <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
   </div>
@@ -160,6 +160,112 @@
         <div th:class="detail-item">
           <span th:class="detail-label">전화번호</span>
           <span th:id="userPhone" th:text="${userPhone}" th:class="detail-value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="approveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 승인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          입고 승인 요청을 처리하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rejectModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 반려</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="rejection-reason" class="col-form-label">반려 사유를 입력해 주세요.</label>
+          <textarea class="form-control" id="rejection-reason" rows="3" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editInfoModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 정보 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p th:class="modal-warning">※ 입고 정보를 수정하기 전에 변경 사항을 확인하세요.</p>
+          <div th:class="detail-item">
+            <span th:class="detail-label">입고 예정일</span>
+              <input th:type="date" th:id="modifyExpectedDate" th:text="${expectedDate}" th:class="info-value" required/>
+          </div>
+          <div th:class="detail-item">
+            <span th:class="detail-label">수량</span>
+              <input th:id="modifyQuantity" th:text="${quantity}" th:class="info-value" required/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button class="btn btn-action" data-bs-toggle="modal" data-bs-target="#modifyModal">
+            수정
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modifyModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 정보 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          입고 정보를 수정하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">수정</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="removeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 삭제</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          입고 정보를 삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">삭제</button>
         </div>
       </div>
     </div>
