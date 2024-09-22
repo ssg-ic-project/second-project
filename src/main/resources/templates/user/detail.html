@@ -1,10 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/user/detail.css">
+  <link rel="stylesheet" href="/css/common/table.css">
+  <title>User Detail</title>
+  <script src="/js/user/detail.js"></script>
+  <script defer th:inline="javascript">
+    const userId = [[${id}]];
+    userDetail(userId)
+  </script>
 </head>
 <body>
-
+<div layout:fragment="content" th:class="container">
+  <div th:class="page-info">
+    <h2 th:class="page-title"><span th:name="companyName">[companyName]</span> 상세 조회</h2>
+    <span th:class="page-subtitle">회원 관리 > 회원 조회 > 상세 조회</span>
+  </div>
+  <div class="action-btn">
+    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#approveModal">승인
+    </button>
+    <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editUserModal">수정
+    </button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+  </div>
+  <div th:class="user-info-box">
+    <h5 th:class="box-title">회원 정보</h5>
+    <div th:class="user-info">
+      <div th:class="user-detail-group">
+        <div th:class="user-detail">
+          <span th:class="detail-label">ID</span>
+          <span th:id="id" th:text="${id}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">이름</span>
+          <span th:id="name" th:text="${name}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">아이디</span>
+          <span th:id="userId" th:text="${userId}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">이메일</span>
+          <span th:id="email" th:text="${email}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">전화번호</span>
+          <span th:id="phone" th:text="${phone}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">최초 등록일</span>
+          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">최종 수정일</span>
+          <span th:id="updatedAt" th:text="${updatedAt}" th:class="info-value"></span>
+        </div>
+      </div>
+      <div th:class="user-detail-group">
+        <div th:class="user-detail">
+          <span th:class="detail-label">사업자 번호</span>
+          <span th:id="businessNumber" th:text="${businessNumber}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">상호명</span>
+          <span th:id="companyName" th:text="${companyName}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">사업장 우편번호</span>
+          <span th:id="zipCode" th:text="${zipCode}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">사업장 주소</span>
+          <span th:id="address" th:text="${address}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">탈퇴 여부</span>
+          <span th:id="isUnregister" th:text="${isUnregister == 1 ? 'O' : 'X'}"
+                th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">탈퇴 시각</span>
+          <span th:id="unregisterAt" th:text="${unregisterAt}" th:class="info-value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:class="user-approval-box">
+    <h5 th:class="box-title">회원 승인 내역</h5>
+      <table id="approval-list">
+        <thead>
+          <tr>
+            <th>승인 상태</th>
+            <th>반려 사유</th>
+            <th>생성 시각</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+  </div>
+  <div id="approveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 가입 승인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 회원의 가입을 승인하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-approve">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rejectModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 가입 반려</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="rejection-reason" class="col-form-label">반려 사유를 입력해 주세요.</label>
+          <textarea class="form-control" id="rejection-reason" rows="3" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-reject">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editUserModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 정보 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p th:class="modal-warning">※ 직원의 권한, 부서, 직급만 수정할 수 있습니다.</p>
+          <div class="select-box">
+            <div class="select-menu">
+              <div class="select">
+                <span>권한</span>
+                <i class="dropdown">
+                  <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20"
+                       height="20">
+                </i>
+              </div>
+              <div class="option-list">
+                <div class="option option-default" data-value="">-- 선택 --</div>
+                <div class="option" data-value="EMPLOYEE">직원</div>
+                <div class="option" data-value="ADMIN">관리자</div>
+                <div class="option" data-value="SUPER_ADMIN">총관리자</div>
+              </div>
+            </div>
+            <div class="select-menu">
+              <div class="select">
+                <span>부서</span>
+                <i class="dropdown">
+                  <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20"
+                       height="20">
+                </i>
+              </div>
+              <div class="option-list">
+                <div class="option option-default" data-value="">-- 선택 --</div>
+                <div class="option" data-value="HR">인사팀</div>
+                <div class="option" data-value="WAREHOUSE">창고팀</div>
+                <div class="option" data-value="DELIVERY">배송팀</div>
+                <div class="option" data-value="DEVELOPMENT">개발팀</div>
+                <div class="option" data-value="ACCOUNTING">회계팀</div>
+              </div>
+            </div>
+            <div class="select-menu">
+              <div class="select">
+                <span>직급</span>
+                <i class="dropdown">
+                  <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20"
+                       height="20">
+                </i>
+              </div>
+              <div class="option-list">
+                <div class="option option-default" data-value="">-- 선택 --</div>
+                <div class="option" data-value="TEAM_MEMBER">팀원</div>
+                <div class="option" data-value="TEAM_LEADER">팀장</div>
+                <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#modifyModal">
+            수정
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modifyModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 정보 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 회원의 정보를 정말로 수정하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-modify">수정</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="removeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 삭제</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          [ <span th:name="name" th:class="modal-content">[Name]]</span> ] 회원을 정말로 삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-remove">삭제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
