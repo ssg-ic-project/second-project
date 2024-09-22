@@ -79,7 +79,9 @@
       <!-- 삭제 예정 -->
       <tr>
         <td><input class="check-box" type="checkbox" value=""></td>
-        <td th:text="${'10'}"></td>
+        <td>
+          <a th:href="@{'/inbound?id=' + ${10}}" th:text="${10}"></a>
+        </td>
         <td th:text="${'23'}"></td>
         <td th:text="${'52'}"></td>
         <td th:text="${'3'}"></td>

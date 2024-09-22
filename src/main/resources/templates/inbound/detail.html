@@ -1,10 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/inbound/detail.css">
+  <link rel="stylesheet" href="/css/common/table.css">
+  <title>Inbound Detail</title>
+  <script src="/js/inbound/detail.js"></script>
+  <script defer th:inline="javascript">
+    const inboundId = [[${id}]];
+    inboundDetail(inboundId)
+  </script>
 </head>
 <body>
-
+<div layout:fragment="content" th:class="container">
+  <div th:class="page-info">
+    <h2 th:class="page-title">상세 조회</h2>
+    <span th:class="page-subtitle">입고 관리 > 입고 조회 > 상세 조회</span>
+  </div>
+  <div class="action-btn">
+    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#approveModal">승인
+    </button>
+    <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editUserModal">수정
+    </button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+  </div>
+  <div th:class="info-box">
+    <h5 th:class="box-title">입고 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">ID</span>
+          <span th:id="id" th:text="${id}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">입고 예정일</span>
+          <span th:id="expectedDate" th:text="${expectedDate}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">입고 수량</span>
+          <span th:id="quantity" th:text="${quantity}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">최초 등록일</span>
+          <span th:id="createdAt" th:text="${createdAt}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">최종 수정일</span>
+          <span th:id="updatedAt" th:text="${updatedAt}" th:class="detail-value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:class="info-box">
+    <h5 th:class="box-title">창고 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">창고 ID</span>
+          <span th:id="warehouseId" th:text="${warehouseId}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">창고명</span>
+          <span th:id="warehouseName" th:text="${warehouseName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">섹션명</span>
+          <span th:id="sectionName" th:text="${sectionName}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">셀명</span>
+          <span th:id="cellName" th:text="${cellName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">재고</span>
+          <span th:id="stock" th:text="${stock}" th:class="detail-value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:class="info-box">
+    <h5 th:class="box-title">상품 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">ID</span>
+          <span th:id="productId" th:text="${productId}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품명</span>
+          <span th:id="productName" th:text="${productName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">카테고리</span>
+          <span th:id="category" th:text="${category}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품 높이</span>
+          <span th:id="productHeight" th:text="${productHeight}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품 가로</span>
+          <span th:id="productWidth" th:text="${productWidth}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품 세로</span>
+          <span th:id="productDepth" th:text="${productDepth}" th:class="detail-value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:class="info-box">
+    <h5 th:class="box-title">회원 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">ID</span>
+          <span th:id="userId" th:text="${userId}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">이름</span>
+          <span th:id="userName" th:text="${userName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">상호명</span>
+          <span th:id="companyName" th:text="${companyName}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">이메일</span>
+          <span th:id="userEmail" th:text="${userEmail}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">전화번호</span>
+          <span th:id="userPhone" th:text="${userPhone}" th:class="detail-value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
