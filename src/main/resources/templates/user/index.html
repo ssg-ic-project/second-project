@@ -20,41 +20,38 @@
   <div class="search-box">
     <h3 class="title">검색 조건</h3>
     <div class="search-filters">
-      <div class="select-menu filter-item">
-        <div class="select">
-          <span>승인 상태</span>
-          <i class="dropdown">
-            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
-          </i>
+      <div class="filter-group">
+        <div class="filter-item">
+          <input type="text" class="filter-input" placeholder="이름">
         </div>
-        <div class="option-list">
-          <div class="option" data-value="PENDING">승인 대기</div>
-          <div class="option" data-value="APPROVED">승인 완료</div>
-          <div class="option" data-value="REJECTED">승인 거절</div>
+        <div class="filter-item">
+          <input type="text" class="filter-input" placeholder="이메일">
         </div>
       </div>
-      <div class="filter-item">
-        <input type="text" class="filter-input" placeholder="이름">
-      </div>
-      <div class="filter-item">
-        <input type="text" class="filter-input" placeholder="이메일">
-      </div>
-      <div class="filter-item">
-        <button type="button" class="filter-button">검색</button>
+      <div class="filter-group">
+        <div class="select-menu filter-item">
+          <div class="select">
+            <span>승인 상태</span>
+            <i class="dropdown">
+              <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+            </i>
+          </div>
+          <div class="option-list">
+            <div class="option" data-value="PENDING">승인 대기</div>
+            <div class="option" data-value="APPROVED">승인 완료</div>
+            <div class="option" data-value="REJECTED">승인 거절</div>
+          </div>
+        </div>
+        <div class="filter-item">
+          <button type="button" class="filter-button">검색</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="status-btn">
-    <button class="approve-btn" data-bs-toggle="modal" data-bs-target="#approveModal">승인</button>
-    <button class="reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
   </div>
   <div class="table-list">
     <table>
       <thead>
       <tr>
-        <th>
-          <input class="check-box-all" type="checkbox" value="" onclick="checkAll(this)">
-        </th>
         <th>ID</th>
         <th>이름</th>
         <th>상호명</th>
@@ -69,9 +66,6 @@
       <!-- 삭제 예정 -->
       <tr>
         <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
-        <td>
           <a th:href="@{'/user?id=' + ${1}}" th:text="${1}"></a>
         </td>
         <td th:text="${'신짱구'}"></td>
@@ -82,9 +76,6 @@
         <td th:text="${'X'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'2'}"></td>
         <td th:text="${'한유리'}"></td>
         <td th:text="${'유리상점'}"></td>
@@ -94,9 +85,6 @@
         <td th:text="${'O'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'3'}"></td>
         <td th:text="${'이훈이'}"></td>
         <td th:text="${'훈이물류'}"></td>
@@ -106,9 +94,6 @@
         <td th:text="${'X'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'4'}"></td>
         <td th:text="${'이맹구'}"></td>
         <td th:text="${'맹구종합상사'}"></td>
@@ -118,9 +103,6 @@
         <td th:text="${'O'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'5'}"></td>
         <td th:text="${'김철수'}"></td>
         <td th:text="${'철수상회'}"></td>
@@ -130,9 +112,6 @@
         <td th:text="${'X'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'6'}"></td>
         <td th:text="${'신형만'}"></td>
         <td th:text="${'형만카페'}"></td>
@@ -142,9 +121,6 @@
         <td th:text="${'O'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'7'}"></td>
         <td th:text="${'봉미선'}"></td>
         <td th:text="${'미선식품'}"></td>
@@ -154,9 +130,6 @@
         <td th:text="${'X'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'8'}"></td>
         <td th:text="${'신짱아'}"></td>
         <td th:text="${'짱아건설'}"></td>
@@ -166,9 +139,6 @@
         <td th:text="${'O'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'9'}"></td>
         <td th:text="${'흰둥이'}"></td>
         <td th:text="${'흰둥물산'}"></td>
@@ -178,9 +148,6 @@
         <td th:text="${'X'}"></td>
       </tr>
       <tr>
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${'10'}"></td>
         <td th:text="${'한수지'}"></td>
         <td th:text="${'수지가구'}"></td>
@@ -191,9 +158,6 @@
       </tr>
       <!-- Example data end -->
       <tr th:each="user : ${userList}">
-        <td>
-          <input class="check-box" type="checkbox" value="">
-        </td>
         <td th:text="${user.id ?: '-'}"></td>
         <td th:text="${user.name ?: '-'}"></td>
         <td th:text="${user.companyName ?: '-'}"></td>
@@ -204,41 +168,6 @@
       </tr>
       </tbody>
     </table>
-  </div>
-  <div id="approveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">회원 가입 승인</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>해당 회원의 가입을 승인하시겠습니까?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-approve">승인</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="rejectModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">회원 가입 반려</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <label for="rejection-reason" class="col-form-label">반려 사유를 입력해 주세요.</label>
-          <textarea class="form-control" id="rejection-reason" rows="3" required ></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-reject">반려</button>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 </body>
