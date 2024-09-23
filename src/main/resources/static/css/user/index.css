@@ -150,3 +150,12 @@
 .search-box .search-filters .filter-item .filter-button:focus {
   background-color: #3D4FA7;
 }
+
+.table-list a {
+  color: #242323;
+  text-decoration: none;
+}
+
+.table-list a:hover {
+  color: #7C8CDC;
+}
