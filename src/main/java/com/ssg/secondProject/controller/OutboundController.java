@@ -13,4 +13,10 @@ public class OutboundController {
         return "outbound/index";
     }
 
+    @GetMapping("/detail")
+    public String outbound_detail() {
+        return "outbound/detail";
+    }
+
+
 }
