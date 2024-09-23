@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/auth/find_username.css">
+  <title>Find Username</title>
+</head>
+<body>
+<div class="container">
+  <h2>아이디 찾기</h2>
+  <div class="form-group">
+    <label th:for="id">사번 <span class="required">*</span></label>
+    <input th:type="text" th:id="id" th:name="id" th:required="true" th:autofocus="true">
+  </div>
+  <div th:class="form-group">
+    <label th:for="neme">이름 <span class="required">*</span></label>
+    <input th:type="text" th:id="neme" th:name="neme" th:required="true">
+  </div>
+  <div th:class="btn-group">
+    <button th:type="submit">아이디 찾기</button>
+    <button th:type="button" th:onclick="history.back()">뒤로 가기</button>
+  </div>
+</div>
+</body>
+</html>

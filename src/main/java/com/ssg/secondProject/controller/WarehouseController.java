@@ -12,5 +12,4 @@ public class WarehouseController {
     public String warehouse() {
         return "warehouse/index";
     }
-
 }

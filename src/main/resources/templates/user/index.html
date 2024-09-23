@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/user/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
-  <script defer src="/js/common/checkbox.js"></script>
   <title>User Index</title>
 </head>
 <body>
@@ -72,7 +71,9 @@
         <td>
           <input class="check-box" type="checkbox" value="">
         </td>
-        <td th:text="${'1'}"></td>
+        <td>
+          <a th:href="@{'/user?id=' + ${1}}" th:text="${1}"></a>
+        </td>
         <td th:text="${'신짱구'}"></td>
         <td th:text="${'짱구상사'}"></td>
         <td th:text="${'jjanggu@company.co.kr'}"></td>
