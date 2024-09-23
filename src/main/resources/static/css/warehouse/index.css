@@ -128,6 +128,12 @@ div>nav:nth-child(n) {
 
 }
 
+.map {
+    width: 90%;
+    border-radius: 10px;
+    margin: 0 10px 0 10px;
+}
+
 .form-control {
     flex-grow: 1; /* 입력 필드가 가능한 공간을 모두 차지하도록 설정 */
     min-width: 0; /* 최소 너비를 0으로 설정하여 공간을 최대한 활용 */
@@ -167,4 +173,29 @@ div>nav:nth-child(n) {
     min-width: 150px;
     cursor: pointer;
     position: relative;
+}
+
+.inp-wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 1.2em;
+}
+label {
+    color: #0f1e32;
+    display: block;
+    font-weight: 600;
+}
+input[type="date"] {
+    font-family: 'NanumSquare', sans-serif;
+    background-color: #FFFFFF;
+    border: 1px solid #8D9DEF;
+    border-radius: 10px;
+    padding: 5px 10px;
+    height: 35px;
+    box-sizing: border-box;
+}
+::-webkit-calendar-picker-indicator {
+    padding: 0.2em;
+    cursor: pointer;
+    border-radius: 0.1em;
 }

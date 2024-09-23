@@ -1,16 +1,16 @@
-package com.ssg.secondProject.controller;
+package com.ssg.secondproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/inbound")
-public class InboundController {
+@RequestMapping("/dispatch")
+public class DispatchController {
 
     @GetMapping("/index")
-    public String inbound() {
-        return "inbound/index";
+    public String dispatch() {
+        return "dispatch/index";
     }
 
 }

@@ -1,16 +1,16 @@
-package com.ssg.secondProject.controller;
+package com.ssg.secondproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/stock")
-public class StockController {
+@RequestMapping("/outbound")
+public class OutboundController {
 
     @GetMapping("/index")
-    public String stock() {
-        return "stock/index";
+    public String outbound() {
+        return "outbound/index";
     }
 
 }
