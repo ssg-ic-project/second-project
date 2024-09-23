@@ -24,3 +24,43 @@ async function inboundList() {
     tbody.appendChild(row);
   });
 };
+
+const today = new Date();
+
+const startDateDefault = new Date();
+startDateDefault.setDate(today.getDate() - 30);
+
+flatpickr("#start-date", {
+  dateFormat: "Y-m-d",
+  defaultDate: startDateDefault,
+  onClose: function(selectedDates) {
+    const startDate = selectedDates[0];
+    if (startDate) {
+      endPicker.set('minDate', startDate);
+    }
+  }
+});
+
+const endPicker = flatpickr("#end-date", {
+  dateFormat: "Y-m-d",
+  defaultDate: today,
+  minDate: startDateDefault
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const submitButton = document.getElementById('submit');
+  if (submitButton) {
+    submitButton.addEventListener('click', function() {
+      const startDate = document.getElementById('start-date').value;
+      const endDate = document.getElementById('end-date').value;
+
+      if (startDate && endDate) {
+        document.getElementById('selected-dates').innerText = `기간: ${startDate} ~ ${endDate}`;
+      } else {
+        alert('모든 날짜를 입력하세요.');
+      }
+    });
+  } else {
+    console.error('Submit button not found.');
+  }
+});

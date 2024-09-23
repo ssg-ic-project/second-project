@@ -30,7 +30,7 @@
 .search-box .search-filters .filter-group {
   display: flex;
   flex-direction: row;
-  gap: 15px
+  gap: 15px;
 }
 
 .search-box .search-filters .filter-item {
@@ -93,6 +93,11 @@
 
 .option-list::-webkit-scrollbar-thumb {
   background-color: #4F64C9;
+}
+
+.option-default {
+  text-align: center;
+  color: #868E96;
 }
 
 .option {
