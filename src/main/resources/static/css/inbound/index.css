@@ -148,40 +148,7 @@
   background-color: #3D4FA7;
 }
 
-.status-btn {
-  float: right;
-}
-
-.status-btn .approve-btn,
-.status-btn .reject-btn {
-  font-family: 'NanumSquare-Bold', sans-serif;
-  font-size: 17px;
-  color: #FFFFFF;
-  width: 150px;
-  height: 35px;
-  border: none;
-  border-radius: 10px;
-  background-color: #4F64C9;
-  margin: 20px 0 10px 10px;
-}
-
-.modal-footer .btn-cancel {
-  background-color: #868E96;
-}
-
-.modal-footer .btn-approve,
-.modal-footer .btn-reject {
-  background-color: #4F64C9;
-}
-
-.modal-footer .btn {
-  font-family: 'NanumSquare-Bold', sans-serif;
-  font-size: 17px;
-  color: #FFFFFF;
-  margin: 5px;
-  width: 100px;
-  height: 35px;
-  border: none;
-  border-radius: 10px;
-  padding: 6px;
+#inbound-list a {
+  color: #242323;
+  text-decoration: none;
 }
