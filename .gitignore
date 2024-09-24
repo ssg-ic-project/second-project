@@ -29,6 +29,8 @@ out/
 !**/src/test/**/out/
 test
 
+.gitmessage.txt
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
