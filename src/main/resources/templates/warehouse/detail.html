@@ -1,10 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/admin/common.css">
+  <link rel="stylesheet" href="/css/warehouse/detail.css">
+  <title>Admin Detail</title>
+  <script src="/js/admin/detail.js"></script>
+  <script defer th:inline="javascript">
+    const adminId = [[${id}]];
+    adminDetail(adminId)
+  </script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7e1a1e3ea1021ea492e25afd4b3247b1"></script>
+  <script type="text/javascript" th:src="@{/js/warehouse/index.js}"></script>
 </head>
 <body>
+<div layout:fragment="content" th:class="container">
+  <div th:class="page-info">
+    <h2 th:class="page-title">창고 상세 조회</h2>
+    <span th:class="page-subtitle">창고 관리 > 창고 현황 > 상세 조회</span>
+  </div>
+  <div class="action-btn">
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">수정</button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+  </div>
+  <div th:class="admin-info-box">
+    <h5 th:class="box-title">창고 상세 정보</h5>
+    <div th:class="admin-info">
+      <div th:class="admin-detail-group">
+        <div th:class="admin-detail">
+          <span th:class="detail-label">ID</span>
+          <span th:id="id" th:text="${id}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">창고명</span>
+<!--          <span th:id="name" th:text="${name}" th:class="info-value"></span>-->
+          <span th:id="name" th:text="짱구창고" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">담당자</span>
+<!--          <span th:id="adminId" th:text="${adminId}" th:class="info-value"></span>-->
+          <span th:id="adminId" th:text="신짱구" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">크기</span>
+<!--          <span th:id="size" th:text="${size}" th:class="info-value"></span>-->
+          <span th:id="size" th:text="78000 + ' ㎥'" th:class="info-value"></span>
+        </div>
+<!--        <div th:class="admin-detail">-->
+<!--          <span th:class="detail-label">물품 카테고리</span>-->
+<!--&lt;!&ndash;          <span th:id="category" th:text="${category}" th:class="info-value"></span>&ndash;&gt;-->
+<!--          <span th:id="category" th:text="의자" th:class="info-value"></span>-->
+<!--        </div>-->
+        <div th:class="admin-detail">
+          <span th:class="detail-label">수용량</span>
+<!--          <span th:id="capacity" th:text="${capacity}" th:class="info-value"></span>-->
+          <span th:id="capacity" th:text="85000 + '개'" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">최초 등록일</span>
+<!--          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>-->
+          <span th:id="createdAt" th:text="'2024-09-22' + ' 22:06:35'" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">주소</span>
+<!--          <span th:id="address" th:text="${address}" th:class="info-value"></span>-->
+          <span th:id="address" th:text="'서울시 강남구'" th:class="info-value"></span>
+        </div>
+        <div id="map" class="w-100" style="height:300px;"></div>
+      </div>
+
+      <div id="editEmployeeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 정보 수정</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="warehouse">
+                <label for="title"><span>* </span>창고명</label>
+                <input type="text" name="title" id="title" />
+              </div>
+
+              <div class="warehouse">
+                <label for="title"><span>* </span>담당자</label>
+                <input type="text" name="admin" id="admin" />
+              </div>
+
+              <div class="warehouse">
+                <label for="size"><span>* </span>크기</label>
+                <input type="text" name="size" id="size" />
+              </div>
+
+              <div class="warehouse">
+                <label for="category"><span>* </span>카테고리</label>
+                <input type="text" name="category" id="category" />
+              </div>
+
+              <div class="warehouse">
+                <label for="capacity"><span>* </span>수용량</label>
+                <input type="text" name="capacity" id="capacity" />
+              </div>
+
+              <div class="warehouse">
+                <label for="type"><span>* </span>창고분류</label>
+                <input type="text" name="type" id="type" />
+              </div>
+
+              <div class="warehouse">
+                <label for="address"><span>* </span>주소</label>
+                <input type="text" name="address" id="address" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#modifyModal">수정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modifyModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 정보 수정</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              창고 정보를 정말로 수정하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-modify">수정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="removeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">창고 삭제</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              창고를 정말로 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-remove">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
