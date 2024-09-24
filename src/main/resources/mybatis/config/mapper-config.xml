@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+  <settings>
+    <setting name="cacheEnabled" value="true"/>  <!-- 설정에서 각 매퍼에 설정된 캐시를 전역적으로 사용 -->
+    <setting name="lazyLoadingEnabled" value="true"/>
+    <setting name="aggressiveLazyLoading" value="false"/>
+    <setting name="useGeneratedKeys" value="true"/>
+    <setting name="defaultExecutorType" value="REUSE"/>
+    <setting name="autoMappingBehavior" value="PARTIAL"/>
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
+
+
+  <typeAliases>
+    <typeAlias type="java.util.Map" alias="Map"/>
+    <typeAlias type="java.lang.String" alias="String"/>
+    <typeAlias type="java.lang.Integer" alias="int"/>
+
+    <package name="com.ssg.secondproject.domain"/>
+    <package name="com.ssg.secondproject.dto.request"/>
+    <package name="com.ssg.secondproject.dto.response"/>
+    <package name="com.ssg.secondproject.dto"/>
+  </typeAliases>
+
+
+  <mappers>
+    <mapper resource="/mybatis/sql"/>
+  </mappers>
+
+
+</configuration>

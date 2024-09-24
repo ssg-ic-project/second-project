@@ -27,6 +27,9 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+test
+
+.gitmessage.txt
 
 ### NetBeans ###
 /nbproject/private/

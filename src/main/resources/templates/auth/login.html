@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/auth/login.css">
+  <title>Login</title>
+</head>
+<body>
+<div class="contain">
+  <div class="logo-contain">
+    <img src="/media/logo/pink-logo.png" alt="Logo" width="300" height="150">
+  </div>
+  <div class="login-contain">
+    <h2>로그인</h2>
+    <input type="text" th:class="id" th:id="id" placeholder="ID" th:required="true" th:autofocus="true">
+    <input type="password" th:class="pw" th:id="pw" placeholder="Password" th:required="true">
+    <button th:class="btn-login" th:onclick="">로그인</button>
+    <div class="action-link">
+      <a th:href="@{'/auth/signup'}">회원가입</a>
+      <span> | </span>
+      <a th:href="@{'/auth/find-username'}">아이디 찾기</a>
+      <span> | </span>
+      <a th:href="@{'/auth/reset-password'}">비밀번호 찾기</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

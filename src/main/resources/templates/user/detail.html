@@ -160,14 +160,14 @@
           <div th:class="user-detail">
             <span th:class="detail-label">상호명</span>
             <div th:class="edit-field">
-              <input th:id="modifyCompanyName" th:text="${companyName}" th:class="info-value"/>
+              <input th:id="modifyCompanyName" th:text="${companyName}" th:class="info-value" th:required/>
             </div>
           </div>
           <div th:class="user-detail">
             <span th:class="detail-label">사업자 번호</span>
             <div th:class="edit-field">
               <input th:id="modicyBusinessNumber" th:text="${businessNumber}"
-                     th:class="info-value"/>
+                     th:class="info-value" th:required/>
               <button type="button" class="btn-confirm">확인</button>
             </div>
           </div>
