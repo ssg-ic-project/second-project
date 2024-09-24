@@ -14,13 +14,14 @@
 
 
   <typeAliases>
-    <typeAlias type="java.util.Map" alias="map"/>
-    <typeAlias type="java.lang.String" alias="string"/>
+    <typeAlias type="java.util.Map" alias="Map"/>
+    <typeAlias type="java.lang.String" alias="String"/>
     <typeAlias type="java.lang.Integer" alias="int"/>
 
     <package name="com.ssg.secondproject.domain"/>
     <package name="com.ssg.secondproject.dto.request"/>
     <package name="com.ssg.secondproject.dto.response"/>
+    <package name="com.ssg.secondproject.dto"/>
   </typeAliases>
 
 
