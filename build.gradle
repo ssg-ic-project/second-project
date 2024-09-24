@@ -55,6 +55,7 @@ dependencies {
     implementation 'net.coobird:thumbnailator:0.4.16'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
 
+
 //    //spring security 적용
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
 //    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
