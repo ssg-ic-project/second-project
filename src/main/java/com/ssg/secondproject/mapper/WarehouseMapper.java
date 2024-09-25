@@ -1,19 +1,19 @@
 package com.ssg.secondproject.mapper;
 
-import com.ssg.secondproject.domain.WarehouseVO;
+import com.ssg.secondproject.domain.Warehouse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface WarehouseMapper {
-    void insert(WarehouseVO warehouseVO);
+    void insert(Warehouse warehouse);
 
-    List<WarehouseVO> selectAll();
+    List<Warehouse> selectAll();
 
-    WarehouseVO get(Integer id);
+    Warehouse get(Integer id);
 
     void delete(Integer id);
 
-    void update(WarehouseVO warehouseVO);
+    void update(Warehouse warehouse);
 }
