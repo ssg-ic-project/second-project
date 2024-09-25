@@ -1,4 +1,3 @@
-
 .options-button {
     width: 125px;
     height: 35px;/* Adds space between subtitle and buttons */
@@ -12,10 +11,6 @@
 
 .filter-button {
     padding: 8px 16px;
-<<<<<<< Updated upstream
-=======
-    font-family: 'BMHANNAAir', sans-serif;/* Adds padding inside buttons */
->>>>>>> Stashed changes
     font-size: 18px;               /* Adjust the font size if needed */
     border: 1px solid #ccc;        /* Adds border to buttons */
     background-color: #4F64C9;
@@ -44,10 +39,6 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-<<<<<<< Updated upstream
-=======
-    #align-items: center;
->>>>>>> Stashed changes
     justify-content: center;
 }
 
@@ -58,29 +49,17 @@
 
 .select-box {
     display: flex;
-<<<<<<< Updated upstream
     min-width: calc(100% - 40px);
     max-width: calc(100% - 40px);
-=======
-    width: calc(100% - 40px);
->>>>>>> Stashed changes
     list-style: none;
     justify-content: center;
     align-self: flex-start;
     gap: 15px;
-<<<<<<< Updated upstream
     margin: 5px;
 
 }
 
 .select-menu {
-=======
-    margin: 10px;
-}
-
-.select-menu {
-    font-family: 'BMHANNAAir', sans-serif;
->>>>>>> Stashed changes
     color: #50565C;
     font-size: 18px;
     width: 250px;
@@ -92,11 +71,7 @@
 }
 
 .select-menu span {
-<<<<<<< Updated upstream
     font-family: 'NanumSquare', sans-serif;
-=======
-    font-family: 'BMHANNAAir', sans-serif;
->>>>>>> Stashed changes
     color: #50565C;
     font-size: 18px;
 }
@@ -183,11 +158,7 @@
 }
 
 .search-box .filter-item .filter-input {
-<<<<<<< Updated upstream
     font-family: 'NanumSquare-Bold', sans-serif;
-=======
-    font-family: 'BMHANNAAir', sans-serif;
->>>>>>> Stashed changes
     color: #50565C;
     width: 100%;
     width: 250px;
@@ -201,11 +172,7 @@
 }
 
 .search-box .filter-item .filter-button {
-<<<<<<< Updated upstream
     font-family: 'NanumSquare-Bold', sans-serif;
-=======
-    font-family: 'BMHANNAAir', sans-serif;
->>>>>>> Stashed changes
     width: 250px;
     height: 35px;
     border: none;
@@ -228,11 +195,7 @@
 .status-btn .reject-btn,
 .status-btn .register-btn,
 .status-btn .modify-btn{
-<<<<<<< Updated upstream
     font-family: 'NanumSquare-Bold', sans-serif;
-=======
-    font-family: 'BMHANNAAir', sans-serif;
->>>>>>> Stashed changes
     width: 150px;
     height: 35px;
     border: none;
@@ -241,7 +204,6 @@
     color: #FFFFFF;
     font-size: 18px;
     margin: 20px 0 10px 10px;
-<<<<<<< Updated upstream
 }
 
 
@@ -284,6 +246,3 @@
 #submit:hover {
     background-color: #3D4FA7; /* 호버 시 색상 변경 */
 }
-=======
-}
->>>>>>> Stashed changes
