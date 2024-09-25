@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.WarehouseMapper">
-    <select id="selectAll" resultType="com.ssg.secondproject.domain.Warehouse">
+    <select id="selectAll" resultType="Warehouse">
         SELECT * FROM warehouse
     </select>
 </mapper>
