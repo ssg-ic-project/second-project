@@ -4,9 +4,9 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.UserMapper">
 
-  <select id="findAll" resultType="User">
-    SELECT *
-    FROM User
-  </select>
+    <select id="findAll" resultType="User">
+        SELECT *
+        FROM User
+    </select>
 
 </mapper>

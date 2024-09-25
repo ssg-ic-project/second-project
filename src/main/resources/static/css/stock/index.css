@@ -128,12 +128,6 @@ div>nav:nth-child(n) {
 
 }
 
-.map {
-    width: 90%;
-    border-radius: 10px;
-    margin: 0 10px 0 10px;
-}
-
 .form-control {
     flex-grow: 1; /* 입력 필드가 가능한 공간을 모두 차지하도록 설정 */
     min-width: 0; /* 최소 너비를 0으로 설정하여 공간을 최대한 활용 */
@@ -142,10 +136,6 @@ div>nav:nth-child(n) {
 .navbar {
     height: auto;
     padding: 8px;
-}
-
-.form-item {
-    width: 90%;
 }
 
 .navbar-brand {
