@@ -13,6 +13,17 @@ java {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -54,6 +65,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
     implementation 'net.coobird:thumbnailator:0.4.16'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
+
 
 //    //spring security 적용
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
