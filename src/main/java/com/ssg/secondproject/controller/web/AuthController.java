@@ -1,4 +1,4 @@
-package com.ssg.secondProject.controller;
+package com.ssg.secondproject.controller.web;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -23,13 +23,13 @@ public class AuthController {
         return "auth/login";
     }
 
-    @GetMapping("/find_username")
+    @GetMapping("/find-username")
     public String findUsername() {
         log.info(" 🎉🎉🎉🎉 FindUsername 🎉🎉🎉🎉");
         return "auth/find_username";
     }
 
-    @GetMapping("/reset_password")
+    @GetMapping("/reset-password")
     public String resetPassword() {
         log.info(" 🎉🎉🎉🎉 ResetPassword 🎉🎉🎉🎉");
         return "auth/reset_password";

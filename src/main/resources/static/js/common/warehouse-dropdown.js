@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = JSON.parse(xhr.response);
       console.log("data: " + response);
 
-      warehouseList = response.data.warehouses;
+      warehouseList = response.data.warehouseNameList;
       console.log("warehouseList: " + warehouseList);
 
       const warehouseSelect = document.getElementById("dropdown-list");
