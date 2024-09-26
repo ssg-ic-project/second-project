@@ -1,4 +1,4 @@
-console.log(warehouse_id);
+let latitude, longitude;
 document.addEventListener('DOMContentLoaded', () => {
     const id = document.getElementById('id');
     const name = document.getElementById('name');
@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const capacity = document.getElementById('capacity');
     const createdAt = document.getElementById('createdAt');
     const address = document.getElementById('address');
-    let longitude = null;
-    let latitude = null;
+    longitude = document.getElementById('latitude');
+    latitude = document.getElementById('longitude');
 
     const modalName = document.querySelector('.name');
     const modalAdminId = document.querySelector('.adminId');
@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             level: 3 // 지도의 확대 레벨
         };
 
-    // fetch(`/api/warehouse/${warehouse_id}`)
-    fetch(`/api/warehouse/19`)
+    fetch(`/api/warehouse/${warehouse_id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -35,8 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
             capacity.textContent = `${data.warehouseDTO.capacity} 개`;
             createdAt.textContent = data.warehouseDTO.createdAt;
             address.textContent = data.warehouseDTO.address;
-            longitude = data.warehouseDTO.longitude;
-            latitude = data.warehouseDTO.latitude;
+            longitude.value = data.warehouseDTO.longitude;
+            latitude.value = data.warehouseDTO.latitude;
+
+            console.log(latitude);
+            console.log(latitude.value);
+            console.log(longitude);
+            console.log(longitude.value);
 
             modalName.value = name.textContent;
             modalAdminId.value = adminId.textContent;
@@ -49,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
             if (navigator.geolocation) {
 
-                var locPosition = new kakao.maps.LatLng(latitude, longitude), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                var locPosition = new kakao.maps.LatLng(latitude.value, longitude.value), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
                     message = `<div style="white-space:nowrap; padding:5px;">${address.textContent}</div>`; // 인포윈도우에 표시될 내용입니다
 
                 // 마커와 인포윈도우를 표시합니다
@@ -94,20 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
         let modifySize = modalAdminId.value;
         let modifyCapacity = modalCapacity.value;
         let modifyAddress = modalAddress.value;
+        let latitude = document.getElementById('latitude').value;
+        let longitude = document.getElementById('longitude').value;
 
         const data = {
-            adminId: 0,
-            // adminId: adminId.textContent,
+            adminId: adminId.textContent,
             name: modifyName,
             size: parseInt(modifySize),
             capacity: parseInt(modifyCapacity),
             latitude: longitude,
             longitude: latitude,
-            address: modifyAddress
+            address: modifyAddress,
         };
 
-        fetch(`/api/warehouse/19`, {
-        // fetch(`/api/warehouse/${id.textContent}`, {
+        fetch(`/api/warehouse/${id.textContent}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,25 +138,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+let geocoder, marker, mapDaum;
+
 var modalContainer = document.querySelector('.map'), // 지도를 표시할 div
     daumMapOption = {
         center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 
-console.log(modalContainer);
-
 //지도를 미리 생성
-var mapDaum = new daum.maps.Map(modalContainer, daumMapOption);
+mapDaum = new daum.maps.Map(modalContainer, daumMapOption);
 
 //주소-좌표 변환 객체를 생성
+geocoder = new daum.maps.services.Geocoder();
 
-var geocoder = new daum.maps.services.Geocoder();
 //마커를 미리 생성
-var marker = new daum.maps.Marker({
+marker = new daum.maps.Marker({
     position: new daum.maps.LatLng(37.537187, 127.005476),
     map: mapDaum
-});
+})
 
 function execDaumPostcode() {
     new daum.Postcode({
@@ -174,6 +178,7 @@ function execDaumPostcode() {
                     document.getElementById('latitude').value = result.x;
                     document.getElementById('longitude').value = result.y;
 
+                    modalContainer.style.display = "block";
                     mapDaum.relayout();
                     // 지도 중심을 변경한다.
                     mapDaum.setCenter(coords);
