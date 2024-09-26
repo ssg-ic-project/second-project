@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class OutboundServiceImpl implements OutboundService {
     private final ModelMapper modelMapper;
     private final OutboundMapper outboundMapper;
-
     @Override
     public PageListResponseDTO<OutboundResponseDTO> getList(PageRequestDTO pageRequestDTO) {
         List<OutboundResponseDTO> outboundList = outboundMapper.findList(pageRequestDTO);
@@ -28,7 +27,6 @@ public class OutboundServiceImpl implements OutboundService {
 //        List<OutboundResponseDTO> outboundDTOList = outboundList.stream()
 //                .map(outbound -> modelMapper.map(outbound, OutboundResponseDTO.class))
 //                .collect(Collectors.toList());
-
         int total = outboundMapper.getCount(pageRequestDTO);
 
         PageInfoDTO pageInfoDTO =
@@ -37,12 +35,22 @@ public class OutboundServiceImpl implements OutboundService {
                         .total(total)
                         .build();
 
-
         PageListResponseDTO<OutboundResponseDTO> pageResponseDTO = PageListResponseDTO.<OutboundResponseDTO>builder()
                 .pageInfoDTO(pageInfoDTO)
                 .dataList(outboundList)
                 .build();
-
         return pageResponseDTO;
     }
+    @Override
+    public PageResponseDTO<OutboundResponseDTO> getById(int id) {
+        OutboundResponseDTO outboundData = outboundMapper.findById(id);
+        PageResponseDTO pageResponseDTO = PageResponseDTO.builder().data(outboundData).build();
+        return pageResponseDTO;
+    }
+
+    @Override
+    public OutboundResponseDTO getByIdLog(int id) {
+        return null;
+    }
+
 }

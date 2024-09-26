@@ -15,7 +15,7 @@
             o.id,
             p.name AS productName,
             o.quantity,
-            u.name AS userName,
+            u.company_name AS companyName,
             o.is_dispatch,
             o.is_invoice,
             oa.status AS approvalStatus
@@ -24,7 +24,59 @@
                 LEFT JOIN Product p ON o.product_id = p.id
                 LEFT JOIN User u ON o.user_id = u.id
                 LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id;
-
 </select>
 
+    <select id="findById" resultType="OutboundResponseDTO">
+        SELECT
+            o.id,
+            o.quantity,
+            o.created_at AS createdAt,
+            o.expected_date AS expectedDate,
+            o.remarks AS remarks,
+            o.updated_at AS updatedAt,
+
+            w.id AS warehouseId,
+            s.id AS sectionId,
+            c.id AS cellId,
+            w.name AS warehouseName,
+            st.quantity AS stockQuantity,
+            i.expected_date AS inboundExpectedDate,
+
+            o.product_id as productId,
+            p.height AS productHeight,
+            p.width AS productWidth,
+            p.depth AS productDepth,
+            p.name AS productName,
+            p.category_id AS productCategoryId,
+
+            o.user_id AS userId,
+            u.business_number AS userBusinessNumber,
+            u.company_name AS companyName,
+            u.email AS userEmail,
+            u.phone AS userPhone
+
+        FROM
+            Outbound o
+                LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
+                LEFT JOIN Product p ON o.product_id = p.id
+                LEFT JOIN User u ON o.user_id = u.id
+                LEFT JOIN Cell c ON o.cell_id = c.id
+                LEFT JOIN Section s ON c.section_id = s.id
+                LEFT JOIN Warehouse w ON s.warehouse_id = w.id
+                LEFT JOIN Stock st ON o.id = st.outbound_id
+                LEFT JOIN Inbound i ON o.product_id = i.product_id
+        WHERE
+            o.id = #{id}
+    </select>
+
+
+    <select id="findByIdLog" resultType="OutboundResponseDTO">
+        SELECT oa.status AS approvalStatus,
+               oa.rejection_reason AS rejectionReason,
+               oa.created_at AS createdAt
+        FROM Outbound o
+            LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
+        WHERE
+            o.id = #{id}
+    </select>
 </mapper>

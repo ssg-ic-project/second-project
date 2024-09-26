@@ -9,9 +9,11 @@ import java.util.List;
 
 @Mapper
 public interface OutboundMapper {
-
-//    List<Outbound> findAll();
     List<OutboundResponseDTO>findList(PageRequestDTO pageRequestDTO);
-
     int getCount(PageRequestDTO pageRequestDTO);
+    OutboundResponseDTO findById(int id);
+    OutboundResponseDTO findByIdLog(int id);
+
+
+
 }
