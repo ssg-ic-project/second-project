@@ -16,7 +16,7 @@ public class WarehouseController {
     }
 
     @GetMapping("/detail")
-    public String warehouseDetail(@RequestParam("id") Long id, Model model) {
+    public String warehouseDetail(@RequestParam("id") Integer id, Model model) {
         model.addAttribute("id", id);
         return "warehouse/detail";
     }
