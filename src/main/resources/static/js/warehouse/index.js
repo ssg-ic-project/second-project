@@ -17,54 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // console.log(map);
     //
     //
-
-    document.getElementById('registerBtn').addEventListener('click', function() {
-        // const name = document.getElementById('name').value;
-        // const adminId = document.getElementById('admin').value;
-        // const size = document.getElementById('size').value;
-        // const capacity = document.getElementById('capacity').value;
-        // const address = document.getElementById('address').value;
-        //
-        // // 데이터 유효성 검사
-        // if (!name || !adminId || !size || !capacity || !address) {
-        //     alert("모든 필드를 입력해 주세요.");
-        //     return;
-        // }
-
-        const data = {
-            adminId: 1,
-            name: "Main Warehouse",
-            size: 500,
-            capacity: 1000,
-            latitude: 37.7749,
-            longitude: -122.4194,
-            address: "123 Warehouse Lane, San Francisco, CA"
-        };
-
-        fetch('/api/warehouse', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('등록 실패');
-            })
-            .then(data => {
-                alert(data.msg); // 성공 메시지 처리
-                const modalElement = document.getElementById('exampleModal');
-                const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-                modal.hide(); // 모달 닫기
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('등록 중 오류가 발생했습니다.');
-            });
-    });
 });
 
 var mapContainer = document.getElementById('map1'), // 지도를 표시할 div
@@ -114,3 +66,50 @@ function sample5_execDaumPostcode() {
         }
     }).open();
 }
+
+document.getElementById('registerBtn').addEventListener('click', function() {
+    const name = document.getElementById('title').value;
+    const size = document.getElementById('size').value;
+    const capacity = document.getElementById('capacity').value;
+    const address = document.getElementById('sample5_address').value;
+
+    // 데이터 유효성 검사
+    if (!name || !size || !capacity || !address) {
+        alert("모든 필드를 입력해 주세요.");
+        return;
+    }
+
+    const data = {
+        adminId: 1,
+        name: name,
+        size: parseInt(size),
+        capacity: parseInt(capacity),
+        latitude: 37.7749,
+        longitude: -122.4194,
+        address: address
+    };
+
+    fetch('/api/warehouse', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('등록 실패');
+        })
+        .then(data => {
+            alert(data.msg); // 성공 메시지 처리
+            const modalElement = document.getElementById('exampleModal');
+            const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+            modal.hide(); // 모달 닫기
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('등록 중 오류가 발생했습니다.');
+        });
+});

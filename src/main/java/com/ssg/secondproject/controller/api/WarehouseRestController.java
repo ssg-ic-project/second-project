@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -41,16 +42,23 @@ public class WarehouseRestController {
     }
 
     @PostMapping("")
-    public ResponseEntity<WarehouseResponseDTO> register(@Valid @RequestBody WarehouseRequestDTO warehouseRequestDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> register(@Valid @RequestBody WarehouseRequestDTO warehouseRequestDTO, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.getAllErrors());
+        }
+
         log.info(warehouseRequestDTO);
 
         WarehouseDTO warehouseDTO = modelMapper.map(warehouseRequestDTO, WarehouseDTO.class);
 
         log.info(warehouseDTO);
 
+
         int result = warehouseService.create(warehouseDTO);
 
         log.info(result);
+
 
         String msg;
         int status;
