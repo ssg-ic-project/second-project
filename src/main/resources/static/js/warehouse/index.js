@@ -54,6 +54,10 @@ function sample5_execDaumPostcode() {
 
                     // 해당 주소에 대한 좌표를 받아서
                     var coords = new daum.maps.LatLng(result.y, result.x);
+
+                    document.getElementById('longitude').value = result.x;
+                    document.getElementById('latitude').value = result.y;
+
                     // 지도를 보여준다.
                     mapContainer.style.display = "block";
                     map.relayout();
@@ -72,6 +76,11 @@ document.getElementById('registerBtn').addEventListener('click', function() {
     const size = document.getElementById('size').value;
     const capacity = document.getElementById('capacity').value;
     const address = document.getElementById('sample5_address').value;
+    const longitude = document.getElementById('longitude').value;
+    const latitude = document.getElementById('latitude').value;
+
+    console.log(longitude);
+    console.log(latitude);
 
     // 데이터 유효성 검사
     if (!name || !size || !capacity || !address) {
@@ -79,13 +88,15 @@ document.getElementById('registerBtn').addEventListener('click', function() {
         return;
     }
 
+
+
     const data = {
         adminId: 1,
         name: name,
         size: parseInt(size),
         capacity: parseInt(capacity),
-        latitude: 37.7749,
-        longitude: -122.4194,
+        latitude: longitude,
+        longitude: latitude,
         address: address
     };
 
