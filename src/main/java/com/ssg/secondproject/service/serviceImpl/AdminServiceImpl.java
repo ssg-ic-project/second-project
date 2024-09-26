@@ -1,9 +1,10 @@
 package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.domain.Admin;
+import com.ssg.secondproject.dto.PageInfoDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.AdminResponseDTO;
-import com.ssg.secondproject.dto.response.PageResponseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.mapper.AdminMapper;
 import com.ssg.secondproject.service.AdminService;
 import java.util.List;
@@ -23,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public PageResponseDTO getAll(PageRequestDTO pageRequestDTO) {
+    public PageListResponseDTO<AdminResponseDTO> getList(PageRequestDTO pageRequestDTO) {
 
         int total = adminMapper.getAdminCnt(pageRequestDTO);
 
@@ -33,11 +34,16 @@ public class AdminServiceImpl implements AdminService {
             .map(vo -> modelMapper.map(vo, AdminResponseDTO.class))
             .collect(Collectors.toList());
 
-        PageResponseDTO<AdminResponseDTO> pageResponseDTO =
-            PageResponseDTO.<AdminResponseDTO>withAll()
-                .dtoList(dtoList)
-                .total(total)
+        PageInfoDTO pageInfoDTO =
+            PageInfoDTO.withAll()
                 .pageRequestDTO(pageRequestDTO)
+                .total(total)
+                .build();
+
+        PageListResponseDTO<AdminResponseDTO> pageResponseDTO =
+            PageListResponseDTO.<AdminResponseDTO>builder()
+                .pageInfoDTO(pageInfoDTO)
+                .dataList(dtoList)
                 .build();
 
         return pageResponseDTO;

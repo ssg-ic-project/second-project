@@ -1,6 +1,17 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.request.PageRequestDTO;
+import com.ssg.secondproject.dto.response.AdminResponseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.service.AdminService;
+import java.nio.charset.Charset;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,101 +19,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Log4j2
+@RequiredArgsConstructor
 @RequestMapping("/api/admin")
 public class AdminRestController {
 
+    private HttpHeaders httpHeaders = new HttpHeaders();
+    private final AdminService adminService;
+
     @GetMapping("/list")
-    public String getAdminList() {
+    public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(PageRequestDTO pageRequestDTO, BindingResult bindingResult) {
         log.info(" 🎉🎉🎉🎉 Rest Admin List 🎉🎉🎉🎉 ");
-        return """
-            {
-                "status": "success",
-                "data": {
-                     "adminList": [
-                        {
-                          "id": 1,
-                          "name": "신짱구",
-                          "role": "총관리자",
-                          "department": "개발팀",
-                          "position": "총괄팀장",
-                          "email": "jjanggu@3pl.co.kr"
-                        },
-                        {
-                          "id": 2,
-                          "name": "한유리",
-                          "role": "직원",
-                          "department": "회계팀",
-                          "position": "팀원",
-                          "email": "yuri@3pl.co.kr"
-                        },
-                        {
-                          "id": 3,
-                          "name": "이훈이",
-                          "role": "관리자",
-                          "department": "창고팀",
-                          "position": "팀장",
-                          "email": "hooni@3pl.co.kr"
-                        },
-                        {
-                          "id": 4,
-                          "name": "이맹구",
-                          "role": "직원",
-                          "department": "인사팀",
-                          "position": "팀원",
-                          "email": "maenggu@3pl.co.kr"
-                        },
-                        {
-                          "id": 5,
-                          "name": "김철수",
-                          "role": "관리자",
-                          "department": "배송팀",
-                          "position": "팀장",
-                          "email": "cheolsoo@3pl.co.kr"
-                        },
-                        {
-                          "id": 6,
-                          "name": "신짱구",
-                          "role": "총관리자",
-                          "department": "개발팀",
-                          "position": "총괄팀장",
-                          "email": "jjanggu@3pl.co.kr"
-                        },
-                        {
-                          "id": 7,
-                          "name": "한유리",
-                          "role": "직원",
-                          "department": "회계팀",
-                          "position": "팀원",
-                          "email": "yuri@3pl.co.kr"
-                        },
-                        {
-                          "id": 8,
-                          "name": "이훈이",
-                          "role": "관리자",
-                          "department": "창고팀",
-                          "position": "팀장",
-                          "email": "hooni@3pl.co.kr"
-                        },
-                        {
-                          "id": 9,
-                          "name": "이맹구",
-                          "role": "직원",
-                          "department": "인사팀",
-                          "position": "팀원",
-                          "email": "maenggu@3pl.co.kr"
-                        },
-                        {
-                          "id": 10,
-                          "name": "김철수",
-                          "role": "관리자",
-                          "department": "배송팀",
-                          "position": "팀장",
-                          "email": "cheolsoo@3pl.co.kr"
-                        }
-                    ]
-                }
-            }
-            """;
+        PageListResponseDTO<AdminResponseDTO> data =  adminService.getList(pageRequestDTO);
+        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
+        return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
+//        return new ResponseEntity<>(message, httpHeaders, HttpStatus.OK);
     }
 
     @GetMapping()

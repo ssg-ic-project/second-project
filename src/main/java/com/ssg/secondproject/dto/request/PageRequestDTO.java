@@ -19,8 +19,11 @@ public class PageRequestDTO {
 
     private String keyword;
 
-    private String orderBy;
-    private String orderByDir;
+    @Builder.Default
+    private String orderBy = "id";
+
+    @Builder.Default
+    private String orderByDir = "DESC";
 
     public int getOffset() {
         return (page - 1) * size;
