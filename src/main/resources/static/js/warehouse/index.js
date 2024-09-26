@@ -88,8 +88,6 @@ document.getElementById('registerBtn').addEventListener('click', function() {
         return;
     }
 
-
-
     const data = {
         adminId: 1,
         name: name,
