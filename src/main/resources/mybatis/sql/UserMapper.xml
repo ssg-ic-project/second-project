@@ -4,9 +4,24 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.UserMapper">
 
-    <select id="findAll" resultType="User">
-        SELECT *
+    <select id="getUserCnt" resultType="int">
+        SELECT COUNT(id)
         FROM User
+    </select>
+
+    <select id="findAll" parameterType="PageRequestDTO" resultType="User">
+        SELECT id
+        , name
+        , company_name AS companyName
+        , email
+        , business_number AS businessNumber
+        , phone
+        , is_unregister AS isUnregister
+        FROM User
+        <if test="orderBy != null and !orderBy.equals('')">
+            ORDER BY ${orderBy} ${orderByDir}
+        </if>
+        LIMIT #{size} OFFSET #{offset}
     </select>
 
 </mapper>

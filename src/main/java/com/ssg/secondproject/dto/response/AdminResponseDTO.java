@@ -1,7 +1,6 @@
 package com.ssg.secondproject.dto.response;
 
 import com.ssg.secondproject.common.Role;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
