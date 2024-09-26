@@ -41,7 +41,7 @@
     WHERE a.id = #{id};
   </select>
 
-  <select id="updateById" parameterType="AdminRequestDTO">
+  <select id="updateById">
     UPDATE Admin
     SET
     <if test="name != null and !name.equals('')">

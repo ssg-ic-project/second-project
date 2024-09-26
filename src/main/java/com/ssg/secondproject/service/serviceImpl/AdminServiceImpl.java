@@ -2,6 +2,7 @@ package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.domain.Admin;
 import com.ssg.secondproject.dto.PageInfoDTO;
+import com.ssg.secondproject.dto.request.AdminRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.AdminResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -56,5 +57,11 @@ public class AdminServiceImpl implements AdminService {
 
         PageResponseDTO responseDTO = PageResponseDTO.builder().data(data).build();
         return responseDTO;
+    }
+
+    @Override
+    public void modifyById(int id, AdminRequestDTO requestDTO) {
+//        AdminRequestDTO.builder().updatedId(id).build();
+        adminMapper.updateById(id, requestDTO);
     }
 }

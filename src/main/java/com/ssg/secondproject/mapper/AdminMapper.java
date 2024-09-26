@@ -16,6 +16,6 @@ public interface AdminMapper {
 
     AdminResponseDTO findById(int id);
 
-    void updateById(AdminRequestDTO requestDTO);
+    void updateById(int updatedId, AdminRequestDTO requestDTO);
 
 }
