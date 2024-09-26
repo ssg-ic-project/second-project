@@ -79,4 +79,19 @@ public class WarehouseRestController {
                 .status(status)
                 .body(warehouseResponseDTO);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getWarehouse(@PathVariable Integer id) {
+        WarehouseDTO warehouseDTO = warehouseService.get(id);
+
+        WarehouseResponseDTO warehouseResponseDTO = null;
+
+        if (warehouseDTO != null) {
+            warehouseResponseDTO = WarehouseResponseDTO.builder()
+                    .warehouseDTO(warehouseDTO)
+                    .build();
+        }
+
+        return ResponseEntity.ok().body(warehouseResponseDTO);
+    }
 }

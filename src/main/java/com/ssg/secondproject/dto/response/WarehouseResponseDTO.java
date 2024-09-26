@@ -8,4 +8,5 @@ import lombok.Getter;
 @Builder
 public class WarehouseResponseDTO {
     private String msg;
+    private WarehouseDTO warehouseDTO;
 }

@@ -3,6 +3,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.WarehouseMapper">
+
+    <resultMap id="warehouseResultMap" type="Warehouse">
+        <result property="adminId" column="admin_id" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
     <select id="selectAll" resultType="Warehouse">
         SELECT * FROM warehouse
     </select>
@@ -19,7 +26,7 @@
                                                                                                                                             )
     </insert>
 
-    <select id="find" resultType="Warehouse">
+    <select id="find" resultMap="warehouseResultMap">
         SELECT * FROM warehouse where id = #{id}
     </select>
 
