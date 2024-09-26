@@ -1,6 +1,6 @@
-package com.ssg.secondproject.domain;
+package com.ssg.secondproject.dto;
 
-import jakarta.validation.constraints.Null;
+
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse {
+public class WarehouseDTO {
+
     private Integer id;
 
     private Integer adminId;
@@ -30,7 +31,7 @@ public class Warehouse {
 
     private LocalDateTime createdAt;
 
-//    최종 수정자 id;
+    //    최종 수정자 id;
     private Integer updatedId;
 
     private LocalDateTime updatedAt;

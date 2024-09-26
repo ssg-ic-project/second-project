@@ -14,9 +14,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   <title>Warehouse Main</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script th:src="@{'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'}" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7e1a1e3ea1021ea492e25afd4b3247b1"></script>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=7e1a1e3ea1021ea492e25afd4b3247b1&libraries=services"></script>
   <script th:src="@{/js/common/warehouse-dropdown.js}"></script>
-  <script type="text/javascript" th:src="@{/js/warehouse/index.js}"></script>
+  <script defer type="text/javascript" th:src="@{/js/warehouse/index.js}"></script>
 </head>
 <body>
   <div layout:fragment="content" class="container">
@@ -144,12 +145,12 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                   <div class="modal-body">
                     <div class="warehouse">
                       <label for="title"><span>* </span>창고명</label>
-                      <input type="text" name="title" id="title" />
+                      <input type="text" name="name" id="title" />
                     </div>
 
                     <div class="warehouse">
                       <label for="title"><span>* </span>담당자</label>
-                      <input type="text" name="admin" id="admin" />
+                      <input type="text" name="adminId" id="admin" />
                     </div>
 
                     <div class="warehouse">
@@ -158,33 +159,24 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                     </div>
 
                     <div class="warehouse">
-                      <label for="category"><span>* </span>카테고리</label>
-                      <input type="text" name="category" id="category" />
-                    </div>
-
-                    <div class="warehouse">
                       <label for="capacity"><span>* </span>수용량</label>
                       <input type="text" name="capacity" id="capacity" />
                     </div>
 
                     <div class="warehouse">
-                      <label for="type"><span>* </span>창고분류</label>
-                      <input type="text" name="type" id="type" />
+                      <label for="sample5_address"><span>* </span>주소</label>
+                      <input type="text" name="address" id="sample5_address" placeholder="주소">
+                      <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+                      <div id="map1" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                     </div>
 
-                    <div class="warehouse">
-                      <label for="address"><span>* </span>주소</label>
-                      <input type="text" name="address" id="address" />
-                    </div>
 
-                    <!--                        <div class="warehouse-address-img">-->
-                    <!--                          <label for="address-img"><span>* </span>창고위치</label>-->
-                    <!--                          <img src="" alt="창고사진" id="address-img">-->
-                    <!--                        </div>-->
+
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">등록</button>
+                    <button type="button" class="btn btn-primary" id="registerBtn">등록</button>
                   </div>
                 </div>
               </div>

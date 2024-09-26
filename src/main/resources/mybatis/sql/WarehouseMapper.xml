@@ -6,4 +6,22 @@
     <select id="selectAll" resultType="Warehouse">
         SELECT * FROM warehouse
     </select>
+    
+    <insert id="insert">
+        INSERT INTO warehouse (admin_id, name, size, capacity, latitude, longitude, address) values (
+                                                                                                                                                #{adminId},
+                                                                                                                                        #{name},
+                                                                                                                                         #{size},
+                                                                                                                                         #{capacity},
+                                                                                                                                         #{latitude},
+                                                                                                                                         #{longitude},
+                                                                                                                                         #{address}
+                                                                                                                                            )
+    </insert>
+
+    <select id="find" resultType="Warehouse">
+        SELECT * FROM warehouse where id = #{id}
+    </select>
+
+
 </mapper>
