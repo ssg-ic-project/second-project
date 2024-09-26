@@ -34,7 +34,7 @@ input::placeholder{
     position: absolute;
     top: -5px;
     left: 14px;
-    padding: 10px;
+    padding-top: 10px;
     background: white;
     font-size: 14px;
     color: #888;
@@ -54,6 +54,10 @@ input::placeholder{
     border-radius: 8px;
     padding: 16px;
     margin-top: 12px;
+}
+
+input[type="button"] {
+    padding: 10px;
 }
 
 .navbar-header {

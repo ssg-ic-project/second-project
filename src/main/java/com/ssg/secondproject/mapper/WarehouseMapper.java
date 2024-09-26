@@ -7,11 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface WarehouseMapper {
-    void insert(Warehouse warehouse);
+    int insert(Warehouse warehouse);
 
     List<Warehouse> selectAll();
 
-    Warehouse get(Integer id);
+    Warehouse find(Integer id);
 
     void delete(Integer id);
 
