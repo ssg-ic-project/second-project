@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             level: 3 // 지도의 확대 레벨
         };
 
-    fetch(`/api/warehouse/${warehouse_id}`)
+    // fetch(`/api/warehouse/${warehouse_id}`)
+    fetch(`/api/warehouse/19`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -95,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let modifyAddress = modalAddress.value;
 
         const data = {
-            adminId: adminId.textContent,
+            adminId: 0,
+            // adminId: adminId.textContent,
             name: modifyName,
             size: parseInt(modifySize),
             capacity: parseInt(modifyCapacity),
@@ -104,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
             address: modifyAddress
         };
 
-        fetch(`/api/warehouse/${id.textContent}`, {
+        fetch(`/api/warehouse/19`, {
+        // fetch(`/api/warehouse/${id.textContent}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -119,11 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 alert(data.msg); // 성공 메시지 처리
-                const modalElement = document.getElementById('exampleModal');
-                const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-                modal.hide(); // 모달 닫기
 
-                window.location = `http://localhost:8080/warehouse/detail/${id.textContent}`;
+                // window.location.href = `http://localhost:8080/warehouse/detail/${id.textContent}`;
+                window.location.href = `http://localhost:8080/warehouse/detail/19`;
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -173,11 +174,9 @@ function execDaumPostcode() {
                     document.getElementById('latitude').value = result.x;
                     document.getElementById('longitude').value = result.y;
 
-                    // 지도를 보여준다.
-                    modalContainer.style.display = "block";
-                    map.relayout();
+                    mapDaum.relayout();
                     // 지도 중심을 변경한다.
-                    map.setCenter(coords);
+                    mapDaum.setCenter(coords);
                     // 마커를 결과값으로 받은 위치로 옮긴다.
                     marker.setPosition(coords)
                 }
