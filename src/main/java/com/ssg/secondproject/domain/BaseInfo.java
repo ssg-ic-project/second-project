@@ -14,9 +14,8 @@ import lombok.ToString;
 public class BaseInfo {
     private int id;
     private int createdId;
-    private String createdAt;
+    private LocalDateTime createdAt;
     private int updatedId;
-    private String updatedAt;
-    private String unregisteredAt;
-
+    private LocalDateTime updatedAt;
+    private LocalDateTime unregisteredAt;
 }
