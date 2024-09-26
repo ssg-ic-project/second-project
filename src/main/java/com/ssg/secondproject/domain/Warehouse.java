@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse extends BaseInfo{
+public class Warehouse extends BaseInfo {
+
+    private int id;
+
     private int adminId;
 
     private String name;

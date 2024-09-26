@@ -29,5 +29,14 @@
         SELECT * FROM warehouse where id = #{id}
     </select>
 
-
+    <update id="update" parameterType="Warehouse">
+        UPDATE warehouse SET  admin_id = #{adminId},
+                              name = #{name},
+                              size = #{size},
+                              capacity = #{capacity},
+                              latitude = #{latitude},
+                              longitude = #{longitude},
+                              address = #{address}
+            WHERE id = #{id}
+    </update>
 </mapper>

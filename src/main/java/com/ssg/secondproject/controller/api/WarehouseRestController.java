@@ -2,6 +2,7 @@ package com.ssg.secondproject.controller.api;
 
 import com.ssg.secondproject.dto.WarehouseDTO;
 import com.ssg.secondproject.dto.request.WarehouseRequestDTO;
+import com.ssg.secondproject.dto.request.WarehouseUpdateDTO;
 import com.ssg.secondproject.dto.response.WarehouseResponseDTO;
 import com.ssg.secondproject.service.WarehouseService;
 import jakarta.validation.Valid;
@@ -81,7 +82,7 @@ public class WarehouseRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getWarehouse(@PathVariable Integer id) {
+    public ResponseEntity<?> getWarehouse(@PathVariable int id) {
         WarehouseDTO warehouseDTO = warehouseService.get(id);
 
         WarehouseResponseDTO warehouseResponseDTO = null;
@@ -93,5 +94,28 @@ public class WarehouseRestController {
         }
 
         return ResponseEntity.ok().body(warehouseResponseDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateWarehouse(@PathVariable int id, @RequestBody WarehouseUpdateDTO warehouseUpdateDTO) {
+        WarehouseDTO warehouseDTO = WarehouseDTO.builder()
+                .id(id)
+                .name(warehouseUpdateDTO.getName())
+                .size(warehouseUpdateDTO.getSize())
+                .capacity(warehouseUpdateDTO.getCapacity())
+                .adminId(warehouseUpdateDTO.getAdminId())
+                .latitude(warehouseUpdateDTO.getLatitude())
+                .longitude(warehouseUpdateDTO.getLongitude())
+                .address(warehouseUpdateDTO.getAddress())
+                .build();
+
+        warehouseService.update(warehouseDTO);
+
+        WarehouseResponseDTO warehouseResponseDTO = WarehouseResponseDTO.builder().msg(
+                "창고가 성공적으로 수정되었습니다."
+        ).build();
+
+        return ResponseEntity.ok()
+                .body(warehouseResponseDTO);
     }
 }

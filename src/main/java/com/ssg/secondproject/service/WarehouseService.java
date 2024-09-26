@@ -5,5 +5,7 @@ import com.ssg.secondproject.dto.WarehouseDTO;
 public interface WarehouseService {
     int create(WarehouseDTO warehouseDTO);
 
-    WarehouseDTO get(Integer id);
+    WarehouseDTO get(int id);
+
+    void update(WarehouseDTO warehouseDTO);
 }

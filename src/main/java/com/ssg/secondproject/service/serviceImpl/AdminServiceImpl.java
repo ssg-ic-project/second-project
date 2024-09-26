@@ -22,7 +22,6 @@ public class AdminServiceImpl implements AdminService {
     private final ModelMapper modelMapper;
     private final AdminMapper adminMapper;
 
-
     @Override
     public PageListResponseDTO<AdminResponseDTO> getList(PageRequestDTO pageRequestDTO) {
 
