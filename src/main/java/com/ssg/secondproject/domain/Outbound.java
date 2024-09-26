@@ -8,16 +8,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Outbound {
-    private Integer id;
-    private Integer productId;
-    private Integer cellId;
+    private int id;
+    private int productId;
+//    private int productName;
+    private int cellId;
     private LocalDate expectedDate;
     private int quantity;
     private Long remarks;
     private boolean isDispatch;
     private boolean isInvoice;
-    private Integer userId;
+    private int userId;
+//    private String userName;
     private LocalDate createdAt;
     private LocalDate updatedAt;
+//    private String approvalStatus;
 
 }

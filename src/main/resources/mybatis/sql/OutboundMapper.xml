@@ -4,9 +4,27 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.OutboundMapper">
 
-    <select id="findAll" resultType="Outbound">
-        SELECT *
+    <select id="getCount" resultType="int">
+        SELECT COUNT(id)
         FROM Outbound
     </select>
+
+
+    <select id="findList" resultType="OutboundResponseDTO">
+        SELECT
+            o.id,
+            p.name AS productName,
+            o.quantity,
+            u.name AS userName,
+            o.is_dispatch,
+            o.is_invoice,
+            oa.status AS approvalStatus
+        FROM
+            Outbound o
+                LEFT JOIN Product p ON o.product_id = p.id
+                LEFT JOIN User u ON o.user_id = u.id
+                LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id;
+
+</select>
 
 </mapper>
