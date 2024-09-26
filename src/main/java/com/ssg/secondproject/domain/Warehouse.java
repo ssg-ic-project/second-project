@@ -10,10 +10,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse {
-    private Integer id;
-
-    private Integer adminId;
+public class Warehouse extends BaseInfo{
+    private int adminId;
 
     private String name;
 
@@ -26,12 +24,4 @@ public class Warehouse {
     private double longitude;
 
     private String address;
-
-
-    private LocalDateTime createdAt;
-
-//    최종 수정자 id;
-    private Integer updatedId;
-
-    private LocalDateTime updatedAt;
 }

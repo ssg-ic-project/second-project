@@ -8,14 +8,13 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class WarehouseRequestDTO {
 
     @NotNull(message = "관리자 ID는 필수입니다.")
-    private Integer adminId;
+    private int adminId;
 
     @NotBlank
     private String name;
