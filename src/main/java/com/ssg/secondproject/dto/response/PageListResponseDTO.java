@@ -1,15 +1,15 @@
 package com.ssg.secondproject.dto.response;
 
 import com.ssg.secondproject.dto.PageInfoDTO;
-import com.ssg.secondproject.dto.request.PageRequestDTO;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class PageResponseDTO<T> {
+public class PageListResponseDTO<T> {
 
-    private T data;
+    private PageInfoDTO pageInfoDTO;
+    private List<T> dataList;
 
 }
