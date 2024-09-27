@@ -11,11 +11,11 @@
     </resultMap>
 
     <select id="selectAll" parameterType="map" resultMap="warehouseResultMap">
-        SELECT * FROM warehouse LIMIT ${offset} , ${pageSize}
+        SELECT * FROM warehouse ORDER BY id DESC LIMIT #{offset} , #{pageSize}
     </select>
 
     <select id="count" resultType="int">
-        SELECT COUNT(*)
+        SELECT COUNT(id)
         FROM warehouse
     </select>
     

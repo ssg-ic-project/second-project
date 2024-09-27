@@ -58,9 +58,6 @@ document.getElementById('registerBtn').addEventListener('click', function() {
     const longitude = document.getElementById('longitude').value;
     const latitude = document.getElementById('latitude').value;
 
-    console.log(longitude);
-    console.log(latitude);
-
     // 데이터 유효성 검사
     if (!name || !size || !capacity || !address) {
         alert("모든 필드를 입력해 주세요.");
@@ -92,9 +89,8 @@ document.getElementById('registerBtn').addEventListener('click', function() {
         })
         .then(data => {
             alert(data.msg); // 성공 메시지 처리
-            const modalElement = document.getElementById('exampleModal');
-            const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-            modal.hide(); // 모달 닫기
+
+            window.location.href = "http://localhost:8080/warehouse/index";
         })
         .catch(error => {
             console.error('Error:', error);

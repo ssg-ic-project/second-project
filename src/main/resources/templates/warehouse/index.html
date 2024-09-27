@@ -151,7 +151,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 
                     <div class="warehouse">
                       <label for="title"><span>* </span>담당자</label>
-                      <input type="text" name="adminId" id="admin" disabled/>
+                      <input type="text" name="adminId" id="admin" value="1" disabled/>
                     </div>
 
                     <div class="warehouse">
@@ -175,8 +175,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
                         <input type="text" name="longitude" id="longitude" style="display: none">
                         <input type="text" name="latitude" id="latitude" style="display: none">
                       </div>
-
-
 
                   </div>
                   <div class="modal-footer">
@@ -203,31 +201,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
             </tr>
           </thead>
           <tbody id="warehouseTableBody">
-
+            <!--js: 서버에서 받아온 창고 데이터 출력-->
           </tbody>
         </table>
 
       <nav class="mt-4 d-flex justify-content-center">
         <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link link-secondary">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link link-secondary" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link link-secondary" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link link-secondary" href="#">4</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link link-secondary" href="#">5</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link link-secondary" href="#">Next</a>
-          </li>
+          <!-- js: 서버에서 받아온 창고 데이터 페이지네이션 번호 출력-->
         </ul>
       </nav>
     </div>
