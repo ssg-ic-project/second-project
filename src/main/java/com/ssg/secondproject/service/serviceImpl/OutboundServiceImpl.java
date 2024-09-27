@@ -48,11 +48,11 @@ public class OutboundServiceImpl implements OutboundService {
         return pageResponseDTO;
     }
 
-//    @Override
-//    public PageResponseDTO<OutboundResponseDTO> getByIdLog(int id) {
-//        OutboundResponseDTO outboundData = outboundMapper.findByIdLog(id);
-//        PageResponseDTO pageResponseDTO = PageResponseDTO.builder().data(outboundData).build();
-//        return pageResponseDTO;
-//    }
+    @Override
+    public PageResponseDTO<OutboundResponseDTO> getByIdLog(int id) {
+        List<OutboundResponseDTO> outboundData = outboundMapper.findByIdLog(id);
+        PageResponseDTO pageResponseDTO = PageResponseDTO.builder().data(outboundData).build();
+        return pageResponseDTO;
+    }
 
 }

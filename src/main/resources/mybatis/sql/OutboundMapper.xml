@@ -74,15 +74,17 @@
 
 
     <select id="findByIdLog" resultType="OutboundResponseDTO">
-        SELECT oa.status AS approvalStatus,
-               oa.rejection_reason AS rejectionReason,
-               oa.created_at AS createdAt
+        SELECT
+        oa.status AS approvalStatus,
+        oa.rejection_reason AS rejectionReason,
+        oa.created_at AS createdAt
         FROM Outbound o
-            LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
+        LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
         WHERE
-            o.id = #{id}
-        <if test="status != null">
-            AND oa.status = #{status}
-        </if>
+        o.id = #{id}
+        LIMIT 5
+        <!-- <if test="status != null"> -->
+        <!--    AND oa.status = #{status} -->
+        <!-- </if> -->
     </select>
 </mapper>

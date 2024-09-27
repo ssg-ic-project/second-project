@@ -11,6 +11,6 @@ public interface OutboundMapper {
     List<OutboundResponseDTO>findList(PageRequestDTO pageRequestDTO);
     int getCount(PageRequestDTO pageRequestDTO);
     OutboundResponseDTO findById(int id);
-//    OutboundResponseDTO findByIdLog(int id);
+    List<OutboundResponseDTO> findByIdLog(int id);
 
 }

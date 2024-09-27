@@ -38,19 +38,21 @@ public class OutboundRestController {
     @GetMapping()
     public ResponseEntity<PageResponseDTO<OutboundResponseDTO>> getOutbound(@RequestParam int id){
         log.info("GetOutbound controller is running. Getting one outbound id");
+//        PageResponseDTO<OutboundResponseDTO> data = outboundService.getById(id);
         PageResponseDTO<OutboundResponseDTO> data = outboundService.getById(id);
+
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 
-//    @GetMapping("/log")
-//    public ResponseEntity<Map<String, Object>> getOutbound(@RequestParam int id) {
-//        // Get OutboundApproval history
-//        PageResponseDTO<OutboundResponseDTO> outboundLog = outboundService.getByIdLog(id);
-//        // Prepare response
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("outbound", outboundLog);
-//        response.put("outboundLog", outboundLog);
-//        return ResponseEntity.ok(response);
-//    }
+
+    @GetMapping("/log")
+    public ResponseEntity<Map<String, Object>> getOutboundLog(@RequestParam int id) {
+        // Get OutboundApproval history
+        PageResponseDTO<OutboundResponseDTO> outboundLog = outboundService.getByIdLog(id);
+        // Prepare response
+        Map<String, Object> response = new HashMap<>();
+        response.put("outboundLog", outboundLog);
+        return ResponseEntity.ok(response);
+    }
 }
