@@ -7,17 +7,18 @@ import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @Log4j2
@@ -42,7 +43,14 @@ public class OutboundRestController {
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 
-
+//    @GetMapping("/log")
+//    public ResponseEntity<Map<String, Object>> getOutbound(@RequestParam int id) {
+//        // Get OutboundApproval history
+//        PageResponseDTO<OutboundResponseDTO> outboundLog = outboundService.getByIdLog(id);
+//        // Prepare response
+//        Map<String, Object> response = new HashMap<>();
+//        response.put("outbound", outboundLog);
+//        response.put("outboundLog", outboundLog);
+//        return ResponseEntity.ok(response);
+//    }
 }
-
-

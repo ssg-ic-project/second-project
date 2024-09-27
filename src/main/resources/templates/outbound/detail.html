@@ -87,8 +87,53 @@
       </div>
     </div>
   </div>
-
 </div>
-
 </body>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+<!--<script src="/js/outbound/detail.js"></script>-->
+
+<!--<head>-->
+<!--  <script type="text/javascript">-->
+
+<!--    const errors = [[${errors}]];-->
+<!--    console.log(errors);-->
+
+<!--    let errorMsg = '';-->
+
+<!--    if (errors && errors.length > 0) {-->
+<!--      for (let i = 0; i < errors.length; i++) {-->
+<!--        errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`;-->
+<!--      }-->
+<!--      alert(errorMsg);-->
+<!--    }-->
+
+<!--    //<![CDATA[-->
+<!--    var id = /*[[${id}]]*/ '';-->
+<!--    // var status = /*[[${status}]]*/ '';-->
+<!--    // //]]>-->
+
+<!--    // Axios를 사용하여 API 호출하기-->
+<!--      async function getOutboundDetails(id) {-->
+<!--        if (id) {-->
+<!--          try {-->
+<!--            const response = await axios.get(`/api/outbound?id=${id}`);-->
+<!--            console.log('Response:', response.data);-->
+<!--            // Update the UI based on the received data (e.g., display details in a table or section)-->
+<!--            displayOutboundDetails(response.data); // Call a function to handle UI updates-->
+<!--          } catch (error) {-->
+<!--            console.error('Error:', error);-->
+<!--            alert('Failed to load outbound details. Please try again.');-->
+<!--          }-->
+<!--        } else {-->
+<!--          console.error('ID 값이 없습니다.');-->
+<!--        }-->
+<!--      };-->
+
+<!--//이 부분에 각 출고ID마다 a tag 사용해서 details.js에 있는 getOutboundDetails()-->
+<!--    //호출해서 결과 값 보여주기.-->
+<!--    //출고 상세 페이지에 있는 승인 내역 보기도 같이 호출하기-->
+
+<!--  </script>-->
+<!--</head>-->
 </html>

@@ -12,6 +12,6 @@ public interface OutboundService {
     //출고 요청서 상세 페이지 데이터 가지고 오기
     PageResponseDTO<OutboundResponseDTO> getById(int id);
     //출고 요청서 상세 페이지 내에 출고 승인 내역 데이터 가지고 오기
-    OutboundResponseDTO getByIdLog(int id);
+//    PageResponseDTO<OutboundResponseDTO> getByIdLog(int id);
 
 }

@@ -67,6 +67,9 @@
                 LEFT JOIN Inbound i ON o.product_id = i.product_id
         WHERE
             o.id = #{id}
+<!--        <if test="status != null">-->
+<!--            AND oa.status = #{status}-->
+<!--        </if>-->
     </select>
 
 
@@ -78,5 +81,8 @@
             LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
         WHERE
             o.id = #{id}
+        <if test="status != null">
+            AND oa.status = #{status}
+        </if>
     </select>
 </mapper>
