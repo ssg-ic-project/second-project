@@ -30,6 +30,7 @@ public class AdminServiceImpl implements AdminService {
 
         int total = adminMapper.getAdminCnt(pageRequestDTO);
 
+//        사용 예정
 //        String keyword = pageRequestDTO.getKeyword();
         List<Admin> voList = adminMapper.findAll(pageRequestDTO);
         List<AdminResponseDTO> dtoList = voList.stream()
@@ -61,7 +62,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void modifyById(int id, AdminRequestDTO requestDTO) {
-//        AdminRequestDTO.builder().updatedId(id).build();
         adminMapper.updateById(id, requestDTO);
     }
 }

@@ -34,8 +34,6 @@ public class AdminRestController {
 
     @GetMapping("/list")
     public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(PageRequestDTO pageRequestDTO, BindingResult bindingResult) {
-        log.info(" 🎉🎉🎉🎉 Rest Admin List 🎉🎉🎉🎉 ");
-        log.info(pageRequestDTO);
         PageListResponseDTO<AdminResponseDTO> data =  adminService.getList(pageRequestDTO);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
@@ -43,8 +41,6 @@ public class AdminRestController {
 
     @GetMapping()
     public ResponseEntity<PageResponseDTO<AdminResponseDTO>> getAdmin(@RequestParam int id) {
-        log.info(" 🎉🎉🎉🎉 Rest Admin Detail 🎉🎉🎉🎉\n ID:  " + id);
-
         PageResponseDTO<AdminResponseDTO> data = adminService.getById(id);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
