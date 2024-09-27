@@ -41,26 +41,26 @@
     WHERE a.id = #{id};
   </select>
 
-  <select id="updateById">
+  <update id="updateById" parameterType="map">
     UPDATE Admin
     SET
-    <if test="name != null and !name.equals('')">
-      name = #{name},
+    <if test="requestDTO.name != null and !requestDTO.name.equals('')">
+      name = #{requestDTO.name},
     </if>
-    <if test="username != null and !username.equals('')">
-      username = #{username},
+    <if test="requestDTO.username != null and !requestDTO.username.equals('')">
+      username = #{requestDTO.username},
     </if>
-    <if test="warehouseId != null and !warehouseId.equals('') and warehouseId != 0">
-      warehouse_id = #{warehouseId},
+    <if test="requestDTO.warehouseId != null and !requestDTO.warehouseId.equals('') and requestDTO.warehouseId != 0">
+      warehouse_id = #{requestDTO.warehouseId},
     </if>
-    <if test="role != null">
-      role = #{role},
+    <if test="requestDTO.role != null">
+      role = #{requestDTO.role},
     </if>
-    <if test="phone != null and !phone.equals('')">
-      phone = #{phone},
+    <if test="requestDTO.phone != null and !requestDTO.phone.equals('')">
+      phone = #{requestDTO.phone},
     </if>
     updated_id = #{updatedId}
-    WHERE id = #{id}
-  </select>
+    WHERE id = #{requestDTO.id}
+  </update>
 
 </mapper>

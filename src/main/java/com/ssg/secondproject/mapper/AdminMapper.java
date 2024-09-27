@@ -6,6 +6,7 @@ import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.AdminResponseDTO;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface AdminMapper {
@@ -16,6 +17,6 @@ public interface AdminMapper {
 
     AdminResponseDTO findById(int id);
 
-    void updateById(int updatedId, AdminRequestDTO requestDTO);
+    void updateById(@Param("updatedId") int updatedId, @Param("requestDTO") AdminRequestDTO requestDTO);
 
 }
