@@ -10,7 +10,7 @@
         <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="selectAll" resultType="Warehouse">
+    <select id="selectAll" resultMap="warehouseResultMap">
         SELECT * FROM warehouse
     </select>
     
