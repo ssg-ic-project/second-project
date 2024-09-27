@@ -12,4 +12,6 @@ public interface UserMapper {
 
     List<User> findAll(PageRequestDTO pageRequestDTO);
 
+    User findById(int id);
+
 }

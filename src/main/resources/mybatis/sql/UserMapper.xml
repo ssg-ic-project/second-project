@@ -10,18 +10,37 @@
     </select>
 
     <select id="findAll" parameterType="PageRequestDTO" resultType="User">
-        SELECT id
-        , name
-        , company_name AS companyName
-        , email
-        , business_number AS businessNumber
-        , phone
-        , is_unregister AS isUnregister
-        FROM User
-        <if test="orderBy != null and !orderBy.equals('')">
-            ORDER BY ${orderBy} ${orderByDir}
-        </if>
-        LIMIT #{size} OFFSET #{offset}
+      SELECT id
+      , name
+      , company_name AS companyName
+      , email
+      , business_number AS businessNumber
+      , phone
+      , is_unregister AS isUnregister
+      FROM User
+      <if test="orderBy != null and !orderBy.equals('')">
+        ORDER BY #{orderBy} #{orderByDir}
+      </if>
+      LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="findById" parameterType="int" resultType="User">
+      SELECT id
+           , name
+           , username
+           , email
+           , phone
+           , business_number AS businessNumber
+           , company_name    AS companyName
+           , zip_code        AS zipCode
+           , address
+           , comment
+           , is_unregister   AS isUnregister
+           , created_at      AS createdAt
+           , updated_at      AS updatedAt
+           , unregistered_at  AS unregisteredAt
+      FROM user
+      WHERE id = #{id}
     </select>
 
 </mapper>

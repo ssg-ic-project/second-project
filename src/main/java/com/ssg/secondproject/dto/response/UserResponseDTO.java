@@ -19,6 +19,7 @@ public class UserResponseDTO {
     private String companyName;
     private String zipCode;
     private String address;
+    private String comment;
     private boolean isUnregister;
     private String createdAt;
     private String updatedAt;

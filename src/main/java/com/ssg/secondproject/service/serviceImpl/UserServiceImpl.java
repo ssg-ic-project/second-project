@@ -3,8 +3,8 @@ package com.ssg.secondproject.service.serviceImpl;
 import com.ssg.secondproject.domain.User;
 import com.ssg.secondproject.dto.PageInfoDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
-import com.ssg.secondproject.dto.response.AdminResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
 import com.ssg.secondproject.mapper.UserMapper;
 import com.ssg.secondproject.service.UserService;
@@ -48,5 +48,15 @@ public class UserServiceImpl implements UserService {
 
         return pageResponseDTO;
 
+    }
+
+    @Override
+    public PageResponseDTO<UserResponseDTO> getById(int id) {
+        User user = userMapper.findById(id);
+
+        UserResponseDTO userResponseDTO = modelMapper.map(user, UserResponseDTO.class);
+        PageResponseDTO<UserResponseDTO> responseDTO = PageResponseDTO.<UserResponseDTO>builder().data(userResponseDTO).build();
+
+        return responseDTO;
     }
 }
