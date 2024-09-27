@@ -3,6 +3,7 @@ package com.ssg.secondproject.service;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
+import com.ssg.secondproject.dto.response.UserApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
 
 public interface UserService {
@@ -10,4 +11,6 @@ public interface UserService {
     PageListResponseDTO<UserResponseDTO> getList(PageRequestDTO pageRequestDTO);
 
     PageResponseDTO<UserResponseDTO> getById(int id);
+
+    PageListResponseDTO<UserApprovalResponseDTO> getApprovalByUserId(int userId);
 }
