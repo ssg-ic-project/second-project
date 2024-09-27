@@ -1,5 +1,7 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.request.AdminRequestDTO;
+import com.ssg.secondproject.dto.request.AdminUpdateRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.AdminResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -14,6 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +48,11 @@ public class AdminRestController {
         PageResponseDTO<AdminResponseDTO> data = adminService.getById(id);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
+    }
+
+    @PatchMapping()
+    public ResponseEntity<Void> modifyById(@RequestBody AdminUpdateRequestDTO updateRequestDTO) {
+        adminService.modifyById(updateRequestDTO.getUpdatedId(), updateRequestDTO.getRequestDTO());
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

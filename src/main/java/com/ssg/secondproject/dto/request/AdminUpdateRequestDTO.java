@@ -10,14 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminRequestDTO {
-    private int id;
-    private String name;
-    private String username;
-    private String password;
-    private int warehouseId;
-    private Role role;
-    private String phone;
-    private String updatedAt;
+public class AdminUpdateRequestDTO {
+    private int updatedId;
+    private AdminRequestDTO requestDTO;
 
 }
