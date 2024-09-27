@@ -43,7 +43,13 @@
     WHERE id = #{id}
   </select>
 
-  <select id="findApprovalByUserId" parameterType="int" resultType="UserApproval">
+  <select id="getApprovalCnt" parameterType="int" resultType="int">
+    SELECT COUNT(id)
+    FROM UserApproval
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="findApprovalByUserId" parameterType="int" resultType="UserApprovalResponseDTO">
     SELECT status
          , rejection_reason AS rejectionReason
          , created_at      AS createdAt
