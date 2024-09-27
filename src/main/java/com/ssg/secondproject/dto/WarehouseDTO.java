@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WarehouseDTO extends BaseInfo {
+public class WarehouseDTO {
+
     private int id;
 
     private int adminId;
@@ -27,4 +28,10 @@ public class WarehouseDTO extends BaseInfo {
     private double longitude;
 
     private String address;
+
+    private LocalDateTime createdAt;
+
+    private int updatedId;
+
+    private LocalDateTime updatedAt;
 }
