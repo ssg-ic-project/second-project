@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +20,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Log4j2
@@ -46,11 +51,23 @@ public class WarehouseRestController {
             """;
     }
 
+//    @GetMapping("")
+//    public ResponseEntity<?> list() {
+//        List<WarehouseDTO> warehouseDTOList = warehouseService.getList();
+//
+//        return ResponseEntity.ok().body(warehouseDTOList);
+//    }
     @GetMapping("")
-    public ResponseEntity<?> list() {
-        List<WarehouseDTO> warehouseDTOList = warehouseService.getList();
+    @ResponseBody
+    public ResponseEntity<Object> list(@RequestParam Map<String, Object> paramMap, @PageableDefault(value = 10) Pageable page){
+        Map<String, Object> resultMap = new HashMap<>();
 
-        return ResponseEntity.ok().body(warehouseDTOList);
+        Page<Map<String,Object>> result = warehouseService.getList(paramMap,page);
+        resultMap.put("pages", result);
+        resultMap.put("size", page.getPageSize());
+
+        return ResponseEntity.ok()
+                .body(resultMap);
     }
 
     @PostMapping("")

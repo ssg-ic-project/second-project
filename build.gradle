@@ -50,6 +50,8 @@ dependencies {
     // Thymeleaf Layout Dialect
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
 
+//    mybatis pagination
+    implementation group: 'org.springframework.data', name: 'spring-data-commons', version: '3.1.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
