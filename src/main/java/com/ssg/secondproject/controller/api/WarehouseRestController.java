@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @Log4j2
@@ -43,6 +44,13 @@ public class WarehouseRestController {
               }
             }
             """;
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> list() {
+        List<WarehouseDTO> warehouseDTOList = warehouseService.getList();
+
+        return ResponseEntity.ok().body(warehouseDTOList);
     }
 
     @PostMapping("")

@@ -9,6 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class WarehouseServiceImpl implements WarehouseService {
@@ -31,6 +34,15 @@ public class WarehouseServiceImpl implements WarehouseService {
         Warehouse warehouse = modelMapper.map(warehouseDTO, Warehouse.class);
 
         warehouseMapper.update(warehouse);
+    }
+
+    @Override
+    public List<WarehouseDTO> getList() {
+        List<Warehouse> warehouseList = warehouseMapper.selectAll();
+
+        return warehouseList.stream().map(
+                vo -> modelMapper.map(vo, WarehouseDTO.class)
+        ).collect(Collectors.toList());
     }
 
     @Override
