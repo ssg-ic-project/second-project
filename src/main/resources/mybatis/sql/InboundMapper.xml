@@ -79,4 +79,12 @@
            LEFT JOIN User u ON u.id = i.user_id
     WHERE i.id = #{id};
   </select>
+
+  <select id="findApprovalById" parameterType="int" resultType="ApprovalResponseDTO">
+    SELECT status
+         , rejection_reason AS rejectionReason
+         , created_at       AS createdAt
+    FROM InboundApproval
+    WHERE inbound_id = #{inboundId}
+  </select>
 </mapper>
