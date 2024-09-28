@@ -66,4 +66,14 @@ public class OutboundRestController {
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
+    //출고 승인
+
+
+
+    //출고 완료 재고 log 추가
+
+
+    //배차 등록
+
+
 }
