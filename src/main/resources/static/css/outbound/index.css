@@ -1,4 +1,3 @@
-
 .options-button {
     width: 125px;
     height: 35px;/* Adds space between subtitle and buttons */
@@ -224,39 +223,40 @@
 
 .date-picker {
     display: flex;
-    flex-direction: row; /* ì„¸ë¡œ ë°©í–¥ìœ¼ë¡œ ë°°ì¹˜ */
-    align-items: center; /* ê°€ë¡œ ì¤‘ì•™ ì •ë ¬ */
-    justify-content: center; /* ì„¸ë¡œ ì¤‘ì•™ ì •ë ¬ */
-    margin: 50px; /* ì›í•˜ëŠ” ì—¬ë°± ì¶”ê°€ */
-    width: 200%; /* í•„ìš”í•œ ê²½ìš° ë„ˆë¹„ ì¡°ì • */
-    max-width: 500px; /* ìµœëŒ€ ë„ˆë¹„ ì„¤ì • */
-    margin: auto; /* ìˆ˜í‰ ì¤‘ì•™ ì •ë ¬ì„ ìœ„í•œ ìžë™ ì—¬ë°± */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    width: 200%;
+    max-width: 500px;
+    margin: auto;
 }
 
 .date-picker .start-date{
 }
 
 .date-input {
-    width: 100%; /* ìž…ë ¥ í•„ë“œì˜ ë„ˆë¹„ë¥¼ 100%ë¡œ ì„¤ì • */
-    padding: 10px; /* ìž…ë ¥ í•„ë“œì˜ íŒ¨ë”© ì¶”ê°€ */
-    margin: 10px 0; /* ìƒí•˜ ê°„ê²© ì¶”ê°€ */
-    border: 1px solid #ccc; /* í…Œë‘ë¦¬ ì„¤ì • */
-    border-radius: 10px; /* ë‘¥ê·¼ í…Œë‘ë¦¬ */
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
 
 
 }
 
 #submit {
 
-    padding: 10px 20px; /* ë²„íŠ¼ íŒ¨ë”© */
-    background-color: #4F64C9; /* ë²„íŠ¼ ë°°ê²½ìƒ‰ */
-    color: white; /* ë²„íŠ¼ í…ìŠ¤íŠ¸ ìƒ‰ìƒ */
-    border: none; /* í…Œë‘ë¦¬ ì œê±° */
-    border-radius: 10px; /* ë‘¥ê·¼ ë²„íŠ¼ */
-    cursor: pointer; /* í¬ì¸í„° ì»¤ì„œ */
+    padding: 10px 20px;
+    background-color: #4F64C9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 
 }
 
 #submit:hover {
-    background-color: #3D4FA7; /* í˜¸ë²„ ì‹œ ìƒ‰ìƒ ë³€ê²½ */
+    background-color: #3D4FA7;
 }
+

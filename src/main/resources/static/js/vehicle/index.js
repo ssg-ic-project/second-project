@@ -1,60 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 승인 상태 드롭다운 관련
-    const selectApproval = document.querySelector('.select-menu:nth-child(1) .select');
-    const optionListApproval = document.querySelector('.select-menu:nth-child(1) .option-list');
-    const optionsApproval = optionListApproval.querySelectorAll('.option');
-    const selectedOptionApproval = document.getElementById('selected-option');
+    const selectVehicle = document.querySelector('.select-menu1 .select');
+    const optionListVehicle = document.querySelector('.select-menu1 .option-list');
+    const optionsVehicle = optionListVehicle.querySelectorAll('.option');
+    const selectedOptionVehicle = document.getElementById('selected-option');
 
     // 창고 드롭다운 관련
-    const selectWarehouse = document.querySelector('.select-menu:nth-child(2) .select');
-    const optionListWarehouse = document.querySelector('.select-menu:nth-child(2) .option-list');
-    const optionsWarehouse = optionListWarehouse.querySelectorAll('.option');
-    const selectedOptionWarehouse = document.getElementById('selected-option2');
+    const selectDispatch = document.querySelector('.select-menu2 .select2');
+    const optionListDispatch = document.querySelector('.select-menu2 .option-list');
+    const optionsDispatch = optionListDispatch.querySelectorAll('.option');
+    const selectedOptionDispatch = document.getElementById('selected-option2');
 
     // 드롭다운 열고 닫기 기능 (승인 상태)
-    selectApproval.addEventListener('click', () => {
-        selectApproval.classList.toggle('active');
-        optionListApproval.classList.toggle('active');
+    selectVehicle.addEventListener('click', () => {
+        selectVehicle.classList.toggle('active');
+        optionListVehicle.classList.toggle('active');
     });
 
     // 드롭다운 열고 닫기 기능 (창고)
-    selectWarehouse.addEventListener('click', () => {
-        selectWarehouse.classList.toggle('active');
-        optionListWarehouse.classList.toggle('active');
+    selectDispatch.addEventListener('click', () => {
+        selectDispatch.classList.toggle('active');
+        optionListDispatch.classList.toggle('active');
     });
 
     // 옵션 선택 시 동작 (승인 상태)
-    optionsApproval.forEach(option => {
+    optionsVehicle.forEach(option => {
         option.addEventListener('click', () => {
-            optionsApproval.forEach(opt => opt.classList.remove('selected'));
+            optionsVehicle.forEach(opt => opt.classList.remove('selected'));
             option.classList.add('selected');
-            selectedOptionApproval.textContent = option.textContent;
-            selectApproval.classList.remove('active');
-            optionListApproval.classList.remove('active');
+            selectedOptionVehicle.textContent = option.textContent;
+            selectVehicle.classList.remove('active');
+            optionListVehicle.classList.remove('active');
         });
     });
 
     // 옵션 선택 시 동작 (창고)
-    optionsWarehouse.forEach(option => {
+    optionsDispatch.forEach(option => {
         option.addEventListener('click', () => {
-            optionsWarehouse.forEach(opt => opt.classList.remove('selected'));
+            optionsDispatch.forEach(opt => opt.classList.remove('selected'));
             option.classList.add('selected');
-            selectedOptionWarehouse.textContent = option.textContent;
-            selectWarehouse.classList.remove('active');
-            optionListWarehouse.classList.remove('active');
+            selectedOptionDispatch.textContent = option.textContent;
+            selectDispatch.classList.remove('active');
+            optionListDispatch.classList.remove('active');
         });
     });
 
     // 드롭다운 외부 클릭 시 닫기
     document.addEventListener('click', (event) => {
-        if (!selectApproval.contains(event.target)) {
-            selectApproval.classList.remove('active');
-            optionListApproval.classList.remove('active');
+        if (!selectVehicle.contains(event.target)) {
+            selectVehicle.classList.remove('active');
+            optionListVehicle.classList.remove('active');
         }
 
-        if (!selectWarehouse.contains(event.target)) {
-            selectWarehouse.classList.remove('active');
-            optionListWarehouse.classList.remove('active');
+        if (!selectDispatch.contains(event.target)) {
+            selectDispatch.classList.remove('active');
+            optionListDispatch.classList.remove('active');
         }
     });
 });

@@ -1,10 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/admin/common.css">
+  <link rel="stylesheet" href="/css/warehouse/detail.css">
+  <title>Admin Detail</title>
+  <script src="/js/admin/detail.js"></script>
+<!--  <script defer th:inline="javascript">-->
+<!--    const adminId = [[${id}]];-->
+<!--    adminDetail(adminId)-->
+<!--  </script>-->
+
+  <script defer th:inline="javascript">
+    const warehouse_id = [[${id}]];
+
+    console.log(warehouse_id);
+    document.addEventListener('DOMContentLoaded', () => {
+      const id = document.getElementById('id');
+      const name = document.getElementById('name');
+      const adminId = document.getElementById('adminId');
+      const size = document.getElementById('size');
+      const capacity = document.getElementById('capacity');
+      const createdAt = document.getElementById('createdAt');
+      const address = document.getElementById('address');
+      let longitude = null;
+      let latitude = null;
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+              mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+              };
+
+
+      fetch(`/api/warehouse/${warehouse_id}`)
+              .then(res => res.json())
+              .then(data => {
+                console.log(data);
+
+                id.textContent = data.warehouseDTO.id;
+                name.textContent = data.warehouseDTO.name;
+                adminId.textContent = data.warehouseDTO.adminId;
+                size.textContent = `${data.warehouseDTO.size} ㎥`;
+                capacity.textContent = `${data.warehouseDTO.capacity} 개`;
+                createdAt.textContent = data.warehouseDTO.createdAt;
+                address.textContent = data.warehouseDTO.address;
+                longitude = data.warehouseDTO.longitude;
+                latitude = data.warehouseDTO.latitude;
+
+                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+                if (navigator.geolocation) {
+
+                  // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+
+                  console.log(latitude);
+                  console.log(longitude);
+
+                  var locPosition = new kakao.maps.LatLng(latitude, longitude), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                          message = `<div style="white-space:nowrap; padding:5px;">${address.textContent}</div>`; // 인포윈도우에 표시될 내용입니다
+
+                  // 마커와 인포윈도우를 표시합니다
+                  displayMarker(locPosition, message);
+
+                } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+                  var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+                          message = 'geolocation을 사용할수 없어요..'
+
+                  displayMarker(locPosition, message);
+                }
+
+// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+                function displayMarker(locPosition, message) {
+
+                  // 마커를 생성합니다
+                  var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: locPosition
+                  });
+
+                  var iwContent = message, // 인포윈도우에 표시할 내용
+                          iwRemoveable = true;
+
+                  // 인포윈도우를 생성합니다
+                  var infowindow = new kakao.maps.InfoWindow({
+                    content : iwContent,
+                    removable : iwRemoveable
+                  });
+
+                  // 인포윈도우를 마커위에 표시합니다
+                  infowindow.open(map, marker);
+
+                  // 지도 중심좌표를 접속위치로 변경합니다
+                  map.setCenter(locPosition);
+                }
+
+              });
+    })
+  </script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7e1a1e3ea1021ea492e25afd4b3247b1"></script>
+  <script defer type="text/javascript" th:src="@{/js/warehouse/mapDetail.js}"></script>
 </head>
 <body>
+<div layout:fragment="content" th:class="container">
+  <div th:class="page-info">
+    <h2 th:class="page-title">창고 상세 조회</h2>
+    <span th:class="page-subtitle">창고 관리 > 창고 현황 > 상세 조회</span>
+  </div>
+  <div class="action-btn">
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">수정</button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+  </div>
+  <div th:class="admin-info-box">
+    <h5 th:class="box-title">창고 상세 정보</h5>
+    <div th:class="admin-info">
+      <div th:class="admin-detail-group">
+        <div th:class="admin-detail">
+          <span th:class="detail-label">ID</span>
+          <span th:id="id" th:class="info-value">
+          </span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">창고명</span>
+          <span th:id="name" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">담당자</span>
+          <span id="adminId"  th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">크기</span>
+<!--          <span th:id="size" th:text="${size}" th:class="info-value"></span>-->
+          <span th:id="size" th:class="info-value"></span>
+        </div>
+<!--        <div th:class="admin-detail">-->
+<!--          <span th:class="detail-label">물품 카테고리</span>-->
+<!--&lt;!&ndash;          <span th:id="category" th:text="${category}" th:class="info-value"></span>&ndash;&gt;-->
+<!--          <span th:id="category" th:text="의자" th:class="info-value"></span>-->
+<!--        </div>-->
+        <div th:class="admin-detail">
+          <span th:class="detail-label">수용량</span>
+          <span th:id="capacity"  th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">최초 등록일</span>
+<!--          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>-->
+          <span th:id="createdAt" th:text="'2024-09-22' + ' 22:06:35'" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">주소</span>
+<!--          <span th:id="address" th:text="${address}" th:class="info-value"></span>-->
+          <span th:id="address" th:text="'서울시 강남구'" th:class="info-value"></span>
+        </div>
+        <div id="map" class="w-100" style="height:300px;"></div>
+      </div>
 
+      <div id="editEmployeeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 정보 수정</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="warehouse">
+                <label for="title"><span>* </span>창고명</label>
+                <input type="text" name="title" id="title" />
+              </div>
+
+              <div class="warehouse">
+                <label for="title"><span>* </span>담당자</label>
+                <input type="text" name="admin" id="admin" />
+              </div>
+
+              <div class="warehouse">
+                <label for="size"><span>* </span>크기</label>
+                <input type="text" name="size" id="size" />
+              </div>
+
+              <div class="warehouse">
+                <label for="category"><span>* </span>카테고리</label>
+                <input type="text" name="category" id="category" />
+              </div>
+
+              <div class="warehouse">
+                <label for="capacity"><span>* </span>수용량</label>
+                <input type="text" name="capacity" id="capacity" />
+              </div>
+
+              <div class="warehouse">
+                <label for="type"><span>* </span>창고분류</label>
+                <input type="text" name="type" id="type" />
+              </div>
+
+              <div class="warehouse">
+                <label for="address"><span>* </span>주소</label>
+                <input type="text" name="address" id="address" />
+                <div th:id="map" style="width:100%;height:350px;"></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#modifyModal">수정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modifyModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">직원 정보 수정</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              창고 정보를 정말로 수정하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-modify">수정</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="removeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+           tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">창고 삭제</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              창고를 정말로 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+              <button type="button" class="btn btn-remove">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

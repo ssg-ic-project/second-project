@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.WarehouseMapper">
+
+    <resultMap id="warehouseResultMap" type="Warehouse">
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectAll" resultType="Warehouse">
+        SELECT * FROM warehouse
+    </select>
+    
+    <insert id="insert">
+        INSERT INTO warehouse (admin_id, name, size, capacity, latitude, longitude, address) values (
+                                                                                                                                                #{adminId},
+                                                                                                                                        #{name},
+                                                                                                                                         #{size},
+                                                                                                                                         #{capacity},
+                                                                                                                                         #{latitude},
+                                                                                                                                         #{longitude},
+                                                                                                                                         #{address}
+                                                                                                                                            )
+    </insert>
+
+    <select id="find" resultMap="warehouseResultMap">
+        SELECT * FROM warehouse where id = #{id}
+    </select>
+
+
+</mapper>

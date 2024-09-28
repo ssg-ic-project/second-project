@@ -1,0 +1,145 @@
+.admin-info-box {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-top: 80px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.page-title span {
+  font-family: 'NanumSquare-ExtraBold', sans-serif;
+}
+
+.box-title {
+  margin: 10px 0;
+  align-self: flex-start;
+}
+
+.admin-info {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-info .admin-detail-group {
+  margin: 0 10px;
+  padding: 10px 20px;
+  width: 50%;
+  min-width: calc((100% / 2) - 50px);
+}
+
+.admin-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.admin-detail .detail-label {
+  font-family: 'NanumSquare-Bold', sans-serif;
+  font-size: 17px;
+  color: #242323;
+  width: 150px;
+  margin: 8px 0;
+}
+
+.admin-detail .info-value {
+  font-family: 'NanumSquare', sans-serif;
+  font-size: 15px;
+  border: 1px solid #ADB5BD;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  line-height: 1;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.action-btn {
+  float: right;
+}
+
+.action-btn .btn {
+  font-family: 'NanumSquare-Bold', sans-serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4F64C9;
+  margin: 20px 0 10px 10px;
+}
+
+.modal-body .modal-warning {
+  color: #868E96;
+  font-size: 13px;
+}
+
+.modal-body .modal-content {
+  border-style: none;
+  display: inline;
+}
+
+.modal-footer .btn-cancel {
+  background-color: #868E96;
+}
+
+.modal-footer .btn-modify,
+.modal-footer .btn-remove {
+  background-color: #4F64C9;
+}
+
+.modal-footer .btn {
+  font-family: 'NanumSquare-Bold', sans-serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  margin: 5px;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.select-box {
+  align-items: center;
+}
+
+.warehouse {
+  width: 75%;
+  box-sizing: border-box;
+  margin: 20px auto;
+  position: relative;
+}
+.warehouse label{
+  display: inline-block;
+  position: absolute;
+  top: -5px;
+  left: 14px;
+  padding: 10px;
+  background: white;
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+}
+
+.warehouse label span{
+  color: #da4841;
+  vertical-align: -1px;
+}
+.warehouse input{
+  width: 100%;
+  border: 1px solid #dddddd !important;
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.04rem;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
