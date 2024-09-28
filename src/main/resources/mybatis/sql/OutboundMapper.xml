@@ -118,7 +118,7 @@
         </where>
     </select>
 
-    <insert id="insertOutboundApproval" parameterType="int">
+    <insert id="insertOutboundApproval" parameterType="OutboundRequestDTO">
         select o.id, u.id,
 
         INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)

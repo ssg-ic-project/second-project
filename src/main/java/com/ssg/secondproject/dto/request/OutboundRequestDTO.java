@@ -1,9 +1,6 @@
 package com.ssg.secondproject.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,8 +9,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutboundRequestDTO {
+    private int id;
     private int outboundId;
     private String status;
-    private LocalDate createdAt;
+    private LocalDate createdAt = LocalDate.now();
     private Long rejectReason;
 }

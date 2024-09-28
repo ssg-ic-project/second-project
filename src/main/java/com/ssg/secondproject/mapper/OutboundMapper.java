@@ -1,5 +1,6 @@
 package com.ssg.secondproject.mapper;
 import com.ssg.secondproject.dto.request.OutboundRequestDTO;
+import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

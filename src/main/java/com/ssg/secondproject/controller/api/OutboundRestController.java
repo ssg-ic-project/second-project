@@ -1,6 +1,9 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,14 +28,14 @@ public class OutboundRestController {
     private final OutboundService outboundService;
 
     @GetMapping("/list")
-    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(PageRequestDTO pageRequestDTO, BindingResult bindingResult){
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(PageRequestDTO pageRequestDTO, BindingResult bindingResult) {
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 
     @GetMapping()
-    public ResponseEntity<PageResponseDTO<OutboundResponseDTO>> getOutbound(@RequestParam int id){
+    public ResponseEntity<PageResponseDTO<OutboundResponseDTO>> getOutbound(@RequestParam int id) {
         log.info("GetOutbound controller is running. Getting one outbound id");
 //        PageResponseDTO<OutboundResponseDTO> data = outboundService.getById(id);
         PageResponseDTO<OutboundResponseDTO> data = outboundService.getById(id);
@@ -53,15 +56,16 @@ public class OutboundRestController {
     }
 
     @GetMapping("/searchby")
-    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getUserInput (PageRequestDTO pageRequestDTO, @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
-                                                                                  @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate){
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getUserInput(PageRequestDTO pageRequestDTO, @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
+                                                                                 @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate) {
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getByUserInput(pageRequestDTO, warehouseName, approvalStatus, startDate, endDate);
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
+
     //출고 승인
     @PutMapping("/approveStatus")
-    public void approveStatus(@RequestParam("id") int id, @RequestParam("status") String approvalStatus, @RequestParam("reason") Long rejectionReason){
+    public void approveStatus(@RequestParam("id") int id, @RequestParam("status") String approvalStatus, @RequestParam("reason") Long rejectionReason) {
         outboundService.modifyStatus(id, approvalStatus, rejectionReason);
     }
     //출고 완료 재고 log 추가
