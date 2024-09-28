@@ -1,16 +1,14 @@
 package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.domain.User;
-import com.ssg.secondproject.domain.UserApproval;
 import com.ssg.secondproject.dto.PageInfoDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
-import com.ssg.secondproject.dto.response.UserApprovalResponseDTO;
+import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
 import com.ssg.secondproject.mapper.UserMapper;
 import com.ssg.secondproject.service.UserService;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -62,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageListResponseDTO<UserApprovalResponseDTO> getApprovalByUserId(int userId) {
+    public PageListResponseDTO<ApprovalResponseDTO> getApprovalByUserId(int userId) {
 //        int total = userMapper.getApprovalCnt(userId);
 
 //        List<UserApproval> voList = userMapper.findApprovalByUserId(userId);

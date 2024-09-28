@@ -1,6 +1,10 @@
 package com.ssg.secondproject.service.serviceImpl;
 
+import com.ssg.secondproject.dto.PageInfoDTO;
+import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.mapper.OutboundMapper;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;

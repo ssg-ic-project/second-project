@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.executor.statement.StatementUtil;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserApprovalResponseDTO {
-    private Status status;
+public class ApprovalResponseDTO {
+    private String status;
     private String rejectionReason;
     private String createdAt;
 }
