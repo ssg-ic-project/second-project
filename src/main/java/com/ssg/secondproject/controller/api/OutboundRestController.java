@@ -16,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +47,7 @@ public class OutboundRestController {
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 
-
+    //같은 상세 페이지에서 fetch는 어떻게 함?
     @GetMapping("/log")
     public ResponseEntity<Map<String, Object>> getOutboundLog(@RequestParam int id) {
         // Get OutboundApproval history
@@ -54,5 +56,14 @@ public class OutboundRestController {
         Map<String, Object> response = new HashMap<>();
         response.put("outboundLog", outboundLog);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/searchby")
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getUserInput (PageRequestDTO pageRequestDTO,
+                                                                                  @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
+                                                                                  @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate){
+        PageListResponseDTO<OutboundResponseDTO> data = outboundService.getByUserInput(pageRequestDTO, warehouseName, approvalStatus, startDate, endDate);
+        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+        return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 }

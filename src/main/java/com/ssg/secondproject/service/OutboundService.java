@@ -5,6 +5,8 @@ import com.ssg.secondproject.dto.response.OutboundResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OutboundService {
@@ -14,4 +16,5 @@ public interface OutboundService {
     //출고 요청서 상세 페이지 내에 출고 승인 내역 데이터 가지고 오기
     PageResponseDTO<OutboundResponseDTO> getByIdLog(int id);
 
+    PageListResponseDTO<OutboundResponseDTO> getByUserInput(PageRequestDTO pageRequestDTO, String warehouseName, String approvalStatus, LocalDate startDate, LocalDate endDate);
 }

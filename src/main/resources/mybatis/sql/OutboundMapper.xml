@@ -87,4 +87,39 @@
         <!--    AND oa.status = #{status} -->
         <!-- </if> -->
     </select>
+
+    <select id="findByUserInput" resultType="OutboundResponseDTO">
+        SELECT
+        o.id,
+        p.name AS productName,
+        o.quantity,
+        u.company_name AS companyName,
+        o.is_dispatch,
+        o.is_invoice,
+        oa.status AS approvalStatus
+        FROM
+        Outbound o
+
+        LEFT JOIN Cell c ON o.cell_id = c.id
+        LEFT JOIN Section s ON c.section_id = s.id
+        LEFT JOIN Warehouse w ON s.warehouse_id = w.id
+
+        LEFT JOIN
+        OutboundApproval oa ON o.id = oa.outbound_id
+        LEFT JOIN
+        Product p ON p.id = o.product_id
+        LEFT JOIN
+        User u ON u.id = o.user_id
+
+        WHERE 1=1
+        <if test="warehouseName != null">
+            AND w.name = #{warehouseName}
+        </if>
+        <if test="approvalStatus != null">
+            AND oa.status = #{approvalStatus}
+        </if>
+        <if test="startDate != null and endDate != null">
+            AND o.created_at BETWEEN #{startDate} AND #{endDate}
+        </if>
+    </select>
 </mapper>
