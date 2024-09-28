@@ -14,14 +14,12 @@ public class AdminController {
 
     @GetMapping("/index")
     public String admin() {
-        log.info(" 🎉🎉🎉🎉 Admin Index 🎉🎉🎉🎉 ");
         return "admin/index"; // resources/templates/admin/index.html 파일을 반환합니다.
     }
 
     @GetMapping()
     public String adminDetail(@RequestParam("id") Long id, Model model) {
         model.addAttribute("id", id);
-        log.info(" 🎉🎉🎉🎉 Admin Detail 🎉🎉🎉🎉\n ID:  " + id);
         return "admin/detail"; // user>detail.html로 이동
     }
 }

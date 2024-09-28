@@ -25,4 +25,42 @@
         LIMIT #{size} OFFSET #{offset}
   </select>
 
+  <select id="findById" parameterType="int" resultType="AdminResponseDTO">
+    SELECT a.id
+         , a.name
+         , a.username
+         , a.company_email AS companyEmail
+         , a.warehouse_id AS warehouseId
+         , w.name AS warehouseName
+         , a.role
+         , a.phone
+         , a.created_at AS createdAt
+         , a.updated_at AS updatedAt
+    FROM Admin a
+           JOIN Warehouse w ON a.warehouse_id = w.id
+    WHERE a.id = #{id};
+  </select>
+
+  <update id="updateById" parameterType="map">
+    UPDATE Admin
+    SET
+    <if test="requestDTO.name != null and !requestDTO.name.equals('')">
+      name = #{requestDTO.name},
+    </if>
+    <if test="requestDTO.username != null and !requestDTO.username.equals('')">
+      username = #{requestDTO.username},
+    </if>
+    <if test="requestDTO.warehouseId != null and !requestDTO.warehouseId.equals('') and requestDTO.warehouseId != 0">
+      warehouse_id = #{requestDTO.warehouseId},
+    </if>
+    <if test="requestDTO.role != null">
+      role = #{requestDTO.role},
+    </if>
+    <if test="requestDTO.phone != null and !requestDTO.phone.equals('')">
+      phone = #{requestDTO.phone},
+    </if>
+    updated_id = #{updatedId}
+    WHERE id = #{requestDTO.id}
+  </update>
+
 </mapper>

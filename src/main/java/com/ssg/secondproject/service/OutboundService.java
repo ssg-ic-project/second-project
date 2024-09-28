@@ -7,6 +7,8 @@ import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import org.apache.ibatis.annotations.Param;
 
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.PageResponseDTO;
 import java.time.LocalDate;
 
 public interface OutboundService {

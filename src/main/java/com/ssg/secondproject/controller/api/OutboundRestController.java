@@ -28,7 +28,8 @@ public class OutboundRestController {
     private final OutboundService outboundService;
 
     @GetMapping("/list")
-    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(PageRequestDTO pageRequestDTO, BindingResult bindingResult) {
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(
+        PageRequestDTO pageRequestDTO, BindingResult bindingResult){
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
