@@ -1,13 +1,9 @@
 package com.ssg.secondproject.controller.api;
 
-import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
-import com.ssg.secondproject.dto.response.PageListResponseDTO;
-import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController

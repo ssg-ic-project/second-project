@@ -1,14 +1,8 @@
 package com.ssg.secondproject.service;
 
-import com.ssg.secondproject.dto.request.OutboundRequestDTO;
-import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
-import com.ssg.secondproject.dto.response.PageListResponseDTO;
-import com.ssg.secondproject.dto.response.PageResponseDTO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 public interface OutboundService {
     PageListResponseDTO<OutboundResponseDTO> getList(PageRequestDTO pageRequestDTO);

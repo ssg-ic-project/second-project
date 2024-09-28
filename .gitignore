@@ -42,3 +42,5 @@ test
 .vscode/
 
 application-dev.properties
+
+node_modules
