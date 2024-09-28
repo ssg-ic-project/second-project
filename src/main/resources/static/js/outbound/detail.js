@@ -1,3 +1,5 @@
+import axios from "axios";
+
 document.addEventListener("DOMContentLoaded", () => {
     // "출고 지시서 출력" 버튼을 선택합니다.
     const printButton = document.querySelector(".print-btn");
@@ -8,3 +10,93 @@ document.addEventListener("DOMContentLoaded", () => {
         printModal.show();
     });
 });
+
+function handleOutboundClick(id) {
+    getOutboundDetails(id);
+}
+
+// Get detailed data for each outbound request asynchronously
+async function getOutboundDetails(id) {
+    try {
+        const response = await axios.get(`/api/outbound?id=${id}`);
+        console.log(response.data); // For testing purposes
+        displayOutboundDetails(response.data);
+        await getOutboundApprovalHistory(id);
+    } catch (error) {
+        console.error("Error fetching outbound details", error);
+        alert("Failed to load outbound details. Please try again.");
+    }
+}
+
+function displayOutboundDetails(data) {
+    // Update the page with outbound details
+    document.getElementById("id").innerText = data.id;
+    document.getElementById("expecteddate").innerText = data.expectedDate || 'N/A'; // Handle missing data
+    document.getElementById("quantity").innerText = data.quantity || 'N/A';
+    document.getElementById("createddate").innerText = data.createdAt || 'N/A';
+    document.getElementById("remarks").innerText = data.remarks || 'No remarks'; // Display 'No remarks' if undefined
+    document.getElementById("warehouseid").innerText = data.warehouseId || 'N/A';
+    document.getElementById("sectioncellid").innerText = `Section ${data.sectionId || 'N/A'}, Cell ${data.cellId || 'N/A'}`;
+    document.getElementById("warehousename").innerText = data.warehouseName || 'N/A';
+    document.getElementById("stockquantity").innerText = data.stockQuantity || 'N/A';
+    document.getElementById("inboundexpecteddate").innerText = data.inboundExpectedDate || 'N/A';
+    document.getElementById("productid").innerText = data.productId || 'N/A';
+    document.getElementById("productvolume").innerText = `Height: ${data.productHeight || 'N/A'} * Width: ${data.productWidth || 'N/A'} * Depth: ${data.productDepth || 'N/A'}`;
+    document.getElementById("productname").innerText = data.productName || 'N/A';
+    document.getElementById("categoryid").innerText = data.productCategoryId || 'N/A';
+    document.getElementById("userid").innerText = data.userId || 'N/A';
+    document.getElementById("userbusinessnumber").innerText = data.userBusinessNumber || 'N/A';
+    document.getElementById("companyname").innerText = data.companyName || 'N/A';
+    document.getElementById("useremail").innerText = data.userEmail || 'N/A';
+    document.getElementById("userphone").innerText = data.userPhone || 'N/A';
+}
+
+// On page load
+window.onload = function() {
+    const outboundId = /*[[${id}]]*/ '';  // Get the outbound ID from server-side rendered template
+    if (outboundId) {
+        getOutboundDetails(outboundId);
+    } else {
+        console.error("Outbound ID not available");
+    }
+};
+
+//출고 상세에 나오는 승인 내역 테이블 보여주기.
+async function getOutboundApprovalHistory(id) {
+    try {
+        const response = await axios.get(`/api/outbound?id=${id}`);
+        console.log(response.data); // For testing purposes
+        displayApprovalHistory(response.data);
+    } catch (error) {
+        console.error("Error fetching approval history", error);
+    }
+}
+
+function displayApprovalHistory(data) {
+    const approvalTableBody = document.getElementById("approval-history-table-body");
+    approvalTableBody.innerHTML = ''; // Clear any previous data
+
+    data.forEach(approval => {
+        const row = document.createElement("tr");
+
+        const statusCell = document.createElement("td");
+        statusCell.innerText = approval.status;
+
+        const reasonCell = document.createElement("td");
+        reasonCell.innerText = approval.rejectionReason || '-';
+
+        const dateCell = document.createElement("td");
+        dateCell.innerText = approval.createdAt;
+
+        row.appendChild(statusCell);
+        row.appendChild(reasonCell);
+        row.appendChild(dateCell);
+        approvalTableBody.appendChild(row);
+    });
+}
+
+// You can call this function after page load or on user interaction
+window.onload = function() {
+    const outboundId = /*[[${id}]]*/ '';  // Get the outbound ID from server-side rendered template
+    getOutboundApprovalHistory(outboundId);
+};
