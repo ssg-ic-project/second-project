@@ -44,3 +44,5 @@ test
 application-dev.properties
 
 node_modules
+package-lock.json
+package.json
