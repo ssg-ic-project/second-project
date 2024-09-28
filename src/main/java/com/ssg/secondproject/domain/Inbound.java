@@ -14,10 +14,10 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @ToString
 public class Inbound extends BaseInfo {
-    private int product_id;
-    private int cell_id;
-    private Date expected_date;
+    private int productId;
+    private int cellId;
+    private Date expectedDate;
     private int quantity;
     private String comment;
-    private int user_id;
+    private int userId;
 }

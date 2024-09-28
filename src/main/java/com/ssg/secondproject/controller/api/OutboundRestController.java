@@ -1,6 +1,9 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,7 +28,8 @@ public class OutboundRestController {
     private final OutboundService outboundService;
 
     @GetMapping("/list")
-    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(PageRequestDTO pageRequestDTO, BindingResult bindingResult){
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(
+        PageRequestDTO pageRequestDTO, BindingResult bindingResult){
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
