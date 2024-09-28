@@ -4,16 +4,19 @@ import com.ssg.secondproject.domain.Warehouse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface WarehouseMapper {
     int insert(Warehouse warehouse);
 
-    List<Warehouse> selectAll();
+    List<Map<String, Object>> selectAll(Map<String, Object> paramMap);
 
-    Warehouse find(Integer id);
+    Warehouse find(int id);
 
-    void delete(Integer id);
+    void delete(int id);
+
+    int count();
 
     void update(Warehouse warehouse);
 }

@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 
 @Getter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -18,5 +20,4 @@ public class BaseInfo {
     private int updatedId;
     private LocalDateTime updatedAt;
     private LocalDateTime unregisteredAt;
-
 }

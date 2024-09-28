@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.OutboundMapper">
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(id)
+        FROM Outbound
+    </select>
+
+
+    <select id="findList" resultType="OutboundResponseDTO">
+        SELECT
+            o.id,
+            p.name AS productName,
+            o.quantity,
+            u.company_name AS companyName,
+            o.is_dispatch,
+            o.is_invoice,
+            oa.status AS approvalStatus
+        FROM
+            Outbound o
+                LEFT JOIN Product p ON o.product_id = p.id
+                LEFT JOIN User u ON o.user_id = u.id
+                LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id;
+</select>
+
+    <select id="findById" resultType="OutboundResponseDTO">
+        SELECT
+            o.id,
+            o.quantity,
+            o.created_at AS createdAt,
+            o.expected_date AS expectedDate,
+            o.remarks AS remarks,
+            o.updated_at AS updatedAt,
+
+            w.id AS warehouseId,
+            s.id AS sectionId,
+            c.id AS cellId,
+            w.name AS warehouseName,
+            st.quantity AS stockQuantity,
+            i.expected_date AS inboundExpectedDate,
+
+            o.product_id as productId,
+            p.height AS productHeight,
+            p.width AS productWidth,
+            p.depth AS productDepth,
+            p.name AS productName,
+            p.category_id AS productCategoryId,
+
+            o.user_id AS userId,
+            u.business_number AS userBusinessNumber,
+            u.company_name AS companyName,
+            u.email AS userEmail,
+            u.phone AS userPhone
+
+        FROM
+            Outbound o
+                LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
+                LEFT JOIN Product p ON o.product_id = p.id
+                LEFT JOIN User u ON o.user_id = u.id
+                LEFT JOIN Cell c ON o.cell_id = c.id
+                LEFT JOIN Section s ON c.section_id = s.id
+                LEFT JOIN Warehouse w ON s.warehouse_id = w.id
+                LEFT JOIN Stock st ON o.id = st.outbound_id
+                LEFT JOIN Inbound i ON o.product_id = i.product_id
+        WHERE
+            o.id = #{id}
+    </select>
+
+
+    <select id="findByIdLog" resultType="OutboundResponseDTO">
+        SELECT
+        oa.status AS approvalStatus,
+        oa.rejection_reason AS rejectionReason,
+        oa.created_at AS createdAt
+        FROM Outbound o
+        LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id
+        WHERE
+        o.id = #{id}
+        LIMIT 5
+    </select>
+
+    <select id="findByUserInput" resultType="OutboundResponseDTO">
+        SELECT
+        o.id,
+        p.name AS productName,
+        o.quantity,
+        u.company_name AS companyName,
+        o.is_dispatch,
+        o.is_invoice,
+        oa.status AS approvalStatus
+        FROM
+        Outbound o
+
+        LEFT JOIN Cell c ON o.cell_id = c.id
+        LEFT JOIN Section s ON c.section_id = s.id
+        LEFT JOIN Warehouse w ON s.warehouse_id = w.id
+
+        LEFT JOIN
+        OutboundApproval oa ON o.id = oa.outbound_id
+        LEFT JOIN
+        Product p ON p.id = o.product_id
+        LEFT JOIN
+        User u ON u.id = o.user_id
+
+        <where>
+        <if test="warehouseName != null">
+            AND w.name = #{warehouseName}
+        </if>
+        <if test="approvalStatus != null">
+            AND oa.status = #{approvalStatus}
+        </if>
+        <if test="startDate != null and endDate != null">
+            AND o.created_at BETWEEN #{startDate} AND #{endDate}
+        </if>
+        </where>
+    </select>
+
+    <insert id="insertOutboundApproval" parameterType="int">
+        select o.id, u.id,
+
+        INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
+        VALUES (#{outboundId}, #{approverId}, #{createdAt}, #{status}, #{rejectionReason})
+    </insert>
+
+</mapper>

@@ -1,19 +1,13 @@
-package com.ssg.secondproject.dto;
+package com.ssg.secondproject.dto.request;
 
-
-import com.ssg.secondproject.domain.BaseInfo;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WarehouseDTO {
-
-    private int id;
+public class WarehouseUpdateDTO {
 
     private int adminId;
 
@@ -28,10 +22,4 @@ public class WarehouseDTO {
     private double longitude;
 
     private String address;
-
-    private LocalDateTime createdAt;
-
-    private int updatedId;
-
-    private LocalDateTime updatedAt;
 }

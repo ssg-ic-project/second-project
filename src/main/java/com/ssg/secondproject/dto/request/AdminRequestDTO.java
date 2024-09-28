@@ -1,4 +1,4 @@
-package com.ssg.secondproject.dto.response;
+package com.ssg.secondproject.dto.request;
 
 import com.ssg.secondproject.common.Role;
 import lombok.AllArgsConstructor;
@@ -10,15 +10,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminResponseDTO {
+public class AdminRequestDTO {
     private int id;
     private String name;
     private String username;
-    private String companyEmail;
+    private String password;
     private int warehouseId;
-    private String warehouseName;
     private Role role;
     private String phone;
-    private String createdAt;
     private String updatedAt;
+
 }

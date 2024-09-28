@@ -1,3 +1,5 @@
+import axios from "axios";
+
 document.addEventListener('DOMContentLoaded', () => {
     // 창고 드롭다운 관련
     const selectWarehouse = document.querySelector('.select-menu:nth-child(1) .select');
@@ -12,13 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionsApproval = optionListApproval.querySelectorAll('.option');
     const selectedOptionApproval = document.getElementById('selected-option');
 
-
+    // // 배차 상태 드롭다운 관련
+    // const selectDispatch = document.querySelector('.select-menu:nth-child(3) .select');
+    // const optionListDispatch = document.querySelector('.select-menu:nth-child(3) .option-list');
+    // const optionsDispatch = optionListApproval.querySelectorAll('.option');
+    // const selectedOptionDispatch = document.getElementById('selected-option3');
 
     // 배차 상태 드롭다운 관련
-    const selectDispatch = document.querySelector('.select-menu:nth-child(3) .select');
-    const optionListDispatch = document.querySelector('.select-menu:nth-child(3) .option-list');
+    const selectDispatch = document.querySelector('.select-menu .select3');
+    const optionListDispatch = document.querySelector('.select-menu .option-list3');
     const optionsDispatch = optionListApproval.querySelectorAll('.option');
     const selectedOptionDispatch = document.getElementById('selected-option3');
+
 
 
     // 드롭다운 열고 닫기 기능 (승인 상태)
@@ -95,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
 // 달력 추가
 const myDateRangePickerCustomRanges = document.getElementById('myDateRangePickerCustomRanges')
 if (myDateRangePickerCustomRanges) {
@@ -156,3 +165,31 @@ document.getElementById('submit').addEventListener('click', function() {
         alert('모든 날짜를 입력하세요.');
     }
 });
+
+
+
+// const fetchOutboundData = (id, status) => {
+//     axios.get(`/api/outbound`, {
+//         params: {
+//             id: id,
+//             status: status
+//         }
+//     })
+//         .then(response => {
+//             console.log(response.data);
+//         })
+//         .catch(error => {
+//             console.error("There was an error!", error);
+//         });
+// };
+//
+// // Example: 상태에 따른 버튼 클릭
+// document.getElementById("approvedBtn").addEventListener("click", () => {
+//     fetchOutboundData(1, 'APPROVED');
+// });
+// document.getElementById("pendingBtn").addEventListener("click", () => {
+//     fetchOutboundData(1, 'PENDING');
+// });
+// document.getElementById("rejectedBtn").addEventListener("click", () => {
+//     fetchOutboundData(1, 'REJECTED');
+// });
