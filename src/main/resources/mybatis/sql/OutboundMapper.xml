@@ -106,13 +106,13 @@
         User u ON u.id = o.user_id
 
         <where>
-        <if test="warehouseName != null">
+        <if test="warehouseName != null and !requestDTO.name.equals(' ')">
             AND w.name = #{warehouseName}
         </if>
-        <if test="approvalStatus != null">
+        <if test="approvalStatus != null and !requestDTO.name.equals(' ')">
             AND oa.status = #{approvalStatus}
         </if>
-        <if test="startDate != null and endDate != null">
+        <if test="startDate != null and endDate != null and !requestDTO.name.equals(' ')">
             AND o.created_at BETWEEN #{startDate} AND #{endDate}
         </if>
         </where>
