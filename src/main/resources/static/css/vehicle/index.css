@@ -60,21 +60,33 @@
     margin: 10px;
 }
 
-.select-menu {
+.select-menu1 {
     color: #50565C;
     font-size: 18px;
     width: 250px;
-    max-width: calc(100% / 3);
     cursor: pointer;
     position: relative;
     gap: 10px; /* 추가: 요소 간의 간격 */
 
 }
-
-.select-menu span {
-    font-family: 'NanumSquare-Bold', sans-serif;
+.select-menu2 {
     color: #50565C;
     font-size: 18px;
+    max-width: 250px;
+    cursor: pointer;
+    position: relative;
+    gap: 10px; /* 추가: 요소 간의 간격 */
+    margin: 15px 0 0 ;
+    margin-left: auto; /* Positions the box to the right */
+    width: auto;
+
+
+}
+
+
+.select-menu1 span,
+.select-menu2 span{
+    font-family: 'NanumSquare-Bold', sans-serif;
 }
 
 .select {
@@ -88,6 +100,20 @@
     justify-content: space-between;
     box-sizing: border-box;
 }
+
+.select2 {
+    background-color: #FFFFFF;
+    border: 1px solid #8D9DEF;
+    border-radius: 10px;
+    padding: 5px 15px;
+    height: 35px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+
 
 .option-list {
     position: absolute;
