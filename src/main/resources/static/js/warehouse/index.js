@@ -1,124 +1,174 @@
-document.addEventListener('DOMContentLoaded', function() {
-    //
-    // var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    //
-    // console.log(
-    //     kakao
-    // )
-    // console.log(container);
-    // var options = { //지도를 생성할 때 필요한 기본 옵션
-    //     center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-    //     level: 3 //지도의 레벨(확대, 축소 정도)
-    // };
-    //
-    // console.log(options);
-    //
-    // var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-    // console.log(map);
-    //
-    //
-});
+document.addEventListener("DOMContentLoaded", () => {
+    var positions = [];
 
-var mapContainer = document.getElementById('map1'), // 지도를 표시할 div
-    mapOption = {
-        center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
-    };
+    window.request = async function(page) {
+        const response = await fetch(`/api/warehouse?page=${page}`);
+        const jsonData = await response.json();
 
-//지도를 미리 생성
-var map = new daum.maps.Map(mapContainer, mapOption);
+        console.log(jsonData);
 
-console.log(map);
-//주소-좌표 변환 객체를 생성
+        const tableBody = document.getElementById("warehouseTableBody");
+        tableBody.innerHTML = "";
 
-var geocoder = new daum.maps.services.Geocoder();
-//마커를 미리 생성
-var marker = new daum.maps.Marker({
-    position: new daum.maps.LatLng(37.537187, 127.005476),
-    map: map
-});
+        // jsonData.pages.content에서 데이터를 가져옴
+        const warehouses = jsonData.pages.content;
 
-function sample5_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var addr = data.address; // 최종 주소 변수
+        console.log(warehouses);
 
-            // 주소 정보를 해당 필드에 넣는다.
-            document.getElementById("sample5_address").value = addr;
-            // 주소로 상세 정보를 검색
-            geocoder.addressSearch(data.address, function(results, status) {
-                // 정상적으로 검색이 완료됐으면
-                if (status === daum.maps.services.Status.OK) {
+        // 각 창고 정보를 테이블에 추가
+        warehouses.forEach(warehouse => {
+            positions.push({
+                title: warehouse.name,
+                latlng: new kakao.maps.LatLng(warehouse.latitude, warehouse.longitude)
+            })
 
-                    var result = results[0]; //첫번째 결과의 값을 활용
+            const row = document.createElement("tr");
 
-                    // 해당 주소에 대한 좌표를 받아서
-                    var coords = new daum.maps.LatLng(result.y, result.x);
+            row.innerHTML = `
+            <th scope="row">
+                <a href="/warehouse/detail/${warehouse.id}">
+                    ${warehouse.id}</th>
+                </a>
+            <td>
+                ${warehouse.name}
+            </td>
+            <td>${warehouse.size}</td>
+            <td>${warehouse.capacity}</td>
+            <td>${warehouse.address}</td>
+            <td>${new Date(warehouse.createdAt).toLocaleDateString()}</td>
+        `;
 
-                    document.getElementById('latitude').value = result.x;
-                    document.getElementById('longitude').value = result.y;
+            tableBody.appendChild(row);
+        });
 
-                    // 지도를 보여준다.
-                    mapContainer.style.display = "block";
-                    map.relayout();
-                    // 지도 중심을 변경한다.
-                    map.setCenter(coords);
-                    // 마커를 결과값으로 받은 위치로 옮긴다.
-                    marker.setPosition(coords)
-                }
-            });
+        const paginationUl = document.querySelector(".pagination");
+        paginationUl.innerHTML = "";
+
+        let pagination = jsonData.pages;
+
+        console.log(pagination.totalPages);
+
+        let end = Math.ceil(pagination.number <= 0 ? 1 : pagination.number / 10.0) * 10;
+        console.log(end);
+
+        end = end > pagination.totalPages ? pagination.totalPages : end;
+
+        let start = end - 9;
+        start = start <= 0 ? 1 : start;
+
+        console.log("start " + start);
+        console.log("end " + end);
+
+        // "이전" 버튼
+        let prevLi = document.createElement("li");
+        prevLi.classList.add("page-item");
+        if (pagination.number === 0) {
+            prevLi.classList.add("disabled");
         }
-    }).open();
-}
+        let prevA = document.createElement("a");
+        prevA.classList.add("page-link");
+        prevA.innerHTML = "Previous";
+        prevA.onclick = function(event) {
+            event.preventDefault();
+            if (pagination.number > 0) {
+                request(pagination.number - 1);
+            }
+        };
+        prevLi.appendChild(prevA);
+        paginationUl.appendChild(prevLi);
 
-document.getElementById('registerBtn').addEventListener('click', function() {
-    const name = document.getElementById('title').value;
-    const size = document.getElementById('size').value;
-    const capacity = document.getElementById('capacity').value;
-    const address = document.getElementById('sample5_address').value;
-    const longitude = document.getElementById('longitude').value;
-    const latitude = document.getElementById('latitude').value;
+        for (let i = start; i <= end; i++) {
+            let li = document.createElement("li")
+            li.classList.add("page-item");
 
-    console.log(longitude);
-    console.log(latitude);
+            if (i - 1 === pagination.number) {
+                li.classList.add("disabled"); // 현재 페이지 비활성화
+            }
 
-    // 데이터 유효성 검사
-    if (!name || !size || !capacity || !address) {
-        alert("모든 필드를 입력해 주세요.");
-        return;
+            let a = document.createElement("a");
+            a.classList.add("page-link")
+            a.setAttribute("onclick", `request(${i - 1})`);
+            a.innerHTML = i;
+
+            li.appendChild(a);
+            paginationUl.appendChild(li);
+        }
+
+        // 페이지 번호 생성
+        // for (let i = start; i <= end; i++) {
+        //     let li = document.createElement("li");
+        //     li.classList.add("page-item");
+        //     if (i - 1 === pagination.number) {
+        //         li.classList.add("disabled"); // 현재 페이지 비활성화
+        //     }
+        //     let a = document.createElement("a");
+        //     a.classList.add("page-link");
+        //     a.setAttribute("href", "#"); // Prevent default link behavior
+        //     a.innerHTML = i;
+        //
+        //     // 클릭 시 데이터 로드
+        //     a.addEventListener("click", (event) => {
+        //         event.preventDefault(); // 기본 링크 동작 방지
+        //         request(i - 1); // 페이지 번호로 데이터 요청
+        //     });
+        //
+        //     li.appendChild(a);
+        //     paginationUl.appendChild(li);
+        // }
+
+        // "다음" 버튼
+        let nextLi = document.createElement("li");
+        nextLi.classList.add("page-item");
+        if (pagination.number === pagination.totalPages - 1) {
+            nextLi.classList.add("disabled");
+        }
+        let nextA = document.createElement("a");
+        nextA.classList.add("page-link");
+        nextA.innerHTML = "Next";
+        nextA.onclick = function(event) {
+            event.preventDefault();
+            if (pagination.number < pagination.totalPages - 1) {
+                request(pagination.number + 1);
+            }
+        };
+        nextLi.appendChild(nextA);
+        paginationUl.appendChild(nextLi);
+
+        // 중간 데이터의 위도 및 경도 얻기
+        const midIndex = Math.floor(warehouses.length / 2);
+        const midWarehouse = warehouses[midIndex];
+
+        var markerMapContainer = document.querySelector('.map'), // 지도를 표시할 div
+            markerMapOption = {
+                center: new kakao.maps.LatLng(midWarehouse.latitude, midWarehouse.longitude), // 지도의 중심좌표
+                level: 14 // 지도의 확대 레벨
+            };
+
+        var markerMap = new kakao.maps.Map(markerMapContainer, markerMapOption); // 지도를 생성합니다
+
+
+        // 마커 이미지의 이미지 주소입니다
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+        for (var i = 0; i < positions.length; i ++) {
+
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(24, 35);
+
+            // 마커 이미지를 생성합니다
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: markerMap, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image : markerImage // 마커 이미지
+            });
+
+            marker.setMap(markerMap);
+        }
     }
 
-    const data = {
-        adminId: 1,
-        name: name,
-        size: parseInt(size),
-        capacity: parseInt(capacity),
-        latitude: longitude,
-        longitude: latitude,
-        address: address
-    };
-
-    fetch('/api/warehouse', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('등록 실패');
-        })
-        .then(data => {
-            alert(data.msg); // 성공 메시지 처리
-            const modalElement = document.getElementById('exampleModal');
-            const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-            modal.hide(); // 모달 닫기
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('등록 중 오류가 발생했습니다.');
-        });
-});
+    request(0);
+})

@@ -10,8 +10,13 @@
         <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="selectAll" resultType="Warehouse">
-        SELECT * FROM warehouse
+    <select id="selectAll" parameterType="map" resultMap="warehouseResultMap">
+        SELECT * FROM warehouse ORDER BY id DESC LIMIT #{offset} , #{pageSize}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(id)
+        FROM warehouse
     </select>
     
     <insert id="insert">
