@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.UserMapper">
 
-    <select id="findAll" resultType="User">
-        SELECT *
-        FROM User
-    </select>
+  <select id="getUserCnt" resultType="int">
+    SELECT COUNT(id)
+    FROM User
+  </select>
+
+  <select id="findAll" parameterType="PageRequestDTO" resultType="User">
+    SELECT id
+    , name
+    , company_name AS companyName
+    , email
+    , business_number AS businessNumber
+    , phone
+    , is_unregister AS isUnregister
+    FROM User
+    <if test="orderBy != null and !orderBy.equals('')">
+      ORDER BY #{orderBy} #{orderByDir}
+    </if>
+    LIMIT #{size} OFFSET #{offset}
+  </select>
+
+  <select id="findById" parameterType="int" resultType="User">
+    SELECT id
+         , name
+         , username
+         , email
+         , phone
+         , business_number AS businessNumber
+         , company_name    AS companyName
+         , zip_code        AS zipCode
+         , address
+         , comment
+         , is_unregister   AS isUnregister
+         , created_at      AS createdAt
+         , updated_at      AS updatedAt
+         , unregistered_at AS unregisteredAt
+    FROM User
+    WHERE id = #{id}
+  </select>
+
+  <select id="getApprovalCnt" parameterType="int" resultType="int">
+    SELECT COUNT(id)
+    FROM UserApproval
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="findApprovalByUserId" parameterType="int" resultType="UserApprovalResponseDTO">
+    SELECT status
+         , rejection_reason AS rejectionReason
+         , created_at      AS createdAt
+    FROM UserApproval
+    WHERE user_id = #{userId}
+  </select>
 
 </mapper>
