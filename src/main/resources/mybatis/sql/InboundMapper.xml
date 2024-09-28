@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.InboundMapper">
+  
+  <select id="findAll" resultType="InboundResponseDTO">
+    SELECT i.id
+         , i.user_id       AS userId
+         , u.name          AS userName
+         , p.id            AS productId
+         , p.name          AS productName
+         , i.expected_date AS expectedDate
+         , i.quantity
+         , ia.status
+         , i.created_at    AS createdAt
+         , ia.created_at   AS approvedAt
+    FROM Inbound i
+           JOIN User u ON u.id = i.user_id
+           JOIN Product p ON p.id = i.product_id
+           JOIN InboundApproval ia ON ia.inbound_id = i.id
+           JOIN (SELECT MAX(created_at) AS createdAt
+                      , inbound_id
+                 FROM InboundApproval
+                 GROUP BY inbound_id) maxCrt ON maxCrt.inbound_id = ia.inbound_id AND maxCrt.createdAt = ia.created_at;
+  </select>
+</mapper>
