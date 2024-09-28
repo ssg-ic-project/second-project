@@ -17,6 +17,7 @@ public class InboundResponseDTO {
     private String userName;
     private int productId;
     private String productName;
+    private int cellId;
     private String expectedDate;
     private int quantity;
     private Status status;
