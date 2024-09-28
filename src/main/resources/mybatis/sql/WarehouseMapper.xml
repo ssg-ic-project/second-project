@@ -5,6 +5,7 @@
 <mapper namespace="com.ssg.secondproject.mapper.WarehouseMapper">
 
     <resultMap id="warehouseResultMap" type="Warehouse">
+        <result property="adminId" column="admin_id" jdbcType="INTEGER"/>
         <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
         <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -29,5 +30,14 @@
         SELECT * FROM warehouse where id = #{id}
     </select>
 
-
+    <update id="update" parameterType="Warehouse">
+        UPDATE warehouse SET  admin_id = #{adminId},
+                              name = #{name},
+                              size = #{size},
+                              capacity = #{capacity},
+                              latitude = #{latitude},
+                              longitude = #{longitude},
+                              address = #{address}
+            WHERE id = #{id}
+    </update>
 </mapper>

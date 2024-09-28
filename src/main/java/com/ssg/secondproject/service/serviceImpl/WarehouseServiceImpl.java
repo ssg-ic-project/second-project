@@ -18,12 +18,19 @@ public class WarehouseServiceImpl implements WarehouseService {
     private final WarehouseMapper warehouseMapper;
 
     @Override
-    public WarehouseDTO get(Integer id) {
+    public WarehouseDTO get(int id) {
         Warehouse warehouse = warehouseMapper.find(id);
 
         WarehouseDTO warehouseDTO = modelMapper.map(warehouse, WarehouseDTO.class);
 
         return warehouseDTO;
+    }
+
+    @Override
+    public void update(WarehouseDTO warehouseDTO) {
+        Warehouse warehouse = modelMapper.map(warehouseDTO, Warehouse.class);
+
+        warehouseMapper.update(warehouse);
     }
 
     @Override

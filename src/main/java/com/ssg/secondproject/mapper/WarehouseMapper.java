@@ -11,9 +11,9 @@ public interface WarehouseMapper {
 
     List<Warehouse> selectAll();
 
-    Warehouse find(Integer id);
+    Warehouse find(int id);
 
-    void delete(Integer id);
+    void delete(int id);
 
     void update(Warehouse warehouse);
 }
