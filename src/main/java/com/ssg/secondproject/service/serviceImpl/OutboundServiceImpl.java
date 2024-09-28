@@ -1,6 +1,7 @@
 package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.dto.PageInfoDTO;
+import com.ssg.secondproject.dto.request.OutboundRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -73,6 +74,13 @@ public class OutboundServiceImpl implements OutboundService {
                 .build();
 
         return pageResponseDTO;
+    }
+
+    @Override
+    public void modifyStatus(int id, String approvalStatus, Long rejectionReason) {
+        //OutboundRequestDTO outboundRequestDTO = OutboundRequestDTO.
+        //build 하고 outboundRequestDTO로 보내고 xml에서 outbound랑 join해서  approval-id 가지고 오기??
+        //outboundMapper.updateStatus();
     }
 
 }

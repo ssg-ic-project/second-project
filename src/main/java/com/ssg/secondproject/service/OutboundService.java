@@ -1,5 +1,6 @@
 package com.ssg.secondproject.service;
 
+import com.ssg.secondproject.dto.request.OutboundRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -17,4 +18,6 @@ public interface OutboundService {
     PageResponseDTO<OutboundResponseDTO> getByIdLog(int id);
 
     PageListResponseDTO<OutboundResponseDTO> getByUserInput(PageRequestDTO pageRequestDTO, String warehouseName, String approvalStatus, LocalDate startDate, LocalDate endDate);
+
+    void modifyStatus(int id, String approvalStatus, Long rejectionReason);
 }

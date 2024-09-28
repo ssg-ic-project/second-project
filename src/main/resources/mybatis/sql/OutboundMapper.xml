@@ -67,9 +67,6 @@
                 LEFT JOIN Inbound i ON o.product_id = i.product_id
         WHERE
             o.id = #{id}
-<!--        <if test="status != null">-->
-<!--            AND oa.status = #{status}-->
-<!--        </if>-->
     </select>
 
 
@@ -83,9 +80,6 @@
         WHERE
         o.id = #{id}
         LIMIT 5
-        <!-- <if test="status != null"> -->
-        <!--    AND oa.status = #{status} -->
-        <!-- </if> -->
     </select>
 
     <select id="findByUserInput" resultType="OutboundResponseDTO">
@@ -111,7 +105,7 @@
         LEFT JOIN
         User u ON u.id = o.user_id
 
-        WHERE 1=1
+        <where>
         <if test="warehouseName != null">
             AND w.name = #{warehouseName}
         </if>
@@ -121,5 +115,14 @@
         <if test="startDate != null and endDate != null">
             AND o.created_at BETWEEN #{startDate} AND #{endDate}
         </if>
+        </where>
     </select>
+
+    <insert id="insertOutboundApproval" parameterType="int">
+        select o.id, u.id,
+
+        INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
+        VALUES (#{outboundId}, #{approverId}, #{createdAt}, #{status}, #{rejectionReason})
+    </insert>
+
 </mapper>

@@ -59,21 +59,19 @@ public class OutboundRestController {
     }
 
     @GetMapping("/searchby")
-    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getUserInput (PageRequestDTO pageRequestDTO,
-                                                                                  @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getUserInput (PageRequestDTO pageRequestDTO, @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
                                                                                   @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate){
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getByUserInput(pageRequestDTO, warehouseName, approvalStatus, startDate, endDate);
         httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
     //출고 승인
-
-
-
+    @PutMapping("/approveStatus")
+    public void approveStatus(@RequestParam("id") int id, @RequestParam("status") String approvalStatus, @RequestParam("reason") Long rejectionReason){
+        outboundService.modifyStatus(id, approvalStatus, rejectionReason);
+    }
     //출고 완료 재고 log 추가
 
-
     //배차 등록
-
 
 }
