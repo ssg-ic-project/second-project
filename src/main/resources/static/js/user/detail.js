@@ -30,6 +30,7 @@ async function userDetail(userId) {
 
   document.getElementById("modifyCompanyName").value = user.companyName;
   document.getElementById("modicyBusinessNumber").value = user.businessNumber;
+  // let businessNumber = document.getElementById("modicyBusinessNumber").value;
 
   const tbody = document.querySelector("#approval-list tbody");
 

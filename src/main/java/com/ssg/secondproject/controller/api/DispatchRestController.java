@@ -4,6 +4,7 @@ package com.ssg.secondproject.controller.api;
 import com.ssg.secondproject.dto.response.DispatchResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
+import com.ssg.secondproject.service.DispatchService;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,11 +22,11 @@ import java.nio.charset.Charset;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/api/dispatch")
+@RequestMapping("/api/outbound")
 public class DispatchRestController {
 
 
-    private final OutboundService dispatchService;
+    private final DispatchService dispatchService;
 
     private HttpHeaders getHttpHeaders() {
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -34,11 +35,10 @@ public class DispatchRestController {
     }
 
 
-    //배차 등록
-    @GetMapping()
-    public ResponseEntity<PageResponseDTO<DispatchResponseDTO>> getDispatch(@RequestParam int status) {
-        PageResponseDTO<DispatchResponseDTO> data = dispatchService.getById(status);
-
+    //배차 등록. 배차 란을 누르면 Id 값이 파라미터로 전달되어야 한다.
+    @GetMapping("/dispatch")
+    public ResponseEntity<PageResponseDTO<DispatchResponseDTO>> getDispatch(@RequestParam int id) {
+        PageResponseDTO<DispatchResponseDTO> data = dispatchService.getById(id);
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
 }

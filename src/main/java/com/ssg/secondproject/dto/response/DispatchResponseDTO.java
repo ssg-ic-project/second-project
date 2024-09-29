@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DispatchResponseDTO {
-    private
+
+    private String status;
+    private int vehicleId;
+    private String vehicleType;
+    private double allocation;
 
 }

@@ -4,10 +4,22 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.DispatchMapper">
 
-    <select id="findState" resultType="DispatchResponseDTO">
---         해당 출고 요청서가 배차 완료되었다면 찾아서 아직 PENDING상태일 경우 값 보내주기 없을 경우 등록하기
+
+<!--   dispatch status일 경우 다른 처리.-->
+        <!-- Check if the DispatchApproval record exists and if the status is still PENDING -->
+    <select id="findById" resultType="DispatchResponseDTO">
+        SELECT da.status,
+               d.vehicle_id AS vehicleId,
+               v.type AS vehicleType,
+               v.allocation
+        FROM Dispatch d
+                 LEFT JOIN DispatchApproval da ON da.dispatch_id = d.id
+                 LEFT JOIN Vehicle v ON d.vehicle_id = v.id
+        WHERE da.id IS NOT NULL AND d.id = #{id}
+        ORDER BY d.created_at DESC
+            LIMIT 1
     </select>
 
 
 
-</mapper>>
+</mapper>
