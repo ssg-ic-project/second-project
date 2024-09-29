@@ -10,5 +10,4 @@
         FROM Outbound
         WHERE id = #{outboundId};
     </insert>
-
 </mapper>

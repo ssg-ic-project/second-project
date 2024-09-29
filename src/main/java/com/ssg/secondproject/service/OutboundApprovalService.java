@@ -8,6 +8,8 @@ public interface OutboundApprovalService {
     void approveOutbound(int id, OutboundApprovalRequestDTO requestDTO);
     void completeOutbound(int id, OutboundApprovalRequestDTO requestDTO);
 
+    void processDelivery(OutboundApprovalRequestDTO requestDTO);
+
     //다른 방법
 //    void modifyStatus(@Param("id") int id, OutboundRequestDTO outboundRequestDTO);
 

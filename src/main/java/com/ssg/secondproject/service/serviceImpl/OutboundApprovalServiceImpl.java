@@ -1,7 +1,9 @@
 package com.ssg.secondproject.service.serviceImpl;
 
+import com.ssg.secondproject.dto.request.DeliveryRequestDTO;
 import com.ssg.secondproject.dto.request.OutboundApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.StockLogRequestDTO;
+import com.ssg.secondproject.mapper.DeliveryMapper;
 import com.ssg.secondproject.mapper.OutboundApprovalMapper;
 import com.ssg.secondproject.mapper.StockMapper;
 import com.ssg.secondproject.service.OutboundApprovalService;
@@ -16,11 +18,17 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
 
     private final OutboundApprovalMapper outboundApprovalMapper;
     private final StockMapper stockMapper;
+    private final DeliveryMapper inDeliveryMapper;
 
     //출고 승인 후 insert
     @Override
     public void approveOutbound(int id, OutboundApprovalRequestDTO requestDTO) {
         outboundApprovalMapper.insertOutboundApproval(id, requestDTO);
+        //배송에 PENDING transaction처리 넣어주기
+        DeliveryRequestDTO deliveryRequestDTO = DeliveryRequestDTO.builder()
+                .outboundId(requestDTO.getOutboundId())
+                .build();
+        inDeliveryMapper.insertDeliveryStatus(deliveryRequestDTO);
     }
 
     @Transactional
@@ -32,6 +40,10 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
 
         //StockLog 테이블에 출고 내역 쌓기
         stockLog(requestDTO);
+
+        //배송 상태 IN_DELIVERY로 바꾸기
+        processDelivery(requestDTO);
+
     }
 
     //completeOutbound는 rollback과 상관없이 logging이 되어야 함
@@ -47,7 +59,10 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
                 .build();
         stockMapper.insertOutboundLog(stockLogRequestDTO);
     }
-
-
+    //delivery in_delivery status로 바꿔주기
+    public void processDelivery(OutboundApprovalRequestDTO requestDTO){
+        inDeliveryMapper.updateDeliveryStatus(requestDTO);
+        //PENDING -> IN_DELIVERY로는 update해주면 됨.
+    }
 
 }

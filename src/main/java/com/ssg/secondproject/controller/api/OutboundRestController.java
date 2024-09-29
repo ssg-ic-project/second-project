@@ -63,6 +63,4 @@ public class OutboundRestController {
         return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 
-
-
 }

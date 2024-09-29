@@ -18,4 +18,6 @@ public class OutboundApprovalRequestDTO {
 
     @Builder.Default
     private LocalDate createdAt = LocalDate.now();
-}
+
+    }
+
