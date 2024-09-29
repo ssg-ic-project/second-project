@@ -9,7 +9,7 @@ async function adminList() {
 
   const response = await fetch(`/api/admin/list?page=${page}&size=${size}&orderBy=${orderBy}&orderByDir=${orderByDir}&R=${R}&WH=${WH}&N=${N}`);
 
-  const jsonData = await response.json()
+  const jsonData = await response.json();
 
   const dataList = jsonData.dataList || [];
 

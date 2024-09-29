@@ -9,7 +9,7 @@ async function userList() {
 
   const response = await fetch(`/api/user/list?page=${page}&size=${size}&orderBy=${orderBy}&orderByDir=${orderByDir}&S=${S}&N=${N}&E=${E}`);
 
-  const jsonData = await response.json()
+  const jsonData = await response.json();
 
   const dataList = jsonData.dataList || [];
 
