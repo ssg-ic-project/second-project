@@ -36,6 +36,6 @@ public class StockHistoryRestController {
 
         log.info("Result = " + result);
 
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.ok().body(resultMap);
     }
 }
