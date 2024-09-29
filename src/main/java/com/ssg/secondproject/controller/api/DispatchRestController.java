@@ -34,7 +34,6 @@ public class DispatchRestController {
         return httpHeaders;
     }
 
-
     //배차 등록. 배차 란을 누르면 Id 값이 파라미터로 전달되어야 한다.
     @GetMapping("/dispatch")
     public ResponseEntity<PageResponseDTO<DispatchResponseDTO>> getDispatch(@RequestParam int id) {

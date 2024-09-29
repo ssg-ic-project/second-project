@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.OutboundApprovalMapper">
+<insert id="insertOutboundApproval" parameterType="OutboundApprovalRequestDTO">
+INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
+VALUES (#{requestDTO.outboundId}, #{approverId},  #{requestDTO.createdAt}, #{requestDTO.status}, #{requestDTO.rejectionReason})
+</insert>
+
+</mapper>

@@ -16,8 +16,8 @@
             p.name AS productName,
             o.quantity,
             u.company_name AS companyName,
-            o.is_dispatch,
-            o.is_invoice,
+            o.is_dispatch AS isDispatch,
+            o.is_invoice AS isInvoice,
             oa.status AS approvalStatus
         FROM
             Outbound o
@@ -26,7 +26,7 @@
                 LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id;
 </select>
 
-    <select id="findById" resultType="OutboundResponseDTO">
+    <select id="findById" resultType="OutboundDetailResponseDTO">
         SELECT
             o.id,
             o.quantity,
@@ -71,9 +71,9 @@
     </select>
 
 
-    <select id="findByIdLog" resultType="OutboundResponseDTO">
+    <select id="findByIdLog" resultType="ApprovalResponseDTO">
         SELECT
-        oa.status AS approvalStatus,
+        oa.status AS status,
         oa.rejection_reason AS rejectionReason,
         oa.created_at AS createdAt
         FROM Outbound o
@@ -89,8 +89,8 @@
         p.name AS productName,
         o.quantity,
         u.company_name AS companyName,
-        o.is_dispatch,
-        o.is_invoice,
+        o.is_dispatch AS isDispatch,
+        o.is_invoice AS isInvoice,
         oa.status AS approvalStatus
         FROM
         Outbound o
@@ -119,9 +119,5 @@
         </where>
     </select>
 
-    <insert id="updateStatus" parameterType="OutboundRequestDTO">
-        INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
-        VALUES (#{outboundId}, NULL,  NOW(), #{status}, #{rejectionReason})
-    </insert>
 
 </mapper>

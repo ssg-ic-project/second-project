@@ -8,10 +8,14 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OutboundRequestDTO {
+public class OutboundApprovalRequestDTO {
     private int outboundId;
     private String status;
-    private LocalDate createdAt = LocalDate.now();
-    private Long rejectionReason;
     private int approverId;
+
+    @Builder.Default
+    private String rejectionReason = "";
+
+    @Builder.Default
+    private LocalDate createdAt = LocalDate.now();
 }
