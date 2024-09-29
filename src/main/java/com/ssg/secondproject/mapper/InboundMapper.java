@@ -15,7 +15,5 @@ public interface InboundMapper {
 
     InboundDetailResponseDTO findById(int id);
 
-    List<ApprovalResponseDTO> findApprovalById(int inboundId);
-
 
 }

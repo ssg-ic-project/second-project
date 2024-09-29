@@ -2,9 +2,12 @@ package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.dto.request.InboundApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.StockLogRequestDTO;
+import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.mapper.InboundApprovalMapper;
 import com.ssg.secondproject.mapper.StockMapper;
 import com.ssg.secondproject.service.InboundApprovalService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,19 @@ public class InboundApprovalServiceImpl implements InboundApprovalService {
 
     private final InboundApprovalMapper inboundApprovalMapper;
     private final StockMapper stockMapper;
+
+
+    @Override
+    public PageListResponseDTO<ApprovalResponseDTO> getApprovalById(int inboundId) {
+        List<ApprovalResponseDTO> dtoList = inboundApprovalMapper.findApprovalById(inboundId);
+
+        PageListResponseDTO<ApprovalResponseDTO> pageListResponseDTO =
+            PageListResponseDTO.<ApprovalResponseDTO>builder()
+                .dataList(dtoList)
+                .build();
+
+        return pageListResponseDTO;
+    }
 
     @Override
     public void createApprovalStatus(int approverId, InboundApprovalRequestDTO requestDTO) {
