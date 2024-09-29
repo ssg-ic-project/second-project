@@ -50,6 +50,7 @@
             p.category_id AS productCategoryId,
 
             o.user_id AS userId,
+            o.user_name AS userName,
             u.business_number AS userBusinessNumber,
             u.company_name AS companyName,
             u.email AS userEmail,

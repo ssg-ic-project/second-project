@@ -31,6 +31,7 @@ public class OutboundResponseDTO { //출고 요청서 상세 페이지 포함
     private double productDepth;
     private int productCategoryId;
     private int userId;
+    private String userName;
     private String companyName;
     private String userBusinessNumber;
     private String userEmail;

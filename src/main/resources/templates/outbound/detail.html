@@ -9,131 +9,267 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/outbound/detail.css">
-  <script defer src="/js/outbound/detail.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-  <title>Outbound Detail</title>
+  <link rel="stylesheet" href="/css/common/table.css">
+  <title>Inbound Detail</title>
+  <script src="/js/outbound/detail.js"></script>
+  <script defer th:inline="javascript">
+    const outboundId = [[${id}]];
+    getOutboundDetails(outboundId)
+  </script>
 </head>
 <body>
-<div layout:fragment="content" class="container">
-  <div class="page-info">
-    <h1 class="page-title">출고 상세 조회</h1>
-    <span class="page-subtitle">출고 관리 > 출고 조회 > 출고 상세 조회</span>
+<div layout:fragment="content" th:class="container">
+  <div th:class="page-info">
+    <h2 th:class="page-title">상세 조회</h2>
+    <span th:class="page-subtitle">출고 관리 > 출고 조회 > 상세 조회</span>
   </div>
-  <div class="detail-box">
-    <h3 class="title">상품 상세</h3>
-    <div class="product-info">
-      <p><strong>상품 ID:</strong><span id="product-id">12345</span></p>
-      <p><strong>상품 이름:</strong><span id="product-name">높이조절책상</span></p>
-      <p><strong>카테고리 ID:</strong><span id="category-id">C001</span></p>
-      <p><strong>상품 부피:</strong><span id="product-volume">1000cc</span></p>
+  <div class="action-btn1">
+    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#printInvoice">출고 지시서 출력
+    </button>
+  </div>
+    <div class="action-btn">
+    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#approveModal">승인
+    </button>
+    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#completeModal">완료
+    </button>
+    <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
+  </div>
+  <div th:class="info-box">
+    <h5 th:class="box-title">출고 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">ID</span>
+          <span th:id="id" th:text="${id}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">출고 예정일</span>
+          <span th:id="expectedDate" th:text="${expecteDate}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">출고 수량</span>
+          <span th:id="quantity" th:text="${quantity}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">최초 등록일</span>
+          <span th:id="createdAt" th:text="${createdAt}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">최종 수정일</span>
+          <span th:id="updatedAt" th:text="${updatedAt}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">요구사항</span>
+          <span th:id="remarks" th:text="${remarks}" th:class="detail-value"></span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="detail-box">
-    <h3 class="title">창고 상세</h3>
-    <div class="warehouse-info">
-      <p><strong>창고 ID:</strong><span id="warehouse-id">45</span></p>
-      <p><strong>창고 이름:</strong><span id="warehouse-name">골드 창고</span></p>
-      <p><strong>섹션 ID:</strong><span id="section-id">4</span>
-      <strong>셀 ID:</strong><span id="cell-id">6</span></p>
-      <p><strong>재고 현황:</strong><span id="stock-status">100개</span></p>
-      <p><strong>입고 예정일:</strong><span id="expected-date">2024-09-30</span></p>
-      <p><strong>입고 예정 수량:</strong><span id="expected-quantity">50개</span></p>
+  <div th:class="inbound-approval-box">
+    <h5 th:class="box-title">출고 승인 내역</h5>
+    <table id="approval-list">
+      <thead>
+      <tr>
+        <th>승인 상태</th>
+        <th>반려 사유</th>
+        <th>생성 시각</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div th:class="info-box">
+    <h5 th:class="box-title">창고 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">창고 ID</span>
+          <span th:id="warehouseId" th:text="${warehouseId}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">창고명</span>
+          <span th:id="warehouseName" th:text="${warehouseName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">섹션/셀 ID</span>
+          <span th:id="sectionCellId" th:text="${sectionCellId}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">재고</span>
+          <span th:id="stockQuantity" th:text="${stockQuantity}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">입고예정일</span>
+          <span th:id="inboundExpectedDate" th:text="${inboundExpectedDate}" th:class="detail-value"></span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="detail-box">
-    <h3 class="title">고객 상세</h3>
-    <div class="customer-info">
-      <p><strong>고객 ID:</strong><span id="customer-id">82932</span></p>
-      <p><strong>이름:</strong><span id="customer-name">신세계</span></p>
-      <p><strong>이메일:</strong><span id="customer-email">ssg@gmail.com</span></p>
-      <p><strong>전화번호:</strong><span id="customer-phone">010-1234-5678</span></p>
-      <p><strong>사업장 주소:</strong><span id="customer-address">서울특별시 중구 남대문시장10길 2, 메사빌딩 21층</span></p>
+  <div th:class="info-box">
+    <h5 th:class="box-title">상품 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품 ID</span>
+          <span th:id="productId" th:text="${productId}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품명</span>
+          <span th:id="productName" th:text="${productName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">카테고리</span>
+          <span th:id="categoryId" th:text="${categoryId}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">상품 부피</span>
+          <span th:id="productVolume" th:text="${productVolume}" th:class="detail-value"></span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="detail-box">
-    <h3 class="title">요청서 상세</h3>
-    <div class="request-info">
-      <p><strong>출고 요청 날짜:</strong><span id="request-date">2024-09-22</span></p>
-      <p><strong>출고 요청 수량:</strong><span id="request-quantity">100개</span></p>
-      <p><strong>요청 사항:</strong><span id="request-notes">없음</span></p>
-      <p><strong>배차 등록 여부:</strong><span id="dispatch-registered">예</span></p>
-      <p><strong>운송장 등록 여부:</strong><span id="invoice-registered">아니오</span></p>
-      <p><strong>최초 등록 시각:</strong><span id="created-time">2024-09-21 14:00</span></p>
-      <p><strong>최종 수정 시각:</strong><span id="modified-time">2024-09-22 10:00</span></p>
+  <div th:class="info-box">
+    <h5 th:class="box-title">회원 정보</h5>
+    <div th:class="info-details">
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">회원 ID</span>
+          <span th:id="userId" th:text="${userId}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">회원 이름</span>
+          <span th:id="userName" th:text="${userName}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">상호명</span>
+          <span th:id="companyName" th:text="${companyName}" th:class="detail-value"></span>
+        </div>
+      </div>
+      <div th:class="detail-group">
+        <div th:class="detail-item">
+          <span th:class="detail-label">이메일</span>
+          <span th:id="userEmail" th:text="${userEmail}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">전화번호</span>
+          <span th:id="userPhone" th:text="${userPhone}" th:class="detail-value"></span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 출고 지시서 버튼 -->
-  <div class="outbound-print-btn">
-  <button class="print-btn" data-bs-toggle="modal" data-bs-target="#print">출고 지시서 출력</button>
-  </div>
-  <!-- 모달 구조 -->
-  <div class="modal fade" id="printModal" tabindex="-1" aria-labelledby="printModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div id="printInvoice" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="printModalLabel">출고 지시서</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title">출고 지시서 출력</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>출고 지시서 내용</p>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-          <button type="button" class="btn btn-primary">출력</button>
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">출력</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="approveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">출고 승인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          출고 승인 요청을 처리하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="completeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">출고 완료</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          출고 승인 완료를 처리하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">완료</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="rejectModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">출고 반려</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="rejection-reason" class="col-form-label">반려 사유를 입력해 주세요.</label>
+          <textarea class="form-control" id="rejection-reason" rows="3" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">반려</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="modifyModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">출고 정보 수정</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          출고 정보를 수정하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action">수정</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 </body>
-
-<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
-<!--<script src="/js/outbound/detail.js"></script>-->
-
-<!--<head>-->
-<!--  <script type="text/javascript">-->
-
-<!--    const errors = [[${errors}]];-->
-<!--    console.log(errors);-->
-
-<!--    let errorMsg = '';-->
-
-<!--    if (errors && errors.length > 0) {-->
-<!--      for (let i = 0; i < errors.length; i++) {-->
-<!--        errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`;-->
-<!--      }-->
-<!--      alert(errorMsg);-->
-<!--    }-->
-
-<!--    //<![CDATA[-->
-<!--    var id = /*[[${id}]]*/ '';-->
-<!--    // var status = /*[[${status}]]*/ '';-->
-<!--    // //]]>-->
-
-<!--    // Axios를 사용하여 API 호출하기-->
-<!--      async function getOutboundDetails(id) {-->
-<!--        if (id) {-->
-<!--          try {-->
-<!--            const response = await axios.get(`/api/outbound?id=${id}`);-->
-<!--            console.log('Response:', response.data);-->
-<!--            // Update the UI based on the received data (e.g., display details in a table or section)-->
-<!--            displayOutboundDetails(response.data); // Call a function to handle UI updates-->
-<!--          } catch (error) {-->
-<!--            console.error('Error:', error);-->
-<!--            alert('Failed to load outbound details. Please try again.');-->
-<!--          }-->
-<!--        } else {-->
-<!--          console.error('ID 값이 없습니다.');-->
-<!--        }-->
-<!--      };-->
-
-<!--//이 부분에 각 출고ID마다 a tag 사용해서 details.js에 있는 getOutboundDetails()-->
-<!--    //호출해서 결과 값 보여주기.-->
-<!--    //출고 상세 페이지에 있는 승인 내역 보기도 같이 호출하기-->
-
-<!--  </script>-->
-<!--</head>-->
 </html>
