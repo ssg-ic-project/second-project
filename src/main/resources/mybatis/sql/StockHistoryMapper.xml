@@ -8,16 +8,12 @@
         <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-<!--    <select id="selectAll" parameterType="map" resultMap="stockHistoryResultMap">-->
-<!--        SELECT * FROM stockhistory ORDER BY id DESC LIMIT #{offset} , #{pageSize}-->
-<!--    </select>-->
-
-    <select id="selectAll" resultMap="stockHistoryResultMap">
-        SELECT * FROM stockhistory ORDER BY id DESC
+    <select id="selectAll" parameterType="map" resultMap="stockHistoryResultMap">
+        SELECT * FROM stockhistory ORDER BY id DESC LIMIT #{offset} , #{pageSize}
     </select>
 
     <select id="count" resultType="int">
         SELECT COUNT(id)
-        FROM warehouse
+        FROM stockhistory
     </select>
 </mapper>
