@@ -4,6 +4,7 @@ import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
+import com.ssg.secondproject.dto.response.UserResponseDTO;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -65,12 +66,14 @@ public class OutboundRestController {
     }
 
     //출고 승인
-    @PutMapping("/approveStatus")
-    public void approveStatus(@RequestParam("id") int id, @RequestParam("status") String approvalStatus, @RequestParam("reason") Long rejectionReason) {
+    //security 써서 사용자 아이디 가지고 올 수 있음.
+    @PostMapping("/approveStatus")
+    public void approveStatus(@RequestParam("id") int id, @RequestParam("status") String approvalStatus, @RequestParam(value = "reason", required = false) Long rejectionReason) {
         outboundService.modifyStatus(id, approvalStatus, rejectionReason);
     }
-    //출고 완료 재고 log 추가
 
-    //배차 등록
+    //출고 완료 재고 log 추가
+    //trigger로 넣기
+
 
 }

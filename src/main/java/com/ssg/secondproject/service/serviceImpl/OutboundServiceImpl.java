@@ -6,6 +6,7 @@ import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.OutboundResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
+import com.ssg.secondproject.dto.response.UserResponseDTO;
 import com.ssg.secondproject.mapper.OutboundMapper;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
@@ -78,14 +79,15 @@ public class OutboundServiceImpl implements OutboundService {
     }
 
     @Override
-    public void modifyStatus(int id, String approvalStatus, Long rejectionReason) {
-        //OutboundRequestDTO outboundRequestDTO = OutboundRequestDTO.
-        //build 하고 outboundRequestDTO로 보내고 xml에서 outbound랑 join해서  approval-id 가지고 오기??
-        //outboundMapper.updateStatus();
+    public void modifyStatus(int id, String approvalStatus, Long rejectionReason ) {
+        OutboundRequestDTO outboundRequestDTO = OutboundRequestDTO.builder()
+                .outboundId(id)
+                .status(approvalStatus)
+                .rejectionReason(rejectionReason)
+                .build();
+
+        outboundMapper.updateStatus(outboundRequestDTO);
     }
 
-    @Override
-    public void modifyStatus(int id, OutboundRequestDTO outboundRequestDTO) {
-    }
 
 }

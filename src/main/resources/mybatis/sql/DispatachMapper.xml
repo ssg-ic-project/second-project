@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.DispatchMapper">
+
+    <select id="findState" resultType="DispatchResponseDTO">
+--         해당 출고 요청서가 배차 완료되었다면 찾아서 아직 PENDING상태일 경우 값 보내주기 없을 경우 등록하기
+    </select>
+
+
+
+</mapper>>

@@ -9,9 +9,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutboundRequestDTO {
-    private int id;
     private int outboundId;
     private String status;
     private LocalDate createdAt = LocalDate.now();
-    private Long rejectReason;
+    private Long rejectionReason;
+    private int approverId;
 }

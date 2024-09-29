@@ -2,9 +2,7 @@ package com.ssg.secondproject.service;
 
 import com.ssg.secondproject.dto.request.OutboundRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
-import com.ssg.secondproject.dto.response.OutboundResponseDTO;
-import com.ssg.secondproject.dto.response.PageListResponseDTO;
-import com.ssg.secondproject.dto.response.PageResponseDTO;
+import com.ssg.secondproject.dto.response.*;
 import org.apache.ibatis.annotations.Param;
 
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -24,5 +22,8 @@ public interface OutboundService {
 
     void modifyStatus(int id, String approvalStatus, Long rejectionReason);
 
-    void modifyStatus(@Param("id") int id, OutboundRequestDTO outboundRequestDTO);
+    //다른 방법
+//    void modifyStatus(@Param("id") int id, OutboundRequestDTO outboundRequestDTO);
+
+
 }
