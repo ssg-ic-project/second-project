@@ -26,7 +26,6 @@
   <select id="findAll" resultType="AdminResponseDTO">
     SELECT a.id
          , a.name
-         , a.username
          , a.company_email AS companyEmail
          , w.name  AS warehouseName
          , a.role
