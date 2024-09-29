@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // 상세보기 버튼 생성
             const detailButton = document.createElement("button");
+            detailButton.setAttribute("type", "button");
+            detailButton.setAttribute("data-bs-toggle", "modal");
+            detailButton.setAttribute("data-bs-target", "#exampleModal");
+
             detailButton.className = "btn btn-info";
             detailButton.textContent = "상세보기";
             // detailButton.onclick = () => showStockDetails(stock);

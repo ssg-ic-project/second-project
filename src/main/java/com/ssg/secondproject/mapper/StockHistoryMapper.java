@@ -10,6 +10,5 @@ import java.util.Map;
 public interface StockHistoryMapper {
 
     List<Map<String, Object>> selectAll(Map<String, Object> paramMap);
-
     int count();
 }
