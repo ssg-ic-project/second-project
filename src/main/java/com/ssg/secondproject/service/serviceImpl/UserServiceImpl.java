@@ -29,10 +29,7 @@ public class UserServiceImpl implements UserService {
     public PageListResponseDTO<UserResponseDTO> getList(PageRequestDTO pageRequestDTO) {
         int total = userMapper.getUserCnt(pageRequestDTO);
 
-        List<User> voList = userMapper.findAll(pageRequestDTO);
-        List<UserResponseDTO> dtoList = voList.stream()
-            .map(vo -> modelMapper.map(vo, UserResponseDTO.class))
-            .collect(Collectors.toList());
+        List<UserResponseDTO> dtoList = userMapper.findAll(pageRequestDTO);
 
         PageInfoDTO pageInfoDTO =
             PageInfoDTO.withAll()

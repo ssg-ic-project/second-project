@@ -43,7 +43,7 @@ public class UserRestController {
     }
 
     @GetMapping()
-    public ResponseEntity<PageResponseDTO<UserResponseDTO>> getAdmin(@RequestParam int id) {
+    public ResponseEntity<PageResponseDTO<UserResponseDTO>> getById(@RequestParam int id) {
         PageResponseDTO<UserResponseDTO> data = userService.getById(id);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);

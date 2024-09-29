@@ -30,14 +30,16 @@
                  FROM InboundApproval
                  GROUP BY inbound_id) maxCrt ON maxCrt.inbound_id = ia.inbound_id AND maxCrt.createdAt = ia.created_at
     <where>
-      <if test="search.S != null and !search.S.equals('')">
-        AND ia.status = #{search.S}
-      </if>
-      <if test="search.WH != null and !search.WH.equals('') and search.WH != 0">
-        AND wsc.warehouseId = #{search.WH}
-      </if>
-      <if test="search.SD != null and !search.SD.equals('') and search.ED != null and !search.ED.equals('')">
-        AND i.expected_date BETWEEN #{search.SD} AND #{search.ED}
+      <if test="search != null">
+        <if test="search.S != null and !search.S.equals('')">
+          AND ia.status = #{search.S}
+        </if>
+        <if test="search.WH != null and !search.WH.equals('') and search.WH != 0">
+          AND wsc.warehouseId = #{search.WH}
+        </if>
+        <if test="search.SD != null and !search.SD.equals('') and search.ED != null and !search.ED.equals('')">
+          AND i.expected_date BETWEEN #{search.SD} AND #{search.ED}
+        </if>
       </if>
     </where>
     <if test="orderBy != null and !orderBy.equals('')">

@@ -1,5 +1,6 @@
 package com.ssg.secondproject.dto.response;
 
+import com.ssg.secondproject.common.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class UserResponseDTO {
     private String phone;
     private String businessNumber;
     private String companyName;
+    private Status status;
     private String zipCode;
     private String address;
     private String comment;
