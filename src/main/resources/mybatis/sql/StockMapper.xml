@@ -9,11 +9,4 @@
     FROM Inbound
     WHERE id = #{inboundId};
   </insert>
-
-  <insert id="insertOutboundLog" parameterType="StockLogRequestDTO">
-    INSERT INTO StockLog (outbound_id, quantity, created_at)
-    SELECT #{outboundId}, quantity, #{createdAt}
-    FROM Outbound
-    WHERE id = #{outboundId};
-  </insert>
 </mapper>

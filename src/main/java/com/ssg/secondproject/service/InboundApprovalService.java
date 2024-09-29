@@ -6,4 +6,6 @@ public interface InboundApprovalService {
 
     void createApprovalStatus (int approverId, InboundApprovalRequestDTO requestDTO);
 
+    void processCompleteApproval(int approverId, InboundApprovalRequestDTO requestDTO);
+
 }
