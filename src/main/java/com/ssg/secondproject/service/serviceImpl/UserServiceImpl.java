@@ -1,6 +1,7 @@
 package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.domain.User;
+import com.ssg.secondproject.domain.UserApproval;
 import com.ssg.secondproject.dto.PageInfoDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -61,23 +62,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageListResponseDTO<ApprovalResponseDTO> getApprovalByUserId(int userId) {
-//        int total = userMapper.getApprovalCnt(userId);
+        List<UserApproval> voList = userMapper.findApprovalByUserId(userId);
 
-//        List<UserApproval> voList = userMapper.findApprovalByUserId(userId);
+        List<ApprovalResponseDTO> dtoList = voList.stream()
+            .map(vo -> modelMapper.map(vo, ApprovalResponseDTO.class))
+            .collect(Collectors.toList());
 
-//        List<UserApprovalResponseDTO> dtoList = userMapper.findApprovalByUserId(userId);
+        PageListResponseDTO<ApprovalResponseDTO> pageResponseDTO =
+            PageListResponseDTO.<ApprovalResponseDTO>builder()
+                .dataList(dtoList)
+                .build();
 
-//        PageInfoDTO pageInfoDTO =
-//            PageInfoDTO.withAll()
-//                .total(total)
-//                .build();
-
-//        PageListResponseDTO<UserApprovalResponseDTO> pageResponseDTO =
-//            PageListResponseDTO.builder()
-////                .pageInfoDTO(pageInfoDTO)
-//                .dataList(Collections.singletonList(dtoList))
-//                .build();
-
-        return null;
+        return pageResponseDTO;
     }
 }

@@ -49,7 +49,7 @@
     WHERE user_id = #{userId}
   </select>
 
-  <select id="findApprovalByUserId" parameterType="int" resultType="ApprovalResponseDTO">
+  <select id="findApprovalByUserId" parameterType="int" resultType="UserApproval">
     SELECT status
          , rejection_reason AS rejectionReason
          , created_at      AS createdAt
