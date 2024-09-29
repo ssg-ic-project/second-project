@@ -47,6 +47,13 @@ public class InboundServiceImpl implements InboundService {
 
     @Override
     public PageListResponseDTO<ApprovalResponseDTO> getApprovalById(int inboundId) {
-        return null;
+        List<ApprovalResponseDTO> dtoList = inboundMapper.findApprovalById(inboundId);
+
+        PageListResponseDTO<ApprovalResponseDTO> pageListResponseDTO =
+            PageListResponseDTO.<ApprovalResponseDTO>builder()
+                .dataList(dtoList)
+                .build();
+
+        return pageListResponseDTO;
     }
 }
