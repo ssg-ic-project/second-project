@@ -56,7 +56,7 @@
          , wsc.warehouseName
          , wsc.sectionName
          , wsc.cellName
-         , IFNULL(s.quantity, 0) AS stockQuantity
+         , IFNULL(sl.quantity, 0) AS stockQuantity
          , p.productId
          , p.productName
          , p.mainCategory
@@ -79,12 +79,12 @@
                  FROM Cell c
                         JOIN Section s ON s.id = c.section_id
                         JOIN Warehouse w ON w.id = s.warehouse_id) wsc ON cellId = i.cell_id
-           LEFT JOIN (SELECT SUM(s.quantity) AS quantity
-                           , s.inbound_id
+           LEFT JOIN (SELECT SUM(sl.quantity) AS quantity
+                           , sl.inbound_id
                       FROM Inbound i
-                             JOIN Stock s ON s.inbound_id = i.id
-                      WHERE s.type = 1
-                      GROUP BY s.inbound_id) s ON s.inbound_id = i.id
+                             JOIN StockLog sl ON sl.inbound_id = i.id
+                      WHERE sl.inbound_id IS NOT NULL
+                      GROUP BY sl.inbound_id) sl ON sl.inbound_id = i.id
            JOIN (SELECT p.id    AS productId
                       , p.name  AS productName
                       , c1.name AS mainCategory
