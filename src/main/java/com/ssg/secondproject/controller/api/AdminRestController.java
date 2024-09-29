@@ -42,20 +42,6 @@ public class AdminRestController {
     public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(
          @ModelAttribute PageRequestDTO pageRequestDTO) {
 
-//        SearchTypeDTO searchTypeDTO = SearchTypeDTO.builder()
-//            .R(R)
-//            .WH(WH)
-//            .N(N)
-//            .build();
-//
-//        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
-//            .page(page)
-//            .size(size)
-//            .orderBy(orderBy)
-//            .orderByDir(orderByDir)
-//            .search(searchTypeDTO)
-//            .build();
-
         PageListResponseDTO<AdminResponseDTO> data = adminService.getList(pageRequestDTO);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
