@@ -1,6 +1,7 @@
 package com.ssg.secondproject.controller.api;
 
 import com.ssg.secondproject.dto.request.PageRequestDTO;
+import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
@@ -44,6 +45,13 @@ public class UserRestController {
     @GetMapping()
     public ResponseEntity<PageResponseDTO<UserResponseDTO>> getAdmin(@RequestParam int id) {
         PageResponseDTO<UserResponseDTO> data = userService.getById(id);
+
+        return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping("/approval/list")
+    public ResponseEntity<PageListResponseDTO<ApprovalResponseDTO>> getApprovalByUserId(@RequestParam int userId) {
+        PageListResponseDTO<ApprovalResponseDTO> data = userService.getApprovalByUserId(userId);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
