@@ -53,8 +53,6 @@ public class InboundRestController {
             .search(searchTypeDTO)
             .build();
 
-        log.info(" 🎉🎉🎉🎉 Rest Inbound List 🎉🎉🎉🎉 ");
-        log.info(pageRequestDTO.toString());
         PageListResponseDTO<InboundResponseDTO> data = inboundService.getList(pageRequestDTO);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);

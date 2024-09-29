@@ -1,5 +1,6 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.SearchTypeDTO;
 import com.ssg.secondproject.dto.request.AdminRequestDTO;
 import com.ssg.secondproject.dto.request.AdminUpdateRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
@@ -37,7 +38,29 @@ public class AdminRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(PageRequestDTO pageRequestDTO, BindingResult bindingResult) {
+    public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(
+        @RequestParam int page,
+        @RequestParam int size,
+        @RequestParam String orderBy,
+        @RequestParam String orderByDir,
+        @RequestParam(required = false) String R,
+        @RequestParam(required = false) Integer WH,
+        @RequestParam(required = false) String N) {
+
+        SearchTypeDTO searchTypeDTO = SearchTypeDTO.builder()
+            .R(R)
+            .WH(WH)
+            .N(N)
+            .build();
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+            .page(page)
+            .size(size)
+            .orderBy(orderBy)
+            .orderByDir(orderByDir)
+            .search(searchTypeDTO)
+            .build();
+
         PageListResponseDTO<AdminResponseDTO> data =  adminService.getList(pageRequestDTO);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
