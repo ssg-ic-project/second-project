@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface StockMapper {
+public interface StockLogMapper {
 
     void insertInboundLog(StockLogRequestDTO requestDTO);
 
