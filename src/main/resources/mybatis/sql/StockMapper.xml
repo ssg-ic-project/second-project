@@ -33,6 +33,17 @@
 
     <select id="selectAll" parameterType="map" resultMap="stockResultMap">
         SELECT * FROM stock s join product p on s.product_id = p.id
+                <where>
+                    <if test="productName != null">
+                        p.name like concat('%', #{productName}, '%')
+                    </if>
+                    <if test="from != null">
+                        AND s.created_at <![CDATA[>=]]> #{from}
+                    </if>
+                    <if test="to != null">
+                        AND s.created_at <![CDATA[<=]]> #{to}
+                    </if>
+                </where>
                  ORDER BY s.id DESC LIMIT #{offset} , #{pageSize}
     </select>
 

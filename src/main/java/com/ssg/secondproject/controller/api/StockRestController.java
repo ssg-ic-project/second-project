@@ -12,6 +12,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +30,19 @@ public class StockRestController {
     @GetMapping("/list")
     public ResponseEntity<?> getList(@RequestParam Map<String, Object> paramMap, @PageableDefault Pageable pageable) {
         Map<String, Object> resultMap = new HashMap<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDateTime fromDate = LocalDate.parse(paramMap.get("from").toString(), formatter).atStartOfDay();
+        LocalDateTime toDate = LocalDate.parse(paramMap.get("to").toString(), formatter).atTime(LocalTime.MAX);;
+
+
+        log.info(fromDate);
+        log.info(toDate);
+
+        log.info("paramMap" + paramMap);
+
+        paramMap.put("from", fromDate);
+        paramMap.put("to", toDate);
 
         Page<Map<String, Object>> result = stockService.list(paramMap, pageable);
         resultMap.put("pages", result);
