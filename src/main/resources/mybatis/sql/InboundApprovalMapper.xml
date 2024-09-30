@@ -3,6 +3,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.InboundApprovalMapper">
+
+  <select id="findApprovalById" parameterType="int" resultType="ApprovalResponseDTO">
+    SELECT status
+         , rejection_reason AS rejectionReason
+         , created_at       AS createdAt
+    FROM InboundApproval
+    WHERE inbound_id = #{inboundId}
+  </select>
+
   <insert id="insert" parameterType="InboundApprovalRequestDTO">
     INSERT INTO InboundApproval (inbound_id, approver_id, status, rejection_reason, created_at)
     VALUES (#{requestDTO.inboundId}, #{approverId}, #{requestDTO.status}, #{requestDTO.rejectionReason}, #{requestDTO.createdAt})

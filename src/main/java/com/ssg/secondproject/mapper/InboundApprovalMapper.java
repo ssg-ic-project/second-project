@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface InboundApprovalMapper {
 
+    List<ApprovalResponseDTO> findApprovalById(int inboundId);
+
     void insert(@Param("approverId") int approverId, @Param("requestDTO") InboundApprovalRequestDTO requestDTO);
 
 }
