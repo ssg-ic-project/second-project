@@ -86,7 +86,8 @@
     <if test="requestDTO.phone != null and !requestDTO.phone.equals('')">
       phone = #{requestDTO.phone},
     </if>
-    updated_id = #{updatedId}
+    updated_id = #{updatedId},
+    updated_at = #{requestDTO.updatedAt}
     WHERE id = #{requestDTO.id}
   </update>
 
