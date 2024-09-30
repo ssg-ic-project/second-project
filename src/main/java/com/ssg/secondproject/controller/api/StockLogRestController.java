@@ -18,7 +18,7 @@ import java.util.Map;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/api/stockhistory")
+@RequestMapping("/api/stocklog")
 public class StockLogRestController {
 
     private final StockLogService stockHistoryService;

@@ -6,15 +6,33 @@
 
     <resultMap id="stockLogResultMap" type="StockLog">
         <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="selectAll" parameterType="map" resultMap="stockLogResultMap">
-        SELECT * FROM stockhistory ORDER BY id DESC LIMIT #{offset} , #{pageSize}
+        SELECT sl.*,
+               CASE
+                   WHEN sl.inbound_id IS NOT NULL THEN (
+                       SELECT i.quantity
+                       FROM Inbound i
+                       WHERE i.id = sl.inbound_id
+                   )
+                   WHEN sl.outbound_id IS NOT NULL THEN (
+                       SELECT o.quantity
+                       FROM Outbound o
+                       WHERE o.id = sl.outbound_id
+                   )
+                   ELSE NULL
+                   END AS quantity
+        FROM stocklog sl
+        WHERE stock_id = #{stock_id}
+        ORDER BY sl.id DESC
+            LIMIT #{offset}, #{pageSize}
     </select>
 
     <select id="count" resultType="int">
         SELECT COUNT(id)
-        FROM stockhistory
+        FROM stocklog
     </select>
 
 </mapper>

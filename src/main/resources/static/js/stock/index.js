@@ -9,8 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // jsonData.pages.content에서 데이터를 가져옴
         const stocks = jsonData.pages.content;
 
-        console.log(stocks);
-
         // 각 창고 정보를 테이블에 추가
         stocks.forEach(stock => {
             const row = document.createElement("tr");
@@ -42,24 +40,47 @@ document.addEventListener("DOMContentLoaded", () => {
                     }),
                 });
 
-                console.log(response.ok);
-
                 if (response.ok) {
                     alert('수정되었습니다!');
                     window.request(page); // 수정 후 데이터 새로고침
                 }
-
             };
 
             // 상세보기 버튼 생성
             const detailButton = document.createElement("button");
             detailButton.setAttribute("type", "button");
+            detailButton.setAttribute("data-stock-id", `${stock.id}`);
             detailButton.setAttribute("data-bs-toggle", "modal");
             detailButton.setAttribute("data-bs-target", "#exampleModal");
             detailButton.className = "btn btn-info";
             detailButton.textContent = "상세보기";
-            detailButton.onclick = () => {
-                showProductDetails(stock.product);
+
+            const stockLogs = [
+
+            ];
+
+            detailButton.onclick = async () => {
+
+
+                console.log(detailButton.dataset);
+                const stockId = detailButton.dataset.stockId; // data-stock-id 값 가져오기
+                console.log(stockId);
+
+                const response = await fetch(`/api/stocklog/list?stock_id=${stockId}`);
+
+                const jsonData = await response.json();
+
+                console.log(jsonData);
+
+                const log = jsonData.pages.content;
+
+                console.log(log);
+
+                log.forEach(data => {
+                    stockLogs.push(data);
+                })
+
+                showProductDetails(stock.product, stockLogs);
             };
 
             row.innerHTML = `
@@ -89,8 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // 상세보기 버튼 클릭 시 상품 정보를 모달에 표시하는 함수
-        function showProductDetails(product) {
+        function showProductDetails(product, stockLogs) {
             const productDetails = document.getElementById("productDetails");
+
+            // QR 코드 URL 생성
+            const qrCodeURL = generateQRCodeURL(product);
+            console.log(qrCodeURL);
 
             // 상품 정보를 HTML로 생성
             productDetails.innerHTML = `
@@ -101,7 +126,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>판매가:</strong> ${product.salePrice.toLocaleString()} 원</p>
                 <p><strong>크기:</strong> ${product.height}mm x ${product.width}mm x ${product.depth}mm</p>
                 <p><strong>등록일:</strong> ${new Date(product.createdAt).toLocaleDateString()}</p>
+                <p><strong>QR 코드:</strong></p>
+                <img src="${qrCodeURL}" alt="QR 코드" />
+                <hr/>
+                <div id="stockLogDetails" style="margin-top: 20px;"></div> <!-- 로그 정보 공간 -->
             `;
+
+            const stockLogDetails = document.getElementById("stockLogDetails");
+
+            // 로그 정보를 생성
+            if (stockLogs.length > 0) {
+                let logMessages = '';
+                stockLogs.forEach((log, index) => {
+                    const logNumber = index + 1; // 1부터 시작하는 순서
+                    if (log.outboundId) {
+                        logMessages += `<p>${logNumber}번째 로그: ${log.quantity}개의 재고가 ${new Date(log.createdAt).toLocaleDateString()}에 출고되었습니다.</p>`;
+                    } else if (log.inboundId) {
+                        logMessages += `<p>${logNumber}번째 로그: ${log.quantity}개의 재고가 ${new Date(log.createdAt).toLocaleDateString()}에 입고되었습니다.</p>`;
+                    }
+                });
+                stockLogDetails.innerHTML = logMessages;
+            } else {
+                stockLogDetails.innerHTML = `<p>로그 정보가 없습니다.</p>`;
+            }
+        }
+
+        // QR 코드 URL 생성 함수
+        function generateQRCodeURL(product) {
+            const productData = JSON.stringify(product);
+            const encodedData = encodeURIComponent(productData);
+            return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodedData}`;
         }
 
         const paginationUl = document.querySelector(".pagination");

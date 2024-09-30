@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class StockLog {
     private Integer id;
 
-    private Integer warehouseId;
+    private Integer stockId;
 
     private Integer inboundId;
 
