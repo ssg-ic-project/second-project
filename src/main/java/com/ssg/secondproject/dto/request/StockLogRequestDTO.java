@@ -19,8 +19,6 @@ public class StockLogRequestDTO {
     @Builder.Default
     private Integer outboundId = null;
 
-    private int quantity;
-
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
