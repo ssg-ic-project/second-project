@@ -51,8 +51,6 @@ public class InboundApprovalServiceImpl implements InboundApprovalService {
                 .inboundId(requestDTO.getInboundId())
                 .build();
 
-        log.info("❗️stockLogRequestDTO\n"  +stockLogRequestDTO);
-
         stockLogMapper.insertInboundLog(stockLogRequestDTO);
     }
 }
