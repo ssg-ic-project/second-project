@@ -12,7 +12,6 @@ async function inboundList() {
 
   const jsonData = await response.json();
   const dataList = jsonData.dataList || [];
-  console.log(dataList);
 
   const tbody = document.querySelector("#inbound-list tbody");
 

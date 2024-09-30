@@ -1,21 +1,20 @@
 async function adminDetail(adminId) {
   const response = await fetch(`/api/admin?id=${adminId}`);
   const jsonData = await response.json();
-  const admin = jsonData.data.admin;
+  const data = jsonData.data;
 
   const nameElements = document.getElementsByName("name");
   for (let i = 0; i < nameElements.length; i++) {
-    nameElements[i].textContent = admin.name;
+    nameElements[i].textContent = data.name;
   }
   
-  document.getElementById("id").textContent = admin.id;
-  document.getElementById("name").textContent = admin.name;
-  document.getElementById("adminId").textContent = admin.adminId;
-  document.getElementById("email").textContent = admin.email;
-  document.getElementById("role").textContent = admin.role;
-  document.getElementById("department").textContent = admin.department;
-  document.getElementById("position").textContent = admin.position;
-  document.getElementById("phone").textContent = admin.phone;
-  document.getElementById("createdAt").textContent = admin.createdAt;
-  document.getElementById("updatedAt").textContent = admin.updatedAt;
+  document.getElementById("id").textContent = data.id;
+  document.getElementById("name").textContent = data.name;
+  document.getElementById("username").textContent = data.username;
+  document.getElementById("companyEmail").textContent = data.companyEmail;
+  document.getElementById("warehouseName").textContent = data.warehouseName;
+  document.getElementById("role").textContent = data.role;
+  document.getElementById("phone").textContent = data.phone;
+  document.getElementById("createdAt").textContent = data.createdAt;
+  document.getElementById("updatedAt").textContent = data.updatedAt;
 }
