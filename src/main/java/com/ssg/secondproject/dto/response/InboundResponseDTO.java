@@ -1,6 +1,5 @@
 package com.ssg.secondproject.dto.response;
 
-import com.ssg.secondproject.common.Role;
 import com.ssg.secondproject.common.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
