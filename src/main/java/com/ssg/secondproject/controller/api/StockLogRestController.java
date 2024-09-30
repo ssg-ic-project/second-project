@@ -1,7 +1,6 @@
 package com.ssg.secondproject.controller.api;
 
-import com.ssg.secondproject.dto.StockHistoryDTO;
-import com.ssg.secondproject.service.StockHistoryService;
+import com.ssg.secondproject.service.StockLogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -14,16 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/api/stockhistory")
-public class StockHistoryRestController {
+public class StockLogRestController {
 
-    private final StockHistoryService stockHistoryService;
+    private final StockLogService stockHistoryService;
 
     @GetMapping("/list")
     public ResponseEntity<?> getList(@RequestParam Map<String, Object> paramMap, @PageableDefault Pageable pageable) {

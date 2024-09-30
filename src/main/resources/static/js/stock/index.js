@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     window.request = async function(page) {
-        const response = await fetch(`/api/stockhistory/list?page=${page}`);
+        const response = await fetch(`/api/stock/list?page=${page}`);
         const jsonData = await response.json();
 
         const tableBody = document.getElementById("stockTableBody");
@@ -15,36 +15,94 @@ document.addEventListener("DOMContentLoaded", () => {
         stocks.forEach(stock => {
             const row = document.createElement("tr");
 
-            // 재고 타입 결정
-            let stockType = '';
-            if (stock.inboundId === null) {
-                stockType = '출고 재고';
-            } else if (stock.outboundId === null) {
-                stockType = '입고 재고';
-            }
+            // 실 수량 입력창과 비고 입력창
+            const actualQuantityInput = stock.actualQuantity === null
+                ? `<input type="number" class="form-control" id="actualQuantity_${stock.id}" placeholder="수량 입력"  min="0"/>`
+                : `<input type="number" class="form-control" value="${stock.actualQuantity}" id="actualQuantity_${stock.id}"  min="0"/>`;
+
+            const remarksInput = `<input type="text" class="form-control" value="${stock.remarks || ''}" id="remarks_${stock.id}" placeholder="비고 입력" />`;
+
+            // 수정 버튼
+            const updateButton = document.createElement("button");
+            updateButton.className = "btn btn-success";
+            updateButton.textContent = "수정";
+            updateButton.onclick = async () => {
+                const actualQuantity = document.getElementById(`actualQuantity_${stock.id}`).value;
+                const remarks = document.getElementById(`remarks_${stock.id}`).value;
+
+                // 서버에 수정 요청 보내기
+                const response = await fetch(`/api/stock/${stock.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        actualQuantity: actualQuantity,
+                        remarks: remarks
+                    }),
+                });
+
+                console.log(response.ok);
+
+                if (response.ok) {
+                    alert('수정되었습니다!');
+                    window.request(page); // 수정 후 데이터 새로고침
+                }
+
+            };
 
             // 상세보기 버튼 생성
             const detailButton = document.createElement("button");
             detailButton.setAttribute("type", "button");
             detailButton.setAttribute("data-bs-toggle", "modal");
             detailButton.setAttribute("data-bs-target", "#exampleModal");
-
             detailButton.className = "btn btn-info";
             detailButton.textContent = "상세보기";
-            // detailButton.onclick = () => showStockDetails(stock);
+            detailButton.onclick = () => {
+                showProductDetails(stock.product);
+            };
 
             row.innerHTML = `
-                <th scope="row">${stock.id}</th>
-                <td>${stockType}</td>
-                <td>${stock.quantity}</td>
-                <td>${new Date(stock.createdAt).toLocaleDateString()}</td>
-                <td></td>
-            `;
+            <th scope="row">${stock.id}</th>
+            <td>${stock.cellId}</td>
+            <td>${stock.quantity}</td>
+            <td>${actualQuantityInput}</td>
+            <td>${remarksInput}</td>
+        `;
+
+            // 수정 버튼을 행에 추가
+            const cell = document.createElement("td");
+            cell.appendChild(updateButton);
+            row.appendChild(cell);
+
+            // 등록 날짜를 위한 셀
+            const dateCell = document.createElement("td");
+            dateCell.textContent = new Date(stock.createdAt).toLocaleDateString();
+            row.appendChild(dateCell);
 
             // 상세보기 버튼을 행에 추가
-            row.cells[4].appendChild(detailButton);
+            const detailCell = document.createElement("td");
+            detailCell.appendChild(detailButton);
+            row.appendChild(detailCell);
+
             tableBody.appendChild(row);
         });
+
+        // 상세보기 버튼 클릭 시 상품 정보를 모달에 표시하는 함수
+        function showProductDetails(product) {
+            const productDetails = document.getElementById("productDetails");
+
+            // 상품 정보를 HTML로 생성
+            productDetails.innerHTML = `
+                <p><strong>상품명:</strong> ${product.name}</p>
+                <p><strong>코드:</strong> ${product.code}</p>
+                <p><strong>제조사:</strong> ${product.manufacturer}</p>
+                <p><strong>가격:</strong> ${product.actualPrice.toLocaleString()} 원</p>
+                <p><strong>판매가:</strong> ${product.salePrice.toLocaleString()} 원</p>
+                <p><strong>크기:</strong> ${product.height}mm x ${product.width}mm x ${product.depth}mm</p>
+                <p><strong>등록일:</strong> ${new Date(product.createdAt).toLocaleDateString()}</p>
+            `;
+        }
 
         const paginationUl = document.querySelector(".pagination");
         paginationUl.innerHTML = "";

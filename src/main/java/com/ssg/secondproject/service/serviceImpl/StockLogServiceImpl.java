@@ -1,7 +1,7 @@
 package com.ssg.secondproject.service.serviceImpl;
 
-import com.ssg.secondproject.mapper.StockHistoryMapper;
-import com.ssg.secondproject.service.StockHistoryService;
+import com.ssg.secondproject.mapper.StockLogMapper;
+import com.ssg.secondproject.service.StockLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,17 +13,17 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class StockHistoryServiceImpl implements StockHistoryService {
+public class StockLogServiceImpl implements StockLogService {
 
-    private final StockHistoryMapper stockHistoryMapper;
+    private final StockLogMapper stockLogMapper;
 
     @Override
     public Page<Map<String, Object>> list(Map<String, Object> paramMap, Pageable pageable) {
         paramMap.put("offset", pageable.getOffset());
         paramMap.put("pageSize", pageable.getPageSize());
 
-        List<Map<String, Object>> list = stockHistoryMapper.selectAll(paramMap);
-        int count = stockHistoryMapper.count();
+        List<Map<String, Object>> list = stockLogMapper.selectAll(paramMap);
+        int count = stockLogMapper.count();
         return new PageImpl<>(list,pageable, count);
     }
 }

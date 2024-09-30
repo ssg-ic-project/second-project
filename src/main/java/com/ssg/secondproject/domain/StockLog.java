@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockHistory {
+public class StockLog {
     private Integer id;
 
     private Integer warehouseId;

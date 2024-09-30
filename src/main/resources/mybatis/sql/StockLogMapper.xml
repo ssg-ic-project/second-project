@@ -2,13 +2,13 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssg.secondproject.mapper.StockHistoryMapper">
+<mapper namespace="com.ssg.secondproject.mapper.StockLogMapper">
 
-    <resultMap id="stockHistoryResultMap" type="StockHistory">
+    <resultMap id="stockLogResultMap" type="StockLog">
         <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="selectAll" parameterType="map" resultMap="stockHistoryResultMap">
+    <select id="selectAll" parameterType="map" resultMap="stockLogResultMap">
         SELECT * FROM stockhistory ORDER BY id DESC LIMIT #{offset} , #{pageSize}
     </select>
 
@@ -16,4 +16,5 @@
         SELECT COUNT(id)
         FROM stockhistory
     </select>
+
 </mapper>

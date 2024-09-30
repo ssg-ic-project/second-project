@@ -1,14 +1,18 @@
 package com.ssg.secondproject.mapper;
 
-import com.ssg.secondproject.domain.StockHistory;
+import com.ssg.secondproject.domain.Stock;
+import com.ssg.secondproject.domain.Warehouse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface StockHistoryMapper {
-
+public interface StockMapper {
     List<Map<String, Object>> selectAll(Map<String, Object> paramMap);
     int count();
+
+    Stock find(Integer id);
+
+    void update(Map<String, Object> paramMap);
 }
