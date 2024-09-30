@@ -9,8 +9,8 @@ async function checkDispatchStatus(dispatchId) {
     const registerButton = document.getElementById("registerButton");
     const modifyButton = document.getElementById("modifyButton");
 
-    if (status === 'APPROVED' || status === 'REJECTED') {
-        // 'APPROVED' 또는 'REJECTED' 상태일 경우 버튼 비활성화
+    if (status === 'APPROVED') {
+        // 'APPROVED' 상태일 경우 버튼 비활성화
         registerButton.disabled = true;
         modifyButton.disabled = true;
     } else if (status === 'PENDING') {

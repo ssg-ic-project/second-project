@@ -7,7 +7,7 @@
 
 <!--   dispatch status일 경우 다른 처리.-->
         <!-- Check if the DispatchApproval record exists and if the status is still PENDING -->
-    <select id="findById" resultType="DispatchResponseDTO">
+    <select id="findById" resultType="DispatchDTO">
         SELECT da.status,
                d.vehicle_id AS vehicleId,
                v.type AS vehicleType,
@@ -19,6 +19,11 @@
         ORDER BY d.created_at DESC
             LIMIT 1
     </select>
+
+    <insert id="updateDispatch" parameterType="DispatchDTO">
+        insert into
+
+    </insert>
 
 
 

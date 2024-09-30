@@ -1,4 +1,4 @@
-package com.ssg.secondproject.dto.response;
+package com.ssg.secondproject.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DispatchResponseDTO {
+public class DispatchDTO {
 
-    private String status;
     private int vehicleId;
     private String vehicleType;
     private double allocation;
+    private String status;
 
 }

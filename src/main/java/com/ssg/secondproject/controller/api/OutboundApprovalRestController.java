@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/outbound/approval")
 public class OutboundApprovalRestController {
-
     private final OutboundApprovalService outboundApprovalService;
 
     //출고 승인 후 승인된 출고에 대해서 OutboundApprovalRequestDTO로 매핑한 것을 가지고 활용하면 됨.
