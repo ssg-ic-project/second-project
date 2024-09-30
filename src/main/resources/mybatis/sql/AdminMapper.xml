@@ -5,20 +5,47 @@
 <mapper namespace="com.ssg.secondproject.mapper.AdminMapper">
   
   <select id="getAdminCnt" resultType="int">
-    SELECT COUNT(id)
-    FROM Admin
+    SELECT COUNT(a.id)
+    FROM Admin a
+    JOIN Warehouse w ON w.id = a.warehouse_id
+    <where>
+      <if test="search != null">
+        <if test="search.R != null and !search.R.equals('')">
+          AND a.role = #{search.R}
+        </if>
+        <if test="search.WH != null and !search.WH.equals('')">
+          AND w.id = #{search.WH}
+        </if>
+        <if test="search.N != null and !search.N.equals('')">
+          AND a.name LIKE  '%${search.N}%'
+        </if>
+      </if>
+    </where>
   </select>
 
-  <select id="findAll" resultType="Admin">
-    SELECT id
-         , name
-         , username
-         , company_email AS companyEmail
-         , warehouse_id AS warehouseId
-         , role
-         , phone
-         , created_at AS createdAt
-    FROM Admin
+  <select id="findAll" resultType="AdminResponseDTO">
+    SELECT a.id
+         , a.name
+         , a.company_email AS companyEmail
+         , w.name  AS warehouseName
+         , a.role
+         , a.phone
+         , a.created_at    AS createdAt
+    FROM Admin a
+    JOIN Warehouse w ON w.id = a.warehouse_id
+    <where>
+      <if test="search != null">
+        <if test="search.R != null and !search.R.equals('')">
+          AND a.role = #{search.R}
+        </if>
+        <if test="search.WH != null and !search.WH.equals('')">
+          AND w.id = #{search.WH}
+        </if>
+        <if test="search.N != null and !search.N.equals('')">
+          AND a.name LIKE  '%${search.N}%'
+        </if>
+      </if>
+    </where>
     <if test="orderBy != null and !orderBy.equals('')">
         ORDER BY ${orderBy} ${orderByDir}
     </if>

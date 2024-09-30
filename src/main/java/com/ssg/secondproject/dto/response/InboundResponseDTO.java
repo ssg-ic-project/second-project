@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InboundResponseDTO {
+
     private int id;
     private int userId;
     private String userName;
@@ -20,5 +21,7 @@ public class InboundResponseDTO {
     private String expectedDate;
     private int quantity;
     private Status status;
+    private String createdAt;
     private String approvedAt;
+
 }

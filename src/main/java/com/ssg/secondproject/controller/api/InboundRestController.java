@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,28 +36,8 @@ public class InboundRestController {
 
     @GetMapping("/list")
     public ResponseEntity<PageListResponseDTO<InboundResponseDTO>> getInboundList(
-        @RequestParam int page,
-        @RequestParam int size,
-        @RequestParam String orderBy,
-        @RequestParam String orderByDir,
-        @RequestParam(required = false) String S,
-        @RequestParam(required = false) Integer WH) {
-
-        SearchTypeDTO searchTypeDTO = SearchTypeDTO.builder()
-            .S(S)
-            .WH(WH)
-            .build();
-
-        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
-            .page(page)
-            .size(size)
-            .orderBy(orderBy)
-            .orderByDir(orderByDir)
-            .search(searchTypeDTO)
-            .build();
-
+        @ModelAttribute PageRequestDTO pageRequestDTO) {
         PageListResponseDTO<InboundResponseDTO> data = inboundService.getList(pageRequestDTO);
-
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
 
