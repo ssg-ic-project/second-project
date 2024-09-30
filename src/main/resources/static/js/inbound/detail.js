@@ -1,45 +1,52 @@
 async function inboundDetail(inboundId) {
   const response = await fetch(`/api/inbound?id=${inboundId}`);
   const jsonData = await response.json();
-  const inbound = jsonData.data.inbound;
-  const approvalList = jsonData.data.approvalList;
+  const data = jsonData.data;
 
-  console.log(JSON.stringify(inbound, null, 2));
-  console.log("id: " + inbound.id);
+  document.getElementById("id").textContent = data.inboundId;
+  document.getElementById("expectedDate").textContent = data.expectedDate;
+  document.getElementById("quantity").textContent = data.quantity;
+  document.getElementById("createdAt").textContent = data.createdAt;
+  document.getElementById("updatedAt").textContent = data.updatedAt;
+  document.getElementById("warehouseId").textContent = data.warehouseId;
+  document.getElementById("warehouseName").textContent = data.warehouseName;
+  document.getElementById("sectionName").textContent = data.sectionName;
+  document.getElementById("cellName").textContent = data.cellName;
+  document.getElementById("stockQuantity").textContent = data.stockQuantity;
+  document.getElementById("productId").textContent = data.productId;
+  document.getElementById("productName").textContent = data.productName;
+  document.getElementById("category").textContent = data.mainCategory + ' > ' + data.subCategory + ' > ' + data.detailCategory;
+  document.getElementById("productHeight").textContent = data.productHeight + ' (mm)';
+  document.getElementById("productWidth").textContent = data.productWidth + ' (mm)';
+  document.getElementById("productDepth").textContent = data.productDepth + ' (mm)';
+  document.getElementById("userId").textContent = data.userId;
+  document.getElementById("userName").textContent = data.userName;
+  document.getElementById("companyName").textContent = data.companyName;
+  document.getElementById("userEmail").textContent = data.userEmail;
+  document.getElementById("userPhone").textContent = data.userPhone;
 
-  document.getElementById("id").textContent = inbound.id;
-  document.getElementById("expectedDate").textContent = inbound.expectedDate;
-  document.getElementById("quantity").textContent = inbound.quantity;
-  document.getElementById("createdAt").textContent = inbound.createdAt;
-  document.getElementById("updatedAt").textContent = inbound.updatedAt;
-  document.getElementById("userId").textContent = inbound.userId;
-  document.getElementById("userName").textContent = inbound.userName;
-  document.getElementById("companyName").textContent = inbound.companyName;
-  document.getElementById("userEmail").textContent = inbound.userEmail;
-  document.getElementById("userPhone").textContent = inbound.userPhone;
-  document.getElementById("warehouseId").textContent = inbound.warehouseId;
-  document.getElementById("warehouseName").textContent = inbound.warehouseName;
-  document.getElementById("sectionName").textContent = inbound.sectionName;
-  document.getElementById("cellName").textContent = inbound.cellName;
-  document.getElementById("stock").textContent = inbound.stock;
-  document.getElementById("productId").textContent = inbound.productId;
-  document.getElementById("productName").textContent = inbound.productName;
-  document.getElementById("category").textContent = inbound.mainCategory + ' > ' + inbound.subCategory + ' > ' + inbound.detailCategory;
-  document.getElementById("productHeight").textContent = inbound.productHeight + ' (mm)';
-  document.getElementById("productWidth").textContent = inbound.productWidth + ' (mm)';
-  document.getElementById("productDepth").textContent = inbound.productDepth + ' (mm)';
+  document.getElementById("modifyExpectedDate").value = data.expectedDate;
+  document.getElementById("modifyQuantity").value = data.quantity;
 
-  document.getElementById("modifyExpectedDate").value = inbound.expectedDate;
-  document.getElementById("modifyQuantity").value = inbound.quantity;
+
+}
+
+async function inboundApprovalList(inboundId) {
+  const response = await fetch(`/api/inbound/approval/list?inboundId=${inboundId}`);
+
+  const jsonData = await response.json();
+  const dataList = jsonData.dataList || [];
+
+  console.log(dataList);
 
   const tbody = document.querySelector("#approval-list tbody");
 
-  approvalList.forEach(approval => {
+  dataList.forEach(data => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${approval.status ? approval.status : '-'}</td>
-      <td>${approval.rejectionReason ? approval.rejectionReason : '-'}</td>
-      <td>${approval.createdAt ? approval.createdAt : '-'}</td>
+      <td>${data.status ? data.status : '-'}</td>
+      <td>${data.rejectionReason ? data.rejectionReason : '-'}</td>
+      <td>${data.createdAt ? data.createdAt : '-'}</td>
     `;
     tbody.appendChild(row);
   });
