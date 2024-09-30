@@ -3,9 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.OutboundApprovalMapper">
-<insert id="insertOutboundApproval" parameterType="OutboundApprovalRequestDTO">
-INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
-VALUES (#{requestDTO.outboundId}, #{approverId},  #{requestDTO.createdAt}, #{requestDTO.status}, #{requestDTO.rejectionReason})
-</insert>
+    <insert id="insertOutboundApproval" parameterType="OutboundApprovalRequestDTO">
+    INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
+    VALUES (#{requestDTO.outboundId}, #{approverId},  #{requestDTO.createdAt}, #{requestDTO.status}, #{requestDTO.rejectionReason})
+    </insert>
+
+    <insert id="insertInvoice" parameterType="OutboundApprovalRequestDTO">
+        INSERT INTO Invoice (recipient_id, remark, created_id, created_at)
+        SELECT
+            r.id,
+            o.remarks,
+            #{approverId},
+            #{createdAt}
+        FROM Outbound o
+                 LEFT JOIN Recipient r ON r.outbound_id = o.id
+        WHERE o.id = #{outboundId}
+    </insert>
+
 
 </mapper>

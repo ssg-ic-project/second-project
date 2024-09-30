@@ -44,6 +44,9 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
         //배송 상태 IN_DELIVERY로 바꾸기
         processDelivery(requestDTO);
 
+        //운송장 등록하기
+        createInvoice(requestDTO);
+
     }
 
     //completeOutbound는 rollback과 상관없이 logging이 되어야 함
@@ -64,5 +67,10 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
         inDeliveryMapper.updateDeliveryStatus(requestDTO);
         //PENDING -> IN_DELIVERY로는 update해주면 됨.
     }
+
+    //운송장 등록하기
+    public void createInvoice(OutboundApprovalRequestDTO requestDTO){
+        outboundApprovalMapper.insertInvoice(requestDTO);
+    };
 
 }

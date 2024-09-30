@@ -10,6 +10,8 @@ public interface OutboundApprovalService {
 
     void processDelivery(OutboundApprovalRequestDTO requestDTO);
 
+    void createInvoice(OutboundApprovalRequestDTO requestDTO);
+
     //다른 방법
 //    void modifyStatus(@Param("id") int id, OutboundRequestDTO outboundRequestDTO);
 

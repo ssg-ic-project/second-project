@@ -10,4 +10,5 @@ public interface OutboundApprovalMapper {
     //param과 값을 매핑해줘야 함?
     void insertOutboundApproval(@Param("approverId") int id, @Param("requestDTO") OutboundApprovalRequestDTO requestDTO);
 
+    void insertInvoice(OutboundApprovalRequestDTO requestDTO);
 }

@@ -20,4 +20,3 @@ public class OutboundApprovalRequestDTO {
     private LocalDate createdAt = LocalDate.now();
 
     }
-
