@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface DeliveryMapper {
+    void insertDeliveryStatus(DeliveryRequestDTO deliveryRequestDTO);
     void updateDeliveryStatus(OutboundApprovalRequestDTO requestDTO);
 
-    void insertDeliveryStatus(DeliveryRequestDTO deliveryRequestDTO);
 }
