@@ -42,33 +42,29 @@
         </div>
         <div th:class="admin-detail">
           <span th:class="detail-label">아이디</span>
-          <span th:id="adminId" th:text="${adminId}" th:class="info-value"></span>
+          <span th:id="username" th:text="${username}" th:class="info-value"></span>
         </div>
         <div th:class="admin-detail">
           <span th:class="detail-label">이메일</span>
-          <span th:id="email" th:text="${email}" th:class="info-value"></span>
-        </div>
-        <div th:class="admin-detail">
-          <span th:class="detail-label">최초 등록일</span>
-          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>
+          <span th:id="companyEmail" th:text="${companyEmail}" th:class="info-value"></span>
         </div>
       </div>
       <div th:class="admin-detail-group">
+        <div th:class="admin-detail">
+          <span th:class="detail-label">담당 창고</span>
+          <span th:id="warehouseName" th:text="${warehouseName}" th:class="info-value"></span>
+        </div>
         <div th:class="admin-detail">
           <span th:class="detail-label">권한</span>
           <span th:id="role" th:text="${role}" th:class="info-value"></span>
         </div>
         <div th:class="admin-detail">
-          <span th:class="detail-label">부서</span>
-          <span th:id="department" th:text="${department}" th:class="info-value"></span>
-        </div>
-        <div th:class="admin-detail">
-          <span th:class="detail-label">직급</span>
-          <span th:id="position" th:text="${position}" th:class="info-value"></span>
-        </div>
-        <div th:class="admin-detail">
           <span th:class="detail-label">전화번호</span>
           <span th:id="phone" th:text="${phone}" th:class="info-value"></span>
+        </div>
+        <div th:class="admin-detail">
+          <span th:class="detail-label">최초 등록일</span>
+          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>
         </div>
         <div th:class="admin-detail">
           <span th:class="detail-label">최종 수정일</span>
