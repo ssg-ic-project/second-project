@@ -3,7 +3,7 @@ package com.ssg.secondproject.service.serviceImpl;
 import com.ssg.secondproject.dto.request.InboundApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.StockLogRequestDTO;
 import com.ssg.secondproject.mapper.InboundApprovalMapper;
-import com.ssg.secondproject.mapper.StockMapper;
+import com.ssg.secondproject.mapper.StockLogMapper;
 import com.ssg.secondproject.service.InboundApprovalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class InboundApprovalServiceImpl implements InboundApprovalService {
 
     private final InboundApprovalMapper inboundApprovalMapper;
-    private final StockMapper stockMapper;
+    private final StockLogMapper stockLogMapper;
 
     @Override
     public void createApprovalStatus(int approverId, InboundApprovalRequestDTO requestDTO) {
@@ -53,6 +53,6 @@ public class InboundApprovalServiceImpl implements InboundApprovalService {
 
         log.info("❗️stockLogRequestDTO\n"  +stockLogRequestDTO);
 
-        stockMapper.insertInboundLog(stockLogRequestDTO);
+        stockLogMapper.insertInboundLog(stockLogRequestDTO);
     }
 }
