@@ -37,8 +37,6 @@ async function inboundApprovalList(inboundId) {
   const jsonData = await response.json();
   const dataList = jsonData.dataList || [];
 
-  console.log(dataList);
-
   const tbody = document.querySelector("#approval-list tbody");
 
   dataList.forEach(data => {

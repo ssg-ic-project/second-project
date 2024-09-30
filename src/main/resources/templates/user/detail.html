@@ -14,7 +14,8 @@
   <script src="/js/user/detail.js"></script>
   <script defer th:inline="javascript">
     const userId = [[${id}]];
-    userDetail(userId)
+    userDetail(userId);
+    userApprovalList(userId);
   </script>
 </head>
 <body>
@@ -45,7 +46,7 @@
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">아이디</span>
-          <span th:id="userId" th:text="${userId}" th:class="info-value"></span>
+          <span th:id="username" th:text="${username}" th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">이메일</span>
@@ -89,6 +90,10 @@
         <div th:class="user-detail">
           <span th:class="detail-label">탈퇴 시각</span>
           <span th:id="unregisterAt" th:text="${unregisterAt}" th:class="info-value"></span>
+        </div>
+        <div th:class="user-detail">
+          <span th:class="detail-label">비고</span>
+          <textarea th:id="comment" th:text="${comment}" th:class="info-value" rows="4" style="width: 100%;"></textarea>
         </div>
       </div>
     </div>
