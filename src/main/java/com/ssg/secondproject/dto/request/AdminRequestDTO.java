@@ -1,6 +1,7 @@
 package com.ssg.secondproject.dto.request;
 
 import com.ssg.secondproject.common.Role;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +19,8 @@ public class AdminRequestDTO {
     private int warehouseId;
     private Role role;
     private String phone;
-    private String updatedAt;
+
+    @Builder.Default
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
 }

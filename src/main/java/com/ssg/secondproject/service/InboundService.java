@@ -12,6 +12,4 @@ public interface InboundService {
 
     PageResponseDTO<InboundDetailResponseDTO> getById (int id);
 
-    PageListResponseDTO<ApprovalResponseDTO> getApprovalById (int inboundId);
-
 }

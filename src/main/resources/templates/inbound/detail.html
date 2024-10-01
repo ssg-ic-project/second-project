@@ -15,6 +15,7 @@
   <script defer th:inline="javascript">
     const inboundId = [[${id}]];
     inboundDetail(inboundId)
+    inboundApprovalList(inboundId)
   </script>
 </head>
 <body>
@@ -97,7 +98,7 @@
         </div>
         <div th:class="detail-item">
           <span th:class="detail-label">재고</span>
-          <span th:id="stock" th:text="${stock}" th:class="detail-value"></span>
+          <span th:id="stockQuantity" th:text="${stockQuantity}" th:class="detail-value"></span>
         </div>
       </div>
     </div>

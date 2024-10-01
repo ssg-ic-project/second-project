@@ -14,7 +14,14 @@ import lombok.ToString;
 public class SearchTypeDTO {
 
     private String S;  // status
+    private String N; // name, company name
+    private String E; // email
+    private String R; // role
     private Integer WH;  // warehouse
     private String SD;  // start date
     private String ED;  // end date
+
+
+
+    private String DS;  // dispatch status
 }

@@ -1,3 +1,39 @@
+async function checkDispatchStatus(dispatchId) {
+    const response = await fetch(`/api/outbound/dispatch?id=${id}`);
+    const jsonData = await response.json();
+    const dispatchData = jsonData.data;
+
+    const status = dispatchData.status;
+
+    // 등록 버튼과 수정 버튼을 가져옴
+    const registerButton = document.getElementById("registerButton");
+    const modifyButton = document.getElementById("modifyButton");
+
+    if (status === 'APPROVED') {
+        // 'APPROVED' 상태일 경우 버튼 비활성화
+        registerButton.disabled = true;
+        modifyButton.disabled = true;
+    } else if (status === 'PENDING') {
+        // 'PENDING' 상태일 경우 수정 가능하므로 등록 버튼만 비활성화
+        registerButton.disabled = true;
+        modifyButton.disabled = false;
+    } else {
+        // 그 외의 경우 (예: NULL일 경우) 등록 가능하므로 수정 버튼 비활성화
+        registerButton.disabled = false;
+        modifyButton.disabled = true;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const selectApproval = document.querySelector('.select'); // 수정

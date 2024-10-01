@@ -1,11 +1,13 @@
 package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.domain.User;
+import com.ssg.secondproject.domain.UserApproval;
 import com.ssg.secondproject.dto.PageInfoDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
+import com.ssg.secondproject.dto.response.UserDetailResponseDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
 import com.ssg.secondproject.mapper.UserMapper;
 import com.ssg.secondproject.service.UserService;
@@ -28,10 +30,7 @@ public class UserServiceImpl implements UserService {
     public PageListResponseDTO<UserResponseDTO> getList(PageRequestDTO pageRequestDTO) {
         int total = userMapper.getUserCnt(pageRequestDTO);
 
-        List<User> voList = userMapper.findAll(pageRequestDTO);
-        List<UserResponseDTO> dtoList = voList.stream()
-            .map(vo -> modelMapper.map(vo, UserResponseDTO.class))
-            .collect(Collectors.toList());
+        List<UserResponseDTO> dtoList = userMapper.findAll(pageRequestDTO);
 
         PageInfoDTO pageInfoDTO =
             PageInfoDTO.withAll()
@@ -50,34 +49,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageResponseDTO<UserResponseDTO> getById(int id) {
+    public PageResponseDTO<UserDetailResponseDTO> getById(int id) {
         User user = userMapper.findById(id);
 
-        UserResponseDTO userResponseDTO = modelMapper.map(user, UserResponseDTO.class);
-        PageResponseDTO<UserResponseDTO> responseDTO = PageResponseDTO.<UserResponseDTO>builder().data(userResponseDTO).build();
+        UserDetailResponseDTO userResponseDTO = modelMapper.map(user, UserDetailResponseDTO.class);
+        PageResponseDTO<UserDetailResponseDTO> responseDTO = PageResponseDTO.<UserDetailResponseDTO>builder().data(userResponseDTO).build();
 
         return responseDTO;
     }
 
     @Override
     public PageListResponseDTO<ApprovalResponseDTO> getApprovalByUserId(int userId) {
-//        int total = userMapper.getApprovalCnt(userId);
+        List<UserApproval> voList = userMapper.findApprovalByUserId(userId);
 
-//        List<UserApproval> voList = userMapper.findApprovalByUserId(userId);
+        List<ApprovalResponseDTO> dtoList = voList.stream()
+            .map(vo -> modelMapper.map(vo, ApprovalResponseDTO.class))
+            .collect(Collectors.toList());
 
-//        List<UserApprovalResponseDTO> dtoList = userMapper.findApprovalByUserId(userId);
+        PageListResponseDTO<ApprovalResponseDTO> pageResponseDTO =
+            PageListResponseDTO.<ApprovalResponseDTO>builder()
+                .dataList(dtoList)
+                .build();
 
-//        PageInfoDTO pageInfoDTO =
-//            PageInfoDTO.withAll()
-//                .total(total)
-//                .build();
-
-//        PageListResponseDTO<UserApprovalResponseDTO> pageResponseDTO =
-//            PageListResponseDTO.builder()
-////                .pageInfoDTO(pageInfoDTO)
-//                .dataList(Collections.singletonList(dtoList))
-//                .build();
-
-        return null;
+        return pageResponseDTO;
     }
 }

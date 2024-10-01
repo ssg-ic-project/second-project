@@ -1,5 +1,6 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.SearchTypeDTO;
 import com.ssg.secondproject.dto.request.AdminRequestDTO;
 import com.ssg.secondproject.dto.request.AdminUpdateRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
@@ -16,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,8 +39,10 @@ public class AdminRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(PageRequestDTO pageRequestDTO, BindingResult bindingResult) {
-        PageListResponseDTO<AdminResponseDTO> data =  adminService.getList(pageRequestDTO);
+    public ResponseEntity<PageListResponseDTO<AdminResponseDTO>> getAdminList(
+         @ModelAttribute PageRequestDTO pageRequestDTO) {
+
+        PageListResponseDTO<AdminResponseDTO> data = adminService.getList(pageRequestDTO);
 
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }

@@ -5,21 +5,59 @@
 <mapper namespace="com.ssg.secondproject.mapper.UserMapper">
 
   <select id="getUserCnt" resultType="int">
-    SELECT COUNT(id)
-    FROM User
+    SELECT COUNT(u.id)
+    FROM User u
+         JOIN UserApproval ua ON ua.user_id = u.id
+         JOIN (SELECT MAX(created_at) created_at
+                    , user_id
+               FROM UserApproval
+               GROUP BY user_id) maxCrt
+              ON maxCrt.user_id = ua.user_id AND maxCrt.created_at = ua.created_at
+    <where>
+      <if test="search != null">
+        <if test="search.S != null and !search.S.equals('')">
+          AND ua.status = #{search.S}
+        </if>
+        <if test="search.N != null and !search.N.equals('')">
+          AND u.company_name LIKE '%${search.N}%'
+        </if>
+        <if test="search.E != null and !search.E.equals('')">
+          AND u.email LIKE  '%${search.E}%'
+        </if>
+      </if>
+    </where>
   </select>
 
-  <select id="findAll" parameterType="PageRequestDTO" resultType="User">
-    SELECT id
-    , name
-    , company_name AS companyName
-    , email
-    , business_number AS businessNumber
-    , phone
-    , is_unregister AS isUnregister
-    FROM User
+  <select id="findAll" parameterType="PageRequestDTO" resultType="UserResponseDTO">
+    SELECT u.id
+         , u.name
+         , u.company_name    AS companyName
+         , u.email
+         , u.business_number AS businessNumber
+         , u.phone
+         , ua.status
+    FROM User u
+         JOIN UserApproval ua ON ua.user_id = u.id
+         JOIN (SELECT MAX(created_at) created_at
+                    , user_id
+               FROM UserApproval
+               GROUP BY user_id) maxCrt
+              ON maxCrt.user_id = ua.user_id AND maxCrt.created_at = ua.created_at
+    <where>
+      <if test="search != null">
+        <if test="search.S != null and !search.S.equals('')">
+          AND ua.status = #{search.S}
+        </if>
+        <if test="search.N != null and !search.N.equals('')">
+          AND u.company_name LIKE '%${search.N}%'
+        </if>
+        <if test="search.E != null and !search.E.equals('')">
+          AND u.email LIKE  '%${search.E}%'
+        </if>
+      </if>
+    </where>
     <if test="orderBy != null and !orderBy.equals('')">
-      ORDER BY #{orderBy} #{orderByDir}
+      ORDER BY ${orderBy} ${orderByDir}
     </if>
     LIMIT #{size} OFFSET #{offset}
   </select>
@@ -49,7 +87,7 @@
     WHERE user_id = #{userId}
   </select>
 
-  <select id="findApprovalByUserId" parameterType="int" resultType="ApprovalResponseDTO">
+  <select id="findApprovalByUserId" parameterType="int" resultType="UserApproval">
     SELECT status
          , rejection_reason AS rejectionReason
          , created_at      AS createdAt

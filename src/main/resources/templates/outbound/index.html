@@ -203,38 +203,62 @@
             <!--      form 추가-->
             <h3 class="title">검색 조건</h3>
             <div class="select-box">
-                <div class="select-menu">
-                    <div class="select">
-                        <span id="selected-option2">창고2</span>
-                        <i class="dropdown">
-                            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
-                        </i>
+                <div class="warehouse-filter">
+                    <div class="select-menu">
+                        <div class="select">
+                            <span id="selected-option2" style="white-space: nowrap">창고2</span>
+                            <i class="dropdown">
+                                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                            </i>
+                        </div>
+                        <div class="option-list">
+                            <div class="option" data-value="warehouse1">창고1</div>
+                            <div class="option selected" data-value="warehouse2">창고2</div>
+                            <div class="option" data-value="warehouse3">창고3</div>
+                            <div class="option" data-value="warehouse4">창고4</div>
+                            <div class="option" data-value="warehouse5">창고5</div>
+                        </div>
                     </div>
-                    <div class="option-list">
-                        <div class="option" data-value="warehouse1">창고1</div>
-                        <div class="option selected" data-value="warehouse2">창고2</div>
-                        <div class="option" data-value="warehouse3">창고3</div>
-                        <div class="option" data-value="warehouse4">창고4</div>
-                        <div class="option" data-value="warehouse5">창고5</div>
+
+                </div>
+                <div class="approval">
+                    <div class="select-menu">
+                        <div class="select-box">
+                            <div class="select-menu">
+                                <div class="select">
+                                    <span id="selected-option3" style="white-space: nowrap">배차 상태</span>
+                                    <i class="dropdown">
+                                        <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                                    </i>
+                                </div>
+                                <div class="option-list">
+                                    <div class="option selected" data-value="APPROVED">배차 승인</div>
+                                    <div class="option" data-value="PENDING">배차 미승인</div>
+                                    <div class="option" data-value="REJECTED">배차 반려</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-menu">
+                        <div class="select">
+                            <span id="selected-option" style="white-space: nowrap">출고 미승인</span>
+                            <i class="dropdown">
+                                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+                            </i>
+                        </div>
+                        <div class="option-list">
+                            <div class="option" data-value="APPROVED">출고 승인</div>
+                            <div class="option selected" data-value="PENDING">출고 미승인</div>
+                            <div class="option" data-value="REJECTED">출고 반려</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="select-menu">
-                    <div class="select">
-                        <span id="selected-option">출고 미승인</span>
-                        <i class="dropdown">
-                            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
-                        </i>
-                    </div>
-                    <div class="option-list">
-                        <div class="option" data-value="APPROVED">출고 승인</div>
-                        <div class="option selected" data-value="PENDING">출고 미승인</div>
-                        <div class="option" data-value="REJECTED">출고 반려</div>
-                    </div>
-                </div>
+
+
             </div>
             <div class="date-picker">
-                <label for="start-date">출고 기간:</label>
+                <label for="start-date" style="white-space: nowrap">출고 기간:</label>
                 <input type="text" id="start-date" class="date-input flatpickr-input" readonly="readonly">
 
                 <label for="end-date"> ~ </label>
@@ -247,22 +271,6 @@
             </div>
 
         </div>
-        <div class="select-box">
-            <div class="select-menu">
-                <div class="select">
-                    <span id="selected-option3">배차 상태</span>
-                    <i class="dropdown">
-                        <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
-                    </i>
-                </div>
-                <div class="option-list">
-                    <div class="option selected" data-value="APPROVED">배차 승인</div>
-                    <div class="option" data-value="PENDING">배차 미승인</div>
-                    <div class="option" data-value="REJECTED">배차 반려</div>
-                </div>
-            </div>
-        </div>
-
 
         <div class="table-list">
             <table>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.DeliveryMapper">
+
+    <insert id="insertDeliveryStatus" parameterType="DeliveryRequestDTO">
+        insert into Delivery (outbound_id, created_at)
+        values (#{outboundId}, #{createdAt})
+    </insert>
+
+    <update id="updateDeliveryStatus" parameterType="OutboundApprovalRequestDTO">
+        UPDATE Delivery d
+        SET d.status = 'IN_DELIVERY',
+            d.start_date = #{createdAt},
+            d.to_arrive = DATE_ADD(#{createdAt}, INTERVAL 3 HOUR)
+        WHERE d.outbound_id = #{outboundId}
+
+
+    </update>
+
+
+</mapper>

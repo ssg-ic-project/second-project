@@ -10,23 +10,23 @@
     </select>
 
 
-    <select id="findList" resultType="OutboundResponseDTO">
-        SELECT
-            o.id,
-            p.name AS productName,
-            o.quantity,
-            u.company_name AS companyName,
-            o.is_dispatch,
-            o.is_invoice,
-            oa.status AS approvalStatus
-        FROM
-            Outbound o
-                LEFT JOIN Product p ON o.product_id = p.id
-                LEFT JOIN User u ON o.user_id = u.id
-                LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id;
-</select>
+<!--    <select id="findList" resultType="OutboundResponseDTO">-->
+<!--        SELECT-->
+<!--            o.id,-->
+<!--            p.name AS productName,-->
+<!--            o.quantity,-->
+<!--            u.company_name AS companyName,-->
+<!--            o.is_dispatch AS isDispatch,-->
+<!--            o.is_invoice AS isInvoice,-->
+<!--            oa.status AS approvalStatus-->
+<!--        FROM-->
+<!--            Outbound o-->
+<!--                LEFT JOIN Product p ON o.product_id = p.id-->
+<!--                LEFT JOIN User u ON o.user_id = u.id-->
+<!--                LEFT JOIN OutboundApproval oa ON o.id = oa.outbound_id;-->
+<!--</select>-->
 
-    <select id="findById" resultType="OutboundResponseDTO">
+    <select id="findById" resultType="OutboundDetailResponseDTO">
         SELECT
             o.id,
             o.quantity,
@@ -50,6 +50,7 @@
             p.category_id AS productCategoryId,
 
             o.user_id AS userId,
+            o.user_name AS userName,
             u.business_number AS userBusinessNumber,
             u.company_name AS companyName,
             u.email AS userEmail,
@@ -70,9 +71,9 @@
     </select>
 
 
-    <select id="findByIdLog" resultType="OutboundResponseDTO">
+    <select id="findByIdLog" resultType="ApprovalResponseDTO">
         SELECT
-        oa.status AS approvalStatus,
+        oa.status AS status,
         oa.rejection_reason AS rejectionReason,
         oa.created_at AS createdAt
         FROM Outbound o
@@ -82,14 +83,14 @@
         LIMIT 5
     </select>
 
-    <select id="findByUserInput" resultType="OutboundResponseDTO">
+    <select id="findList" parameterType="PageRequestDTO" resultType="OutboundResponseDTO">
         SELECT
         o.id,
         p.name AS productName,
         o.quantity,
         u.company_name AS companyName,
-        o.is_dispatch,
-        o.is_invoice,
+        o.is_dispatch AS isDispatch,
+        o.is_invoice AS isInvoice,
         oa.status AS approvalStatus
         FROM
         Outbound o
@@ -104,25 +105,27 @@
         Product p ON p.id = o.product_id
         LEFT JOIN
         User u ON u.id = o.user_id
+        LEFT JOIN Dispatch d ON d.outbound_id = o.id
+        LEFT JOIN DispatchApproval da ON d.id = da.dispatch_id
+
+
 
         <where>
-        <if test="warehouseName != null">
-            AND w.name = #{warehouseName}
-        </if>
-        <if test="approvalStatus != null">
-            AND oa.status = #{approvalStatus}
-        </if>
-        <if test="startDate != null and endDate != null">
-            AND o.created_at BETWEEN #{startDate} AND #{endDate}
-        </if>
+            <if test="search != null">
+                <if test="search.WH != null and !search.S.equals('') and search.WH != 0">
+                    AND w.name = #{search.WH}
+                </if>
+                <if test="search.S != null and !search.S.equals('')">
+                    AND oa.status = #{search.S}
+                </if>
+                <if test="search.DS != null and !search.DS.equals('')">
+                    AND da.status = #{search.DS}
+                </if>
+                <if test="search.SD != null and search.ED != null and !search.SD.equals('') and !search.ED.equals('')">
+                    AND o.created_at BETWEEN #{search.SD} AND #{search.ED}
+                </if>
+            </if>
         </where>
+            LIMIT #{size} OFFSET #{offset};
     </select>
-
-    <insert id="insertOutboundApproval" parameterType="int">
-        select o.id, u.id,
-
-        INSERT INTO OutboundApproval (outbound_id, approver_id, created_at, status, rejection_reason)
-        VALUES (#{outboundId}, #{approverId}, #{createdAt}, #{status}, #{rejectionReason})
-    </insert>
-
 </mapper>
