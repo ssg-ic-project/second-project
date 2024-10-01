@@ -1,5 +1,6 @@
 package com.ssg.secondproject.mapper;
 
+import com.ssg.secondproject.dto.request.InboundApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.InboundDetailResponseDTO;
@@ -9,11 +10,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface InboundMapper {
+public interface InboundApprovalMapper {
 
-    List<InboundResponseDTO> findAll(PageRequestDTO pageRequestDTO);
+    List<ApprovalResponseDTO> findApprovalById(int inboundId);
 
-    InboundDetailResponseDTO findById(int id);
-
+    void insert(@Param("approverId") int approverId, @Param("requestDTO") InboundApprovalRequestDTO requestDTO);
 
 }

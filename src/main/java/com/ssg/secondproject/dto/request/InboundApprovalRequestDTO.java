@@ -1,5 +1,6 @@
 package com.ssg.secondproject.dto.request;
 
+import com.ssg.secondproject.common.Status;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,17 +13,13 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockLogRequestDTO {
+public class InboundApprovalRequestDTO {
+    private int inboundId;
+    private Status status;
 
     @Builder.Default
-    private Integer inboundId = null;
-
-    @Builder.Default
-    private Integer outboundId = null;
+    private String rejectionReason = "";
 
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
-
-
 }
-

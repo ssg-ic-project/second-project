@@ -30,14 +30,16 @@
                  FROM InboundApproval
                  GROUP BY inbound_id) maxCrt ON maxCrt.inbound_id = ia.inbound_id AND maxCrt.createdAt = ia.created_at
     <where>
-      <if test="search.S != null and !search.S.equals('')">
-        AND ia.status = #{search.S}
-      </if>
-      <if test="search.WH != null and !search.WH.equals('') and search.WH != 0">
-        AND wsc.warehouseId = #{search.WH}
-      </if>
-      <if test="search.SD != null and !search.SD.equals('') and search.ED != null and !search.ED.equals('')">
-        AND i.expected_date BETWEEN #{search.SD} AND #{search.ED}
+      <if test="search != null">
+        <if test="search.S != null and !search.S.equals('')">
+          AND ia.status = #{search.S}
+        </if>
+        <if test="search.WH != null and !search.WH.equals('') and search.WH != 0">
+          AND wsc.warehouseId = #{search.WH}
+        </if>
+        <if test="search.SD != null and !search.SD.equals('') and search.ED != null and !search.ED.equals('')">
+          AND i.expected_date BETWEEN #{search.SD} AND #{search.ED}
+        </if>
       </if>
     </where>
     <if test="orderBy != null and !orderBy.equals('')">
@@ -47,65 +49,52 @@
   </select>
 
   <select id="findById" parameterType="int" resultType="InboundDetailResponseDTO">
-    SELECT i.id                  AS inboundId
-         , i.expected_date       AS expectedDate
+    SELECT i.id                       AS inboundId
+         , i.expected_date            AS expectedDate
          , i.quantity
-         , i.created_at          AS createdAt
-         , i.updated_at          AS updatedAt
+         , i.created_at               AS createdAt
+         , i.updated_at               AS updatedAt
          , wsc.warehouseId
          , wsc.warehouseName
          , wsc.sectionName
          , wsc.cellName
-         , IFNULL(s.quantity, 0) AS stockQuantity
+         , IFNULL(SUM(s.quantity), 0) AS stockQuantity
          , p.productId
          , p.productName
          , p.mainCategory
          , p.subCategory
          , p.detailCategory
-         , p.height
-         , p.width
-         , p.depth
-         , u.id                  AS userId
-         , u.name                AS userName
-         , u.company_name        AS companyName
-         , u.email
-         , u.phone
+         , p.height                   AS productHeight
+         , p.width                    AS productWidth
+         , p.depth                    AS productDepth
+         , u.id                       AS userId
+         , u.name                     AS userName
+         , u.company_name             AS companyName
+         , u.email                    AS userEmail
+         , u.phone                    AS userPhone
     FROM Inbound i
-           JOIN (SELECT c.id   AS cellId
-                      , c.name AS cellName
-                      , s.name AS sectionName
-                      , w.id   AS warehouseId
-                      , w.name AS warehouseName
-                 FROM Cell c
-                        JOIN Section s ON s.id = c.section_id
-                        JOIN Warehouse w ON w.id = s.warehouse_id) wsc ON cellId = i.cell_id
-           LEFT JOIN (SELECT SUM(s.quantity) AS quantity
-                           , s.inbound_id
-                      FROM Inbound i
-                             JOIN Stock s ON s.inbound_id = i.id
-                      WHERE s.type = 1
-                      GROUP BY s.inbound_id) s ON s.inbound_id = i.id
-           JOIN (SELECT p.id    AS productId
-                      , p.name  AS productName
-                      , c1.name AS mainCategory
-                      , c2.name AS subCategory
-                      , c3.name AS detailCategory
-                      , p.height
-                      , p.width
-                      , p.depth
-                 FROM Product p
-                        LEFT JOIN Category c3 ON c3.id = p.category_id
-                        LEFT JOIN Category c2 ON c2.id = c3.parent_category_id
-                        LEFT JOIN Category c1 ON c1.id = c2.parent_category_id) p ON p.productId = i.product_id
-           LEFT JOIN User u ON u.id = i.user_id
+             JOIN (SELECT c.id   AS cellId,
+                          c.name AS cellName,
+                          s.name AS sectionName,
+                          w.id   AS warehouseId,
+                          w.name AS warehouseName
+                   FROM Cell c
+                            JOIN Section s ON s.id = c.section_id
+                            JOIN Warehouse w ON w.id = s.warehouse_id) wsc ON cellId = i.cell_id
+             LEFT JOIN Stock s ON s.product_id = i.product_id AND s.cell_id = i.cell_id
+             JOIN (SELECT p.id    AS productId,
+                          p.name  AS productName,
+                          c1.name AS mainCategory,
+                          c2.name AS subCategory,
+                          c3.name AS detailCategory,
+                          p.height,
+                          p.width,
+                          p.depth
+                   FROM Product p
+                            LEFT JOIN Category c3 ON c3.id = p.category_id
+                            LEFT JOIN Category c2 ON c2.id = c3.parent_category_id
+                            LEFT JOIN Category c1 ON c1.id = c2.parent_category_id) p ON p.productId = i.product_id
+             LEFT JOIN User u ON u.id = i.user_id
     WHERE i.id = #{id};
-  </select>
-
-  <select id="findApprovalById" parameterType="int" resultType="ApprovalResponseDTO">
-    SELECT status
-         , rejection_reason AS rejectionReason
-         , created_at       AS createdAt
-    FROM InboundApproval
-    WHERE inbound_id = #{inboundId}
   </select>
 </mapper>

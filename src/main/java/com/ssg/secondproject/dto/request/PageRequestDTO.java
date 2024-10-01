@@ -3,6 +3,7 @@ package com.ssg.secondproject.dto.request;
 import com.ssg.secondproject.dto.SearchTypeDTO;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

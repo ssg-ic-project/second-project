@@ -26,12 +26,12 @@ public class InboundDetailResponseDTO {
     private String mainCategory;
     private String subCategory;
     private String detailCategory;
-    private int height;
-    private int width;
-    private int depth;
+    private int productHeight;
+    private int productWidth;
+    private int productDepth;
     private int userId;
     private String userName;
     private String companyName;
-    private String email;
-    private String phone;
+    private String userEmail;
+    private String userPhone;
 }

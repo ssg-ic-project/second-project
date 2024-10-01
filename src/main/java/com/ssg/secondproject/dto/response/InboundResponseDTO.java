@@ -1,6 +1,5 @@
 package com.ssg.secondproject.dto.response;
 
-import com.ssg.secondproject.common.Role;
 import com.ssg.secondproject.common.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InboundResponseDTO {
+
     private int id;
     private int userId;
     private String userName;
@@ -21,5 +21,7 @@ public class InboundResponseDTO {
     private String expectedDate;
     private int quantity;
     private Status status;
+    private String createdAt;
     private String approvedAt;
+
 }

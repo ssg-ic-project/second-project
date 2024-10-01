@@ -37,11 +37,11 @@ public class InboundServiceImpl implements InboundService {
 
     @Override
     public PageResponseDTO<InboundDetailResponseDTO> getById(int id) {
-        return null;
-    }
+        InboundDetailResponseDTO responseDTO = inboundMapper.findById(id);
+        PageResponseDTO pageResponseDTO = PageResponseDTO.builder()
+            .data(responseDTO)
+            .build();
 
-    @Override
-    public PageListResponseDTO<ApprovalResponseDTO> getApprovalById(int inboundId) {
-        return null;
+        return pageResponseDTO;
     }
 }
