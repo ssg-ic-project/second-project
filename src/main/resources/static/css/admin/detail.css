@@ -120,6 +120,12 @@
 }
 
 .select-box {
-
   align-items: center;
+}
+
+.select-menu {
+  width: 250px;
+  max-width: 100%;
+  cursor: pointer;
+  position: relative;
 }
