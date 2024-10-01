@@ -3,9 +3,12 @@ package com.ssg.secondproject.controller.api;
 import com.ssg.secondproject.dto.WarehouseDTO;
 import com.ssg.secondproject.dto.request.WarehouseRequestDTO;
 import com.ssg.secondproject.dto.request.WarehouseUpdateDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.WarehouseNameResponseDTO;
 import com.ssg.secondproject.dto.response.WarehouseResponseDTO;
 import com.ssg.secondproject.service.WarehouseService;
 import jakarta.validation.Valid;
+import java.nio.charset.Charset;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -15,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -29,26 +33,15 @@ import java.util.Map;
 @RequestMapping("/api/warehouse")
 @RequiredArgsConstructor
 public class WarehouseRestController {
+    private HttpHeaders httpHeaders = new HttpHeaders();
     private final WarehouseService warehouseService;
     private final ModelMapper modelMapper;
 
     @GetMapping("/names")
-    public String getWarehouseList() {
-        log.info(" 🎉🎉🎉🎉 Rest Warehouse List 🎉🎉🎉🎉");
-        return """
-            {
-              "status": "success",
-              "data": {
-                "warehouseNameList": [
-                  { "id": 1, "name": "서울 창고" },
-                  { "id": 2, "name": "의정부 창고" },
-                  { "id": 3, "name": "남양주 창고" },
-                  { "id": 4, "name": "천안 창고" },
-                  { "id": 5, "name": "이천 창고" }
-                ]
-              }
-            }
-            """;
+    public ResponseEntity<PageListResponseDTO<WarehouseNameResponseDTO>>  getWarehouseList() {
+        PageListResponseDTO<WarehouseNameResponseDTO> data = warehouseService.getNameList();
+        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+        return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
     }
 
 //    @GetMapping("")

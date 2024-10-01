@@ -1,25 +1,35 @@
-async function userList() {
-  const page = 1; // 원하는 페이지 번호
-  const size = 10; // 원하는 페이지 크기
-  const orderBy = 'id'; // 원하는 정렬 기준
-  const orderByDir = 'DESC'; // 정렬 방향
-  const S = null; // 승인 상태 검색 조건
-  const N = null; // 상호명 검색 조건
-  const E = null; // 이메일 검색 조건
+document.addEventListener('DOMContentLoaded', function () {
+  let searchData = {
+    page: 1,
+    size: 10,
+    orderBy: 'id',
+    orderByDir: 'DESC',
+    S: '',
+    N: '',
+    E: ''
+  };
 
-  const response = await fetch(`/api/user/list?page=${page}&size=${size}&orderBy=${orderBy}&orderByDir=${orderByDir}&S=${S}&N=${N}&E=${E}`);
+  async function userList() {
+    const params = new URLSearchParams({
+      page: searchData.page,
+      size: searchData.size,
+      orderBy: searchData.orderBy,
+      orderByDir: searchData.orderByDir,
+      S: searchData.S,
+      N: searchData.N,
+      E: searchData.E,
+    });
 
-  const jsonData = await response.json();
+    const response = await fetch(`/api/user/list?${params}`);
+    const jsonData = await response.json();
+    const dataList = jsonData.dataList || [];
+    const tbody = document.querySelector("#user-list tbody");
 
-  const dataList = jsonData.dataList || [];
+    tbody.innerHTML = '';
 
-  const tbody = document.querySelector("#user-list tbody");
-
-  tbody.innerHTML = '';
-
-  dataList.forEach(user => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
+    dataList.forEach(user => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
       <td><a href="/user?id=${user.id}">${user.id ? user.id : '-'}</a></td>
       <td>${user.name ? user.name : '-'}</td>
       <td>${user.companyName ? user.companyName : '-'}</td>
@@ -28,6 +38,25 @@ async function userList() {
       <td>${user.phone ? user.phone : '-'}</td>
       <td>${user.status ? user.status : '-'}</td>
     `;
-    tbody.appendChild(row);
+      tbody.appendChild(row);
+    });
+  }
+
+  userList(searchData);
+
+  let statusOption = '';
+
+  document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function () {
+      statusOption = this.getAttribute('data-value');
+    })
+  })
+
+  document.getElementById('search-btn').addEventListener('click', function () {
+    searchData.N = document.getElementById("companyName").value;
+    searchData.E = document.getElementById('email').value
+    searchData.S = statusOption;
+
+    userList(searchData);
   });
-}
+});

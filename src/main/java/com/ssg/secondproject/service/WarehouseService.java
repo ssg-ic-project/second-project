@@ -1,6 +1,8 @@
 package com.ssg.secondproject.service;
 
 import com.ssg.secondproject.dto.WarehouseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.WarehouseNameResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,4 +18,6 @@ public interface WarehouseService {
 
 //    List<WarehouseDTO> getList();
     Page<Map<String, Object>> getList (Map<String, Object> paramMap, Pageable page);
+
+    PageListResponseDTO<WarehouseNameResponseDTO> getNameList();
 }

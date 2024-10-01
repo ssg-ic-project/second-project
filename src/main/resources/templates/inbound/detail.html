@@ -90,15 +90,23 @@
           <span th:class="detail-label">섹션명</span>
           <span th:id="sectionName" th:text="${sectionName}" th:class="detail-value"></span>
         </div>
-      </div>
-      <div th:class="detail-group">
         <div th:class="detail-item">
           <span th:class="detail-label">셀명</span>
           <span th:id="cellName" th:text="${cellName}" th:class="detail-value"></span>
         </div>
+      </div>
+      <div th:class="detail-group">
         <div th:class="detail-item">
-          <span th:class="detail-label">재고</span>
+          <span th:class="detail-label">입고 상품의 재고 수량</span>
           <span th:id="stockQuantity" th:text="${stockQuantity}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">셀의 사용 중인 총 용량</span>
+          <span th:id="useSpace" th:text="${useSpace}" th:class="detail-value"></span>
+        </div>
+        <div th:class="detail-item">
+          <span th:class="detail-label">셀의 남은 용량</span>
+          <span th:id="freeSpace" th:text="${freeSpace}" th:class="detail-value"></span>
         </div>
       </div>
     </div>

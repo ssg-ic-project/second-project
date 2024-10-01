@@ -19,4 +19,6 @@ public interface WarehouseMapper {
     int count();
 
     void update(Warehouse warehouse);
+
+    List<Warehouse> findName();
 }

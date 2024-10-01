@@ -21,6 +21,8 @@ public class InboundDetailResponseDTO {
     private String sectionName;
     private String cellName;
     private int stockQuantity;
+    private double useSpace;
+    private double freeSpace;
     private int productId;
     private String productName;
     private String mainCategory;

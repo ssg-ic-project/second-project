@@ -19,7 +19,7 @@
 
 .search-box .select-box {
   display: flex;
-  width: calc(100% * (3 / 5));
+  width: 75%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -28,31 +28,36 @@
 
 .select-group {
   display: flex;
-  gap: 20px;
-  justify-content: space-between;
+  gap: 15px;
+  justify-content: center;
   width: 100%;
 }
 
-.input-date-range {
+.select-group:first-child {
+  gap: 15px;
+}
+
+.filter-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
 }
 
-.input-date-range .label-date-range {
-  min-width: 100px;
-}
-
-.select-box .select-group:first-child {
-  gap: 50px;
-  align-self: center;
+.filter-row .row-label {
+  min-width: 75px;
 }
 
 .select-group .select-menu,
 .date-picker .date-input {
-  min-width: 300px;
-  width: calc(50% - 10px);
+  width: 100%;
+}
+
+
+.select-menu {
+  max-width: 100%;
+  cursor: pointer;
+  position: relative;
 }
 
 .select-menu span {
@@ -63,7 +68,7 @@
 }
 
 .select,
-.input-date-range input {
+.filter-row input {
   background-color: #FFFFFF;
   border: 1px solid #8D9DEF;
   border-radius: 10px;
@@ -92,6 +97,7 @@
 .select-menu.active .option-list {
   display: block;
   max-height: 180px;
+  z-index: 200;
 }
 
 .select-menu .dropdown {
@@ -103,65 +109,7 @@
   transform: rotate(-180deg);
 }
 
-.option-list::-webkit-scrollbar {
-  width: 4px;
-  background-color: #FFFFFF;
-}
-
-.option-list::-webkit-scrollbar-thumb {
-  background-color: #4F64C9;
-}
-
-.option-list .option-search {
-  position: relative;
-  margin-bottom: 50px;
-}
-
-.option-list .option-search input {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  height: 45px;
-  padding: 8px 10px;
-  border: 1px solid #8D9DEF;
-  border-radius: 10px;
-}
-
-.option-list .option-search input:focus {
-  border: 1px solid #4F64C9;
-}
-
-.option-list #dropdown-list p {
-  font-family: 'NanumSquare', sans-serif;
-  font-size: 14px;
-  color: #50565C;
-  padding: 8px 0px 0px 10px;
-}
-
-.option-default {
-  text-align: center;
-  color: #868E96;
-}
-
-.option-list .option {
-  font-family: 'NanumSquare', sans-serif;
-  font-size: 14px;
-  padding: 8px 10px;
-  transition: all 0.3s ease-in-out;
-}
-
-.option:hover {
-  background-color: #BEC9FF;
-  border-radius: 10px;
-}
-
-.option.selected {
-  background-color: #8D9DEF;
-  color: #FFFFFF;
-  border-radius: 10px;
-}
-
-.search-box .select-box .select-menu .filter-button {
+.search-box .select-box .filter-button {
   font-family: 'NanumSquare-Bold', sans-serif;
   font-size: 17px;
   color: #FFFFFF;
@@ -170,9 +118,10 @@
   border: none;
   border-radius: 10px;
   background-color: #4F64C9;
+  z-index: 100;
 }
 
-.search-box .select-box .select-menu .filter-button:focus {
+.search-box .select-box .filter-button:active {
   background-color: #3D4FA7;
 }
 

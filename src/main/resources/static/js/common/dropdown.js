@@ -19,13 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         select.querySelector("span").innerText = option.innerHTML;
+
         option.classList.add("selected");
 
+        // 선택 메뉴 비활성화
         selectMenu.classList.remove("active");
       });
     });
   });
 
+  // 클릭 외부 시 메뉴 닫기
   document.addEventListener("click", (event) => {
     if (!event.target.closest(".select-menu")) {
       selectMenus.forEach(selectMenu => {

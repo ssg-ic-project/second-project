@@ -2,6 +2,8 @@ package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.domain.Warehouse;
 import com.ssg.secondproject.dto.WarehouseDTO;
+import com.ssg.secondproject.dto.response.PageListResponseDTO;
+import com.ssg.secondproject.dto.response.WarehouseNameResponseDTO;
 import com.ssg.secondproject.mapper.WarehouseMapper;
 import com.ssg.secondproject.service.WarehouseService;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +58,22 @@ public class WarehouseServiceImpl implements WarehouseService {
         List<Map<String, Object>> contents = warehouseMapper.selectAll(paramMap);
         int count = warehouseMapper.count();
         return new PageImpl<>(contents,page,count);
+    }
+
+    @Override
+    public PageListResponseDTO<WarehouseNameResponseDTO> getNameList() {
+        List<Warehouse> voList = warehouseMapper.findName();
+
+        List<WarehouseNameResponseDTO> dtoList = voList.stream()
+            .map(vo -> modelMapper.map(vo, WarehouseNameResponseDTO.class))
+            .collect(Collectors.toList());
+
+        PageListResponseDTO<WarehouseNameResponseDTO> pageResponseDTO =
+            PageListResponseDTO.<WarehouseNameResponseDTO>builder()
+                .dataList(dtoList)
+                .build();
+
+        return pageResponseDTO;
     }
 
     @Override
