@@ -109,7 +109,7 @@
   transform: rotate(-180deg);
 }
 
-.search-box .select-box .select-menu .filter-button {
+.search-box .select-box .filter-button {
   font-family: 'NanumSquare-Bold', sans-serif;
   font-size: 17px;
   color: #FFFFFF;
@@ -121,7 +121,7 @@
   z-index: 100;
 }
 
-.search-box .select-box .select-menu .filter-button:active {
+.search-box .select-box .filter-button:active {
   background-color: #3D4FA7;
 }
 

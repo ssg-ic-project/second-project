@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
       E: searchData.E,
     });
 
-    console.log('params: ' + params)
-
     const response = await fetch(`/api/user/list?${params}`);
     const jsonData = await response.json();
     const dataList = jsonData.dataList || [];

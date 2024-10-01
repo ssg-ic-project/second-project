@@ -14,9 +14,6 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script defer src="/js/common/warehouse-dropdown.js"></script>
   <script src="/js/inbound/index.js"></script>
-  <script defer th:inline="javascript">
-    inboundList()
-  </script>
   <title>Inbound Index</title>
 </head>
 <body>
@@ -25,43 +22,44 @@
     <h1 class="page-title">입고 조회</h1>
     <span class="page-subtitle">입고 관리 > 입고 조회</span>
   </div>
-  <div class="search-box">
+  <form id="search-form" class="search-box">
     <h3 class="title">검색 조건</h3>
     <div class="select-box">
-      
+
       <div class="filter-row">
         <span class="row-label"></span>
-      <div class="select-group">
-        <div class="select-menu" id="warehouse-menu">
-          <div class="select" id="warehouse-select">
-            <span>창고</span>
-            <i class="dropdown">
-              <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
-            </i>
-          </div>
-          <div class="option-list" id="warehouse-dropdown">
-            <div class="option-search">
-                <input th:type="text" th:placeholder="Search" id="warehouse-search">
+        <div class="select-group">
+          <div class="select-menu" id="warehouse-menu">
+            <div class="select" id="warehouse-select">
+              <span>창고</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
             </div>
-            <div id="dropdown-list"></div>
+            <div class="option-list" id="warehouse-dropdown">
+              <div class="option-search">
+                <input th:type="text" th:placeholder="Search" id="warehouse-search">
+              </div>
+              <div id="dropdown-list"></div>
+            </div>
+          </div>
+          <span></span>
+          <div class="select-menu">
+            <div class="select">
+              <span>승인 상태</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list">
+              <div class="option option-default" data-value="">-- 선택 --</div>
+              <div class="option" data-value="PENDING">승인 대기</div>
+              <div class="option" data-value="APPROVED">승인</div>
+              <div class="option" data-value="COMPLETED">승인 완료</div>
+              <div class="option" data-value="REJECTED">승인 거절</div>
+            </div>
           </div>
         </div>
-        <span></span>
-        <div class="select-menu">
-          <div class="select">
-            <span>승인 상태</span>
-            <i class="dropdown">
-              <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
-            </i>
-          </div>
-          <div class="option-list">
-            <div class="option option-default" data-value="">-- 선택 --</div>
-            <div class="option" data-value="PENDING">승인 대기</div>
-            <div class="option" data-value="APPROVED">승인 완료</div>
-            <div class="option" data-value="REJECTED">승인 거절</div>
-          </div>
-        </div>
-      </div>
       </div>
       <div class="filter-row">
         <span class="row-label">입고 기간</span>
@@ -72,11 +70,12 @@
         </div>
         <div id="selected-dates"></div>
       </div>
-      <div class="select-menu">
-        <button id="submit" type="button" class="filter-button">검색</button>
+    <input type="hidden" id="selected-warehouse-id" name="warehouseId">
+      <div class="select-menu search-button">
+        <button id="search-btn" type="button" class="filter-button">검색</button>
       </div>
     </div>
-  </div>
+  </form>
   <div class="table-list">
     <table id="inbound-list">
       <thead>

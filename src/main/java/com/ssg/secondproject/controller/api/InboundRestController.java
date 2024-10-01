@@ -36,7 +36,29 @@ public class InboundRestController {
 
     @GetMapping("/list")
     public ResponseEntity<PageListResponseDTO<InboundResponseDTO>> getInboundList(
-        @ModelAttribute PageRequestDTO pageRequestDTO) {
+        @RequestParam int page,
+        @RequestParam int size,
+        @RequestParam String orderBy,
+        @RequestParam String orderByDir,
+        @RequestParam(required = false) String S,
+        @RequestParam(required = false) Integer WH,
+        @RequestParam(required = false) String SD,
+        @RequestParam(required = false) String ED) {
+
+        SearchTypeDTO searchTypeDTO = SearchTypeDTO.builder()
+            .S(S)
+            .WH(WH)
+            .SD(SD)
+            .ED(ED)
+            .build();
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+            .page(page)
+            .size(size)
+            .orderBy(orderBy)
+            .orderByDir(orderByDir)
+            .search(searchTypeDTO)
+            .build();
         PageListResponseDTO<InboundResponseDTO> data = inboundService.getList(pageRequestDTO);
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
