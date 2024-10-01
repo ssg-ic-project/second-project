@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.AdminMapper">
-  
+
   <select id="getAdminCnt" resultType="int">
     SELECT COUNT(a.id)
     FROM Admin a
@@ -22,7 +22,6 @@
       </if>
     </where>
   </select>
-
   <select id="findAll" resultType="AdminResponseDTO">
     SELECT a.id
          , a.name
@@ -38,7 +37,7 @@
         <if test="search.R != null and !search.R.equals('')">
           AND a.role = #{search.R}
         </if>
-        <if test="search.WH != null and !search.WH.equals('')">
+        <if test="search.WH != null and !search.WH.equals('') and search.WH != 0">
           AND w.id = #{search.WH}
         </if>
         <if test="search.N != null and !search.N.equals('')">

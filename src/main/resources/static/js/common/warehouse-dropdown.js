@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const warehouseSelect = document.getElementById("warehouse-select");
   const warehouseDropdown = document.getElementById("warehouse-dropdown");
   const optionSearch = document.querySelector(".option-search input");
+  const hiddenWarehouseId = document.getElementById("selected-warehouse-id"); // 숨겨진 input 요소
   let selectedValue = null;
   let dataList = [];
 
@@ -49,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedSpan.innerText = option.innerHTML;
       }
       selectedValue = warehouse.id;
+
+      // 선택된 창고 ID를 hidden input에 설정
+      hiddenWarehouseId.value = selectedValue;
 
       // 드롭다운 닫기
       warehouseDropdown.classList.remove("show");
