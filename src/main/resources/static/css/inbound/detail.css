@@ -22,7 +22,7 @@
 }
 
 .info-details {
-  margin: 20px 0;
+  margin: 20px;
   display: flex;
   justify-content: space-between;
 }
@@ -43,7 +43,7 @@
   font-family: 'NanumSquare-Bold', sans-serif;
   font-size: 17px;
   color: #242323;
-  width: 200px;
+  width: 250px;
   margin: 8px 0;
 }
 
