@@ -7,8 +7,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/inbound/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
+  <link rel="stylesheet" href="/css/common/search-dropdown.css">
+  <link rel="stylesheet" href="/css/inbound/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script defer src="/js/common/warehouse-dropdown.js"></script>
@@ -31,16 +32,16 @@
       <div class="filter-row">
         <span class="row-label"></span>
       <div class="select-group">
-        <div class="select-menu">
-          <div class="select">
+        <div class="select-menu" id="warehouse-menu">
+          <div class="select" id="warehouse-select">
             <span>창고</span>
             <i class="dropdown">
               <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
             </i>
           </div>
-          <div class="option-list">
+          <div class="option-list" id="warehouse-dropdown">
             <div class="option-search">
-              <input th:type="text" th:placeholder="Search">
+                <input th:type="text" th:placeholder="Search" id="warehouse-search">
             </div>
             <div id="dropdown-list"></div>
           </div>

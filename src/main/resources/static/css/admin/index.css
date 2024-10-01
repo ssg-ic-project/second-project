@@ -78,7 +78,7 @@
   background-color: #4F64C9;
 }
 
-.search-box .filter-button:focus {
+.search-box .filter-button:active {
   background-color: #3D4FA7;
 }
 

@@ -9,12 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/admin/common.css">
-  <link rel="stylesheet" href="/css/admin/index.css">
+  <link rel="stylesheet" href="/css/common/search-dropdown.css">
   <link rel="stylesheet" href="/css/common/table.css">
+  <link rel="stylesheet" href="/css/admin/index.css">
+  <script defer src="/js/common/warehouse-dropdown.js"></script>
   <script src="/js/admin/index.js"></script>
-  <script defer th:inline="javascript">
-    adminList()
-  </script>
   <title>Admin Index</title>
 </head>
 <body>
@@ -23,7 +22,7 @@
     <h1 class="page-title">직원 조회</h1>
     <span class="page-subtitle">직원 관리 > 직원 조회</span>
   </div>
-  <div class="search-box">
+  <form id="search-form" class="search-box">
     <h3 class="title">검색 조건</h3>
     <div class="select-box">
       <ul class="search-filters">
@@ -35,7 +34,7 @@
                 <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
               </i>
             </div>
-            <div class="option-list">
+            <div class="option-list" id="">
               <div class="option option-default" data-value="">-- 선택 --</div>
               <div class="option" data-value="EMPLOYEE">직원</div>
               <div class="option" data-value="ADMIN">관리자</div>
@@ -45,59 +44,30 @@
         </li>
         <!--      <ul class="search-filters">-->
         <li class="filter-item">
-          <input type="text" class="filter-input" placeholder="이름">
+          <div class="select-menu" id="warehouse-menu">
+            <div class="select" id="warehouse-select">
+              <span>창고</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="warehouse-dropdown">
+              <div class="option-search">
+                <input th:type="text" th:placeholder="Search" id="warehouse-search">
+              </div>
+              <div id="dropdown-list"></div>
+            </div>
+          </div>
         </li>
         <li class="filter-item">
-          <input type="text" class="filter-input" placeholder="이메일">
+          <input id="name" type="text" class="filter-input" placeholder="이름">
         </li>
       </ul>
     </div>
     <div class="search-button">
-      <button type="button" class="filter-button">검색</button>
+      <button type="button" id="search-btn" class="filter-button">검색</button>
     </div>
-    <!--      </div>-->
-    <!--      <div class="select-menu">-->
-    <!--        <div class="select">-->
-    <!--          <span>부서</span>-->
-    <!--          <i class="dropdown">-->
-    <!--            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">-->
-    <!--          </i>-->
-    <!--        </div>-->
-    <!--        <div class="option-list">-->
-    <!--          <div class="option option-default" data-value="">&#45;&#45; 선택 &#45;&#45;</div>-->
-    <!--          <div class="option" data-value="DELIVERY">배송팀</div>-->
-    <!--          <div class="option" data-value="INBOUND">입고팀</div>-->
-    <!--          <div class="option" data-value="OUTBOUND">출고팀</div>-->
-    <!--          <div class="option" data-value="FINANCE">재무팀</div>-->
-    <!--          <div class="option" data-value="PRODUCT_MANAGEMENT">상품 관리팀</div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="select-menu">-->
-    <!--        <div class="select">-->
-    <!--          <span>직급</span>-->
-    <!--          <i class="dropdown">-->
-    <!--            <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">-->
-    <!--          </i>-->
-    <!--        </div>-->
-    <!--        <div class="option-list">-->
-    <!--          <div class="option option-default" data-value="">&#45;&#45; 선택 &#45;&#45;</div>-->
-    <!--          <div class="option" data-value="TEAM_MEMBER">팀원</div>-->
-    <!--          <div class="option" data-value="TEAM_LEADER">팀장</div>-->
-    <!--          <div class="option" data-value="DEPARTMENT_HEAD">총괄팀장</div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    <ul class="search-filters">-->
-    <!--      <li class="filter-item">-->
-    <!--        <input type="text" class="filter-input" placeholder="이름">-->
-    <!--      </li>-->
-    <!--      <li class="filter-item">-->
-    <!--        <input type="text" class="filter-input" placeholder="이메일">-->
-    <!--      </li>-->
-    <!--      <li class="filter-item">-->
-    <!--        <button type="button" class="filter-button">검색</button>-->
-    <!--      </li>-->
-    <!--    </ul>-->
-  </div>
+  </form>
   <div class="table-list">
     <table id="admin-list">
       <thead>

@@ -1,69 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 객체 생성
-  const xhr = new XMLHttpRequest();
-  let warehouseList;
-
-  /**
-   * 서버에 요청하는 내장 함수 open()
-   * open(HTTP Method, URL, 비동기 여부(default: true))
-   */
-  xhr.open('Get', '/api/warehouse/names');
-
-  /**
-   * setRequestHeader() 함수를 통해서 헤더값 설정
-   * content-type 은 서버로 전송할 데이터의 MINE 타압
-   * content-type 종류
-   * 1. application/json: json 데이터 전송
-   * 2. text/plain: text 데이터 전송
-   * 3. multipart/from-data: 파일 전송
-   */
-  // xhr.setRequestHeader('content-type', 'application/json');
-
-  xhr.onload = () => {
-    if(xhr.status === 200) {
-      const response = JSON.parse(xhr.response);
-      console.log("data: " + response);
-
-      warehouseList = response.data.warehouseNameList;
-      console.log("warehouseList: " + warehouseList);
-
-      const warehouseSelect = document.getElementById("dropdown-list");
-
-      warehouseList.forEach(function(warehouse) {
-        const option = document.createElement("div");
-        option.setAttribute("data-value", warehouse.id);  // data-value 속성 추가
-        option.textContent = warehouse.name;
-        option.classList.add("option");  // class="option" 추가
-        warehouseSelect.appendChild(option);  // 생성한 div를 container에 추가
-      });
-    } else {
-      console.error(xhr.status, xhr.statusText);
-    }
-  };
-
-  /**
-   * send() 함수를 통해 요청 전송
-   */
-  xhr.send();
-
+  const dropdownList = document.getElementById("dropdown-list");
+  const warehouseMenu = document.getElementById("warehouse-menu");
+  const warehouseSelect = document.getElementById("warehouse-select");
+  const warehouseDropdown = document.getElementById("warehouse-dropdown");
   const optionSearch = document.querySelector(".option-search input");
-  const dropdownList = document.querySelector("#dropdown-list");
+  let selectedValue = null;
+  let dataList = [];
+
+  async function warehouseList() {
+    const response = await fetch(`/api/warehouse/names`);
+    const jsonData = await response.json();
+    dataList = jsonData.dataList || [];
+
+    dropdownList.innerHTML = '';
+
+    dataList.forEach((warehouse) => {
+      createOptionElement(warehouse);
+    });
+  }
+
+  function createOptionElement(warehouse) {
+    const option = document.createElement("div");
+    option.setAttribute("data-value", warehouse.id);
+    option.textContent = warehouse.name;
+    option.classList.add("option");
+
+    // 선택된 값 표시
+    if (warehouse.id === selectedValue) {
+      option.classList.add("selected");
+    }
+
+    // 옵션 클릭 이벤트 추가
+    option.addEventListener("click", (event) => {
+      event.stopPropagation(); // 다른 클릭 핸들러의 실행 방지
+
+      const selectedSpan = warehouseSelect.querySelector("span");
+
+      // 모든 옵션에서 'selected' 클래스 제거
+      dropdownList.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+
+      // 선택된 옵션에 'selected' 클래스 추가
+      option.classList.add('selected');
+
+      // 선택된 값으로 텍스트 업데이트 및 값 저장
+      if (selectedSpan) {
+        selectedSpan.innerText = option.innerHTML;
+      }
+      selectedValue = warehouse.id;
+
+      // 드롭다운 닫기
+      warehouseDropdown.classList.remove("show");
+      warehouseMenu.classList.remove("active");
+    });
+
+    dropdownList.appendChild(option);
+  }
+
+  warehouseList();
+
+  // 드롭다운 토글 기능
+  warehouseSelect.addEventListener("click", () => {
+    warehouseDropdown.classList.toggle("show");
+  });
+
+  // 드롭다운 외부 클릭 시 닫기
+  window.addEventListener("click", (event) => {
+    if (!warehouseSelect.contains(event.target) && !warehouseDropdown.contains(event.target)) {
+      warehouseDropdown.classList.remove("show");
+    }
+  });
 
   optionSearch.addEventListener("keyup", () => {
     const searchedValue = optionSearch.value.toLowerCase();
-    // console.log("검색: " + searchedValue);
 
     // data 배열을 필터링합니다.
-    const result = warehouseList.filter(warehouse =>
-        warehouse.name.toLowerCase().includes(searchedValue)
+    const result = dataList.filter(warehouse =>
+      warehouse.name.toLowerCase().includes(searchedValue)
     );
 
     // 결과를 HTML로 변환
-    const optionsHTML = result.map(warehouse =>
-        `<div data-value="${warehouse.id}" class="option">${warehouse.name}</div>`
-    ).join("");
+    dropdownList.innerHTML = '';
 
-    dropdownList.innerHTML = optionsHTML ? optionsHTML : `<p>No results found</p>`;
-    // console.log("result: " + optionsHTML);
+    if (result.length > 0) {
+      result.forEach(warehouse => {
+        createOptionElement(warehouse);
+      });
+    } else {
+      dropdownList.innerHTML = `<p>No results found</p>`;
+    }
   });
 });

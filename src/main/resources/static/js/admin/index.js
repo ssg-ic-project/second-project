@@ -1,25 +1,40 @@
-async function adminList() {
-  const page = 1; // 원하는 페이지 번호
-  const size = 10; // 원하는 페이지 크기
-  const orderBy = 'id'; // 원하는 정렬 기준
-  const orderByDir = 'DESC'; // 정렬 방향
-  const R = null; // 권한 검색 조건
-  const WH = null; // 창고 검색 조건
-  const N = null; // 이름 검색 조건
+document.addEventListener('DOMContentLoaded', function () {
+  let searchData = {
+    page: 1,            // 원하는 페이지 번호
+    size: 10,           // 원하는 페이지 크기
+    orderBy: 'id',      // 원하는 정렬 기준
+    orderByDir: 'DESC', // 정렬 방향
+    R: '',            // 권한 검색 조건
+    WH: '',           // 창고 검색 조건
+    N: ''             // 이름 검색 조건
+  }
 
-  const response = await fetch(`/api/admin/list?page=${page}&size=${size}&orderBy=${orderBy}&orderByDir=${orderByDir}&R=${R}&WH=${WH}&N=${N}`);
+  async function adminList(searchData) {
+    const params = new URLSearchParams({
+      page: searchData.page,
+      size: searchData.size,
+      orderBy: searchData.orderBy,
+      orderByDir: searchData.orderByDir,
+      R: searchData.R,
+      WH: searchData.WH,
+      N: searchData.N,
+    })
 
-  const jsonData = await response.json();
+    console.log('params: ' + params)
+    const response = await fetch(
+        `/api/admin/list?${params}`);
 
-  const dataList = jsonData.dataList || [];
+    const jsonData = await response.json();
 
-  const tbody = document.querySelector("#admin-list tbody");
+    const dataList = jsonData.dataList || [];
 
-  tbody.innerHTML = '';
+    const tbody = document.querySelector("#admin-list tbody");
 
-  dataList.forEach(admin => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
+    tbody.innerHTML = '';
+
+    dataList.forEach(admin => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
       <td><a href="/admin?id=${admin.id}">${admin.id ? admin.id : '-'}</a></td>
       <td>${admin.name ? admin.name : '-'}</td>
       <td>${admin.companyEmail ? admin.companyEmail : '-'}</td>
@@ -28,6 +43,26 @@ async function adminList() {
       <td>${admin.phone ? admin.phone : '-'}</td>
       <td>${admin.createdAt ? admin.createdAt : '-'}</td>
     `;
-    tbody.appendChild(row);
+      tbody.appendChild(row);
+    });
+  }
+
+  adminList(searchData);
+
+  let roleOption = '';
+
+  document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function () {
+      roleOption = this.getAttribute('data-value');
+    })
+  })
+
+  document.getElementById('search-btn').addEventListener('click', function () {
+    searchData.R = roleOption;
+    searchData.WH = document.getElementById('w').value;
+    searchData.N = document.getElementById('name').value;
+    console.log('조건 검색\n' + JSON.stringify(searchData))
+
+    adminList(searchData);
   });
-}
+});
