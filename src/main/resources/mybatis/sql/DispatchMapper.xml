@@ -3,28 +3,66 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.DispatchMapper">
-
-
-<!--   dispatch status일 경우 다른 처리.-->
+<!--   dispatch status일 경우 다른 처리 적용-->
         <!-- Check if the DispatchApproval record exists and if the status is still PENDING -->
-    <select id="findById" resultType="DispatchDTO">
-        SELECT da.status,
+    <select id="findById" resultType="DispatchDTO" parameterType="int">
+        SELECT da.status AS status,
                d.vehicle_id AS vehicleId,
                v.type AS vehicleType,
-               v.allocation
+               v.allocation AS allocation,
+                d.outbound_id AS outboundId,
+                d.created_at AS createdAt
+
         FROM Dispatch d
                  LEFT JOIN DispatchApproval da ON da.dispatch_id = d.id
                  LEFT JOIN Vehicle v ON d.vehicle_id = v.id
         WHERE da.id IS NOT NULL AND d.id = #{id}
-        ORDER BY d.created_at DESC
-            LIMIT 1
+--         ORDER BY d.allocation DESC
+--             LIMIT 5
     </select>
 
-    <insert id="updateDispatch" parameterType="DispatchDTO">
-        insert into
+<!--    <update id="updateDispatch" parameterType="DispatchDTO">-->
+<!--        update v.allocation + (p.height * p.width * p.depth)-->
+<!--        from Vehicle v-->
+<!--        left join Dispatch d on d.vehicle_id = v.id-->
+<!--        left join Outbound o on o.id = d.outbound_id-->
+<!--        left join Product p on p.id = o.product_id-->
 
+<!--    </update>-->
+    <insert id="insertDispatch" parameterType="DispatchDTO">
+        INSERT INTO Dispatch (outbound_id, vehicle_id, remark, created_at)
+        VALUES (#{outboundId}, #{vehicleId}, #{remark}, #{createdAt});
     </insert>
 
+    <update id="updateVehicleAllocation" parameterType="DispatchDTO">
+        UPDATE Vehicle v
+        SET v.allocation = v.allocation + (
+            SELECT COALESCE(CEIL(((((p.height / 1000) * (p.width / 1000) * (p.depth / 1000)) / v.volume) * 100) * 100) / 100, 0)
+
+        FROM Dispatch d
+                     LEFT JOIN Outbound o ON o.id = #{outboundId}
+                     LEFT JOIN Product p ON p.id = o.product_id
+            WHERE #{vehicleId} = v.id
+            LIMIT 1
+        )
+        WHERE v.id IN (
+            SELECT d.vehicle_id
+            FROM Dispatch d
+        );
+    </update>
 
 
+    <insert id="updateDispatchApproval" parameterType="DispatchDTO">
+        INSERT INTO DispatchApproval (dispatch_id, status, created_at)
+        VALUES (
+                (SELECT d.id
+                FROM Dispatch d
+                LEFT JOIN Outbound o ON o.id = d.outbound_id
+                WHERE o.id = #{outboundId}
+                LIMIT 1),
+
+                #{status},
+                #{createdAt}
+                );
+    </insert>
 </mapper>

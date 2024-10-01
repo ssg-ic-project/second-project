@@ -1,6 +1,5 @@
 package com.ssg.secondproject.controller.api;
 
-
 import com.ssg.secondproject.dto.DispatchDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.service.DispatchService;
@@ -35,12 +34,12 @@ public class DispatchRestController {
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
 
+    //출고ID도 같이 전달되어야 한다.
     @PostMapping("/register")
-    public ResponseEntity<Void> updateDispatch(@ModelAttribute DispatchDTO dispatchDTO){
-        dispatchService.update(dispatchDTO);
-
+//    public ResponseEntity<Void> updateDispatch(@ModelAttribute DispatchDTO dispatchDTO){
+//        dispatchService.update(dispatchDTO);
+    public ResponseEntity<Void> updateDispatch(@RequestParam("outboundId") int outboundId,  @RequestParam("vehicleId") int vehicleId, @RequestParam("vehicleType") String vehicleType){
+        dispatchService.update(outboundId, vehicleId, vehicleType);
         return new ResponseEntity(getHttpHeaders(), HttpStatus.OK);
     }
-
 }
-

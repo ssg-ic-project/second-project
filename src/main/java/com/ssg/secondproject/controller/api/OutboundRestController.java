@@ -73,7 +73,4 @@ public class OutboundRestController {
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
-
-
-
 }
