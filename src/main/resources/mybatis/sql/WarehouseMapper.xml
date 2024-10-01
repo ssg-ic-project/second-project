@@ -45,4 +45,10 @@
                               address = #{address}
             WHERE id = #{id}
     </update>
+
+  <select id="findName" resultType="Warehouse">
+    SELECT id
+         , name
+    FROM Warehouse
+  </select>
 </mapper>
