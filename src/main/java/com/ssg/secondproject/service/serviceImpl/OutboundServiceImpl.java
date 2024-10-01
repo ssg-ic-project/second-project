@@ -1,10 +1,9 @@
 package com.ssg.secondproject.service.serviceImpl;
 
 import com.ssg.secondproject.dto.PageInfoDTO;
+import com.ssg.secondproject.dto.request.OutboundApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
-import com.ssg.secondproject.dto.response.OutboundResponseDTO;
-import com.ssg.secondproject.dto.response.PageListResponseDTO;
-import com.ssg.secondproject.dto.response.PageResponseDTO;
+import com.ssg.secondproject.dto.response.*;
 import com.ssg.secondproject.mapper.OutboundMapper;
 import com.ssg.secondproject.service.OutboundService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +18,7 @@ import java.util.List;
 public class OutboundServiceImpl implements OutboundService {
     private final ModelMapper modelMapper;
     private final OutboundMapper outboundMapper;
+
     @Override
     public PageListResponseDTO<OutboundResponseDTO> getList(PageRequestDTO pageRequestDTO) {
         List<OutboundResponseDTO> outboundList = outboundMapper.findList(pageRequestDTO);
@@ -40,23 +40,24 @@ public class OutboundServiceImpl implements OutboundService {
                 .build();
         return pageResponseDTO;
     }
+
     @Override
-    public PageResponseDTO<OutboundResponseDTO> getById(int id) {
-        OutboundResponseDTO outboundData = outboundMapper.findById(id);
+    public PageResponseDTO<OutboundDetailResponseDTO> getById(int id) {
+        OutboundDetailResponseDTO outboundData = outboundMapper.findById(id);
         PageResponseDTO pageResponseDTO = PageResponseDTO.builder().data(outboundData).build();
         return pageResponseDTO;
     }
 
     @Override
-    public PageResponseDTO<OutboundResponseDTO> getByIdLog(int id) {
-        List<OutboundResponseDTO> outboundData = outboundMapper.findByIdLog(id);
+    public PageResponseDTO<ApprovalResponseDTO> getByIdLog(int id) {
+        List<ApprovalResponseDTO> outboundData = outboundMapper.findByIdLog(id);
         PageResponseDTO pageResponseDTO = PageResponseDTO.builder().data(outboundData).build();
         return pageResponseDTO;
     }
 
     @Override
-    public PageListResponseDTO<OutboundResponseDTO> getByUserInput(PageRequestDTO pageRequestDTO, String warehouseName, String approvalStatus, LocalDate startDate, LocalDate endDate) {
-        List<OutboundResponseDTO> outboundData = outboundMapper.findByUserInput(warehouseName, approvalStatus, startDate, endDate);
+    public PageListResponseDTO<OutboundDetailResponseDTO> getByUserInput(PageRequestDTO pageRequestDTO, String warehouseName, String approvalStatus, LocalDate startDate, LocalDate endDate) {
+        List<OutboundDetailResponseDTO> outboundData = outboundMapper.findByUserInput(warehouseName, approvalStatus, startDate, endDate);
 
         int total = outboundMapper.getCount(pageRequestDTO);
 
@@ -66,7 +67,7 @@ public class OutboundServiceImpl implements OutboundService {
                         .total(total)
                         .build();
 
-        PageListResponseDTO<OutboundResponseDTO> pageResponseDTO = PageListResponseDTO.<OutboundResponseDTO>builder()
+        PageListResponseDTO<OutboundDetailResponseDTO> pageResponseDTO = PageListResponseDTO.<OutboundDetailResponseDTO>builder()
                 .pageInfoDTO(pageInfoDTO)
                 .dataList(outboundData)
                 .build();
@@ -74,11 +75,7 @@ public class OutboundServiceImpl implements OutboundService {
         return pageResponseDTO;
     }
 
-    @Override
-    public void modifyStatus(int id, String approvalStatus, Long rejectionReason) {
-        //OutboundRequestDTO outboundRequestDTO = OutboundRequestDTO.
-        //build 하고 outboundRequestDTO로 보내고 xml에서 outbound랑 join해서  approval-id 가지고 오기??
-        //outboundMapper.updateStatus();
-    }
+
+
 
 }

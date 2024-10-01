@@ -34,7 +34,6 @@ public class PageRequestDTO {
 
     private SearchTypeDTO search;
 
-
     public int getOffset(){
         return (page - 1) * 10;
     }
