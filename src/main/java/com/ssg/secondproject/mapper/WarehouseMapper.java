@@ -20,5 +20,5 @@ public interface WarehouseMapper {
 
     void update(Warehouse warehouse);
 
-    Warehouse findName();
+    List<Warehouse> findName();
 }
