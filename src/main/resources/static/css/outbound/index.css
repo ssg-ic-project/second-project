@@ -36,7 +36,7 @@
 }
 
 .search-box {
-    height: 180px;
+    height: 300px;
     background-color: #FFFFFF;
     border-radius: 10px;
     margin-top: 20px;
@@ -56,10 +56,11 @@
     display: flex;
     min-width: calc(100% - 40px);
     list-style: none;
-    justify-content: center;
+    justify-content:center;
     align-self: flex-start;
-    gap: 15px;
+    gap: 1.1px;
     margin: 5px;
+    margin-left: 75px; /* 오른쪽으로 10px 이동 */
 
 }
 
@@ -68,6 +69,7 @@
     align-items: center;
     justify-content: center;
     padding-left: 70px;
+    margin: 0 -25px;
 }
 
 .select-box {
@@ -80,8 +82,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    gap: 22px;
 
+}
 
 .select-menu {
     color: #50565C;
@@ -89,7 +92,6 @@
     width: 250px;
     cursor: pointer;
     position: relative;
-    gap: 10px; /* ì¶”ê°€: ìš”ì†Œ ê°„ì˜ ê°„ê²© */
 
 }
 
@@ -97,20 +99,24 @@
     font-family: 'NanumSquare', sans-serif;
     color: #50565C;
     font-size: 18px;
+
 }
+
 
 .select {
     background-color: #FFFFFF;
     border: 1px solid #8D9DEF;
     border-radius: 10px;
     padding: 5px 15px;
-    width: 80% !important;
-    height: 35px;
+    width: 73% !important;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
+
 }
+
 
 .option-list {
     position: absolute;
@@ -124,6 +130,7 @@
     box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
     transition: all 0.3s ease;
+    z-index: 1000; /* z-index 값을 추가하여 항상 위에 보이도록 설정 */
 }
 
 .select.active .dropdown img {
@@ -240,7 +247,9 @@
     width: 200%;
     max-width: 500px;
     margin: auto;
+    gap: 20px;
 }
+
 
 .date-picker .start-date{
 }
