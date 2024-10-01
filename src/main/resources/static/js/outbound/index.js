@@ -1,15 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 창고 드롭다운 관련
-    const selectWarehouse = document.querySelector('.warehouse-filter .select-menu active');
-    const optionListWarehouse = document.querySelector('.warehouse-filter .option-list');
-    const optionsWarehouse = optionListWarehouse.querySelectorAll('.option-list');
+    // const selectWarehouse = document.querySelector(".select-menu");
+    // const optionListWarehouse = document.querySelector(".option-list");
+    const selectWarehouse = document.querySelector('.warehouse-filter .select-menu .select');
+    const optionListWarehouse = document.querySelector('.warehouse-filter .select-menu .option-list');
+    const optionsWarehouse = optionListWarehouse.querySelectorAll('.option');
     const selectedOptionWarehouse = document.getElementById('selected-option2');
 
 
     // 승인 상태 드롭다운 관련
-    const selectApproval = document.querySelector('.approval .select-menu active');
-    const optionListApproval = document.querySelector('.approval .select-menu active');
-    const optionsApproval = optionListApproval.querySelectorAll('.option-list');
+    const selectApproval = document.querySelector('.approval .select-menu .select');
+    const optionListApproval = document.querySelector('.approval .select-menu .option-list');
+    const optionsApproval = optionListApproval.querySelectorAll('.option');
     const selectedOptionApproval = document.getElementById('selected-option');
 
     // // 배차 상태 드롭다운 관련
@@ -25,6 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedOptionDispatch = document.getElementById('selected-option3');
 
 
+    // 드롭다운 열고 닫기 기능 (창고)
+    selectWarehouse.addEventListener('click', () => {
+        selectWarehouse.classList.toggle('active');
+        optionListWarehouse.classList.toggle('active');
+    });
+
 
     // 드롭다운 열고 닫기 기능 (승인 상태)
     selectApproval.addEventListener('click', () => {
@@ -32,11 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         optionListApproval.classList.toggle('active');
     });
 
-    // 드롭다운 열고 닫기 기능 (창고)
-    selectWarehouse.addEventListener('click', () => {
-        selectWarehouse.classList.toggle('active');
-        optionListWarehouse.classList.toggle('active');
-    });
 
     // 드롭다운 열고 닫기 기능 (배차)
     selectDispatch.addEventListener('click', () => {
