@@ -35,6 +35,7 @@ public class DispatchServiceImpl implements DispatchService {
                 .vehicleId(vehicleId)
                 .vehicleType(vehicleType)
                 .build();
+
         dispatchMapper.insertDispatch(requestDTO.getOutboundId(), requestDTO.getVehicleId(), requestDTO.getRemark(), requestDTO.getCreatedAt());
         //바로 승인해주기, 나중에는 배송기사가 승인해주는 것으로 추가하기
         dispatchMapper.updateDispatchApproval(approvalId, requestDTO.getOutboundId(), requestDTO.getStatus(), requestDTO.getCreatedAt());

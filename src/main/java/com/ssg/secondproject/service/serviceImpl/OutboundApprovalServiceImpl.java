@@ -24,7 +24,7 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
     @Override
     public void approveOutbound(int id, OutboundApprovalRequestDTO requestDTO) {
         outboundApprovalMapper.insertOutboundApproval(id, requestDTO);
-        //배송에 PENDING transaction처리 넣어주기
+        //배송에 PENDING 넣어주기
         DeliveryRequestDTO deliveryRequestDTO = DeliveryRequestDTO.builder()
                 .outboundId(requestDTO.getOutboundId())
                 .build();
@@ -41,8 +41,8 @@ public class OutboundApprovalServiceImpl implements OutboundApprovalService {
         //StockLog 테이블에 출고 내역 쌓기
         stockLog(requestDTO);
 
-        //배송 상태 IN_DELIVERY로 바꾸기
-        processDelivery(requestDTO);
+        //배송 상태 IN_DELIVERY로 바꾸기--> 확장: 차량이 80%찰경우 배송 가능이기 떄문에 그쪽에 붙어야 함.
+        //processDelivery(requestDTO);
 
         //운송장 등록하기
         createInvoice(requestDTO);
