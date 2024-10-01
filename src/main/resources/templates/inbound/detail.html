@@ -12,10 +12,8 @@
   <link rel="stylesheet" href="/css/common/table.css">
   <title>Inbound Detail</title>
   <script src="/js/inbound/detail.js"></script>
-  <script defer th:inline="javascript">
+  <script th:inline="javascript">
     const inboundId = [[${id}]];
-    inboundDetail(inboundId)
-    inboundApprovalList(inboundId)
   </script>
 </head>
 <body>
@@ -27,10 +25,12 @@
   <div class="action-btn">
     <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#approveModal">승인
     </button>
-    <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
-    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editInfoModal">수정
+    <button class="btn btn-complete" data-bs-toggle="modal" data-bs-target="#completeModal">승인 완료
     </button>
-    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+    <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editInfoModal" disabled>수정
+    </button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal" disabled>삭제</button>
   </div>
   <div th:class="info-box">
     <h5 th:class="box-title">입고 정보</h5>
@@ -187,7 +187,26 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-action">승인</button>
+          <button type="button" class="btn btn-action" id="btn-approve">승인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="completeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">입고 승인 완료</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          입고 승인 완료 처리하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-action" id="btn-complete">완료</button>
         </div>
       </div>
     </div>
@@ -207,7 +226,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-action">반려</button>
+          <button type="button" class="btn btn-action" id="btn-reject">반려</button>
         </div>
       </div>
     </div>
