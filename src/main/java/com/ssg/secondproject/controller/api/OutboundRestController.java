@@ -30,14 +30,13 @@ public class OutboundRestController {
 
     private final OutboundService outboundService;
 
-    //그냥 list 가지고 오는 부분
-//    @GetMapping("/list")
-//    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(
-//        PageRequestDTO pageRequestDTO, BindingResult bindingResult){
-//        PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
-//        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-//        return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
-//    }
+//    그냥 list 가지고 오는 부분
+    @GetMapping("/list")
+    public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getOutboundList(
+        PageRequestDTO pageRequestDTO, BindingResult bindingResult){
+        PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
+        return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
+    }
 
     // 출고 테이블의 ID 클릭시 상세페이지로 이동
     @GetMapping("/detail")
@@ -58,14 +57,13 @@ public class OutboundRestController {
         return ResponseEntity.ok(response);
     }
 
-    //출고 조회 첫 페이지로 생각해도 무방하다. where 문으로 입력값에 대한 결과를 반환하기 때문엘 값이 없어도 무방하다.
-//    @GetMapping("/searchby")
-//    public ResponseEntity<PageListResponseDTO<OutboundDetailResponseDTO>> getUserInput(PageRequestDTO pageRequestDTO, @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
-//                                                                                       @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate) {
-//        PageListResponseDTO<OutboundDetailResponseDTO> data = outboundService.getByUserInput(pageRequestDTO, warehouseName, approvalStatus, startDate, endDate);
-//        httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-//        return new ResponseEntity<>(data, httpHeaders, HttpStatus.OK);
-//    }
+//    출고 조회 첫 페이지로 생각해도 무방하다. where 문으로 입력값에 대한 결과를 반환하기 때문엘 값이 없어도 무방하다.
+    @GetMapping("/searchby")
+    public ResponseEntity<PageListResponseDTO<OutboundDetailResponseDTO>> getUserInput(PageRequestDTO pageRequestDTO, @RequestParam("warehouseName") String warehouseName, @RequestParam("approvalStatus") String approvalStatus,
+                                                                                       @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate) {
+        PageListResponseDTO<OutboundDetailResponseDTO> data = outboundService.getByUserInput(pageRequestDTO, warehouseName, approvalStatus, startDate, endDate);
+        return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
+    }
 
     @GetMapping("/list")
     public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getList(

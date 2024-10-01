@@ -7,6 +7,6 @@ public interface DispatchService {
 
     PageResponseDTO<DispatchDTO> getById(int id);
 
-    void update(int outboundId, int vehicleId, String vehicleType);
+    void insert(int approvalId, int outboundId, int vehicleId, String vehicleType);
 
 }

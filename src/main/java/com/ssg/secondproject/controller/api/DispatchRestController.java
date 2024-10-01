@@ -38,8 +38,13 @@ public class DispatchRestController {
     @PostMapping("/register")
 //    public ResponseEntity<Void> updateDispatch(@ModelAttribute DispatchDTO dispatchDTO){
 //        dispatchService.update(dispatchDTO);
+    public ResponseEntity<Void> insertDispatch(@RequestParam("outboundId") int outboundId,  @RequestParam("vehicleId") int vehicleId, @RequestParam("vehicleType") String vehicleType){
+        int approvalId = 5;
+        dispatchService.insert(approvalId, outboundId, vehicleId, vehicleType);
+        return new ResponseEntity(getHttpHeaders(), HttpStatus.OK);
+    }
     public ResponseEntity<Void> updateDispatch(@RequestParam("outboundId") int outboundId,  @RequestParam("vehicleId") int vehicleId, @RequestParam("vehicleType") String vehicleType){
-        dispatchService.update(outboundId, vehicleId, vehicleType);
+//        dispatchService.update(outboundId, vehicleId, vehicleType);
         return new ResponseEntity(getHttpHeaders(), HttpStatus.OK);
     }
 }

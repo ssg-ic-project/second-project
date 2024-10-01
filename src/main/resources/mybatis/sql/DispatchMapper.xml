@@ -36,31 +36,26 @@
 
     <update id="updateVehicleAllocation" parameterType="DispatchDTO">
         UPDATE Vehicle v
-        SET v.allocation = v.allocation + (
-            SELECT COALESCE(CEIL(((((p.height / 1000) * (p.width / 1000) * (p.depth / 1000)) / v.volume) * 100) * 100) / 100, 0)
-
-        FROM Dispatch d
-                     LEFT JOIN Outbound o ON o.id = #{outboundId}
-                     LEFT JOIN Product p ON p.id = o.product_id
-            WHERE #{vehicleId} = v.id
-            LIMIT 1
-        )
-        WHERE v.id IN (
-            SELECT d.vehicle_id
-            FROM Dispatch d
-        );
+        SET v.allocation = COALESCE(v.allocation, 0) + COALESCE((
+              SELECT ROUND((((p.height / 1000) * (p.width / 1000) * (p.depth / 1000)) / v.volume), 2) * o.quantity
+                    FROM Dispatch d
+                    LEFT JOIN Outbound o ON o.id = #{outboundId}
+                    LEFT JOIN Product p ON p.id = o.product_id
+                    WHERE #{vehicleId} = v.id
+                    LIMIT 1
+                    ), 0)
+        where v.id = #{vehicleId};
     </update>
 
-
     <insert id="updateDispatchApproval" parameterType="DispatchDTO">
-        INSERT INTO DispatchApproval (dispatch_id, status, created_at)
+        INSERT INTO DispatchApproval (dispatch_id, approver_id, status, created_at)
         VALUES (
                 (SELECT d.id
                 FROM Dispatch d
                 LEFT JOIN Outbound o ON o.id = d.outbound_id
                 WHERE o.id = #{outboundId}
                 LIMIT 1),
-
+                #{approvalId},
                 #{status},
                 #{createdAt}
                 );
