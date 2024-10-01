@@ -59,6 +59,8 @@
          , wsc.sectionName
          , wsc.cellName
          , IFNULL(SUM(s.quantity), 0) AS stockQuantity
+         , IFNULL(csp.useSpace, 0)    AS useSpace
+         , IFNULL(csp.freeSpace, 0)   AS freeSpace
          , p.productId
          , p.productName
          , p.mainCategory
@@ -82,6 +84,14 @@
                             JOIN Section s ON s.id = c.section_id
                             JOIN Warehouse w ON w.id = s.warehouse_id) wsc ON cellId = i.cell_id
              LEFT JOIN Stock s ON s.product_id = i.product_id AND s.cell_id = i.cell_id
+             LEFT JOIN (SELECT c.id                                                                     AS cellId
+                             , IFNULL(SUM(s.quantity), 0)                                               AS stockQuantity
+                             , ROUND(SUM(p.height * p.width * p.depth * s.quantity) * 1e-9, 2)          AS useSpace
+                             , ROUND(c.size - SUM(p.height * p.width * p.depth * s.quantity) * 1e-9, 2) AS freeSpace
+                        FROM Cell c
+                                 JOIN Stock s ON s.cell_id = c.id
+                                 JOIN Product p ON p.id = s.product_id
+                        GROUP BY c.id) AS csp ON csp.cellId = i.cell_id
              JOIN (SELECT p.id    AS productId,
                           p.name  AS productName,
                           c1.name AS mainCategory,

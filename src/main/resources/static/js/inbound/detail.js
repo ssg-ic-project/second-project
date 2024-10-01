@@ -13,6 +13,8 @@ async function inboundDetail(inboundId) {
   document.getElementById("sectionName").textContent = data.sectionName;
   document.getElementById("cellName").textContent = data.cellName;
   document.getElementById("stockQuantity").textContent = data.stockQuantity;
+  document.getElementById("useSpace").textContent = data.useSpace + ' m\u00B3';
+  document.getElementById("freeSpace").textContent = data.freeSpace + ' m\u00B3';
   document.getElementById("productId").textContent = data.productId;
   document.getElementById("productName").textContent = data.productName;
   document.getElementById("category").textContent = data.mainCategory + ' > ' + data.subCategory + ' > ' + data.detailCategory;
