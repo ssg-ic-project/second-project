@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,17 +33,34 @@ public class StockRestController {
         Map<String, Object> resultMap = new HashMap<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        LocalDateTime fromDate = LocalDate.parse(paramMap.get("from").toString(), formatter).atStartOfDay();
-        LocalDateTime toDate = LocalDate.parse(paramMap.get("to").toString(), formatter).atTime(LocalTime.MAX);;
+        // Check if 'from' and 'to' parameters exist and are not null
+        if (paramMap.containsKey("from") && paramMap.containsKey("to")) {
+            if (paramMap.get("from") != "" && paramMap.get("to") != "") {
+                //            return ResponseEntity.badRequest().body("Missing 'from' or 'to' parameters");
+                LocalDateTime fromDate;
+                LocalDateTime toDate;
 
+                try {
+                    fromDate = LocalDate.parse(paramMap.get("from").toString(), formatter).atStartOfDay();
+                    toDate = LocalDate.parse(paramMap.get("to").toString(), formatter).atTime(LocalTime.MAX);
+                } catch (DateTimeParseException e) {
+                    return ResponseEntity.badRequest().body("Invalid date format. Please use 'yyyy-MM-dd'.");
+                }
+                log.info(fromDate);
+                log.info(toDate);
 
-        log.info(fromDate);
-        log.info(toDate);
+                log.info("paramMap" + paramMap);
+
+                paramMap.put("from", fromDate);
+                paramMap.put("to", toDate);
+            } else {
+                paramMap.remove("from");
+                paramMap.remove("to");
+            }
+
+        }
 
         log.info("paramMap" + paramMap);
-
-        paramMap.put("from", fromDate);
-        paramMap.put("to", toDate);
 
         Page<Map<String, Object>> result = stockService.list(paramMap, pageable);
         resultMap.put("pages", result);
