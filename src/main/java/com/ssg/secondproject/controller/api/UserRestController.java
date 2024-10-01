@@ -1,5 +1,6 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.SearchTypeDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -35,7 +36,28 @@ public class UserRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<PageListResponseDTO<UserResponseDTO>> getUserList(@ModelAttribute PageRequestDTO pageRequestDTO) {
+    public ResponseEntity<PageListResponseDTO<UserResponseDTO>> getUserList(
+        @RequestParam int page,
+        @RequestParam int size,
+        @RequestParam String orderBy,
+        @RequestParam String orderByDir,
+        @RequestParam(required = false) String N,
+        @RequestParam(required = false) String E,
+        @RequestParam(required = false) String S) {
+
+        SearchTypeDTO searchTypeDTO = SearchTypeDTO.builder()
+            .N(N)
+            .E(E)
+            .S(S)
+            .build();
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+            .page(page)
+            .size(size)
+            .orderBy(orderBy)
+            .orderByDir(orderByDir)
+            .search(searchTypeDTO)
+            .build();
         PageListResponseDTO<UserResponseDTO> data = userService.getList(pageRequestDTO);
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }

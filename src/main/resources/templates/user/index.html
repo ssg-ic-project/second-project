@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="/css/user/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
   <script src="/js/user/index.js"></script>
-   <script defer th:inline="javascript">
-    userList()
-  </script>
   <title>User Index</title>
 </head>
 <body>
@@ -21,15 +18,15 @@
     <h1 class="page-title">회원 조회</h1>
     <span class="page-subtitle">회원 관리 > 회원 조회</span>
   </div>
-  <div class="search-box">
+  <form id="search-form" class="search-box">
     <h3 class="title">검색 조건</h3>
     <div class="search-filters">
       <div class="filter-group">
         <div class="filter-item">
-          <input type="text" class="filter-input" placeholder="이름">
+          <input id="companyName" type="text" class="filter-input" placeholder="상호명">
         </div>
         <div class="filter-item">
-          <input type="text" class="filter-input" placeholder="이메일">
+          <input id="email" type="text" class="filter-input" placeholder="이메일">
         </div>
       </div>
       <div class="filter-group">
@@ -48,11 +45,11 @@
           </div>
         </div>
         <div class="filter-item">
-          <button type="button" class="filter-button">검색</button>
+          <button type="button" id="search-btn" class="filter-button">검색</button>
         </div>
       </div>
     </div>
-  </div>
+  </form>
   <div class="table-list">
     <table id="user-list">
       <thead>
