@@ -1,17 +1,15 @@
-import axios from "axios";
-
 document.addEventListener('DOMContentLoaded', () => {
     // 창고 드롭다운 관련
-    const selectWarehouse = document.querySelector('.select-menu:nth-child(1) .select');
-    const optionListWarehouse = document.querySelector('.select-menu:nth-child(1) .option-list');
-    const optionsWarehouse = optionListWarehouse.querySelectorAll('.option');
+    const selectWarehouse = document.querySelector('.warehouse-filter .select-menu active');
+    const optionListWarehouse = document.querySelector('.warehouse-filter .option-list');
+    const optionsWarehouse = optionListWarehouse.querySelectorAll('.option-list');
     const selectedOptionWarehouse = document.getElementById('selected-option2');
 
 
     // 승인 상태 드롭다운 관련
-    const selectApproval = document.querySelector('.select-menu:nth-child(2) .select');
-    const optionListApproval = document.querySelector('.select-menu:nth-child(2) .option-list');
-    const optionsApproval = optionListApproval.querySelectorAll('.option');
+    const selectApproval = document.querySelector('.approval .select-menu active');
+    const optionListApproval = document.querySelector('.approval .select-menu active');
+    const optionsApproval = optionListApproval.querySelectorAll('.option-list');
     const selectedOptionApproval = document.getElementById('selected-option');
 
     // // 배차 상태 드롭다운 관련

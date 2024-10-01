@@ -1,88 +1,137 @@
-.detail-box {
+.info-box,
+.inbound-approval-box {
     width: 100%;
-    /*height: 180px;*/
-    height: auto;
+    height: 100%;
     background-color: #FFFFFF;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-
+    position: relative;
 }
 
-.detail-box .title {
-    margin: 0;                   /* 상단 여백을 제거하여 좌측 상단에 위치 */
-    align-self: flex-start;       /* 좌측 정렬 */
-    font-size: 18px;              /* 폰트 사이즈를 16px로 설정 */
-    font-weight: normal;          /* 폰트 굵기 설정 (원하는 경우) */
-    color: #000000;               /* 글자 색상 설정 (선택 사항) */
+.info-box:first-of-type {
+    margin-top: 80px;
 }
-.outbound-print-btn {
+
+.box-title {
+    margin: 10px 0;
+    align-self: flex-start;
+}
+
+.info-details {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-group {
+    margin: 0 10px;
+    padding: 10px 20px;
+    min-width: calc((100% / 2) - 50px);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.detail-label {
+    font-family: 'NanumSquare-Bold', sans-serif;
+    font-size: 17px;
+    color: #242323;
+    width: 200px;
+    margin: 8px 0;
+}
+
+.detail-value {
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 15px;
+    border: 1px solid #ADB5BD;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    line-height: 1;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.action-btn {
     float: right;
 }
-.outbound-print-btn .print-btn{
-    font-family: 'BMHANNAAir', sans-serif;
+.action-btn1 {
+    float: left;
+}
+
+.action-btn .btn {
+    font-family: 'NanumSquare-Bold', sans-serif;
+    font-size: 17px;
+    color: #FFFFFF;
+    width: 100px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4F64C9;
+    margin: 20px 0 10px 10px;
+}
+
+.action-btn1 .btn {
+    font-family: 'NanumSquare-Bold', sans-serif;
+    font-size: 17px;
+    color: #FFFFFF;
     width: 150px;
     height: 35px;
     border: none;
     border-radius: 10px;
     background-color: #4F64C9;
-    color: #FFFFFF;
-    font-size: 18px;
     margin: 20px 0 10px 10px;
 }
 
 
-/* 모달 스타일 */
-.modal-content {
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+#approval-list {
+    margin-top: 20px;
+}
+.modal-body .modal-content {
+    border-style: none;
+    display: inline;
 }
 
-.modal-header {
-    border-bottom: 1px solid #ececec;
-    padding-bottom: 10px;
+.modal-body .modal-warning {
+    color: #868E96;
+    font-size: 13px;
 }
 
-.modal-title {
-    font-size: 20px;
-    font-weight: bold;
+.modal-footer .btn-cancel {
+    background-color: #868E96;
 }
 
-.modal-body {
-    font-size: 16px;
-    color: #50565C;
-}
-
-.modal-footer {
-    border-top: 1px solid #ececec;
-    padding-top: 10px;
-}
-
-/* 모달 내 버튼 스타일 */
-.modal-footer .btn-primary {
+.modal-footer .btn-action {
     background-color: #4F64C9;
+}
+
+.modal-footer .btn {
+    font-family: 'NanumSquare-Bold', sans-serif;
+    font-size: 17px;
+    color: #FFFFFF;
+    margin: 5px;
+    width: 100px;
+    height: 35px;
     border: none;
-    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    padding: 6px;
 }
 
-.modal-footer .btn-primary:hover {
-    background-color: #3D4FA7;
+#editInfoModal .detail-label {
+    width: 100px;
 }
 
-.modal-footer .btn-secondary {
-    background-color: #f0f0f0;
-    color: #333;
-    border: none;
-}
-
-.product-info p,
-.warehouse-info p,
-.customer-info p,
-.request-info p {
-    margin-bottom: 10px; /* 아래쪽에 10px의 여백을 추가 */
-    margin-top: 10px;
+#editInfoModal .info-value {
+    flex: 1;
+    border: 1px solid #8D9DEF;
+    border-radius: 5px;
+    padding: 0 10px;
 }

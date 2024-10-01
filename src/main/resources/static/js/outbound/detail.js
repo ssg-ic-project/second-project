@@ -18,7 +18,7 @@ function handleOutboundClick(id) {
 // Get detailed data for each outbound request asynchronously
 async function getOutboundDetails(id) {
     try {
-        const response = await axios.get(`/api/outbound?id=${id}`);
+        const response = await fetch.get(`/api/outbound?id=${id}`);
         console.log(response.data); // For testing purposes
         displayOutboundDetails(response.data);
         await getOutboundApprovalHistory(id);
@@ -31,25 +31,26 @@ async function getOutboundDetails(id) {
 function displayOutboundDetails(data) {
     // Update the page with outbound details
     document.getElementById("id").innerText = data.id;
-    document.getElementById("expecteddate").innerText = data.expectedDate || 'N/A'; // Handle missing data
+    document.getElementById("expectedDate").innerText = data.expectedDate || 'N/A'; // Handle missing data
     document.getElementById("quantity").innerText = data.quantity || 'N/A';
-    document.getElementById("createddate").innerText = data.createdAt || 'N/A';
+    document.getElementById("createdDate").innerText = data.createdAt || 'N/A';
     document.getElementById("remarks").innerText = data.remarks || 'No remarks'; // Display 'No remarks' if undefined
-    document.getElementById("warehouseid").innerText = data.warehouseId || 'N/A';
-    document.getElementById("sectioncellid").innerText = `Section ${data.sectionId || 'N/A'}, Cell ${data.cellId || 'N/A'}`;
-    document.getElementById("warehousename").innerText = data.warehouseName || 'N/A';
-    document.getElementById("stockquantity").innerText = data.stockQuantity || 'N/A';
-    document.getElementById("inboundexpecteddate").innerText = data.inboundExpectedDate || 'N/A';
-    document.getElementById("productid").innerText = data.productId || 'N/A';
-    document.getElementById("productvolume").innerText = `Height: ${data.productHeight || 'N/A'} * Width: ${data.productWidth || 'N/A'} * Depth: ${data.productDepth || 'N/A'}`;
-    document.getElementById("productname").innerText = data.productName || 'N/A';
-    document.getElementById("categoryid").innerText = data.productCategoryId || 'N/A';
-    document.getElementById("userid").innerText = data.userId || 'N/A';
-    document.getElementById("userbusinessnumber").innerText = data.userBusinessNumber || 'N/A';
-    document.getElementById("companyname").innerText = data.companyName || 'N/A';
-    document.getElementById("useremail").innerText = data.userEmail || 'N/A';
-    document.getElementById("userphone").innerText = data.userPhone || 'N/A';
+    document.getElementById("warehouseId").innerText = data.warehouseId || 'N/A';
+    document.getElementById("sectionCellId").innerText = `Section ${data.sectionId || 'N/A'}, Cell ${data.cellId || 'N/A'}`;
+    document.getElementById("warehouseName").innerText = data.warehouseName || 'N/A';
+    document.getElementById("stockQuantity").innerText = data.stockQuantity || 'N/A';
+    document.getElementById("inboundExpectedDate").innerText = data.inboundExpectedDate || 'N/A';
+    document.getElementById("productId").innerText = data.productId || 'N/A';
+    document.getElementById("productVolume").innerText = `Height: ${data.productHeight || 'N/A'} * Width: ${data.productWidth || 'N/A'} * Depth: ${data.productDepth || 'N/A'}`;
+    document.getElementById("productName").innerText = data.productName || 'N/A';
+    document.getElementById("categoryId").innerText = data.productCategoryId || 'N/A';
+    document.getElementById("userId").innerText = data.userId || 'N/A';
+    document.getElementById("userBusinessNumber").innerText = data.userBusinessNumber || 'N/A';
+    document.getElementById("companyName").innerText = data.companyName || 'N/A';
+    document.getElementById("userEmail").innerText = data.userEmail || 'N/A';
+    document.getElementById("userPhone").innerText = data.userPhone || 'N/A';
 }
+//userName 추가하기
 
 // On page load
 window.onload = function() {
@@ -64,7 +65,7 @@ window.onload = function() {
 //출고 상세에 나오는 승인 내역 테이블 보여주기.
 async function getOutboundApprovalHistory(id) {
     try {
-        const response = await axios.get(`/api/outbound?id=${id}`);
+        const response = await fetch.get(`/api/outbound?id=${id}`);
         console.log(response.data); // For testing purposes
         displayApprovalHistory(response.data);
     } catch (error) {

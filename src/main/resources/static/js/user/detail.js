@@ -28,6 +28,7 @@ async function userDetail(userId) {
   document.getElementById("unregisterAt").textContent = data.unregisterAt;
   document.getElementById("comment").textContent = data.comment;
 
+
   document.getElementById("modifyCompanyName").value = data.companyName;
   document.getElementById("modicyBusinessNumber").value = data.businessNumber;
 
@@ -37,6 +38,7 @@ async function userApprovalList(userId) {
   const response = await fetch(`/api/user/approval/list?userId=${userId}`);
   const jsonData = await response.json();
   const dataList = jsonData.dataList || [];
+
 
   const tbody = document.querySelector("#approval-list tbody");
 
