@@ -88,21 +88,105 @@ document.addEventListener('DOMContentLoaded', () => {
             selectWarehouse.classList.remove('active');
             optionListWarehouse.classList.remove('active');
         }
-
         if (!selectApproval.contains(event.target)) {
             selectApproval.classList.remove('active');
             optionListApproval.classList.remove('active');
         }
-
-
         if (!selectDispatch.contains(event.target)) {
             selectDispatch.classList.remove('active');
             optionListDispatch.classList.remove('active');
         }
     });
+
+    // 지은님 코드
+    const today = new Date();
+    const startDateDefault = new Date();
+    startDateDefault.setDate(today.getDate() - 30);
+
+    flatpickr("#start-date", {
+        dateFormat: "Y-m-d",
+        defaultDate: startDateDefault,
+        onClose: function (selectedDates) {
+            const startDate = selectedDates[0];
+            if (startDate) {
+                endPicker.set('minDate', startDate);
+            }
+        }
+    });
+
+    const endPicker = flatpickr("#end-date", {
+        dateFormat: "Y-m-d",
+        defaultDate: today,
+        minDate: startDateDefault
+    });
+
+    document.getElementById('start-date').value = startDateDefault.toISOString().split('T')[0];
+    document.getElementById('end-date').value = today.toISOString().split('T')[0];
+
+    let searchData = {
+        page: 1,
+        size: 10,
+        orderBy: 'id',
+        orderByDir: 'DESC',
+        S: '',
+        WH: '',
+        SD: document.getElementById('start-date').value,
+        ED: document.getElementById('end-date').value
+    };
+    async function outboundList(){
+        const params = new URLSearchParams({
+            page: searchData.page,
+            size: searchData.size,
+            orderBy: searchData.orderBy,
+            orderByDir: searchData.orderByDir,
+            S: searchData.S,
+            WH: searchData.WH,
+            SD: searchData.SD,
+            ED: searchData.ED,
+            DS: searchData.DS,
+            OS: searchData.OS
+        })
+        const response = await fetch(`/api/outbound/list?${params}`);
+        const jsonData = await response.json();
+        const dataList = jsonData.dataList || [];
+        const tbody = document.querySelector("#outbound-list tbody");
+
+        tbody.innerHTML = '';
+
+        dataList.forEach(outbound => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+      <td><a href="/outbound?id=${outbound.id}">${outbound.id ? outbound.id : '-'}</a></td>
+      <td>${outbound.productName ? outbound.productName : '-'}</td>
+      <td>${outbound.quantity ? outbound.quantity : '-'}</td>
+      <td>${outbound.companyName ? outbound.companyName : '-'}</td>
+      <td><a href="/outbound/dispatch?id=${dispatch.id}">${outbound.isDispatch ? outbound.isDispatch : '-'}</a>></td>
+      <td>${outbound.isInvoice ? outbound.isInvoice : '-'}</td>
+      <td>${outbound.status ? outbound.status : '-'}</td>
+    `;
+            tbody.appendChild(row);
+        });
+    }
+    outboundList(searchData)
+
+    let startOption = '';
+
+    document.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', function () {
+            startOption = this.getAttribute('data-value');
+        })
+    })
+
+    document.getElementById('search-btn').addEventListener('click', function () {
+        searchData.S = startOption;
+        searchData.WH = document.getElementById("selected-warehouse-id").value;
+        searchData.SD = document.getElementById('start-date').value,
+            searchData.ED = document.getElementById('end-date').value
+
+        outboundList(searchData);
+    });
+
 });
-
-
 
 
 // 달력 추가
