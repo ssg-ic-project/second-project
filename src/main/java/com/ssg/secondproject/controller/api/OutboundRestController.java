@@ -1,5 +1,6 @@
 package com.ssg.secondproject.controller.api;
 
+import com.ssg.secondproject.dto.SearchTypeDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.*;
 import com.ssg.secondproject.service.OutboundService;
@@ -39,10 +40,11 @@ public class OutboundRestController {
 //    }
 
     // 출고 테이블의 ID 클릭시 상세페이지로 이동
-    @GetMapping("/detail")
+    @GetMapping()
     public ResponseEntity<PageResponseDTO<OutboundDetailResponseDTO>> getOutbound(@RequestParam int id) {
         log.info("GetOutbound controller is running. Getting one outbound id");
         PageResponseDTO<OutboundDetailResponseDTO> data = outboundService.getById(id);
+        log.info(data.getData());
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }
 
@@ -67,7 +69,35 @@ public class OutboundRestController {
 
     @GetMapping("/list")
     public ResponseEntity<PageListResponseDTO<OutboundResponseDTO>> getList(
-            @ModelAttribute PageRequestDTO pageRequestDTO) {
+            // @ModelAttribute PageRequestDTO pageRequestDTO) {
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String orderBy,
+            @RequestParam String orderByDir,
+            @RequestParam(required = false) String S,
+            @RequestParam(required = false) Integer WH,
+            @RequestParam(required = false) String SD,
+            @RequestParam(required = false) String ED,
+            @RequestParam(required = false) String OS,
+            @RequestParam(required = false) String DS) {
+
+        SearchTypeDTO searchTypeDTO = SearchTypeDTO.builder()
+                .S(S)
+                .WH(WH)
+                .SD(SD)
+                .ED(ED)
+                .OS(OS)
+                .DS(DS)
+                .build();
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(page)
+                .size(size)
+                .orderBy(orderBy)
+                .orderByDir(orderByDir)
+                .search(searchTypeDTO)
+                .build();
+
         PageListResponseDTO<OutboundResponseDTO> data = outboundService.getList(pageRequestDTO);
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
     }

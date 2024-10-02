@@ -13,17 +13,17 @@ public class OutboundDetailResponseDTO { //출고 요청서 상세 페이지 포
     private LocalDate expectedDate;
     private int quantity;
     private String remarks;
-    private boolean isDispatch;
-    private boolean isInvoice;
+//    private boolean isDispatch;
+//    private boolean isInvoice;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private String approvalStatus;
+//    private String approvalStatus;
     private int warehouseId;
     private int sectionId;
     private int cellId;
     private String warehouseName;
     private int stockQuantity;
-    private LocalDate inboundExpectedDate;
+//    private LocalDate inboundExpectedDate;
     private int productId;
     private String productName;
     //categoryName 도 포함하기

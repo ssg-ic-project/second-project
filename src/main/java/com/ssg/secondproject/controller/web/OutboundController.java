@@ -2,8 +2,10 @@ package com.ssg.secondproject.controller.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/outbound")
@@ -15,8 +17,9 @@ public class OutboundController {
         return "outbound/index";
     }
 
-    @GetMapping("/detail")
-    public String outbound_detail() {
+    @GetMapping()
+    public String outbound_detail(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("id", id);
         return "outbound/detail";
     }
 
