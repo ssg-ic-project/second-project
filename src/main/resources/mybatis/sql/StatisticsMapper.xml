@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.secondproject.mapper.StatisticsMapper">
+
+  <select id="getMonthlyStats" resultType="MonthlyStatsDTO">
+    SELECT (SELECT COUNT(id) AS newRegistrations
+            FROM User
+            WHERE YEAR(created_at) = YEAR(NOW())
+              AND MONTH(created_at) = 6) AS newUsers,
+           (SELECT COUNT(id) AS newRegistrations
+            FROM Inbound
+            WHERE YEAR(created_at) = YEAR(NOW())
+              AND MONTH(created_at) = 6) AS newInboundRequests
+  </select>
+
+  <select id="getSixMonthsStats" resultType="SixMonthsStatsDTO">
+    SELECT YEAR(i.created_at)  AS year,
+           MONTH(i.created_at) AS month,
+           COUNT(i.id)         AS inboundCnt,
+           0                   AS outboundCnt
+    FROM Inbound i
+    GROUP BY YEAR(i.created_at), MONTH(i.created_at)
+    HAVING TIMESTAMPDIFF(MONTH, STR_TO_DATE(CONCAT(year, '-', month, '-01'), '%Y-%m-%d'), NOW()) <![CDATA[<=]]> 6
+    UNION ALL
+    SELECT YEAR(o.created_at)  AS year,
+           MONTH(o.created_at) AS month,
+           0                   AS inboundCnt,
+           COUNT(o.id)         AS outboundCnt
+    FROM Outbound o
+    GROUP BY YEAR(o.created_at), MONTH(o.created_at)
+    HAVING TIMESTAMPDIFF(MONTH, STR_TO_DATE(CONCAT(year, '-', month, '-01'), '%Y-%m-%d'), NOW()) <![CDATA[<=]]> 6
+  </select>
+
+</mapper>
