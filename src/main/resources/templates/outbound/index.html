@@ -12,6 +12,7 @@
     <script src="/js/common/checkbox.js"></script>
     <script src="/js/common/dropdown.js"></script>
 
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -21,7 +22,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/outbound/index.css">
     <link rel="stylesheet" href="/css/common/table.css">
-    <link rel="stylesheet" href="/js/common/dropdowns.js">
+    <link rel="stylesheet" href="/css/common/search-dropdown.css">
     <script defer="" src="/js/common/checkbox.js"></script>
     <script defer="" src="/js/outbound/index.js"></script>
 
@@ -237,7 +238,7 @@
                     </div>
                     <div class="select-menu">
                         <div class="select">
-                            <span id="selected-option" style="white-space: nowrap">출고 미승인</span>
+                            <span id="selected-option1" style=" white-space: nowrap">출고 승인</span>
                             <i class="dropdown">
                                 <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
                             </i>
@@ -267,7 +268,7 @@
         </div>
 
         <div class="table-list">
-            <table>
+            <table id="outbound-list">
                 <thead>
                 <tr>
                     <th>

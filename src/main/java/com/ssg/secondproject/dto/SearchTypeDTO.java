@@ -20,8 +20,6 @@ public class SearchTypeDTO {
     private Integer WH; // warehouse
     private String SD;  // start date
     private String ED;  // end date
-
-
-
     private String DS;  // dispatch status
+    private String OS;
 }

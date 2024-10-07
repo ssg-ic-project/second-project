@@ -10,11 +10,11 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/outbound/detail.css">
   <link rel="stylesheet" href="/css/common/table.css">
-  <title>Inbound Detail</title>
+  <title>Outbound Detail</title>
   <script src="/js/outbound/detail.js"></script>
   <script defer th:inline="javascript">
     const outboundId = [[${id}]];
-    getOutboundDetails(outboundId)
+      getOutboundDetails(outboundId)
   </script>
 </head>
 <body>
@@ -24,7 +24,7 @@
     <span th:class="page-subtitle">출고 관리 > 출고 조회 > 상세 조회</span>
   </div>
   <div class="action-btn1">
-    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#printInvoice">출고 지시서 출력
+    <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#printInvoice" id="print-btn">출고 지시서 출력
     </button>
   </div>
     <div class="action-btn">
@@ -102,10 +102,10 @@
           <span th:class="detail-label">재고</span>
           <span th:id="stockQuantity" th:text="${stockQuantity}" th:class="detail-value"></span>
         </div>
-        <div th:class="detail-item">
-          <span th:class="detail-label">입고예정일</span>
-          <span th:id="inboundExpectedDate" th:text="${inboundExpectedDate}" th:class="detail-value"></span>
-        </div>
+<!--        <div th:class="detail-item">-->
+<!--          <span th:class="detail-label">입고예정일</span>-->
+<!--          <span th:id="inboundExpectedDate" th:text="${inboundExpectedDate}" th:class="detail-value"></span>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
