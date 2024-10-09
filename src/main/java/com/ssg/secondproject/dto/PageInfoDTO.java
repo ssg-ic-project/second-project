@@ -3,8 +3,10 @@ package com.ssg.secondproject.dto;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class PageInfoDTO {
     private int page;
     private int size;
@@ -32,7 +34,7 @@ public class PageInfoDTO {
         int last = (int) (Math.ceil((total/(double)size)));
         this.end = end > last ? last : end;
 
-        this.prev = this.start > 1;
-        this.next = total > this.end * this.size;
+        this.prev = this.page > this.start;
+        this.next = this.page < this.end;
     }
 }
