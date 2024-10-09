@@ -4,6 +4,36 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.InboundMapper">
 
+  <select id="getInboundCnt" parameterType="PageRequestDTO" resultType="int">
+    SELECT COUNT(i.id)
+    FROM Inbound i
+           JOIN User u ON u.id = i.user_id
+           JOIN Product p ON p.id = i.product_id
+           JOIN InboundApproval ia ON ia.inbound_id = i.id
+           JOIN (SELECT c.id AS cellId
+                    , w.id AS warehouseId
+               FROM Cell c
+                        JOIN Section s ON s.id = c.section_id
+                        JOIN Warehouse w ON w.id = s.warehouse_id) wsc ON wsc.cellId = i.cell_id
+           JOIN (SELECT MAX(created_at) AS createdAt
+                      , inbound_id
+                 FROM InboundApproval
+                 GROUP BY inbound_id) maxCrt ON maxCrt.inbound_id = ia.inbound_id AND maxCrt.createdAt = ia.created_at
+    <where>
+      <if test="search != null">
+        <if test="search.S != null and !search.S.equals('')">
+          AND ia.status = #{search.S}
+        </if>
+        <if test="search.WH != null and !search.WH.equals('') and search.WH != 0">
+          AND wsc.warehouseId = #{search.WH}
+        </if>
+        <if test="search.SD != null and !search.SD.equals('') and search.ED != null and !search.ED.equals('')">
+          AND i.expected_date BETWEEN #{search.SD} AND #{search.ED}
+        </if>
+      </if>
+    </where>
+  </select>
+
   <select id="findAll" parameterType="PageRequestDTO" resultType="InboundResponseDTO">
     SELECT i.id
          , i.user_id       AS userId

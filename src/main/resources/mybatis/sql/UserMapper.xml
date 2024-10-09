@@ -4,7 +4,7 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.UserMapper">
 
-  <select id="getUserCnt" resultType="int">
+  <select id="getUserCnt" parameterType="PageRequestDTO" resultType="int">
     SELECT COUNT(u.id)
     FROM User u
          JOIN UserApproval ua ON ua.user_id = u.id

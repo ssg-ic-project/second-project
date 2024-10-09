@@ -35,10 +35,11 @@ public class PageRequestDTO {
     @Builder.Default
     private String orderByDir = "DESC";
 
+    @Builder.Default
     private SearchTypeDTO search = new SearchTypeDTO();
 
     public int getOffset(){
-        return (page - 1) * 10;
+        return (page - 1) * size;
     }
 
     /**

@@ -1,3 +1,5 @@
+import {createPagination} from '/js/common/pagination.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   const today = new Date();
   const startDateDefault = new Date();
@@ -48,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const response = await fetch(`/api/inbound/list?${params}`);
     const jsonData = await response.json();
+    const page = jsonData.pageInfoDTO.page;
+    const start = jsonData.pageInfoDTO.start;
+    const end = jsonData.pageInfoDTO.end;
+    const prev = jsonData.pageInfoDTO.prev;
+    const next = jsonData.pageInfoDTO.next;
     const dataList = jsonData.dataList || [];
     const tbody = document.querySelector("#inbound-list tbody");
 
@@ -69,6 +76,10 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
       tbody.appendChild(row);
     });
+
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = '';
+    createPagination(pagination, page, start, end, prev, next);
   };
 
   inboundList(searchData)
@@ -88,5 +99,14 @@ document.addEventListener('DOMContentLoaded', function () {
     searchData.ED = document.getElementById('end-date').value
 
     inboundList(searchData);
+  });
+
+  const pagination = document.getElementById("pagination");
+  pagination.addEventListener('click', function (event) {
+    if (event.target.classList.contains('page-link')) {
+      const selectedPage = event.target.getAttribute('data-page');
+      searchData.page = selectedPage;
+      inboundList(searchData);
+    }
   });
 });

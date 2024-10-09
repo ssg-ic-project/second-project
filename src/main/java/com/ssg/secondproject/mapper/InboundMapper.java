@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface InboundMapper {
 
+    int getInboundCnt(PageRequestDTO requestDTO);
+
     List<InboundResponseDTO> findAll(PageRequestDTO pageRequestDTO);
 
     InboundDetailResponseDTO findById(int id);

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.ssg.secondproject.mapper.AdminMapper">
 
-  <select id="getAdminCnt" resultType="int">
+  <select id="getAdminCnt" parameterType="PageRequestDTO" resultType="int">
     SELECT COUNT(a.id)
     FROM Admin a
     JOIN Warehouse w ON w.id = a.warehouse_id
@@ -22,7 +22,8 @@
       </if>
     </where>
   </select>
-  <select id="findAll" resultType="AdminResponseDTO">
+
+  <select id="findAll" parameterType="PageRequestDTO" resultType="AdminResponseDTO">
     SELECT a.id
          , a.name
          , a.company_email AS companyEmail
