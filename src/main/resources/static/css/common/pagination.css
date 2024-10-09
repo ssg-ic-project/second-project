@@ -12,9 +12,15 @@
 
 #pagination button:hover {
   background-color: #BEC9FF;
+  border:1px solid #BEC9FF;
 }
 
-#pagination .selected{
+#pagination .selected {
   background-color: #7C8CDC;
+  border:1px solid #7C8CDC;
   color: #FFFFFF;
+}
+
+#pagination button[disabled] {
+  color: #ADB5BD;
 }
