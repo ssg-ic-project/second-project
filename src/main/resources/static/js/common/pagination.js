@@ -27,7 +27,13 @@ function createPagination(pagination, page, start, end, prev, next) {
   }
 
   for (let i = start; i <= end; i++) {
-    pagination.appendChild(createPaginationBtn(i, i, false));
+    const pageBtn = createPaginationBtn(i, i, false);
+
+    if (i === page) {
+      pageBtn.querySelector('.page-link').classList.add('selected');
+    }
+
+    pagination.appendChild(pageBtn);
   }
 
   if (next) {

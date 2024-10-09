@@ -1,0 +1,20 @@
+#pagination {
+  margin-bottom: 0px;
+}
+
+#pagination button {
+  color: #50565C;
+}
+
+#pagination button:active {
+  box-shadow: 0 0;
+}
+
+#pagination button:hover {
+  background-color: #BEC9FF;
+}
+
+#pagination .selected{
+  background-color: #7C8CDC;
+  color: #FFFFFF;
+}

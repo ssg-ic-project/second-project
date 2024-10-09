@@ -1,4 +1,4 @@
-import { createPagination } from '/js/common/pagination.js';
+import {createPagination} from '/js/common/pagination.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   let searchData = {
