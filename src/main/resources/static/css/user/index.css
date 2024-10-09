@@ -160,3 +160,8 @@
 .table-list a:hover {
   color: #7C8CDC;
 }
+
+.table-list {
+  justify-content: space-between;
+  gap: 25px;
+}

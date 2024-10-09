@@ -1,3 +1,5 @@
+import {createPagination} from '/js/common/pagination.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   let searchData = {
     page: 1,
@@ -22,6 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const response = await fetch(`/api/user/list?${params}`);
     const jsonData = await response.json();
+    const page = jsonData.pageInfoDTO.page;
+    const start = jsonData.pageInfoDTO.start;
+    const end = jsonData.pageInfoDTO.end;
+    const prev = jsonData.pageInfoDTO.prev;
+    const next = jsonData.pageInfoDTO.next;
     const dataList = jsonData.dataList || [];
     const tbody = document.querySelector("#user-list tbody");
 
@@ -40,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
       tbody.appendChild(row);
     });
+
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = '';
+    createPagination(pagination, page, start, end, prev, next);
   }
 
   userList(searchData);
@@ -58,5 +69,14 @@ document.addEventListener('DOMContentLoaded', function () {
     searchData.S = statusOption;
 
     userList(searchData);
+  });
+
+  const pagination = document.getElementById("pagination");
+  pagination.addEventListener('click', function (event) {
+    if (event.target.classList.contains('page-link')) {
+      const selectedPage = event.target.getAttribute('data-page');
+      searchData.page = selectedPage;
+      userList(searchData);
+    }
   });
 });
