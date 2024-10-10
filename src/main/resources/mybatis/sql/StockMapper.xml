@@ -1,13 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.StockMapper">
+
+    <resultMap id="stockResultMap" type="Stock">
+        <id property="id" column="id"/>
+        <result property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="cellId" column="cell_id" jdbcType="INTEGER"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+        <result property="actualQuantity" column="actual_quantity" jdbcType="INTEGER"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+
+        <association property="product" javaType="Product">
+            <id property="id" column="id"/>
+            <result property="categoryId" column="category_id" jdbcType="TIMESTAMP"/>
+            <result property="name" column="name"/>
+            <result property="code" column="code"/>
+            <result property="height" column="height"/>
+            <result property="width" column="width"/>
+            <result property="depth" column="depth"/>
+            <result property="manufacturer" column="manufacturer"/>
+            <result property="actualPrice" column="actual_price"/>
+            <result property="salePrice" column="sale_price"/>
+            <result property="userId" column="user_id"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+        </association>
+    </resultMap>
+
+    <select id="selectAll" parameterType="map" resultMap="stockResultMap">
+        SELECT * FROM stock s join product p on s.product_id = p.id
+                <where>
+                    <if test="productName != null">
+                        p.name like concat('%', #{productName}, '%')
+                    </if>
+                    <if test="from != null">
+                        AND s.created_at <![CDATA[>=]]> #{from}
+                    </if>
+                    <if test="to != null">
+                        AND s.created_at <![CDATA[<=]]> #{to}
+                    </if>
+                </where>
+                 ORDER BY s.id DESC LIMIT #{offset} , #{pageSize}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(id)
+        FROM stock
+    </select>
+
+    <update id="update" parameterType="map">
+        UPDATE stock SET  actual_quantity = #{actualQuantity},
+                          remarks = #{remarks}
+                          WHERE id = #{id}
+    </update>
+  
     <insert id="insertOutboundLog" parameterType="StockLogRequestDTO">
-        INSERT INTO StockLog (outbound_id, quantity, created_at)
---             builder.default일 경우에는 {}?
-        SELECT #{outboundId}, quantity, #{createdAt}
-        FROM Outbound
-        WHERE id = #{outboundId};
+          INSERT INTO StockLog (outbound_id, quantity, created_at)
+  --             builder.default일 경우에는 {}?
+          SELECT #{outboundId}, quantity, #{createdAt}
+          FROM Outbound
+          WHERE id = #{outboundId};
     </insert>
 </mapper>

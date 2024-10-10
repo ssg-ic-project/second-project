@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssg.secondproject.mapper.StockLogMapper">
-  <insert id="insertInboundLog" parameterType="StockLogRequestDTO">
-    INSERT INTO StockLog (stock_id, inbound_id, created_at)
-    SELECT s.id, #{inboundId}, #{createdAt}
-    FROM Inbound i
-        JOIN Stock s ON s.product_id = i.product_id
-                    AND s.cell_id = i.cell_id
-    WHERE i.id = #{inboundId};
-  </insert>
+
+    <resultMap id="stockLogResultMap" type="StockLog">
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectAll" parameterType="map" resultMap="stockLogResultMap">
+        SELECT sl.*,
+               CASE
+                   WHEN sl.inbound_id IS NOT NULL THEN (
+                       SELECT i.quantity
+                       FROM Inbound i
+                       WHERE i.id = sl.inbound_id
+                   )
+                   WHEN sl.outbound_id IS NOT NULL THEN (
+                       SELECT o.quantity
+                       FROM Outbound o
+                       WHERE o.id = sl.outbound_id
+                   )
+                   ELSE NULL
+                   END AS quantity
+        FROM stocklog sl
+        WHERE stock_id = #{stock_id}
+        ORDER BY sl.id DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(id)
+        FROM stocklog
+    </select>
+  
+    <insert id="insertInboundLog" parameterType="StockLogRequestDTO">
+      INSERT INTO StockLog (stock_id, inbound_id, created_at)
+      SELECT s.id, #{inboundId}, #{createdAt}
+      FROM Inbound i
+          JOIN Stock s ON s.product_id = i.product_id
+                      AND s.cell_id = i.cell_id
+      WHERE i.id = #{inboundId};
+    </insert>
+
 </mapper>

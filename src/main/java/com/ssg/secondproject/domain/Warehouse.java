@@ -1,5 +1,6 @@
 package com.ssg.secondproject.domain;
 
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import jakarta.validation.constraints.Null;
 import lombok.*;
 
@@ -12,25 +13,25 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Warehouse {
 
-    private int id;
+    private Integer id;
 
-    private int adminId;
+    private Integer adminId;
 
     private String name;
 
-    private int size;
+    private Integer size;
 
-    private int capacity;
+    private Integer capacity;
 
-    private double latitude;
+    private Double latitude;
 
-    private double longitude;
+    private Double longitude;
 
     private String address;
 
     private LocalDateTime createdAt;
 
-    private int updatedId;
+    private Integer updatedId;
 
     private LocalDateTime updatedAt;
 }
