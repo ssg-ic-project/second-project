@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const response = await fetch(`/api/admin/list?${params}`);
     const jsonData = await response.json();
     const page = jsonData.pageInfoDTO.page;
+    const orderByDir = jsonData.pageInfoDTO.orderByDir;
     const start = jsonData.pageInfoDTO.start;
     const end = jsonData.pageInfoDTO.end;
     const prev = jsonData.pageInfoDTO.prev;
@@ -68,6 +69,32 @@ document.addEventListener('DOMContentLoaded', function () {
     searchData.N = document.getElementById('name').value
 
     adminList(searchData);
+  });
+
+  const sizeOptions = document.querySelectorAll('#size-option-list .option');
+  sizeOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      sizeOptions.forEach(opt => opt.classList.remove('selected-option'));
+      this.classList.add('selected-option');
+
+      const selectedValue = this.getAttribute('data-value');
+      searchData.size = selectedValue;
+
+      adminList(searchData);
+    });
+  });
+
+  const sortOptions = document.querySelectorAll('#sort-option-list .option');
+  sortOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      sortOptions.forEach(opt => opt.classList.remove('selected-option'));
+      this.classList.add('selected-option');
+
+      const selectedValue = this.getAttribute('data-value');
+      searchData.orderByDir = selectedValue;
+
+      adminList(searchData);
+    });
   });
 
   const pagination = document.getElementById("pagination");

@@ -92,3 +92,42 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked::after {
   display: block;
 }
+
+.control-filters {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.control-filters .table-size {
+  width: 60px;
+}
+
+.control-filters .table-order {
+  width: 90px;
+}
+
+.table-list {
+  position: relative;
+  z-index: 1;
+}
+
+.control-filters .select span {
+  font-size: 12px;
+}
+
+.control-filters .option {
+  font-size: 12px;
+}
+
+.control-filters #size-option-list .option {
+  text-align: center;
+  padding: 5px;
+}
+
+.control-filters .select {
+  padding: 3px 10px;
+}

@@ -44,7 +44,7 @@
   max-width: calc(100% / 3);
 }
 
-.search-box .search-filters .select-menu{
+.select-menu{
   width: 250px;
   max-width: calc(100%);
 }
@@ -93,5 +93,5 @@
 
 .table-list {
   justify-content: space-between;
-  gap: 25px;
+  gap: 15px;
 }

@@ -26,7 +26,6 @@
   border: 1px solid #8D9DEF;
   border-radius: 10px;
   padding: 5px 15px;
-  height: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,6 +44,7 @@
   box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .select-menu.active .option-list {

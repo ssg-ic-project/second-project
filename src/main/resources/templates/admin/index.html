@@ -34,7 +34,7 @@
                 <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
               </i>
             </div>
-            <div class="option-list" id="">
+            <div class="option-list" id="role-option-list">
               <div class="option option-default" data-value="">-- 선택 --</div>
               <div class="option" data-value="EMPLOYEE">직원</div>
               <div class="option" data-value="ADMIN">관리자</div>
@@ -70,6 +70,40 @@
     </div>
   </form>
   <div class="table-list">
+    <div class="table-controls">
+      <ul class="control-filters">
+        <li class="filter-item table-size">
+          <div class="select-menu" id="table-size">
+            <div class="select">
+              <span class="selected-value" id="selected-size-value">10</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="size-option-list">
+              <div class="option selected" data-value="10">10</div>
+              <div class="option" data-value="15">15</div>
+              <div class="option" data-value="20">20</div>
+              <div class="option" data-value="50">50</div>
+            </div>
+          </div>
+        </li>
+        <li class="filter-item table-order">
+          <div class="select-menu" id="table-order">
+            <div class="select">
+              <span class="selected-value" id="selected-sort-value">최신순</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="sort-option-list">
+              <div class="option selected" data-value="DESC">최신순</div>
+              <div class="option" data-value="ASC">오래된순</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
     <table id="admin-list">
       <thead>
       <tr>
