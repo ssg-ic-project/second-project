@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   let id = '';
+
   async function inboundDetail(inboundId) {
     id = inboundId;
 
@@ -18,14 +19,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("sectionName").textContent = data.sectionName;
     document.getElementById("cellName").textContent = data.cellName;
     document.getElementById("stockQuantity").textContent = data.stockQuantity;
-    document.getElementById("useSpace").textContent = data.useSpace + ' m\u00B3';
-    document.getElementById("freeSpace").textContent = data.freeSpace + ' m\u00B3';
+    document.getElementById("useSpace").textContent = data.useSpace
+        + ' m\u00B3';
+    document.getElementById("freeSpace").textContent = data.freeSpace
+        + ' m\u00B3';
     document.getElementById("productId").textContent = data.productId;
     document.getElementById("productName").textContent = data.productName;
-    document.getElementById("category").textContent = data.mainCategory + ' > ' + data.subCategory + ' > ' + data.detailCategory;
-    document.getElementById("productHeight").textContent = data.productHeight + ' (mm)';
-    document.getElementById("productWidth").textContent = data.productWidth + ' (mm)';
-    document.getElementById("productDepth").textContent = data.productDepth + ' (mm)';
+    document.getElementById("category").textContent = data.mainCategory + ' > '
+        + data.subCategory + ' > ' + data.detailCategory;
+    document.getElementById("productHeight").textContent = data.productHeight
+        + ' (mm)';
+    document.getElementById("productWidth").textContent = data.productWidth
+        + ' (mm)';
+    document.getElementById("productDepth").textContent = data.productDepth
+        + ' (mm)';
     document.getElementById("userId").textContent = data.userId;
     document.getElementById("userName").textContent = data.userName;
     document.getElementById("companyName").textContent = data.companyName;
@@ -57,65 +64,64 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  inboundDetail(inboundId);
+  inboundApprovalList(inboundId);
 
-    inboundDetail(inboundId);
-    inboundApprovalList(inboundId);
+  document.getElementById("btn-approve").addEventListener("click",
+    async function () {
+      const selectedRole = document.querySelector(
+          '.option.selected')?.dataset.value || "";
 
-    document.getElementById("btn-approve").addEventListener("click",
-      async function () {
-        const selectedRole = document.querySelector(
-            '.option.selected')?.dataset.value || "";
-
-        const response = await fetch('/api/inbound/approval/status', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              id: id,
-              status: 'APPROVED'
-          })
-        });
-
-        location.reload();
+      const response = await fetch('/api/inbound/approval/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: id,
+          status: 'APPROVED'
+        })
       });
 
-    document.getElementById("btn-complete").addEventListener("click",
-      async function () {
-        const selectedRole = document.querySelector(
-            '.option.selected')?.dataset.value || "";
+      location.reload();
+    });
 
-        const response = await fetch('/api/inbound/approval/complete', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              id: id,
-              status: 'COMPLETED'
-          })
-        });
+  document.getElementById("btn-complete").addEventListener("click",
+    async function () {
+      const selectedRole = document.querySelector(
+          '.option.selected')?.dataset.value || "";
 
-        location.reload();
+      const response = await fetch('/api/inbound/approval/complete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: id,
+          status: 'COMPLETED'
+        })
       });
 
-    document.getElementById("btn-reject").addEventListener("click",
-      async function () {
-        const selectedRole = document.querySelector(
-            '.option.selected')?.dataset.value || "";
+      location.reload();
+    });
 
-        const response = await fetch('/api/inbound/approval/status', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              inboundId: id,
-              status: 'REJECTED',
-            rejectionReason: document.getElementById("rejection-reason").value
-          })
-        });
+  document.getElementById("btn-reject").addEventListener("click",
+    async function () {
+      const selectedRole = document.querySelector(
+          '.option.selected')?.dataset.value || "";
 
-        location.reload();
+      const response = await fetch('/api/inbound/approval/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: id,
+          status: 'REJECTED',
+          rejectionReason: document.getElementById("rejection-reason").value
+        })
       });
+
+      location.reload();
+    });
 });
