@@ -1,14 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let selectMenus = document.querySelectorAll(".select-menu");
-  let selects = document.querySelectorAll(".select");
-  let optionLists = document.querySelectorAll(".option-list");
+  let selectMenus = document.querySelectorAll(".search-box .select-menu");
+  let selects = document.querySelectorAll(".search-box .select");
+  let optionLists = document.querySelectorAll(".search-box .option-list");
 
   selects.forEach((select, index) => {
     let optionList = optionLists[index];
     let selectMenu = selectMenus[index];
-    let options = optionList.querySelectorAll(".option");
+    let options = optionList.querySelectorAll(".search-box .option");
 
     select.addEventListener("click", () => {
+       selectMenus.forEach(menu => {
+        if (menu !== selectMenu) {
+          menu.classList.remove("active");
+        }
+      });
       selectMenu.classList.toggle("active");
     });
 
@@ -22,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         option.classList.add("selected");
 
-        // 선택 메뉴 비활성화
         selectMenu.classList.remove("active");
       });
     });

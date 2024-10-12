@@ -8,9 +8,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/admin/common.css">
-  <link rel="stylesheet" href="/css/common/search-dropdown.css">
-  <link rel="stylesheet" href="/css/common/table.css">
   <link rel="stylesheet" href="/css/admin/index.css">
   <script src="/js/common/warehouse-dropdown.js"></script>
   <script type="module" src="/js/admin/index.js"></script>
@@ -74,7 +71,7 @@
       <ul class="control-filters">
         <li class="filter-item table-size">
           <div class="select-menu" id="table-size">
-            <div class="select">
+            <div class="select" id="table-size-select">
               <span class="selected-value" id="selected-size-value">10</span>
               <i class="dropdown">
                 <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
@@ -88,9 +85,9 @@
             </div>
           </div>
         </li>
-        <li class="filter-item table-order">
-          <div class="select-menu" id="table-order">
-            <div class="select">
+        <li class="filter-item table-sort">
+          <div class="select-menu" id="table-sort">
+            <div class="select"  id="table-sort-select">
               <span class="selected-value" id="selected-sort-value">최신순</span>
               <i class="dropdown">
                 <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
@@ -103,7 +100,7 @@
           </div>
         </li>
       </ul>
-  </div>
+    </div>
     <table id="admin-list">
       <thead>
       <tr>

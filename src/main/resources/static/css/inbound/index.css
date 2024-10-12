@@ -1,20 +1,9 @@
 .search-box {
-  width: 100%;
   height: 230px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  margin-top: 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .search-box .title {
   margin: 0;
-  align-self: flex-start;
 }
 
 .search-box .select-box {
@@ -56,18 +45,12 @@
 
 .select-menu {
   max-width: 100%;
-  cursor: pointer;
-  position: relative;
 }
 
 .select-menu span {
-  font-family: 'NanumSquare-Bold', sans-serif;
-  font-size: 15px;
-  color: #50565C;
   margin: 0 5px;
 }
 
-.select,
 .filter-row input {
   background-color: #FFFFFF;
   border: 1px solid #8D9DEF;
@@ -80,49 +63,13 @@
   box-sizing: border-box;
 }
 
-.option-list {
-  position: absolute;
-  box-sizing: border-box;
-  width: 100%;
-  display: none;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  margin-top: 10px;
-  padding: 10px;
-  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
-  transition: all 0.3s ease;
-}
-
 .select-menu.active .option-list {
-  display: block;
-  max-height: 180px;
   z-index: 200;
-}
-
-.select-menu .dropdown {
-  z-index: 200;
-  transition: transform 0.3s ease;
-}
-
-.select-menu.active .dropdown {
-  transform: rotate(-180deg);
 }
 
 .search-box .select-box .filter-button {
-  font-family: 'NanumSquare-Bold', sans-serif;
-  font-size: 17px;
-  color: #FFFFFF;
   width: 200px;
-  height: 35px;
-  border: none;
-  border-radius: 10px;
-  background-color: #4F64C9;
   z-index: 100;
-}
-
-.search-box .select-box .filter-button:active {
-  background-color: #3D4FA7;
 }
 
 #inbound-list a {

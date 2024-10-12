@@ -101,6 +101,32 @@ document.addEventListener('DOMContentLoaded', function () {
     inboundList(searchData);
   });
 
+  const sizeOptions = document.querySelectorAll('#size-option-list .option');
+  sizeOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      sizeOptions.forEach(opt => opt.classList.remove('selected-option'));
+      this.classList.add('selected-option');
+
+      const selectedValue = this.getAttribute('data-value');
+      searchData.size = selectedValue;
+
+      inboundList(searchData);
+    });
+  });
+
+  const sortOptions = document.querySelectorAll('#sort-option-list .option');
+  sortOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      sortOptions.forEach(opt => opt.classList.remove('selected-option'));
+      this.classList.add('selected-option');
+
+      const selectedValue = this.getAttribute('data-value');
+      searchData.orderByDir = selectedValue;
+
+      inboundList(searchData);
+    });
+  });
+
   const pagination = document.getElementById("pagination");
   pagination.addEventListener('click', function (event) {
     if (event.target.classList.contains('page-link')) {

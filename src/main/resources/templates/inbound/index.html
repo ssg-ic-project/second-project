@@ -7,12 +7,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/common/table.css">
-  <link rel="stylesheet" href="/css/common/search-dropdown.css">
   <link rel="stylesheet" href="/css/inbound/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script defer src="/js/common/warehouse-dropdown.js"></script>
+  <script src="/js/common/warehouse-dropdown.js"></script>
   <script type="module" src="/js/inbound/index.js"></script>
   <title>Inbound Index</title>
 </head>
@@ -25,7 +23,6 @@
   <form id="search-form" class="search-box">
     <h3 class="title">검색 조건</h3>
     <div class="select-box">
-
       <div class="filter-row">
         <span class="row-label"></span>
         <div class="select-group">
@@ -77,6 +74,40 @@
     </div>
   </form>
   <div class="table-list">
+    <div class="table-controls">
+      <ul class="control-filters">
+        <li class="filter-item table-size">
+          <div class="select-menu" id="table-size">
+            <div class="select" id="table-size-select">
+              <span class="selected-value" id="selected-size-value">10</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="size-option-list">
+              <div class="option selected" data-value="10">10</div>
+              <div class="option" data-value="15">15</div>
+              <div class="option" data-value="20">20</div>
+              <div class="option" data-value="50">50</div>
+            </div>
+          </div>
+        </li>
+        <li class="filter-item table-sort">
+          <div class="select-menu" id="table-sort">
+            <div class="select"  id="table-sort-select">
+              <span class="selected-value" id="selected-sort-value">최신순</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="sort-option-list">
+              <div class="option selected" data-value="DESC">최신순</div>
+              <div class="option" data-value="ASC">오래된순</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
     <table id="inbound-list">
       <thead>
       <tr>

@@ -108,10 +108,10 @@ input[type="checkbox"]:checked::after {
   width: 60px;
 }
 
-.control-filters .table-order,
-.control-filters .table-order .select,
-.control-filters .table-order .option-list {
-  width: 90px;
+.control-filters .table-sort,
+.control-filters .table-sort .select,
+.control-filters .table-sort .option-list {
+  width: 100px;
 }
 
 .table-list {
