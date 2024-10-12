@@ -2,6 +2,7 @@ package com.ssg.secondproject.service;
 
 import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
+import com.ssg.secondproject.dto.request.UserUnregisterRequestDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
@@ -17,4 +18,6 @@ public interface UserService {
     PageListResponseDTO<ApprovalResponseDTO> getApprovalByUserId(int userId);
 
     void createApprovalStatus(int approverId, ApprovalRequestDTO requestDTO);
+
+    void unregister(UserUnregisterRequestDTO requestDTO);
 }

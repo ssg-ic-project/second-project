@@ -68,15 +68,16 @@
          , username
          , email
          , phone
-         , business_number AS businessNumber
-         , company_name    AS companyName
-         , zip_code        AS zipCode
+         , business_number   AS businessNumber
+         , company_name      AS companyName
+         , zip_code          AS zipCode
          , address
          , comment
-         , is_unregister   AS isUnregister
-         , created_at      AS createdAt
-         , updated_at      AS updatedAt
-         , unregistered_at AS unregisteredAt
+         , is_unregister     AS isUnregister
+         , unregister_reason AS unregisterReason
+         , created_at        AS createdAt
+         , updated_at        AS updatedAt
+         , unregistered_at   AS unregisteredAt
     FROM User
     WHERE id = #{id}
   </select>
@@ -99,5 +100,15 @@
     INSERT INTO UserApproval (user_id, approver_id, status, rejection_reason, created_at)
     VALUES (#{requestDTO.id}, #{approverId}, #{requestDTO.status}, #{requestDTO.rejectionReason}, #{requestDTO.createdAt})
   </insert>
+
+  <update id="unregister" parameterType="UserUnregisterRequestDTO">
+    UPDATE User
+    SET
+        is_unregister = #{isUnregister}
+      , unregister_reason = #{unregisterReason}
+      , unregistered_at = #{unregisteredAt}
+      , updated_at = #{updatedAt}
+    WHERE id = #{id}
+  </update>
 
 </mapper>

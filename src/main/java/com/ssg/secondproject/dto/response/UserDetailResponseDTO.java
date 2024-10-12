@@ -1,5 +1,6 @@
 package com.ssg.secondproject.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ssg.secondproject.common.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,10 @@ public class UserDetailResponseDTO {
     private String zipCode;
     private String address;
     private String comment;
+
+    @JsonProperty("isUnregister")
     private boolean isUnregister;
+    private String unregisterReason;
     private String createdAt;
     private String updatedAt;
     private String unregisteredAt;

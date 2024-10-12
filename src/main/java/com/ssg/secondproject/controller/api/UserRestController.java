@@ -3,6 +3,7 @@ package com.ssg.secondproject.controller.api;
 import com.ssg.secondproject.dto.SearchTypeDTO;
 import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
+import com.ssg.secondproject.dto.request.UserUnregisterRequestDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
@@ -83,6 +84,12 @@ public class UserRestController {
         int approverId = 4; // 임시 직원 ID
 
         userService.createApprovalStatus(approverId, requestDTO);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PatchMapping("/unregister")
+    public ResponseEntity<Void> unregister(@RequestBody UserUnregisterRequestDTO requestDTO) {
+        userService.unregister(requestDTO);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

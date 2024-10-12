@@ -5,6 +5,7 @@ import com.ssg.secondproject.domain.UserApproval;
 import com.ssg.secondproject.dto.PageInfoDTO;
 import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
+import com.ssg.secondproject.dto.request.UserUnregisterRequestDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.dto.response.PageResponseDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
@@ -78,5 +79,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createApprovalStatus(int approverId, ApprovalRequestDTO requestDTO) {
         userMapper.insertStatus(approverId, requestDTO);
+    }
+
+    @Override
+    public void unregister(UserUnregisterRequestDTO requestDTO) {
+        userMapper.unregister(requestDTO);
     }
 }

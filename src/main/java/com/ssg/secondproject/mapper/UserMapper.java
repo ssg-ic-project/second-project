@@ -4,6 +4,7 @@ import com.ssg.secondproject.domain.User;
 import com.ssg.secondproject.domain.UserApproval;
 import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
+import com.ssg.secondproject.dto.request.UserUnregisterRequestDTO;
 import com.ssg.secondproject.dto.response.UserResponseDTO;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,5 @@ public interface UserMapper {
 
     void insertStatus(@Param("approverId") int approverId, @Param("requestDTO") ApprovalRequestDTO requestDTO);
 
+    void unregister(UserUnregisterRequestDTO requestDTO);
 }
