@@ -10,37 +10,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const data = jsonData.data;
 
     document.getElementById("id").textContent = data.inboundId;
-    document.getElementById("expectedDate").textContent = data.expectedDate;
+    document.getElementById("expected-date").textContent = data.expectedDate;
     document.getElementById("quantity").textContent = data.quantity;
-    document.getElementById("createdAt").textContent = data.createdAt;
-    document.getElementById("updatedAt").textContent = data.updatedAt;
-    document.getElementById("warehouseId").textContent = data.warehouseId;
-    document.getElementById("warehouseName").textContent = data.warehouseName;
-    document.getElementById("sectionName").textContent = data.sectionName;
-    document.getElementById("cellName").textContent = data.cellName;
-    document.getElementById("stockQuantity").textContent = data.stockQuantity;
-    document.getElementById("useSpace").textContent = data.useSpace
+    document.getElementById("created-at").textContent = data.createdAt;
+    document.getElementById("updated-at").textContent = data.updatedAt;
+    document.getElementById("warehouse-id").textContent = data.warehouseId;
+    document.getElementById("warehouse-name").textContent = data.warehouseName;
+    document.getElementById("section-name").textContent = data.sectionName;
+    document.getElementById("cell-name").textContent = data.cellName;
+    document.getElementById("stock-quantity").textContent = data.stockQuantity;
+    document.getElementById("use-space").textContent = data.useSpace
         + ' m\u00B3';
-    document.getElementById("freeSpace").textContent = data.freeSpace
+    document.getElementById("free-space").textContent = data.freeSpace
         + ' m\u00B3';
-    document.getElementById("productId").textContent = data.productId;
-    document.getElementById("productName").textContent = data.productName;
+    document.getElementById("product-id").textContent = data.productId;
+    document.getElementById("product-name").textContent = data.productName;
     document.getElementById("category").textContent = data.mainCategory + ' > '
         + data.subCategory + ' > ' + data.detailCategory;
-    document.getElementById("productHeight").textContent = data.productHeight
+    document.getElementById("product-height").textContent = data.productHeight
         + ' (mm)';
-    document.getElementById("productWidth").textContent = data.productWidth
+    document.getElementById("product-width").textContent = data.productWidth
         + ' (mm)';
-    document.getElementById("productDepth").textContent = data.productDepth
+    document.getElementById("product-depth").textContent = data.productDepth
         + ' (mm)';
-    document.getElementById("userId").textContent = data.userId;
-    document.getElementById("userName").textContent = data.userName;
-    document.getElementById("companyName").textContent = data.companyName;
-    document.getElementById("userEmail").textContent = data.userEmail;
-    document.getElementById("userPhone").textContent = data.userPhone;
+    document.getElementById("user-id").textContent = data.userId;
+    document.getElementById("user-name").textContent = data.userName;
+    document.getElementById("company-name").textContent = data.companyName;
+    document.getElementById("user-email").textContent = data.userEmail;
+    document.getElementById("user-phone").textContent = data.userPhone;
 
-    document.getElementById("modifyExpectedDate").value = data.expectedDate;
-    document.getElementById("modifyQuantity").value = data.quantity;
+    document.getElementById("modify-expected-date").value = data.expectedDate;
+    document.getElementById("modify-quantity").value = data.quantity;
 
   }
 

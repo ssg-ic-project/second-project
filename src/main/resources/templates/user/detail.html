@@ -25,9 +25,9 @@
     <button class="btn btn-approve" data-bs-toggle="modal" data-bs-target="#approveModal">승인
     </button>
     <button class="btn btn-reject" data-bs-toggle="modal" data-bs-target="#rejectModal">반려</button>
-    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editUserModal">수정
+    <button class="btn btn-modify" data-bs-toggle="modal" data-bs-target="#editUserModal" disabled>수정
     </button>
-    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#removeModal">삭제</button>
+    <button class="btn btn-remove" data-bs-toggle="modal" data-bs-target="#unregisterModal">강제 탈퇴</button>
   </div>
   <div th:class="user-info-box">
     <h5 th:class="box-title">회원 정보</h5>
@@ -55,25 +55,25 @@
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">최초 등록일</span>
-          <span th:id="createdAt" th:text="${createdAt}" th:class="info-value"></span>
+          <span th:id="created-at" th:text="${createdAt}" th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">최종 수정일</span>
-          <span th:id="updatedAt" th:text="${updatedAt}" th:class="info-value"></span>
+          <span th:id="updated-at" th:text="${updatedAt}" th:class="info-value"></span>
         </div>
       </div>
       <div th:class="user-detail-group">
         <div th:class="user-detail">
           <span th:class="detail-label">사업자 번호</span>
-          <span th:id="businessNumber" th:text="${businessNumber}" th:class="info-value"></span>
+          <span th:id="business-number" th:text="${businessNumber}" th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">상호명</span>
-          <span th:id="companyName" th:text="${companyName}" th:class="info-value"></span>
+          <span th:id="company-name" th:text="${companyName}" th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">사업장 우편번호</span>
-          <span th:id="zipCode" th:text="${zipCode}" th:class="info-value"></span>
+          <span th:id="zip-code" th:text="${zipCode}" th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">사업장 주소</span>
@@ -81,16 +81,20 @@
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">탈퇴 여부</span>
-          <span th:id="isUnregister" th:text="${isUnregister == 1 ? 'O' : 'X'}"
+          <span th:id="is-unregister" th:text="${isUnregister == 1 ? 'O' : 'X'}"
                 th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
+          <span th:class="detail-label">탈퇴 사유</span>
+          <textarea th:id="unregister-reason" th:text="${unregisterReason}" th:class="info-value" readonly></textarea>
+        </div>
+        <div th:class="user-detail">
           <span th:class="detail-label">탈퇴 시각</span>
-          <span th:id="unregisterAt" th:text="${unregisterAt}" th:class="info-value"></span>
+          <span th:id="unregistered-at" th:text="${unregisteredAt}" th:class="info-value"></span>
         </div>
         <div th:class="user-detail">
           <span th:class="detail-label">비고</span>
-          <textarea th:id="comment" th:text="${comment}" th:class="info-value" rows="4" style="width: 100%;"></textarea>
+          <textarea th:id="comment" th:text="${comment}" th:class="info-value" readonly></textarea>
         </div>
       </div>
     </div>
@@ -139,7 +143,7 @@
         </div>
         <div class="modal-body">
           <label for="rejection-reason" class="col-form-label">반려 사유를 입력해 주세요.</label>
-          <textarea class="form-control" id="rejection-reason" rows="3" required></textarea>
+          <textarea class="form-control" id="rejection-reason" required></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
@@ -203,22 +207,42 @@
       </div>
     </div>
   </div>
+  <div id="unregisterModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+       tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">회원 탈퇴</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="modify-unregister-reason" class="col-form-label">강제 탈퇴 사유를 입력해 주세요.</label>
+          <textarea class="form-control" id="modify-unregister-reason" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
+          <button class="btn btn-action" data-bs-toggle="modal" data-bs-target="#removeModal">탈퇴</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="removeModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
        tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">회원 삭제</h5>
+          <h5 class="modal-title">회원 탈퇴</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"
                   aria-label="Close"></button>
         </div>
         <div class="modal-body">
           [ <span th:name="companyName" th:class="modal-content">[companyName]]</span> ] 회원을 정말로
-          삭제하시겠습니까?
+          강제 탈퇴시키겠습니까?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-action">삭제</button>
+          <button type="button" class="btn btn-action" id="btn-remove">탈퇴</button>
         </div>
       </div>
     </div>

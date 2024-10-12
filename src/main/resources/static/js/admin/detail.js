@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("id").textContent = data.id;
     document.getElementById("name").textContent = data.name;
     document.getElementById("username").textContent = data.username;
-    document.getElementById("companyEmail").textContent = data.companyEmail;
-    document.getElementById("warehouseName").textContent = data.warehouseName;
+    document.getElementById("company-email").textContent = data.companyEmail;
+    document.getElementById("warehouse-name").textContent = data.warehouseName;
     document.getElementById("role").textContent = data.role;
     document.getElementById("phone").textContent = data.phone;
-    document.getElementById("createdAt").textContent = data.createdAt;
-    document.getElementById("updatedAt").textContent = data.updatedAt;
+    document.getElementById("created-at").textContent = data.createdAt;
+    document.getElementById("updated-at").textContent = data.updatedAt;
 
     adminRole = data.role;
     id = data.id;
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '.option.selected')?.dataset.value || "";
 
       const response = await fetch('/api/admin', {
-        method: 'PATCH', // PATCH 메서드
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
         },

@@ -56,11 +56,20 @@
   font-size: 15px;
   border: 1px solid #ADB5BD;
   border-radius: 5px;
-  width: calc(100% - 20px);
+  width: 100%;
   line-height: 1;
-  padding: 0px 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
+}
+
+textarea {
+  min-height: 50px;
+  max-height: 400px;
+}
+
+.modal-body textarea {
+  min-height: 100px;
 }
 
 .action-btn {

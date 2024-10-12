@@ -24,4 +24,5 @@ public class User extends BaseInfo {
     private String address;
     private String comment;
     private boolean isUnregister;
+    private String unregisterReason;
 }
