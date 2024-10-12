@@ -7,6 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/admin/common.css">
   <link rel="stylesheet" href="/css/user/index.css">
   <link rel="stylesheet" href="/css/common/table.css">
   <script type="module" src="/js/user/index.js"></script>
@@ -39,10 +40,10 @@
           </div>
           <div class="option-list">
             <div class="option option-default" data-value="">-- 선택 --</div>
-              <div class="option" data-value="PENDING">승인 대기</div>
-              <div class="option" data-value="APPROVED">승인</div>
-              <div class="option" data-value="COMPLETED">승인 완료</div>
-              <div class="option" data-value="REJECTED">승인 거절</div>
+            <div class="option" data-value="PENDING">승인 대기</div>
+            <div class="option" data-value="APPROVED">승인</div>
+            <div class="option" data-value="COMPLETED">승인 완료</div>
+            <div class="option" data-value="REJECTED">승인 거절</div>
           </div>
         </div>
         <div class="filter-item">
@@ -52,6 +53,40 @@
     </div>
   </form>
   <div class="table-list">
+    <div class="table-controls">
+      <ul class="control-filters">
+        <li class="filter-item table-size">
+          <div class="select-menu" id="table-size">
+            <div class="select">
+              <span class="selected-value" id="selected-size-value">10</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="size-option-list">
+              <div class="option selected" data-value="10">10</div>
+              <div class="option" data-value="15">15</div>
+              <div class="option" data-value="20">20</div>
+              <div class="option" data-value="50">50</div>
+            </div>
+          </div>
+        </li>
+        <li class="filter-item table-order">
+          <div class="select-menu" id="table-order">
+            <div class="select">
+              <span class="selected-value" id="selected-sort-value">최신순</span>
+              <i class="dropdown">
+                <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20" height="20">
+              </i>
+            </div>
+            <div class="option-list" id="sort-option-list">
+              <div class="option selected" data-value="DESC">최신순</div>
+              <div class="option" data-value="ASC">오래된순</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
     <table id="user-list">
       <thead>
       <tr>

@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const response = await fetch(`/api/admin/list?${params}`);
     const jsonData = await response.json();
     const page = jsonData.pageInfoDTO.page;
-    const orderByDir = jsonData.pageInfoDTO.orderByDir;
     const start = jsonData.pageInfoDTO.start;
     const end = jsonData.pageInfoDTO.end;
     const prev = jsonData.pageInfoDTO.prev;
