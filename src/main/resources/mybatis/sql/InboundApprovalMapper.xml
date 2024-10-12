@@ -12,8 +12,8 @@
     WHERE inbound_id = #{inboundId}
   </select>
 
-  <insert id="insert" parameterType="InboundApprovalRequestDTO">
+  <insert id="insert" parameterType="ApprovalRequestDTO">
     INSERT INTO InboundApproval (inbound_id, approver_id, status, rejection_reason, created_at)
-    VALUES (#{requestDTO.inboundId}, #{approverId}, #{requestDTO.status}, #{requestDTO.rejectionReason}, #{requestDTO.createdAt})
+    VALUES (#{requestDTO.id}, #{approverId}, #{requestDTO.status}, #{requestDTO.rejectionReason}, #{requestDTO.createdAt})
   </insert>
 </mapper>

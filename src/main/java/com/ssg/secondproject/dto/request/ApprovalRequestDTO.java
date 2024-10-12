@@ -13,8 +13,8 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class InboundApprovalRequestDTO {
-    private int inboundId;
+public class ApprovalRequestDTO {
+    private int id;
     private Status status;
 
     @Builder.Default

@@ -1,6 +1,7 @@
 package com.ssg.secondproject.controller.api;
 
 import com.ssg.secondproject.dto.SearchTypeDTO;
+import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.PageRequestDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -17,6 +18,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,5 +76,13 @@ public class UserRestController {
     public ResponseEntity<PageListResponseDTO<ApprovalResponseDTO>> getApprovalByUserId(@RequestParam int userId) {
         PageListResponseDTO<ApprovalResponseDTO> data = userService.getApprovalByUserId(userId);
         return new ResponseEntity<>(data, getHttpHeaders(), HttpStatus.OK);
+    }
+
+    @PostMapping("/approval/status")
+    public ResponseEntity<Void> createApprovalStatus(@RequestBody ApprovalRequestDTO requestDTO) {
+        int approverId = 4; // 임시 직원 ID
+
+        userService.createApprovalStatus(approverId, requestDTO);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

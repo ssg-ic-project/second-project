@@ -1,6 +1,6 @@
 package com.ssg.secondproject.service.serviceImpl;
 
-import com.ssg.secondproject.dto.request.InboundApprovalRequestDTO;
+import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.request.StockLogRequestDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
@@ -36,14 +36,14 @@ public class InboundApprovalServiceImpl implements InboundApprovalService {
     }
 
     @Override
-    public void createApprovalStatus(int approverId, InboundApprovalRequestDTO requestDTO) {
+    public void createApprovalStatus(int approverId, ApprovalRequestDTO requestDTO) {
         inboundApprovalMapper.insert(approverId, requestDTO);
     }
 
 
     @Override
     @Transactional
-    public void processCompleteApproval(int approverId, InboundApprovalRequestDTO requestDTO) {
+    public void processCompleteApproval(int approverId, ApprovalRequestDTO requestDTO) {
         // 입고 완료
         completeInbound(approverId, requestDTO);
         // 재고 로그 적재
@@ -57,14 +57,14 @@ public class InboundApprovalServiceImpl implements InboundApprovalService {
      * Propagation.REQUIRES_NEW 를 적용하여 별도 트랜잭션으로 처리.
      */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void completeInbound(int approverId, InboundApprovalRequestDTO requestDTO) {
+    public void completeInbound(int approverId, ApprovalRequestDTO requestDTO) {
         createApprovalStatus(approverId, requestDTO);
     }
 
-    private void createStockLog(InboundApprovalRequestDTO requestDTO) {
+    private void createStockLog(ApprovalRequestDTO requestDTO) {
         StockLogRequestDTO stockLogRequestDTO =
             StockLogRequestDTO.builder()
-                .inboundId(requestDTO.getInboundId())
+                .inboundId(requestDTO.getId())
                 .build();
 
         stockLogMapper.insertInboundLog(stockLogRequestDTO);

@@ -1,6 +1,6 @@
 package com.ssg.secondproject.controller.api;
 
-import com.ssg.secondproject.dto.request.InboundApprovalRequestDTO;
+import com.ssg.secondproject.dto.request.ApprovalRequestDTO;
 import com.ssg.secondproject.dto.response.ApprovalResponseDTO;
 import com.ssg.secondproject.dto.response.PageListResponseDTO;
 import com.ssg.secondproject.service.InboundApprovalService;
@@ -39,15 +39,14 @@ public class InboundApprovalRestController {
     }
 
     @PostMapping("/status")
-    public ResponseEntity<Void> createApprovalStatus(@RequestBody InboundApprovalRequestDTO requestDTO) {
+    public ResponseEntity<Void> createApprovalStatus(@RequestBody ApprovalRequestDTO requestDTO) {
         int approverId = 4; // 임시 직원 ID
-
         inboundApprovalService.createApprovalStatus(approverId, requestDTO);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping("/complete")
-    public ResponseEntity<Void> processCompleteApproval(@RequestBody InboundApprovalRequestDTO requestDTO) {
+    public ResponseEntity<Void> processCompleteApproval(@RequestBody ApprovalRequestDTO requestDTO) {
         int approverId = 4; // 임시 직원 ID
 
         inboundApprovalService.processCompleteApproval(approverId, requestDTO);

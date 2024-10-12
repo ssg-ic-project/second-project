@@ -95,4 +95,9 @@
     WHERE user_id = #{userId}
   </select>
 
+  <insert id="insertStatus" parameterType="ApprovalRequestDTO">
+    INSERT INTO UserApproval (user_id, approver_id, status, rejection_reason, created_at)
+    VALUES (#{requestDTO.id}, #{approverId}, #{requestDTO.status}, #{requestDTO.rejectionReason}, #{requestDTO.createdAt})
+  </insert>
+
 </mapper>

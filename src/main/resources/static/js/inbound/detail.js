@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              inboundId: id,
+              id: id,
               status: 'APPROVED'
           })
         });
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              inboundId: id,
+              id: id,
               status: 'COMPLETED'
           })
         });
