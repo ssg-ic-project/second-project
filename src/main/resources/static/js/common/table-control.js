@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // table-size select menu 처리
+  const sizeMenu = document.getElementById("table-size");
   const sizeSelect = document.getElementById("table-size-select");
   const sizeOptionList = document.getElementById("size-option-list");
-  const sizeMenu = document.getElementById("table-size");
 
   sizeSelect.addEventListener("click", () => {
     sizeMenu.classList.toggle("active");
@@ -20,10 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // table-sort select menu 처리
+  const sortMenu = document.getElementById("table-sort");
   const sortSelect = document.getElementById("table-sort-select");
   const sortOptionList = document.getElementById("sort-option-list");
-  const sortMenu = document.getElementById("table-sort");
 
   sortSelect.addEventListener("click", () => {
     sortMenu.classList.toggle("active");
@@ -40,13 +38,4 @@ document.addEventListener("DOMContentLoaded", () => {
       sortMenu.classList.remove("active");
     });
   });
-
-  // // 클릭 외부 시 모든 메뉴 닫기
-  // document.addEventListener("click", (event) => {
-  //   if (!event.target.closest(".select-menu")) {
-  //     document.querySelectorAll(".select-menu").forEach(menu => {
-  //       menu.classList.remove("active");
-  //     });
-  //   }
-  // });
 });

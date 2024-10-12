@@ -128,4 +128,5 @@
   max-width: 100%;
   cursor: pointer;
   position: relative;
+  margin: 0 auto;
 }

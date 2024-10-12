@@ -13,7 +13,6 @@
   <script src="/js/admin/detail.js"></script>
   <script th:inline="javascript">
     const adminId = [[${id}]];
-    // adminDetail(adminId);
   </script>
 </head>
 <body>
@@ -84,15 +83,15 @@
             <div class="modal-body">
               <p th:class="modal-warning">※ 직원의 권한만 수정할 수 있습니다.</p>
               <div class="select-box">
-                <div class="select-menu">
-                  <div class="select">
+                <div class="select-menu select-role" id="select-role">
+                  <div class="select" id="select">
                     <span>권한</span>
                     <i class="dropdown">
                       <img src="/media/icons/arrow_down.svg" alt="Arrow Down Icon" width="20"
                            height="20">
                     </i>
                   </div>
-                  <div class="option-list" id="roleSelect">
+                  <div class="option-list role-list" id="role-list">
                     <div class="option option-default" data-value="">-- 선택 --</div>
                     <div class="option" data-value="EMPLOYEE">직원</div>
                     <div class="option" data-value="ADMIN">관리자</div>
