@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         + ' m\u00B3';
     document.getElementById("free-space").textContent = data.freeSpace
         + ' m\u00B3';
+    document.getElementById("inbound-space").textContent = ((data.productHeight * data.productWidth * data.productDepth * data.quantity) / 1000000000) + ' m\u00B3';
     document.getElementById("product-id").textContent = data.productId;
     document.getElementById("product-name").textContent = data.productName;
     document.getElementById("category").textContent = data.mainCategory + ' > '
