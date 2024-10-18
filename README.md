@@ -1,4 +1,6 @@
 # 3PL
+<p align="center"><img width="423" alt="image" src="https://github.com/user-attachments/assets/f49e1bb9-77b6-4bee-9e75-d55b97bf4107"></p>
+
 ## 📦 WMS (Warehouse Management System)
 ## 🗓️ 개발 기간
 2024.09.26(목) ~ 2024.10.02(수)
