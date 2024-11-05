@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`/api/warehouse/${warehouse_id}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-
             id.textContent = data.warehouseDTO.id;
             name.textContent = data.warehouseDTO.name;
             adminId.textContent = data.warehouseDTO.adminId;
@@ -36,11 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             address.textContent = data.warehouseDTO.address;
             longitude.value = data.warehouseDTO.longitude;
             latitude.value = data.warehouseDTO.latitude;
-
-            console.log(latitude);
-            console.log(latitude.value);
-            console.log(longitude);
-            console.log(longitude.value);
 
             modalName.value = name.textContent;
             modalAdminId.value = adminId.textContent;

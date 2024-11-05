@@ -5,15 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const response = await fetch(`/api/warehouse?page=${page}`);
         const jsonData = await response.json();
 
-        console.log(jsonData);
-
         const tableBody = document.getElementById("warehouseTableBody");
         tableBody.innerHTML = "";
 
         // jsonData.pages.content에서 데이터를 가져옴
         const warehouses = jsonData.pages.content;
-
-        console.log(warehouses);
 
         // 각 창고 정보를 테이블에 추가
         warehouses.forEach(warehouse => {
@@ -46,10 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let pagination = jsonData.pages;
 
-        console.log(pagination.totalPages);
-
         let end = Math.ceil(pagination.number <= 0 ? 1 : pagination.number / 10.0) * 10;
-        console.log(end);
 
         end = end > pagination.totalPages ? pagination.totalPages : end;
 
@@ -93,28 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
             li.appendChild(a);
             paginationUl.appendChild(li);
         }
-
-        // 페이지 번호 생성
-        // for (let i = start; i <= end; i++) {
-        //     let li = document.createElement("li");
-        //     li.classList.add("page-item");
-        //     if (i - 1 === pagination.number) {
-        //         li.classList.add("disabled"); // 현재 페이지 비활성화
-        //     }
-        //     let a = document.createElement("a");
-        //     a.classList.add("page-link");
-        //     a.setAttribute("href", "#"); // Prevent default link behavior
-        //     a.innerHTML = i;
-        //
-        //     // 클릭 시 데이터 로드
-        //     a.addEventListener("click", (event) => {
-        //         event.preventDefault(); // 기본 링크 동작 방지
-        //         request(i - 1); // 페이지 번호로 데이터 요청
-        //     });
-        //
-        //     li.appendChild(a);
-        //     paginationUl.appendChild(li);
-        // }
 
         // "다음" 버튼
         let nextLi = document.createElement("li");
